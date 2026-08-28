@@ -103,14 +103,29 @@ const mesajHtml = (m) =>
   `<div class="mesaj ${m.rol === "kullanici" ? "kullanici" : "ai"}">${
     m.rol === "kullanici" ? kacis(m.metin) : sohbetMetni(m.metin)}</div>`;
 
-function sohbetKarti(mesajlar) {
+// Hazir soru onerileri. Yerelde uretilir, kota harcamaz. Tiklayinca kutuya
+// yazilir ama GONDERILMEZ: kullanici cumleyi degistirmek isteyebilir.
+function oneriListesi(soru, secilen) {
+  const oneriler = ["Bu kuralı başka bir örnekle anlatır mısın?"];
+  oneriler.push(secilen === null
+    ? "Bu soruda en çok hangi şık kandırıyor?"
+    : `Neden "${soru.secenekler[secilen]}" olmuyor?`);
+  oneriler.push("Türkçede bunun karşılığı ne?");
+  oneriler.push("Bunu nasıl aklımda tutarım?");
+  return oneriler;
+}
+
+function sohbetKarti(mesajlar, oneriler) {
   return `<div class="sohbet">
     <div class="mesajlar">
       ${mesajlar.length === 0
         ? `<p class="kucuk soluk" style="margin:0">Anlamadığın bir yer varsa sor — bu soru bağlamında cevaplar.</p>`
         : mesajlar.map(mesajHtml).join("")}
     </div>
-    <textarea class="sohbet-girdi" rows="2" placeholder="Peki neden 'is' değil de 'are'?"></textarea>
+    ${oneriler?.length ? `<div class="oneri-liste">
+      ${oneriler.map(o => `<button class="oneri">${kacis(o)}</button>`).join("")}
+    </div>` : ""}
+    <textarea class="sohbet-girdi" rows="2" placeholder="Aklına takılanı yaz…"></textarea>
     <div class="satir" style="margin-top:8px">
       <button class="dugme sohbet-gonder" style="min-height:44px;padding:10px 18px">Sor</button>
     </div>
@@ -119,10 +134,19 @@ function sohbetKarti(mesajlar) {
 
 // Bir yanlis cevap icin aciklamayi acar: once cache, yoksa AI, sonra sohbet.
 async function nedenAc(kap, soru, secilen, konu) {
+  const oneriAcik = await db.ayarOku("oneriler", true);
+
   const cizAciklama = (a, mesajlar) => {
-    kap.innerHTML = aciklamaKarti(a) + sohbetKarti(mesajlar);
+    kap.innerHTML = aciklamaKarti(a) +
+      sohbetKarti(mesajlar, oneriAcik ? oneriListesi(soru, secilen) : null);
     kap.querySelectorAll(".benzer .cevap").forEach(e =>
       e.addEventListener("click", () => e.classList.toggle("gizli")));
+    // Oneriye basinca kutuya yazilir, gonderilmez.
+    const girdi = kap.querySelector(".sohbet-girdi");
+    kap.querySelectorAll(".oneri").forEach(o => o.addEventListener("click", () => {
+      girdi.value = o.textContent;
+      girdi.focus();
+    }));
     sohbetBagla(kap, soru, secilen, konu);
   };
 
@@ -267,23 +291,33 @@ async function blokEkrani(no) {
 
   let i = Math.min(durum.sonSoruIndex, sorular.length - 1);
   let secilen = null;
+  let bilmiyorumAktif = false;
 
   function ciz() {
     const s = sorular[i];
+    // Geri gelinen soruda onceki cevap hatirlanir; kullanici fikrini degistirebilsin.
+    const mevcut = durum.cevaplar[i];
+    secilen = mevcut && !mevcut.bilmiyorum ? mevcut.secilen : null;
+    bilmiyorumAktif = !!mevcut?.bilmiyorum;
+
     ekran.innerHTML = `
       <div class="ilerleme-cubuk"><i style="width:${(i / sorular.length) * 100}%"></i></div>
-      <div class="sayac">Blok ${no} · Soru ${i + 1} / ${sorular.length}</div>
+      <div class="gezinti">
+        <button class="ok" id="geri" ${i === 0 ? "disabled" : ""} aria-label="Önceki soru">←</button>
+        <span class="sayac" style="margin:0">Blok ${no} · Soru ${i + 1} / ${sorular.length}</span>
+      </div>
       ${s.metin ? `<div class="parca">${kacis(s.metin)}</div>` : ""}
       <p class="soru-metni">${soruGoster(s.soru)}</p>
       <div class="sik-liste">
         ${s.secenekler.map((o, j) => `
-          <button class="sik" data-j="${j}">
+          <button class="sik ${secilen === j ? "secili" : ""}" data-j="${j}">
             <span class="harf">${HARFLER[j]}</span><span>${kacis(o)}</span>
           </button>`).join("")}
       </div>
       <div class="satir">
-        <button class="dugme" id="ileri" disabled>${i === sorular.length - 1 ? "Bitir ve haritayı gör" : "Sonraki soru"}</button>
-        <button class="dugme ikincil" id="bilmiyorum">Bilmiyorum</button>
+        <button class="dugme" id="ileri" ${secilen === null && !bilmiyorumAktif ? "disabled" : ""}>${
+          i === sorular.length - 1 ? "Bitir ve haritayı gör" : "Sonraki soru →"}</button>
+        <button class="dugme ikincil ${bilmiyorumAktif ? "secili" : ""}" id="bilmiyorum">Bilmiyorum</button>
       </div>
       <p class="kucuk soluk" style="margin-top:14px">
         Emin değilsen tahmin etme, <strong>Bilmiyorum</strong> de — şans eseri tutturduğun soru
@@ -295,19 +329,24 @@ async function blokEkrani(no) {
 
     ekran.querySelectorAll(".sik").forEach(d => d.addEventListener("click", () => {
       secilen = Number(d.dataset.j);
+      bilmiyorumAktif = false;
       ekran.querySelectorAll(".sik").forEach(x => x.classList.remove("secili"));
       d.classList.add("secili");
+      ekran.querySelector("#bilmiyorum").classList.remove("secili");
       ekran.querySelector("#ileri").disabled = false;
     }));
 
-    ekran.querySelector("#ileri").addEventListener("click", () => ileri(false));
+    // Sik secilmemis ama daha once bilmiyorum denmisse, ileri o cevabi korur.
+    ekran.querySelector("#ileri").addEventListener("click", () => ileri(secilen === null && bilmiyorumAktif));
     ekran.querySelector("#bilmiyorum").addEventListener("click", () => ileri(true));
+    ekran.querySelector("#geri").addEventListener("click", geri);
     ekran.querySelector("#cik").addEventListener("click", () => git("#/"));
   }
 
-  // bilmiyorum = kullanici tahmin etmek yerine bilmedigini soyledi. Yanlis sayilir
-  // ama incelemede ayri gosterilir: sasirdigi bir sik yok, aciklamasi da farkli.
-  async function ileri(bilmiyorum) {
+  // Ekrandaki secimi kayda gecirir. Hem ileri hem geri giderken cagrilir:
+  // sik secip ileri basmadan geri donen kullanici secimini kaybetmesin.
+  function kaydet(bilmiyorum) {
+    if (secilen === null && !bilmiyorum) return;   // hic cevaplanmadiysa yazma
     const s = sorular[i];
     durum.cevaplar[i] = {
       soruId: s.id, konu: s.konu,
@@ -315,8 +354,23 @@ async function blokEkrani(no) {
       dogruMu: !bilmiyorum && secilen === s.cevap,
       bilmiyorum: !!bilmiyorum
     };
+  }
+
+  async function geri() {
+    if (i === 0) return;
+    kaydet(secilen === null && bilmiyorumAktif);
+    i--;
+    durum.sonSoruIndex = i;
+    await db.blokYaz(no, durum);
+    ciz();
+    window.scrollTo(0, 0);
+  }
+
+  // bilmiyorum = kullanici tahmin etmek yerine bilmedigini soyledi. Yanlis sayilir
+  // ama incelemede ayri gosterilir: sasirdigi bir sik yok, aciklamasi da farkli.
+  async function ileri(bilmiyorum) {
+    kaydet(bilmiyorum);
     i++;
-    secilen = null;
 
     if (i >= sorular.length) {
       durum.durum = "bitti";
@@ -484,6 +538,7 @@ async function ayarlarEkrani() {
   const hedef = await db.ayarOku("gunlukHedef", 10);
   const kota = await db.kotaOku();
   const aciklamaSayisi = (await db.ciftler("aciklamalar")).length;
+  const oneriAcik = await db.ayarOku("oneriler", true);
 
   ekran.innerHTML = `
     <h1>Ayarlar</h1>
@@ -505,6 +560,17 @@ async function ayarlarEkrani() {
       <label for="hedef">Günlük hedef (soru)</label>
       <input id="hedef" type="text" inputmode="numeric" value="${Number(hedef)}">
       <p class="kucuk soluk" style="margin:10px 0 0">Alıştırma kuyruğu Faz 3'te bu sayıyı kullanacak.</p>
+    </div>
+
+    <div class="kart">
+      <label class="secenek-satir" for="oneriler">
+        <input type="checkbox" id="oneriler" ${oneriAcik ? "checked" : ""}>
+        <span>Sohbette hazır soru önerileri</span>
+      </label>
+      <p class="kucuk soluk" style="margin:8px 0 0">
+        Sohbet kutusunun üstünde "Neden bu olmuyor?" gibi hazır sorular çıkar.
+        Dokununca kutuya yazılır, göndermeden önce değiştirebilirsin.
+      </p>
     </div>
 
     <h2>Kullanım</h2>
@@ -549,6 +615,10 @@ async function ayarlarEkrani() {
     await db.ayarYaz("apiKey", "");
     ekran.querySelector("#anahtar").value = "";
     goster("ok", "Anahtar silindi.");
+  });
+
+  ekran.querySelector("#oneriler").addEventListener("change", (e) => {
+    db.ayarYaz("oneriler", e.target.checked);
   });
 
   ekran.querySelector("#hedef").addEventListener("change", (e) => {

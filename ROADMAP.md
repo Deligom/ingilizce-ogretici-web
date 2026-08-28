@@ -29,6 +29,9 @@
       Şans eseri tutturulan soru konuyu yanlışlıkla "biliniyor" göstermesin diye.
 - [x] **Sayfalı yanlış incelemesi:** her ekranda tek soru, ileri/geri, ilerleme çubuğu.
       Uzun kaydırmada yerini kaybetme sorunu çözüldü; index hash'te, geri tuşu çalışıyor.
+- [x] **Blokta geri tuşu:** yanlış şıkka ya da Bilmiyorum'a yanlışlıkla basınca ← ile dönüp
+      cevabını değiştirebilirsin. Önceki cevap işaretli gelir; şık seçip ileri basmadan
+      geri dönsen bile seçim kaydedilir.
 - **Bitti sayılır:** ilk bloğu çözüp 6 dakikada çalışmaya başlayabiliyorum. ✅
 
 ## Faz 2 — "Neden?" katmanı ✅ BİTTİ
@@ -40,6 +43,11 @@
 - [x] Serbest sohbet: soru bağlamıyla devam eden soru-cevap, `sohbetler` store
 - [x] Gönderilemeyen mesaj geçmişe yazılmaz, girdide kalır (tekrar denenebilir)
 - [x] Ayarlar'da kullanım kartı: bugünkü istek sayısı + önbellekteki açıklama sayısı
+- [x] Sohbette hazır soru önerileri: yerelde üretilir (kota harcamaz), biri bağlamsaldır
+      (seçtiğin şıkkı kullanır). Dokununca kutuya yazılır, **gönderilmez** — düzenleyebilirsin.
+      Ayarlar'dan kapatılabilir.
+- [x] Sohbet cevaplarındaki markdown (**kalın**, * madde) düzgün çiziliyor;
+      HTML kaçışı önce yapıldığı için model sayfaya kod enjekte edemez.
 - **Bitti sayılır:** yanlış yaptığım her soruda "neden?" deyip tatmin olana kadar sorabiliyorum. ✅
 
 ## Faz 3 — Alıştırma, tekrar ve soru üretimi
@@ -68,6 +76,11 @@
 - [ ] Çevrimdışı: seed veriler + cache'lenmiş açıklamalar + üretilmiş sorular çalışır
 - [ ] Yedekleme: tüm ilerlemeyi ve üretilmiş soru bankasını JSON olarak dışa/içe aktar
 - [ ] Koyu tema
+- [ ] **Anlatım tarzı ayarı** — tek kontrol, üç kademe: Günlük / Dengeli / Terimli.
+      Sistem prompt'una bir cümle ekler. Bilinçli olarak *tek* kontrol: tuzak sayısı,
+      ayrıntı düzeyi, örnek adedi gibi ayrı düğmeler eklemiyoruz. Her düğme kullanıcıya
+      verilmiş bir karar yüküdür; çoğu kişi hiç dokunmaz ve arayüz anlaşılmaz hâle gelir.
+      Varsayılan doğrudan iyi olmalı, ayar istisna olmalı.
 - [ ] Sınav provası modu: `teshis-testi.json`'un orijinal 100 soruluk hali, süreli
 
 ## Sonrası (fikir kuyruğu)
