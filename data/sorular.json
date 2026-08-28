@@ -1,0 +1,3979 @@
+{
+  "surum": 1,
+  "aciklama": "Birleşik soru bankası. kaynak: aybu (gerçek sınav) | tohum (el yazımı) | ai (üretilmiş, onaydan geçmiş). zorluk: 1 tanı (tek ipuçlu) · 2 ayırt et (ipucu bağlamda) · 3 karıştır (birden çok konu iç içe). cevap = seçenekler dizisindeki indeks. neden = doğru şıkkın gerekçesi. celdiriciler = her yanlış şıkkın neden yanlış olduğu.",
+  "sorular": [
+    {
+      "id": "aybu-001",
+      "konu": "g-genis-zaman",
+      "eksen": null,
+      "tip": "dilbilgisi",
+      "parca": null,
+      "soru": "My brother is very clever. He always _____ an A grade in his classes.",
+      "secenekler": [
+        "is getting",
+        "get",
+        "gets",
+        "getting"
+      ],
+      "cevap": 2,
+      "neden": null,
+      "celdiriciler": null,
+      "kaynak": "aybu",
+      "bolum": 1,
+      "zorluk": 1
+    },
+    {
+      "id": "aybu-002",
+      "konu": "g-be",
+      "eksen": null,
+      "tip": "dilbilgisi",
+      "parca": null,
+      "soru": "Everyone has a computer these days. It _____ very useful for every student now.",
+      "secenekler": [
+        "was",
+        "is",
+        "are",
+        "were"
+      ],
+      "cevap": 1,
+      "neden": null,
+      "celdiriciler": null,
+      "kaynak": "aybu",
+      "bolum": 1,
+      "zorluk": 1
+    },
+    {
+      "id": "aybu-003",
+      "konu": "g-have-got",
+      "eksen": null,
+      "tip": "dilbilgisi",
+      "parca": null,
+      "soru": "My brother _____ a smartphone now. He is ten years old.",
+      "secenekler": [
+        "has",
+        "have",
+        "have got",
+        "had"
+      ],
+      "cevap": 0,
+      "neden": null,
+      "celdiriciler": null,
+      "kaynak": "aybu",
+      "bolum": 1,
+      "zorluk": 1
+    },
+    {
+      "id": "aybu-004",
+      "konu": "g-there-is",
+      "eksen": null,
+      "tip": "dilbilgisi",
+      "parca": null,
+      "soru": "Kizilay is a beautiful place in Ankara. There _____ lots of street cafes in Kizilay.",
+      "secenekler": [
+        "are",
+        "is",
+        "has",
+        "have"
+      ],
+      "cevap": 0,
+      "neden": null,
+      "celdiriciler": null,
+      "kaynak": "aybu",
+      "bolum": 1,
+      "zorluk": 1
+    },
+    {
+      "id": "aybu-005",
+      "konu": "g-artikel",
+      "eksen": null,
+      "tip": "dilbilgisi",
+      "parca": null,
+      "soru": "During _____ pandemic, online shopping became _____ popular option for everyone.",
+      "secenekler": [
+        "the / -",
+        "- / a",
+        "the / a",
+        "- / -"
+      ],
+      "cevap": 2,
+      "neden": null,
+      "celdiriciler": null,
+      "kaynak": "aybu",
+      "bolum": 1,
+      "zorluk": 1
+    },
+    {
+      "id": "aybu-006",
+      "konu": "g-iyelik",
+      "eksen": null,
+      "tip": "dilbilgisi",
+      "parca": null,
+      "soru": "This is my new car. It is very fast and _____ color is red.",
+      "secenekler": [
+        "our",
+        "its",
+        "my",
+        "your"
+      ],
+      "cevap": 1,
+      "neden": null,
+      "celdiriciler": null,
+      "kaynak": "aybu",
+      "bolum": 1,
+      "zorluk": 1
+    },
+    {
+      "id": "aybu-007",
+      "konu": "g-ozne-zamiri",
+      "eksen": null,
+      "tip": "dilbilgisi",
+      "parca": null,
+      "soru": "My favorite food is noodles with hot sauce. _____ are very good.",
+      "secenekler": [
+        "They",
+        "You",
+        "I",
+        "We"
+      ],
+      "cevap": 0,
+      "neden": null,
+      "celdiriciler": null,
+      "kaynak": "aybu",
+      "bolum": 1,
+      "zorluk": 1
+    },
+    {
+      "id": "aybu-008",
+      "konu": "g-isaret",
+      "eksen": null,
+      "tip": "dilbilgisi",
+      "parca": null,
+      "soru": "_____ boys are my classmates. But _____ one is in a different class.",
+      "secenekler": [
+        "This / that",
+        "These / those",
+        "Those / that",
+        "This / those"
+      ],
+      "cevap": 1,
+      "neden": null,
+      "celdiriciler": null,
+      "kaynak": "aybu",
+      "bolum": 1,
+      "zorluk": 1
+    },
+    {
+      "id": "aybu-009",
+      "konu": "g-be",
+      "eksen": null,
+      "tip": "dilbilgisi",
+      "parca": null,
+      "soru": "Last year my sister _____ in Paris. She liked it.",
+      "secenekler": [
+        "was",
+        "is",
+        "were",
+        "am"
+      ],
+      "cevap": 0,
+      "neden": null,
+      "celdiriciler": null,
+      "kaynak": "aybu",
+      "bolum": 1,
+      "zorluk": 1
+    },
+    {
+      "id": "aybu-010",
+      "konu": "g-edat",
+      "eksen": null,
+      "tip": "dilbilgisi",
+      "parca": null,
+      "soru": "Ceyda is waiting _____ the bus. The bus is not coming.",
+      "secenekler": [
+        "at",
+        "in",
+        "for",
+        "under"
+      ],
+      "cevap": 2,
+      "neden": null,
+      "celdiriciler": null,
+      "kaynak": "aybu",
+      "bolum": 1,
+      "zorluk": 1
+    },
+    {
+      "id": "aybu-011",
+      "konu": "v-a1",
+      "eksen": null,
+      "tip": "kelime",
+      "parca": null,
+      "soru": "My little sister goes to a _____ every day. She plays there with her friends. There are many trees and flowers.",
+      "secenekler": [
+        "doctor",
+        "park",
+        "shop",
+        "concert"
+      ],
+      "cevap": 1,
+      "neden": null,
+      "celdiriciler": null,
+      "kaynak": "aybu",
+      "bolum": 1,
+      "zorluk": 1
+    },
+    {
+      "id": "aybu-012",
+      "konu": "v-a1",
+      "eksen": null,
+      "tip": "kelime",
+      "parca": null,
+      "soru": "Jane can _____ very high. She is a good athlete.",
+      "secenekler": [
+        "jump",
+        "drink",
+        "run",
+        "swim"
+      ],
+      "cevap": 0,
+      "neden": null,
+      "celdiriciler": null,
+      "kaynak": "aybu",
+      "bolum": 1,
+      "zorluk": 1
+    },
+    {
+      "id": "aybu-013",
+      "konu": "v-a1",
+      "eksen": null,
+      "tip": "kelime",
+      "parca": null,
+      "soru": "Mr Jonathan is a very _____ teacher. He has a lot of students. They love him very much.",
+      "secenekler": [
+        "long",
+        "angry",
+        "bad",
+        "good"
+      ],
+      "cevap": 3,
+      "neden": null,
+      "celdiriciler": null,
+      "kaynak": "aybu",
+      "bolum": 1,
+      "zorluk": 1
+    },
+    {
+      "id": "aybu-014",
+      "konu": "v-a1",
+      "eksen": null,
+      "tip": "kelime",
+      "parca": null,
+      "soru": "My mother is my hero. She always _____ me when I have problems.",
+      "secenekler": [
+        "sings",
+        "gets",
+        "helps",
+        "makes"
+      ],
+      "cevap": 2,
+      "neden": null,
+      "celdiriciler": null,
+      "kaynak": "aybu",
+      "bolum": 1,
+      "zorluk": 1
+    },
+    {
+      "id": "aybu-015",
+      "konu": "v-a1",
+      "eksen": null,
+      "tip": "kelime",
+      "parca": null,
+      "soru": "Turkey is a wonderful _____. It has a lot of beautiful places.",
+      "secenekler": [
+        "culture",
+        "city",
+        "country",
+        "people"
+      ],
+      "cevap": 2,
+      "neden": null,
+      "celdiriciler": null,
+      "kaynak": "aybu",
+      "bolum": 1,
+      "zorluk": 1
+    },
+    {
+      "id": "aybu-016",
+      "konu": "v-a1",
+      "eksen": null,
+      "tip": "kelime",
+      "parca": null,
+      "soru": "I finish my work at 17:00. I _____ at 18:00 and rest until 19:00.",
+      "secenekler": [
+        "get home",
+        "go to work",
+        "leave home",
+        "start work"
+      ],
+      "cevap": 0,
+      "neden": null,
+      "celdiriciler": null,
+      "kaynak": "aybu",
+      "bolum": 1,
+      "zorluk": 1
+    },
+    {
+      "id": "aybu-017",
+      "konu": "v-a1",
+      "eksen": null,
+      "tip": "kelime",
+      "parca": null,
+      "soru": "My son likes _____. He drinks it in the morning and in the evening.",
+      "secenekler": [
+        "bananas",
+        "milk",
+        "oil",
+        "bread"
+      ],
+      "cevap": 1,
+      "neden": null,
+      "celdiriciler": null,
+      "kaynak": "aybu",
+      "bolum": 1,
+      "zorluk": 1
+    },
+    {
+      "id": "aybu-018",
+      "konu": "v-a1",
+      "eksen": null,
+      "tip": "kelime",
+      "parca": null,
+      "soru": "There is a/an _____ on my table. I use it to look up new words.",
+      "secenekler": [
+        "glass",
+        "wrist watch",
+        "dictionary",
+        "pencil"
+      ],
+      "cevap": 2,
+      "neden": null,
+      "celdiriciler": null,
+      "kaynak": "aybu",
+      "bolum": 1,
+      "zorluk": 1
+    },
+    {
+      "id": "aybu-019",
+      "konu": "v-a1",
+      "eksen": null,
+      "tip": "kelime",
+      "parca": null,
+      "soru": "My father is 64 years old. He always wears _____. He can see better when he wears them.",
+      "secenekler": [
+        "glasses",
+        "shoes",
+        "trousers",
+        "socks"
+      ],
+      "cevap": 0,
+      "neden": null,
+      "celdiriciler": null,
+      "kaynak": "aybu",
+      "bolum": 1,
+      "zorluk": 1
+    },
+    {
+      "id": "aybu-020",
+      "konu": "v-a1",
+      "eksen": null,
+      "tip": "kelime",
+      "parca": null,
+      "soru": "Read the text. _____ the new words in the text.",
+      "secenekler": [
+        "Open",
+        "Answer",
+        "Underline",
+        "Take"
+      ],
+      "cevap": 2,
+      "neden": null,
+      "celdiriciler": null,
+      "kaynak": "aybu",
+      "bolum": 1,
+      "zorluk": 1
+    },
+    {
+      "id": "aybu-021",
+      "konu": "r-anafikir",
+      "eksen": null,
+      "tip": "okuma",
+      "parca": "p1",
+      "soru": "The best title for the passage is ______.",
+      "secenekler": [
+        "South Korea",
+        "A Student's Life",
+        "Spain"
+      ],
+      "cevap": 1,
+      "neden": null,
+      "celdiriciler": null,
+      "kaynak": "aybu",
+      "bolum": 1,
+      "zorluk": 1
+    },
+    {
+      "id": "aybu-022",
+      "konu": "r-detay",
+      "eksen": null,
+      "tip": "okuma",
+      "parca": "p1",
+      "soru": "According to the text, Song Mi, Joao, and Juan _____.",
+      "secenekler": [
+        "live in South Korea",
+        "study chemistry",
+        "live in the same place"
+      ],
+      "cevap": 2,
+      "neden": null,
+      "celdiriciler": null,
+      "kaynak": "aybu",
+      "bolum": 1,
+      "zorluk": 1
+    },
+    {
+      "id": "aybu-023",
+      "konu": "r-detay",
+      "eksen": null,
+      "tip": "okuma",
+      "parca": "p1",
+      "soru": "Song Mi is in his _____ year.",
+      "secenekler": [
+        "first",
+        "second",
+        "third"
+      ],
+      "cevap": 1,
+      "neden": null,
+      "celdiriciler": null,
+      "kaynak": "aybu",
+      "bolum": 1,
+      "zorluk": 1
+    },
+    {
+      "id": "aybu-024",
+      "konu": "r-anafikir",
+      "eksen": null,
+      "tip": "okuma",
+      "parca": "p2",
+      "soru": "The text is MAINLY about _____.",
+      "secenekler": [
+        "horses",
+        "Arda",
+        "a nurse"
+      ],
+      "cevap": 1,
+      "neden": null,
+      "celdiriciler": null,
+      "kaynak": "aybu",
+      "bolum": 1,
+      "zorluk": 1
+    },
+    {
+      "id": "aybu-025",
+      "konu": "r-detay",
+      "eksen": null,
+      "tip": "okuma",
+      "parca": "p2",
+      "soru": "According to the text, Arda _____.",
+      "secenekler": [
+        "works in a factory",
+        "wakes up late",
+        "has a small family"
+      ],
+      "cevap": 2,
+      "neden": null,
+      "celdiriciler": null,
+      "kaynak": "aybu",
+      "bolum": 1,
+      "zorluk": 1
+    },
+    {
+      "id": "aybu-026",
+      "konu": "g-yakin-gelecek",
+      "eksen": null,
+      "tip": "dilbilgisi",
+      "parca": null,
+      "soru": "After a long online education period, face-to-face education _____ soon.",
+      "secenekler": [
+        "is going to start",
+        "started",
+        "starting",
+        "was starting"
+      ],
+      "cevap": 0,
+      "neden": null,
+      "celdiriciler": null,
+      "kaynak": "aybu",
+      "bolum": 2,
+      "zorluk": 1
+    },
+    {
+      "id": "aybu-027",
+      "konu": "g-gecmis-zaman",
+      "eksen": null,
+      "tip": "dilbilgisi",
+      "parca": null,
+      "soru": "Teacher: I couldn't find your project yesterday Mehmet. Where is it? / Mehmet: I _____ it on your desk yesterday.",
+      "secenekler": [
+        "leave",
+        "will leave",
+        "left",
+        "am leaving"
+      ],
+      "cevap": 2,
+      "neden": null,
+      "celdiriciler": null,
+      "kaynak": "aybu",
+      "bolum": 2,
+      "zorluk": 1
+    },
+    {
+      "id": "aybu-028",
+      "konu": "g-gecmis-surekli",
+      "eksen": null,
+      "tip": "dilbilgisi",
+      "parca": null,
+      "soru": "The mirror fell off the wall while I _____ the football match last night.",
+      "secenekler": [
+        "am watching",
+        "watch",
+        "was watching",
+        "will watch"
+      ],
+      "cevap": 2,
+      "neden": null,
+      "celdiriciler": null,
+      "kaynak": "aybu",
+      "bolum": 2,
+      "zorluk": 1
+    },
+    {
+      "id": "aybu-029",
+      "konu": "g-present-perfect",
+      "eksen": null,
+      "tip": "dilbilgisi",
+      "parca": null,
+      "soru": "I _____ to Germany before. I want to go there next year.",
+      "secenekler": [
+        "have never been",
+        "will never be",
+        "never be",
+        "never been"
+      ],
+      "cevap": 0,
+      "neden": null,
+      "celdiriciler": null,
+      "kaynak": "aybu",
+      "bolum": 2,
+      "zorluk": 1
+    },
+    {
+      "id": "aybu-030",
+      "konu": "g-gelecek-will",
+      "eksen": null,
+      "tip": "dilbilgisi",
+      "parca": null,
+      "soru": "It has been very sunny all day today. But my mom says it _____ soon.",
+      "secenekler": [
+        "was raining",
+        "will rain",
+        "rains",
+        "rained"
+      ],
+      "cevap": 1,
+      "neden": null,
+      "celdiriciler": null,
+      "kaynak": "aybu",
+      "bolum": 2,
+      "zorluk": 1
+    },
+    {
+      "id": "aybu-031",
+      "konu": "g-edilgen",
+      "eksen": null,
+      "tip": "dilbilgisi",
+      "parca": null,
+      "soru": "The window in our class _____ last night.",
+      "secenekler": [
+        "break",
+        "was broke",
+        "broken",
+        "was broken"
+      ],
+      "cevap": 3,
+      "neden": null,
+      "celdiriciler": null,
+      "kaynak": "aybu",
+      "bolum": 2,
+      "zorluk": 1
+    },
+    {
+      "id": "aybu-032",
+      "konu": "g-modal-yetenek",
+      "eksen": null,
+      "tip": "dilbilgisi",
+      "parca": null,
+      "soru": "When I was in high school, I _____ make friends easily, but now I _____ make even one.",
+      "secenekler": [
+        "can / can",
+        "could / can",
+        "could / can't",
+        "can / can't"
+      ],
+      "cevap": 2,
+      "neden": null,
+      "celdiriciler": null,
+      "kaynak": "aybu",
+      "bolum": 2,
+      "zorluk": 1
+    },
+    {
+      "id": "aybu-033",
+      "konu": "g-kosul1",
+      "eksen": null,
+      "tip": "dilbilgisi",
+      "parca": null,
+      "soru": "If you _____ others, people _____ you too.",
+      "secenekler": [
+        "respect / respected",
+        "respected / will respect",
+        "respect / will respect",
+        "are respecting / respected"
+      ],
+      "cevap": 2,
+      "neden": null,
+      "celdiriciler": null,
+      "kaynak": "aybu",
+      "bolum": 2,
+      "zorluk": 1
+    },
+    {
+      "id": "aybu-034",
+      "konu": "g-sifat-cumlesi",
+      "eksen": null,
+      "tip": "dilbilgisi",
+      "parca": null,
+      "soru": "The girl _____ won the competition is very clever. I want to be her friend.",
+      "secenekler": [
+        "who",
+        "which",
+        "when",
+        "where"
+      ],
+      "cevap": 0,
+      "neden": null,
+      "celdiriciler": null,
+      "kaynak": "aybu",
+      "bolum": 2,
+      "zorluk": 1
+    },
+    {
+      "id": "aybu-035",
+      "konu": "g-karsilastirma",
+      "eksen": null,
+      "tip": "dilbilgisi",
+      "parca": null,
+      "soru": "Children these days are _____ children in the past.",
+      "secenekler": [
+        "smarter",
+        "smarter than",
+        "smart",
+        "smart than"
+      ],
+      "cevap": 1,
+      "neden": null,
+      "celdiriciler": null,
+      "kaynak": "aybu",
+      "bolum": 2,
+      "zorluk": 1
+    },
+    {
+      "id": "aybu-036",
+      "konu": "v-a2",
+      "eksen": null,
+      "tip": "kelime",
+      "parca": null,
+      "soru": "My father is a politician. He is well-known in our local _____.",
+      "secenekler": [
+        "community",
+        "country",
+        "neighbor",
+        "museum"
+      ],
+      "cevap": 0,
+      "neden": null,
+      "celdiriciler": null,
+      "kaynak": "aybu",
+      "bolum": 2,
+      "zorluk": 1
+    },
+    {
+      "id": "aybu-037",
+      "konu": "v-a2",
+      "eksen": null,
+      "tip": "kelime",
+      "parca": null,
+      "soru": "Some shapes have beautiful meanings. For example, the heart shape is a _____ of love.",
+      "secenekler": [
+        "beauty",
+        "luck",
+        "symbol",
+        "sculpture"
+      ],
+      "cevap": 2,
+      "neden": null,
+      "celdiriciler": null,
+      "kaynak": "aybu",
+      "bolum": 2,
+      "zorluk": 1
+    },
+    {
+      "id": "aybu-038",
+      "konu": "v-a2",
+      "eksen": null,
+      "tip": "kelime",
+      "parca": null,
+      "soru": "We are all bored staying home. My family and I want to _____ this summer.",
+      "secenekler": [
+        "appreciate",
+        "decide",
+        "lose",
+        "travel"
+      ],
+      "cevap": 3,
+      "neden": null,
+      "celdiriciler": null,
+      "kaynak": "aybu",
+      "bolum": 2,
+      "zorluk": 1
+    },
+    {
+      "id": "aybu-039",
+      "konu": "v-phrasal",
+      "eksen": null,
+      "tip": "kelime",
+      "parca": null,
+      "soru": "We bought a new book shelf and my dad will _____ this weekend.",
+      "secenekler": [
+        "give it up",
+        "put it together",
+        "prove it",
+        "take it off"
+      ],
+      "cevap": 1,
+      "neden": null,
+      "celdiriciler": null,
+      "kaynak": "aybu",
+      "bolum": 2,
+      "zorluk": 1
+    },
+    {
+      "id": "aybu-040",
+      "konu": "v-a2",
+      "eksen": null,
+      "tip": "kelime",
+      "parca": null,
+      "soru": "Elif posted her first picture on Facebook. After only 5 minutes, 100 people _____ on her post.",
+      "secenekler": [
+        "commented",
+        "preferred",
+        "shared",
+        "liked"
+      ],
+      "cevap": 0,
+      "neden": null,
+      "celdiriciler": null,
+      "kaynak": "aybu",
+      "bolum": 2,
+      "zorluk": 1
+    },
+    {
+      "id": "aybu-041",
+      "konu": "v-a2",
+      "eksen": null,
+      "tip": "kelime",
+      "parca": null,
+      "soru": "_____ has great power to affect people's behaviour. People may easily believe fake news.",
+      "secenekler": [
+        "Talent",
+        "Contest",
+        "Media",
+        "Application"
+      ],
+      "cevap": 2,
+      "neden": null,
+      "celdiriciler": null,
+      "kaynak": "aybu",
+      "bolum": 2,
+      "zorluk": 1
+    },
+    {
+      "id": "aybu-042",
+      "konu": "v-a2",
+      "eksen": null,
+      "tip": "kelime",
+      "parca": null,
+      "soru": "My father bought a new car. I love our new car because it has a/an _____ color.",
+      "secenekler": [
+        "personal",
+        "amazing",
+        "careful",
+        "responsible"
+      ],
+      "cevap": 1,
+      "neden": null,
+      "celdiriciler": null,
+      "kaynak": "aybu",
+      "bolum": 2,
+      "zorluk": 1
+    },
+    {
+      "id": "aybu-043",
+      "konu": "v-a2",
+      "eksen": null,
+      "tip": "kelime",
+      "parca": null,
+      "soru": "My little brother is young but very responsible. So he acts like a very _____ young man.",
+      "secenekler": [
+        "exciting",
+        "lonely",
+        "expensive",
+        "mature"
+      ],
+      "cevap": 3,
+      "neden": null,
+      "celdiriciler": null,
+      "kaynak": "aybu",
+      "bolum": 2,
+      "zorluk": 1
+    },
+    {
+      "id": "aybu-044",
+      "konu": "v-a2",
+      "eksen": null,
+      "tip": "kelime",
+      "parca": null,
+      "soru": "Life is going back to normal again. Football _____ will be able to watch matches at the stadium soon.",
+      "secenekler": [
+        "fans",
+        "siblings",
+        "males",
+        "goals"
+      ],
+      "cevap": 0,
+      "neden": null,
+      "celdiriciler": null,
+      "kaynak": "aybu",
+      "bolum": 2,
+      "zorluk": 1
+    },
+    {
+      "id": "aybu-045",
+      "konu": "v-a2",
+      "eksen": null,
+      "tip": "kelime",
+      "parca": null,
+      "soru": "James is always working hard. So he is a/an _____ young man.",
+      "secenekler": [
+        "sentimental",
+        "favourite",
+        "energetic",
+        "similar"
+      ],
+      "cevap": 2,
+      "neden": null,
+      "celdiriciler": null,
+      "kaynak": "aybu",
+      "bolum": 2,
+      "zorluk": 1
+    },
+    {
+      "id": "aybu-046",
+      "konu": "r-anafikir",
+      "eksen": null,
+      "tip": "okuma",
+      "parca": "p3",
+      "soru": "The text is MAINLY about _____.",
+      "secenekler": [
+        "the United Kingdom",
+        "the city of London",
+        "some tourists",
+        "Buckingham Palace"
+      ],
+      "cevap": 1,
+      "neden": null,
+      "celdiriciler": null,
+      "kaynak": "aybu",
+      "bolum": 2,
+      "zorluk": 1
+    },
+    {
+      "id": "aybu-047",
+      "konu": "r-detay",
+      "eksen": null,
+      "tip": "okuma",
+      "parca": "p3",
+      "soru": "According to the text, the red double-decker is a _____.",
+      "secenekler": [
+        "street show",
+        "famous trick",
+        "street in London",
+        "bus in London"
+      ],
+      "cevap": 3,
+      "neden": null,
+      "celdiriciler": null,
+      "kaynak": "aybu",
+      "bolum": 2,
+      "zorluk": 1
+    },
+    {
+      "id": "aybu-048",
+      "konu": "r-gonderim",
+      "eksen": null,
+      "tip": "okuma",
+      "parca": "p3",
+      "soru": "What does \"it\" refer to in paragraph 2?",
+      "secenekler": [
+        "Street show",
+        "Oxford street",
+        "Little money",
+        "London city"
+      ],
+      "cevap": 1,
+      "neden": null,
+      "celdiriciler": null,
+      "kaynak": "aybu",
+      "bolum": 2,
+      "zorluk": 1
+    },
+    {
+      "id": "aybu-049",
+      "konu": "r-detay",
+      "eksen": null,
+      "tip": "okuma",
+      "parca": "p4",
+      "soru": "According to the text, in 1620, Mayflower _____.",
+      "secenekler": [
+        "was not very popular",
+        "left England on November 11th",
+        "carried one hundred and twenty people",
+        "brought Americans to Europe"
+      ],
+      "cevap": 2,
+      "neden": null,
+      "celdiriciler": null,
+      "kaynak": "aybu",
+      "bolum": 2,
+      "zorluk": 1
+    },
+    {
+      "id": "aybu-050",
+      "konu": "r-gonderim",
+      "eksen": null,
+      "tip": "okuma",
+      "parca": "p4",
+      "soru": "The word \"there\" refers to _____.",
+      "secenekler": [
+        "the New World",
+        "the Atlantic ocean",
+        "England",
+        "journey"
+      ],
+      "cevap": 0,
+      "neden": null,
+      "celdiriciler": null,
+      "kaynak": "aybu",
+      "bolum": 2,
+      "zorluk": 1
+    },
+    {
+      "id": "aybu-051",
+      "konu": "g-gecmis-surekli",
+      "eksen": null,
+      "tip": "dilbilgisi",
+      "parca": null,
+      "soru": "Yesterday, while my mother _____, we _____ video games.",
+      "secenekler": [
+        "were cooking / were playing",
+        "cooked / play",
+        "is cooking / are playing",
+        "was cooking / were playing"
+      ],
+      "cevap": 3,
+      "neden": null,
+      "celdiriciler": null,
+      "kaynak": "aybu",
+      "bolum": 3,
+      "zorluk": 1
+    },
+    {
+      "id": "aybu-052",
+      "konu": "g-present-perfect",
+      "eksen": null,
+      "tip": "dilbilgisi",
+      "parca": null,
+      "soru": "The Johnsons _____ in Istanbul since June and they really want to stay longer.",
+      "secenekler": [
+        "will be",
+        "have been",
+        "are going to be",
+        "being"
+      ],
+      "cevap": 1,
+      "neden": null,
+      "celdiriciler": null,
+      "kaynak": "aybu",
+      "bolum": 3,
+      "zorluk": 1
+    },
+    {
+      "id": "aybu-053",
+      "konu": "g-edilgen",
+      "eksen": null,
+      "tip": "dilbilgisi",
+      "parca": null,
+      "soru": "The exam was too difficult for our students. It _____ by Prof. Reez.",
+      "secenekler": [
+        "prepared",
+        "was preparing",
+        "was prepared",
+        "will be prepared"
+      ],
+      "cevap": 2,
+      "neden": null,
+      "celdiriciler": null,
+      "kaynak": "aybu",
+      "bolum": 3,
+      "zorluk": 1
+    },
+    {
+      "id": "aybu-054",
+      "konu": "g-miktar",
+      "eksen": null,
+      "tip": "dilbilgisi",
+      "parca": null,
+      "soru": "Unfortunately, I have _____ time, so I can't have a meeting with you.",
+      "secenekler": [
+        "little",
+        "a few",
+        "a little",
+        "few"
+      ],
+      "cevap": 0,
+      "neden": null,
+      "celdiriciler": null,
+      "kaynak": "aybu",
+      "bolum": 3,
+      "zorluk": 1
+    },
+    {
+      "id": "aybu-055",
+      "konu": "g-used-to",
+      "eksen": null,
+      "tip": "dilbilgisi",
+      "parca": null,
+      "soru": "I _____ many friends here. However, after studying abroad, I lost contact with most of my friends.",
+      "secenekler": [
+        "used to having",
+        "used to have",
+        "have to use",
+        "using to have"
+      ],
+      "cevap": 1,
+      "neden": null,
+      "celdiriciler": null,
+      "kaynak": "aybu",
+      "bolum": 3,
+      "zorluk": 1
+    },
+    {
+      "id": "aybu-056",
+      "konu": "g-modal-zorunluluk",
+      "eksen": null,
+      "tip": "dilbilgisi",
+      "parca": null,
+      "soru": "We have to wear masks when we are outside, but we _____ wear them at home. It is not necessary.",
+      "secenekler": [
+        "don't have to",
+        "mustn't",
+        "shouldn't",
+        "may not"
+      ],
+      "cevap": 0,
+      "neden": null,
+      "celdiriciler": null,
+      "kaynak": "aybu",
+      "bolum": 3,
+      "zorluk": 1
+    },
+    {
+      "id": "aybu-057",
+      "konu": "g-modal-yetenek",
+      "eksen": null,
+      "tip": "dilbilgisi",
+      "parca": null,
+      "soru": "Everything happened too quickly. I saw the car coming at me, but there was nothing I _____ do.",
+      "secenekler": [
+        "should",
+        "can",
+        "must",
+        "could"
+      ],
+      "cevap": 3,
+      "neden": null,
+      "celdiriciler": null,
+      "kaynak": "aybu",
+      "bolum": 3,
+      "zorluk": 1
+    },
+    {
+      "id": "aybu-058",
+      "konu": "g-kosul2",
+      "eksen": null,
+      "tip": "dilbilgisi",
+      "parca": null,
+      "soru": "If superheroes _____ real, they _____ save humanity from many problems. But they don't exist.",
+      "secenekler": [
+        "were / can",
+        "were / could",
+        "are / could",
+        "are / can"
+      ],
+      "cevap": 1,
+      "neden": null,
+      "celdiriciler": null,
+      "kaynak": "aybu",
+      "bolum": 3,
+      "zorluk": 1
+    },
+    {
+      "id": "aybu-059",
+      "konu": "g-sifat-cumlesi",
+      "eksen": null,
+      "tip": "dilbilgisi",
+      "parca": null,
+      "soru": "This is the city _____ Mrs Joyce met her best friend.",
+      "secenekler": [
+        "where",
+        "which",
+        "that",
+        "when"
+      ],
+      "cevap": 0,
+      "neden": null,
+      "celdiriciler": null,
+      "kaynak": "aybu",
+      "bolum": 3,
+      "zorluk": 1
+    },
+    {
+      "id": "aybu-060",
+      "konu": "g-baglac",
+      "eksen": null,
+      "tip": "dilbilgisi",
+      "parca": null,
+      "soru": "_____ last summer I was very busy, I managed to have a short holiday by the sea.",
+      "secenekler": [
+        "When",
+        "Before",
+        "Although",
+        "While"
+      ],
+      "cevap": 2,
+      "neden": null,
+      "celdiriciler": null,
+      "kaynak": "aybu",
+      "bolum": 3,
+      "zorluk": 1
+    },
+    {
+      "id": "aybu-061",
+      "konu": "v-b1",
+      "eksen": null,
+      "tip": "kelime",
+      "parca": null,
+      "soru": "It is a good idea to establish a good social _____ at school before graduating because friends are very important after school.",
+      "secenekler": [
+        "grade",
+        "network",
+        "designs",
+        "skills"
+      ],
+      "cevap": 1,
+      "neden": null,
+      "celdiriciler": null,
+      "kaynak": "aybu",
+      "bolum": 3,
+      "zorluk": 1
+    },
+    {
+      "id": "aybu-062",
+      "konu": "v-b1",
+      "eksen": null,
+      "tip": "kelime",
+      "parca": null,
+      "soru": "My sister is an optimistic person. She always has a positive _____ towards everything.",
+      "secenekler": [
+        "attitude",
+        "pressure",
+        "challenge",
+        "treatment"
+      ],
+      "cevap": 0,
+      "neden": null,
+      "celdiriciler": null,
+      "kaynak": "aybu",
+      "bolum": 3,
+      "zorluk": 1
+    },
+    {
+      "id": "aybu-063",
+      "konu": "v-b1",
+      "eksen": null,
+      "tip": "kelime",
+      "parca": null,
+      "soru": "I like philosophy, but sometimes some ideas are very _____ to me. I can't understand them.",
+      "secenekler": [
+        "ideal",
+        "immediate",
+        "unselfish",
+        "confusing"
+      ],
+      "cevap": 3,
+      "neden": null,
+      "celdiriciler": null,
+      "kaynak": "aybu",
+      "bolum": 3,
+      "zorluk": 1
+    },
+    {
+      "id": "aybu-064",
+      "konu": "v-b1",
+      "eksen": null,
+      "tip": "kelime",
+      "parca": null,
+      "soru": "Driving can be fun, but sometimes dangerous too. This is why _____ is the most important factor in driving.",
+      "secenekler": [
+        "safety",
+        "difficulty",
+        "treasure",
+        "flow"
+      ],
+      "cevap": 0,
+      "neden": null,
+      "celdiriciler": null,
+      "kaynak": "aybu",
+      "bolum": 3,
+      "zorluk": 1
+    },
+    {
+      "id": "aybu-065",
+      "konu": "v-b1",
+      "eksen": null,
+      "tip": "kelime",
+      "parca": null,
+      "soru": "The employees are protesting about their low _____, they want a raise in salary.",
+      "secenekler": [
+        "workforces",
+        "incomes",
+        "workloads",
+        "etiquettes"
+      ],
+      "cevap": 1,
+      "neden": null,
+      "celdiriciler": null,
+      "kaynak": "aybu",
+      "bolum": 3,
+      "zorluk": 1
+    },
+    {
+      "id": "aybu-066",
+      "konu": "v-b1",
+      "eksen": null,
+      "tip": "kelime",
+      "parca": null,
+      "soru": "My grandmother was taken to the hospital while I was having an exam. I drove to the hospital _____ after my exam.",
+      "secenekler": [
+        "illegally",
+        "uniquely",
+        "immediately",
+        "gently"
+      ],
+      "cevap": 2,
+      "neden": null,
+      "celdiriciler": null,
+      "kaynak": "aybu",
+      "bolum": 3,
+      "zorluk": 1
+    },
+    {
+      "id": "aybu-067",
+      "konu": "v-b1",
+      "eksen": null,
+      "tip": "kelime",
+      "parca": null,
+      "soru": "The use of smartphones in the classroom should be banned. Smartphones are a/an _____ for students.",
+      "secenekler": [
+        "experience",
+        "consumption",
+        "intelligence",
+        "distraction"
+      ],
+      "cevap": 3,
+      "neden": null,
+      "celdiriciler": null,
+      "kaynak": "aybu",
+      "bolum": 3,
+      "zorluk": 1
+    },
+    {
+      "id": "aybu-068",
+      "konu": "v-b1",
+      "eksen": null,
+      "tip": "kelime",
+      "parca": null,
+      "soru": "Antoine Griezmann is a talented football player. He also plays basketball very well, but he is not a/an _____ basketball player.",
+      "secenekler": [
+        "professional",
+        "confusing",
+        "dangerous",
+        "pleasing"
+      ],
+      "cevap": 0,
+      "neden": null,
+      "celdiriciler": null,
+      "kaynak": "aybu",
+      "bolum": 3,
+      "zorluk": 1
+    },
+    {
+      "id": "aybu-069",
+      "konu": "v-b1",
+      "eksen": null,
+      "tip": "kelime",
+      "parca": null,
+      "soru": "If you want to _____ your goals, you should learn to be patient.",
+      "secenekler": [
+        "achieve",
+        "climb",
+        "hold",
+        "take"
+      ],
+      "cevap": 0,
+      "neden": null,
+      "celdiriciler": null,
+      "kaynak": "aybu",
+      "bolum": 3,
+      "zorluk": 1
+    },
+    {
+      "id": "aybu-070",
+      "konu": "v-b1",
+      "eksen": null,
+      "tip": "kelime",
+      "parca": null,
+      "soru": "While I am trying to study, my sister is on the phone talking loudly. It is very hard to _____ on my studies.",
+      "secenekler": [
+        "struggle",
+        "focus",
+        "read",
+        "balance"
+      ],
+      "cevap": 1,
+      "neden": null,
+      "celdiriciler": null,
+      "kaynak": "aybu",
+      "bolum": 3,
+      "zorluk": 1
+    },
+    {
+      "id": "aybu-071",
+      "konu": "r-detay",
+      "eksen": null,
+      "tip": "okuma",
+      "parca": "p5",
+      "soru": "According to the passage, parents _____.",
+      "secenekler": [
+        "never make mistakes in child upbringing",
+        "have similar upbringing methods",
+        "want their child to be successful",
+        "never have unrealistic expectations"
+      ],
+      "cevap": 2,
+      "neden": null,
+      "celdiriciler": null,
+      "kaynak": "aybu",
+      "bolum": 3,
+      "zorluk": 1
+    },
+    {
+      "id": "aybu-072",
+      "konu": "r-detay",
+      "eksen": null,
+      "tip": "okuma",
+      "parca": "p5",
+      "soru": "According to the text, Cengiz _____.",
+      "secenekler": [
+        "has unrealistic expectations",
+        "plays in a large orchestra",
+        "takes part in all competitions",
+        "is interested in music"
+      ],
+      "cevap": 3,
+      "neden": null,
+      "celdiriciler": null,
+      "kaynak": "aybu",
+      "bolum": 3,
+      "zorluk": 1
+    },
+    {
+      "id": "aybu-073",
+      "konu": "r-detay",
+      "eksen": null,
+      "tip": "okuma",
+      "parca": "p5",
+      "soru": "Which is TRUE about Mehmet?",
+      "secenekler": [
+        "He wins all the competitions.",
+        "He has become quiet and unhappy.",
+        "His parents are not musicians.",
+        "His parents are never disappointed."
+      ],
+      "cevap": 1,
+      "neden": null,
+      "celdiriciler": null,
+      "kaynak": "aybu",
+      "bolum": 3,
+      "zorluk": 1
+    },
+    {
+      "id": "aybu-074",
+      "konu": "r-cikarim",
+      "eksen": null,
+      "tip": "okuma",
+      "parca": "p5",
+      "soru": "It can be understood from the text that _____.",
+      "secenekler": [
+        "Cengiz could be more successful than Mehmet",
+        "Mehmet will always win all the competitions",
+        "Mehmet's parents do not love their son",
+        "Cengiz will give up playing musical instruments"
+      ],
+      "cevap": 0,
+      "neden": null,
+      "celdiriciler": null,
+      "kaynak": "aybu",
+      "bolum": 3,
+      "zorluk": 1
+    },
+    {
+      "id": "aybu-075",
+      "konu": "r-anafikir",
+      "eksen": null,
+      "tip": "okuma",
+      "parca": "p5",
+      "soru": "The MAIN topic of the text is _____.",
+      "secenekler": [
+        "discussing educational philosophies",
+        "comparing Cengiz and Mehmet's talents",
+        "showing the best way to play the piano",
+        "choosing the right way to raise a child"
+      ],
+      "cevap": 3,
+      "neden": null,
+      "celdiriciler": null,
+      "kaynak": "aybu",
+      "bolum": 3,
+      "zorluk": 1
+    },
+    {
+      "id": "aybu-076",
+      "konu": "g-perfect-continuous",
+      "eksen": null,
+      "tip": "dilbilgisi",
+      "parca": null,
+      "soru": "My hands are very dirty. I _____ the garage since early morning. Now, it is finished.",
+      "secenekler": [
+        "am cleaning",
+        "have been cleaning",
+        "am going to clean",
+        "will clean"
+      ],
+      "cevap": 1,
+      "neden": null,
+      "celdiriciler": null,
+      "kaynak": "aybu",
+      "bolum": 4,
+      "zorluk": 1
+    },
+    {
+      "id": "aybu-077",
+      "konu": "g-edilgen",
+      "eksen": null,
+      "tip": "dilbilgisi",
+      "parca": null,
+      "soru": "A: I like the new projects in this town. / B: Yes, they _____ by young university students for several years.",
+      "secenekler": [
+        "have been carried out",
+        "are carrying out",
+        "have carried out",
+        "carried out"
+      ],
+      "cevap": 0,
+      "neden": null,
+      "celdiriciler": null,
+      "kaynak": "aybu",
+      "bolum": 4,
+      "zorluk": 1
+    },
+    {
+      "id": "aybu-078",
+      "konu": "g-ettirgen",
+      "eksen": null,
+      "tip": "dilbilgisi",
+      "parca": null,
+      "soru": "Peer pressure is real. In high school, my friends _____ a lot of things I would never do normally.",
+      "secenekler": [
+        "made me to do",
+        "had me to do",
+        "made me do",
+        "had me"
+      ],
+      "cevap": 2,
+      "neden": null,
+      "celdiriciler": null,
+      "kaynak": "aybu",
+      "bolum": 4,
+      "zorluk": 1
+    },
+    {
+      "id": "aybu-079",
+      "konu": "g-used-to",
+      "eksen": null,
+      "tip": "dilbilgisi",
+      "parca": null,
+      "soru": "When I was a child, I _____ a bike every evening.",
+      "secenekler": [
+        "was going to ride",
+        "have been riding",
+        "ride",
+        "would ride"
+      ],
+      "cevap": 3,
+      "neden": null,
+      "celdiriciler": null,
+      "kaynak": "aybu",
+      "bolum": 4,
+      "zorluk": 1
+    },
+    {
+      "id": "aybu-080",
+      "konu": "g-mastar-gerund",
+      "eksen": null,
+      "tip": "dilbilgisi",
+      "parca": null,
+      "soru": "Mother: Please, don't forget _____ the door. / Mary: Okay, mom. Don't worry.",
+      "secenekler": [
+        "to lock",
+        "to locking",
+        "lock",
+        "locked"
+      ],
+      "cevap": 0,
+      "neden": null,
+      "celdiriciler": null,
+      "kaynak": "aybu",
+      "bolum": 4,
+      "zorluk": 1
+    },
+    {
+      "id": "aybu-081",
+      "konu": "g-had-better",
+      "eksen": null,
+      "tip": "dilbilgisi",
+      "parca": null,
+      "soru": "The final exams start early tomorrow morning. I _____ now before it's too late.",
+      "secenekler": [
+        "had better sleep",
+        "have better sleep",
+        "am better sleep",
+        "got better sleep"
+      ],
+      "cevap": 0,
+      "neden": null,
+      "celdiriciler": null,
+      "kaynak": "aybu",
+      "bolum": 4,
+      "zorluk": 1
+    },
+    {
+      "id": "aybu-082",
+      "konu": "g-kosul3",
+      "eksen": null,
+      "tip": "dilbilgisi",
+      "parca": null,
+      "soru": "If human beings _____ more careful with nature, global warming _____. But it started and the Earth is endangered.",
+      "secenekler": [
+        "are / would not have started",
+        "were / will not start",
+        "had been / did not start",
+        "had been / would not have started"
+      ],
+      "cevap": 3,
+      "neden": null,
+      "celdiriciler": null,
+      "kaynak": "aybu",
+      "bolum": 4,
+      "zorluk": 1
+    },
+    {
+      "id": "aybu-083",
+      "konu": "g-sifat-cumlesi",
+      "eksen": null,
+      "tip": "dilbilgisi",
+      "parca": null,
+      "soru": "We won the environment award from the company _____ advertisements are seen on all the billboards around the city.",
+      "secenekler": [
+        "where",
+        "whose",
+        "that",
+        "which"
+      ],
+      "cevap": 1,
+      "neden": null,
+      "celdiriciler": null,
+      "kaynak": "aybu",
+      "bolum": 4,
+      "zorluk": 1
+    },
+    {
+      "id": "aybu-084",
+      "konu": "g-wish",
+      "eksen": null,
+      "tip": "dilbilgisi",
+      "parca": null,
+      "soru": "Jane has a lot of problems to deal with these days. I wish I _____ her, but I'm far away.",
+      "secenekler": [
+        "could help",
+        "help",
+        "can help",
+        "would help"
+      ],
+      "cevap": 0,
+      "neden": null,
+      "celdiriciler": null,
+      "kaynak": "aybu",
+      "bolum": 4,
+      "zorluk": 1
+    },
+    {
+      "id": "aybu-085",
+      "konu": "g-baglac",
+      "eksen": null,
+      "tip": "dilbilgisi",
+      "parca": null,
+      "soru": "_____ the physics assignment was quite hard to complete in short time, half of the students submitted it in only two days.",
+      "secenekler": [
+        "So",
+        "Because",
+        "Even though",
+        "Moreover"
+      ],
+      "cevap": 2,
+      "neden": null,
+      "celdiriciler": null,
+      "kaynak": "aybu",
+      "bolum": 4,
+      "zorluk": 1
+    },
+    {
+      "id": "aybu-086",
+      "konu": "v-b1",
+      "eksen": null,
+      "tip": "kelime",
+      "parca": null,
+      "soru": "After taking this course, I now see things from a different _____.",
+      "secenekler": [
+        "public",
+        "perspective",
+        "maneuver",
+        "pressure"
+      ],
+      "cevap": 1,
+      "neden": null,
+      "celdiriciler": null,
+      "kaynak": "aybu",
+      "bolum": 4,
+      "zorluk": 1
+    },
+    {
+      "id": "aybu-087",
+      "konu": "v-b1",
+      "eksen": null,
+      "tip": "kelime",
+      "parca": null,
+      "soru": "Teaching at a kindergarten is a hard job because it's quite a/an _____ to deal with kids at that age.",
+      "secenekler": [
+        "challenge",
+        "security",
+        "boredom",
+        "manner"
+      ],
+      "cevap": 0,
+      "neden": null,
+      "celdiriciler": null,
+      "kaynak": "aybu",
+      "bolum": 4,
+      "zorluk": 1
+    },
+    {
+      "id": "aybu-088",
+      "konu": "v-b1",
+      "eksen": null,
+      "tip": "kelime",
+      "parca": null,
+      "soru": "Ceren is a true friend. She really knows how to _____ me whenever I feel negative about doing something.",
+      "secenekler": [
+        "inhabit",
+        "research",
+        "motivate",
+        "expect"
+      ],
+      "cevap": 2,
+      "neden": null,
+      "celdiriciler": null,
+      "kaynak": "aybu",
+      "bolum": 4,
+      "zorluk": 1
+    },
+    {
+      "id": "aybu-089",
+      "konu": "v-b1",
+      "eksen": null,
+      "tip": "kelime",
+      "parca": null,
+      "soru": "Everyone chooses to _____ things with the help of their phones or computers.",
+      "secenekler": [
+        "raise",
+        "watch",
+        "purchase",
+        "spend"
+      ],
+      "cevap": 2,
+      "neden": null,
+      "celdiriciler": null,
+      "kaynak": "aybu",
+      "bolum": 4,
+      "zorluk": 1
+    },
+    {
+      "id": "aybu-090",
+      "konu": "v-b1",
+      "eksen": null,
+      "tip": "kelime",
+      "parca": null,
+      "soru": "This company has not been _____ to produce these products. It should stop production.",
+      "secenekler": [
+        "authorized",
+        "exposed",
+        "energized",
+        "wasted"
+      ],
+      "cevap": 0,
+      "neden": null,
+      "celdiriciler": null,
+      "kaynak": "aybu",
+      "bolum": 4,
+      "zorluk": 1
+    },
+    {
+      "id": "aybu-091",
+      "konu": "v-b1",
+      "eksen": null,
+      "tip": "kelime",
+      "parca": null,
+      "soru": "It is always a good idea to have a high quality car, but when the car breaks down, the cost in _____ is really huge.",
+      "secenekler": [
+        "fuel",
+        "salary",
+        "emission",
+        "maintenance"
+      ],
+      "cevap": 3,
+      "neden": null,
+      "celdiriciler": null,
+      "kaynak": "aybu",
+      "bolum": 4,
+      "zorluk": 1
+    },
+    {
+      "id": "aybu-092",
+      "konu": "v-b1",
+      "eksen": null,
+      "tip": "kelime",
+      "parca": null,
+      "soru": "Tuna is a student peace ambassador. He works to _____ peace and harmony in and around the campus.",
+      "secenekler": [
+        "advice",
+        "challenge",
+        "avoid",
+        "promote"
+      ],
+      "cevap": 3,
+      "neden": null,
+      "celdiriciler": null,
+      "kaynak": "aybu",
+      "bolum": 4,
+      "zorluk": 1
+    },
+    {
+      "id": "aybu-093",
+      "konu": "v-b1",
+      "eksen": null,
+      "tip": "kelime",
+      "parca": null,
+      "soru": "Technology today has brought about so many latest _____ that sometimes it is difficult to choose the best one.",
+      "secenekler": [
+        "innovations",
+        "souvenirs",
+        "generations",
+        "fragments"
+      ],
+      "cevap": 0,
+      "neden": null,
+      "celdiriciler": null,
+      "kaynak": "aybu",
+      "bolum": 4,
+      "zorluk": 1
+    },
+    {
+      "id": "aybu-094",
+      "konu": "v-phrasal",
+      "eksen": null,
+      "tip": "kelime",
+      "parca": null,
+      "soru": "Internet scammers are becoming more common these days. Many people have _____ about such issues at the police stations.",
+      "secenekler": [
+        "rushed into",
+        "taken a chance",
+        "filed complaints",
+        "broken the law"
+      ],
+      "cevap": 2,
+      "neden": null,
+      "celdiriciler": null,
+      "kaynak": "aybu",
+      "bolum": 4,
+      "zorluk": 1
+    },
+    {
+      "id": "aybu-095",
+      "konu": "v-b1",
+      "eksen": null,
+      "tip": "kelime",
+      "parca": null,
+      "soru": "Many people fail to succeed in their new year's resolution because they set unrealistic _____.",
+      "secenekler": [
+        "charges",
+        "documents",
+        "books",
+        "goals"
+      ],
+      "cevap": 3,
+      "neden": null,
+      "celdiriciler": null,
+      "kaynak": "aybu",
+      "bolum": 4,
+      "zorluk": 1
+    },
+    {
+      "id": "aybu-096",
+      "konu": "r-detay",
+      "eksen": null,
+      "tip": "okuma",
+      "parca": "p6",
+      "soru": "Which is NOT mentioned as our purpose in looking at the sky?",
+      "secenekler": [
+        "Deciding when to plant crops",
+        "Understanding our origin",
+        "Comprehending the world",
+        "Developing technology"
+      ],
+      "cevap": 3,
+      "neden": null,
+      "celdiriciler": null,
+      "kaynak": "aybu",
+      "bolum": 4,
+      "zorluk": 1
+    },
+    {
+      "id": "aybu-097",
+      "konu": "r-detay",
+      "eksen": null,
+      "tip": "okuma",
+      "parca": "p6",
+      "soru": "According to the passage, early culture _____.",
+      "secenekler": [
+        "removed the facts from modern astronomy",
+        "could not observe the movements in the sky",
+        "is not associated with astrology now",
+        "still influences modern astronomy"
+      ],
+      "cevap": 3,
+      "neden": null,
+      "celdiriciler": null,
+      "kaynak": "aybu",
+      "bolum": 4,
+      "zorluk": 1
+    },
+    {
+      "id": "aybu-098",
+      "konu": "r-detay",
+      "eksen": null,
+      "tip": "okuma",
+      "parca": "p6",
+      "soru": "The connection between humans and the space is stronger because _____.",
+      "secenekler": [
+        "the elements in stars and in a human body are similar",
+        "space exploration has become quite popular recently",
+        "more and more people travel to space these days",
+        "human bodies become more adapted to life in space"
+      ],
+      "cevap": 0,
+      "neden": null,
+      "celdiriciler": null,
+      "kaynak": "aybu",
+      "bolum": 4,
+      "zorluk": 1
+    },
+    {
+      "id": "aybu-099",
+      "konu": "r-baglamdan-kelime",
+      "eksen": null,
+      "tip": "okuma",
+      "parca": "p6",
+      "soru": "The word \"entwined\" in the text means _____.",
+      "secenekler": [
+        "difficult to solve",
+        "closely connected",
+        "quite complicated",
+        "easily noticed"
+      ],
+      "cevap": 1,
+      "neden": null,
+      "celdiriciler": null,
+      "kaynak": "aybu",
+      "bolum": 4,
+      "zorluk": 1
+    },
+    {
+      "id": "aybu-100",
+      "konu": "r-cikarim",
+      "eksen": null,
+      "tip": "okuma",
+      "parca": "p6",
+      "soru": "It can be inferred from the text that _____.",
+      "secenekler": [
+        "astronomy has difficulties in progressing in space exploration",
+        "humans have already understood that our Universe is unique",
+        "human beings are still trying to find answers to some questions",
+        "the most dangerous object in space is the most massive one"
+      ],
+      "cevap": 2,
+      "neden": null,
+      "celdiriciler": null,
+      "kaynak": "aybu",
+      "bolum": 4,
+      "zorluk": 1
+    },
+    {
+      "id": "tohum-001",
+      "konu": "g-be",
+      "eksen": "olumsuz isn't/aren't",
+      "tip": "dilbilgisi",
+      "parca": null,
+      "soru": "My parents _____ at home right now. They are still at work.",
+      "secenekler": [
+        "isn't",
+        "aren't",
+        "wasn't",
+        "weren't"
+      ],
+      "cevap": 1,
+      "neden": "Özne \"My parents\" çoğul ve cümle şu ana ait (\"right now\"). Çoğul + şimdi = aren't.",
+      "celdiriciler": [
+        "isn't: tekil özneler için (he/she/it). Parents çoğul.",
+        "wasn't: hem geçmiş hem tekil; iki yönden de uymuyor.",
+        "weren't: çoğul doğru ama geçmiş. \"right now\" şu an demek."
+      ],
+      "kaynak": "tohum",
+      "bolum": null,
+      "zorluk": 2
+    },
+    {
+      "id": "tohum-002",
+      "konu": "g-genis-zaman",
+      "eksen": "olumsuz doesn't + yalin fiil",
+      "tip": "dilbilgisi",
+      "parca": null,
+      "soru": "My sister _____ coffee in the morning. She prefers tea.",
+      "secenekler": [
+        "don't drink",
+        "doesn't drink",
+        "doesn't drinks",
+        "not drink"
+      ],
+      "cevap": 1,
+      "neden": "\"My sister\" = she olduğu için doesn't. doesn't varken fiil yalın kalır: drink.",
+      "celdiriciler": [
+        "don't drink: I/you/we/they için. Kız kardeş = she.",
+        "doesn't drinks: -s'i zaten doesn't üstlendi, fiile ikinci kez takılmaz.",
+        "not drink: yardımcı fiil (do/does) olmadan not tek başına kullanılamaz."
+      ],
+      "kaynak": "tohum",
+      "bolum": null,
+      "zorluk": 2
+    },
+    {
+      "id": "tohum-003",
+      "konu": "g-genis-zaman",
+      "eksen": "-es/-ies yazimi (go->goes, study->studies)",
+      "tip": "dilbilgisi",
+      "parca": null,
+      "soru": "My father _____ to work by bus every day.",
+      "secenekler": [
+        "go",
+        "gos",
+        "goes",
+        "going"
+      ],
+      "cevap": 2,
+      "neden": "\"My father\" = he, fiile -s takılır. Sonu -o ile biten fiiller -es alır: goes.",
+      "celdiriciler": [
+        "go: I/you/we/they için. Baba = he.",
+        "gos: böyle bir yazım yok; -o ile biten fiil -es alır.",
+        "going: tek başına fiil olamaz, yanında is/are ister."
+      ],
+      "kaynak": "tohum",
+      "bolum": null,
+      "zorluk": 2
+    },
+    {
+      "id": "tohum-004",
+      "konu": "g-have-got",
+      "eksen": "olumsuz doesn't have",
+      "tip": "dilbilgisi",
+      "parca": null,
+      "soru": "Emre _____ a car, so he goes to work by bus every morning.",
+      "secenekler": [
+        "don't have",
+        "doesn't have",
+        "doesn't has",
+        "hasn't"
+      ],
+      "cevap": 1,
+      "neden": "Özne Emre = he. Olumsuzda doesn't kullanılır ve fiil yalın kalır: doesn't have.",
+      "celdiriciler": [
+        "don't have: I/you/we/they için.",
+        "doesn't has: doesn't varken fiile -s takılmaz.",
+        "hasn't: tek başına yetmez, \"hasn't got\" olmalıydı."
+      ],
+      "kaynak": "tohum",
+      "bolum": null,
+      "zorluk": 2
+    },
+    {
+      "id": "tohum-005",
+      "konu": "g-have-got",
+      "eksen": "soru: Does ... have ...?",
+      "tip": "dilbilgisi",
+      "parca": null,
+      "soru": "A: _____ Ayse have a driving licence? / B: Yes, she does.",
+      "secenekler": [
+        "Do",
+        "Does",
+        "Is",
+        "Has"
+      ],
+      "cevap": 1,
+      "neden": "Özne Ayşe = she; geniş zaman sorusu Does ile kurulur. Cevaptaki \"she does\" de bunu doğruluyor.",
+      "celdiriciler": [
+        "Do: I/you/we/they özneleri için.",
+        "Is: \"olmak\" fiili; have ile birlikte soru kurmaz.",
+        "Has: \"Has she got...?\" kalıbında olurdu; yalın have ile Does gerekir."
+      ],
+      "kaynak": "tohum",
+      "bolum": null,
+      "zorluk": 2
+    },
+    {
+      "id": "tohum-006",
+      "konu": "g-there-is",
+      "eksen": "gecmis there was / there were",
+      "tip": "dilbilgisi",
+      "parca": null,
+      "soru": "Twenty years ago, _____ only two cafes in this street. Now there are more than ten.",
+      "secenekler": [
+        "there was",
+        "there were",
+        "there are",
+        "they were"
+      ],
+      "cevap": 1,
+      "neden": "\"two cafes\" çoğul ve cümle geçmişe ait (\"Twenty years ago\"): there were.",
+      "celdiriciler": [
+        "there was: tekil isimler için (there was a cafe).",
+        "there are: şimdiki zaman, ama cümlede \"20 yıl önce\" var.",
+        "they were: \"onlar ...idi\" demek; bir yerde bulunma anlatmaz."
+      ],
+      "kaynak": "tohum",
+      "bolum": null,
+      "zorluk": 2
+    },
+    {
+      "id": "tohum-007",
+      "konu": "g-there-is",
+      "eksen": "soru: Is there...? / Are there...?",
+      "tip": "dilbilgisi",
+      "parca": null,
+      "soru": "_____ there any students in the classroom? The lesson starts in five minutes.",
+      "secenekler": [
+        "Is",
+        "Are",
+        "Do",
+        "Have"
+      ],
+      "cevap": 1,
+      "neden": "\"students\" çoğul olduğu için Are there. Bulunma sorusu \"Is/Are there...?\" kalıbıyla kurulur.",
+      "celdiriciler": [
+        "Is: tekil isimler için (Is there a student...?).",
+        "Do: geniş zaman sorusu kurar, there ile birleşmez.",
+        "Have: sahiplik fiili; bulunma sorusu kurmaz."
+      ],
+      "kaynak": "tohum",
+      "bolum": null,
+      "zorluk": 2
+    },
+    {
+      "id": "tohum-008",
+      "konu": "g-artikel",
+      "eksen": "a/an ses kurali (an hour, a university)",
+      "tip": "dilbilgisi",
+      "parca": null,
+      "soru": "We waited for _____ hour at the bus stop, but the bus never came.",
+      "secenekler": [
+        "a",
+        "an",
+        "the",
+        "--"
+      ],
+      "cevap": 1,
+      "neden": "\"hour\" yazılışta h ile başlar ama okunuşu sesli harfle başlar (aur). Kural harfe değil sese bakar: an hour.",
+      "celdiriciler": [
+        "a: sessiz harf SESİYLE başlayan kelimeler için (a university).",
+        "the: belirli bir saatten değil, bir saatlik süreden bahsediliyor.",
+        "--: sayılabilir tekil isim artikelsiz bırakılamaz."
+      ],
+      "kaynak": "tohum",
+      "bolum": null,
+      "zorluk": 2
+    },
+    {
+      "id": "tohum-009",
+      "konu": "g-artikel",
+      "eksen": "ilk gecis a/an, ikinci gecis the",
+      "tip": "dilbilgisi",
+      "parca": null,
+      "soru": "I bought _____ book yesterday. _____ book is about astronomy.",
+      "secenekler": [
+        "a / The",
+        "the / A",
+        "a / A",
+        "the / The"
+      ],
+      "cevap": 0,
+      "neden": "İlk geçişte hangi kitap olduğu bilinmiyor: a book. İkinci cümlede artık belli: the book.",
+      "celdiriciler": [
+        "the / A: sıra ters; ilk kez geçen isim the almaz.",
+        "a / A: ikinci geçişte de belirsiz bırakılamaz, artık ortak bilgi.",
+        "the / The: dinleyici ilk cümlede hangi kitaptan bahsedildiğini bilmiyor."
+      ],
+      "kaynak": "tohum",
+      "bolum": null,
+      "zorluk": 2
+    },
+    {
+      "id": "tohum-010",
+      "konu": "g-be",
+      "eksen": "isim ozneyi zamire cevirme (My brother = he = is)",
+      "tip": "dilbilgisi",
+      "parca": null,
+      "soru": "My cousin and her two children _____ at the airport now. Their flight _____ two hours late yesterday, so they are tired today.",
+      "secenekler": [
+        "is / was",
+        "are / was",
+        "are / were",
+        "is / were"
+      ],
+      "cevap": 1,
+      "neden": "Birinci boşlukta özne \"My cousin and her two children\" çoğul ve şu ana ait: are. İkinci boşlukta özne \"Their flight\" tekil ve geçmişe ait (yesterday): was.",
+      "celdiriciler": [
+        "is / was: ilk özne \"and\" ile bağlanmış, tek kişi değil. Çoğul özne is almaz.",
+        "are / were: uçuş tek, çoğul değil. \"flight\" tekil olduğu için were olmaz.",
+        "is / were: iki boşlukta da sayı yanlış; ilki çoğul, ikincisi tekil olmalıydı."
+      ],
+      "kaynak": "tohum",
+      "bolum": null,
+      "zorluk": 3
+    },
+    {
+      "id": "tohum-011",
+      "konu": "g-genis-zaman",
+      "eksen": "siklik zarfi yerlesimi (always/never)",
+      "tip": "dilbilgisi",
+      "parca": null,
+      "soru": "My uncle is a night guard. He _____ during the day and he _____ dinner with us because he leaves home at seven.",
+      "secenekler": [
+        "always sleeps / never has",
+        "sleeps always / has never",
+        "always sleep / never have",
+        "always is sleeping / never is having"
+      ],
+      "cevap": 0,
+      "neden": "Sıklık zarfı (always, never) yalın fiilden önce gelir ve özne \"He\" olduğu için fiile -s takılır: always sleeps, never has.",
+      "celdiriciler": [
+        "sleeps always / has never: sıklık zarfı yalın fiilden sonra gelmez, önce gelir.",
+        "always sleep / never have: özne He, iki fiile de -s takılmalıydı.",
+        "always is sleeping / never is having: alışkanlık anlatılıyor, o an olan bir iş değil; ayrıca zarfın yeri de yanlış."
+      ],
+      "kaynak": "tohum",
+      "bolum": null,
+      "zorluk": 3
+    },
+    {
+      "id": "tohum-012",
+      "konu": "g-have-got",
+      "eksen": "sahiplik have vs bulunma there is",
+      "tip": "dilbilgisi",
+      "parca": null,
+      "soru": "Our new flat is quite small. It _____ only one bedroom, but _____ a large balcony next to the kitchen.",
+      "secenekler": [
+        "there is / it has",
+        "has / there is",
+        "has / it is",
+        "there is / there is"
+      ],
+      "cevap": 1,
+      "neden": "İlk boşlukta sahip olan bellidir (the flat), o yüzden has. İkinci boşlukta yeni bir şeyin varlığından bahsediliyor, sahip söylenmiyor: there is.",
+      "celdiriciler": [
+        "there is / it has: sıra ters; ilk cümlede özne zaten \"It\", ikinci kısımda özne yok.",
+        "has / it is: \"it is a large balcony\" o bir balkondur demek; balkonun varlığını anlatmaz.",
+        "there is / there is: ilk cümlede \"It\" özne olarak duruyor, arkasından there is gelemez."
+      ],
+      "kaynak": "tohum",
+      "bolum": null,
+      "zorluk": 3
+    },
+    {
+      "id": "tohum-013",
+      "konu": "g-there-is",
+      "eksen": "sayilamayan isimle there is",
+      "tip": "dilbilgisi",
+      "parca": null,
+      "soru": "I checked the fridge this morning. _____ some cheese and two eggs, but _____ any milk left for coffee.",
+      "secenekler": [
+        "There was / there weren't",
+        "There were / there wasn't",
+        "There was / there wasn't",
+        "There were / there weren't"
+      ],
+      "cevap": 2,
+      "neden": "İlk boşlukta hemen sonrasında gelen \"some cheese\" sayılamaz ve tekildir: There was. İkinci boşlukta \"milk\" de sayılamaz: there wasn't. İkisi de geçmiş (this morning, checked).",
+      "celdiriciler": [
+        "There was / there weren't: milk sayılamaz, weren't alamaz.",
+        "There were / there wasn't: fiil kendinden hemen sonraki isme uyar; \"cheese\" sayılamaz, were olmaz.",
+        "There were / there weren't: iki isim de sayılamaz; ikisinde de çoğul kullanılmış."
+      ],
+      "kaynak": "tohum",
+      "bolum": null,
+      "zorluk": 3
+    },
+    {
+      "id": "tohum-014",
+      "konu": "g-artikel",
+      "eksen": "tek olan seyler the (the sun)",
+      "tip": "dilbilgisi",
+      "parca": null,
+      "soru": "Yesterday I saw _____ interesting documentary about _____ moon. _____ documentary explained how it affects the seas.",
+      "secenekler": [
+        "an / the / The",
+        "a / the / A",
+        "an / a / The",
+        "the / the / An"
+      ],
+      "cevap": 0,
+      "neden": "\"interesting\" sesli harf sesiyle başlar: an. Ay tektir, herkes hangisi olduğunu bilir: the moon. Belgesel ikinci kez geçiyor, artık belli: The documentary.",
+      "celdiriciler": [
+        "a / the / A: \"interesting\" sesli sesle başlar, a değil an olur.",
+        "an / a / The: ay tektir, \"a moon\" birçok aydan biri demek olurdu.",
+        "the / the / An: belgesel ilk kez geçiyor, the alamaz; üçüncüsü de artık belirli olmalı."
+      ],
+      "kaynak": "tohum",
+      "bolum": null,
+      "zorluk": 3
+    },
+    {
+      "id": "tohum-015",
+      "konu": "g-iyelik",
+      "eksen": "isim ile iyelik sifati uyumu (Ali -> his)",
+      "tip": "dilbilgisi",
+      "parca": null,
+      "soru": "Sarah lost _____ keys yesterday. She looked everywhere but couldn't find them.",
+      "secenekler": [
+        "her",
+        "his",
+        "its",
+        "their"
+      ],
+      "cevap": 0,
+      "neden": "Sarah bir kadın ve anahtarlar ona ait: her. Sonraki cümledeki \"She\" bunu doğruluyor.",
+      "celdiriciler": [
+        "his: erkekler için kullanılır.",
+        "its: cansız varlıklar ve hayvanlar için.",
+        "their: birden fazla sahip olduğunda; Sarah tek kişi."
+      ],
+      "kaynak": "tohum",
+      "bolum": null,
+      "zorluk": 2
+    },
+    {
+      "id": "tohum-016",
+      "konu": "g-iyelik",
+      "eksen": "its vs it's ayrimi",
+      "tip": "dilbilgisi",
+      "parca": null,
+      "soru": "Our school changed _____ logo last month. _____ a very simple design now, and I think _____ colors are perfect.",
+      "secenekler": [
+        "its / It's / its",
+        "it's / Its / it's",
+        "its / Its / its",
+        "it's / It's / its"
+      ],
+      "cevap": 0,
+      "neden": "Birinci ve üçüncü boşlukta \"onun\" anlamı var, kesme işaretsiz its. İkincide cümlenin fiili yok; It is kısaltması gerekiyor: It's.",
+      "celdiriciler": [
+        "it's / Its / it's: birinci boşlukta \"o bir logodur\" denmiyor, logonun okula ait olduğu söyleniyor.",
+        "its / Its / its: ikinci boşlukta fiil yok; It is olmadan cümle kurulamaz.",
+        "it's / It's / its: birinci boşluk yine yanlış, \"it is logo\" anlamsız olur."
+      ],
+      "kaynak": "tohum",
+      "bolum": null,
+      "zorluk": 3
+    },
+    {
+      "id": "tohum-017",
+      "konu": "g-ozne-zamiri",
+      "eksen": "iki ozne birlesince we",
+      "tip": "dilbilgisi",
+      "parca": null,
+      "soru": "My brother and I go to the same school. _____ walk there together every morning.",
+      "secenekler": [
+        "He",
+        "They",
+        "We",
+        "I"
+      ],
+      "cevap": 2,
+      "neden": "\"My brother and I\" = o + ben, yani biz: We.",
+      "celdiriciler": [
+        "He: sadece kardeşi gösterir, konuşan kişiyi dışarıda bırakır.",
+        "They: konuşan kişi de gruba dahil, o yüzden We olmalı.",
+        "I: tek kişi; cümlede iki kişiden bahsediliyor."
+      ],
+      "kaynak": "tohum",
+      "bolum": null,
+      "zorluk": 2
+    },
+    {
+      "id": "tohum-018",
+      "konu": "g-ozne-zamiri",
+      "eksen": "ozne zamiri (I) vs nesne zamiri (me)",
+      "tip": "dilbilgisi",
+      "parca": null,
+      "soru": "My teacher gave _____ a new book. _____ is about space, and _____ read it every night before I sleep.",
+      "secenekler": [
+        "me / It / I",
+        "I / It / me",
+        "me / He / I",
+        "I / He / me"
+      ],
+      "cevap": 0,
+      "neden": "gave fiilinin nesnesi: me. Kitap cansız olduğu için özne olarak It. Son cümlede işi yapan ben: I. İngilizcede özne boş bırakılamaz.",
+      "celdiriciler": [
+        "I / It / me: fiilin nesnesi özne zamiri olamaz (gave I yanlıştır).",
+        "me / He / I: kitap için He kullanılmaz, cansız şeyler It alır.",
+        "I / He / me: üç boşlukta da özne-nesne rolü karışmış."
+      ],
+      "kaynak": "tohum",
+      "bolum": null,
+      "zorluk": 3
+    },
+    {
+      "id": "tohum-019",
+      "konu": "g-isaret",
+      "eksen": "uzak that / those",
+      "tip": "dilbilgisi",
+      "parca": null,
+      "soru": "_____ shoes over there are too expensive, but _____ ones here are quite cheap.",
+      "secenekler": [
+        "This / that",
+        "These / those",
+        "Those / these",
+        "That / this"
+      ],
+      "cevap": 2,
+      "neden": "\"over there\" uzağı gösteriyor ve shoes çoğul: Those. \"here\" yakını gösteriyor ve ones çoğul: these.",
+      "celdiriciler": [
+        "This / that: ikisi de tekil; shoes çoğuldur.",
+        "These / those: yakın-uzak ters yazılmış, over there uzak demek.",
+        "That / this: hem tekil kullanılmış hem yakın-uzak sırası ters."
+      ],
+      "kaynak": "tohum",
+      "bolum": null,
+      "zorluk": 2
+    },
+    {
+      "id": "tohum-020",
+      "konu": "g-isaret",
+      "eksen": "tanistirma kalibi: This is...",
+      "tip": "dilbilgisi",
+      "parca": null,
+      "soru": "_____ is my sister Elif. _____ two boys next to her _____ her classmates from the music course.",
+      "secenekler": [
+        "This / These / are",
+        "These / This / is",
+        "This / Those / is",
+        "That / These / is"
+      ],
+      "cevap": 0,
+      "neden": "Birini tanıştırırken tekil için This kullanılır. \"two boys\" çoğul ve yanında (next to her), yani yakında: These. Çoğul özne be fiilinde are alır.",
+      "celdiriciler": [
+        "These / This / is: tanıştırılan tek kişi, These olamaz; ayrıca çoğul özne is almaz.",
+        "This / Those / is: çocuklar \"next to her\", yani yakında; Those uzak demek. Çoğul özne is almaz.",
+        "That / These / is: That uzaktakini gösterir, tanıştırma This ile kurulur."
+      ],
+      "kaynak": "tohum",
+      "bolum": null,
+      "zorluk": 3
+    },
+    {
+      "id": "tohum-021",
+      "konu": "g-edat",
+      "eksen": "zaman: in (ay/yil) · on (gun) · at (saat)",
+      "tip": "dilbilgisi",
+      "parca": null,
+      "soru": "We usually meet _____ Saturday evenings _____ the cafe _____ the corner.",
+      "secenekler": [
+        "in / at / on",
+        "on / at / on",
+        "on / in / at",
+        "at / on / in"
+      ],
+      "cevap": 1,
+      "neden": "Günler ve gün bölümleri on alır (on Saturday evenings). Buluşulan mekân at ile söylenir. Köşe için on the corner kalıptır.",
+      "celdiriciler": [
+        "in / at / on: in aylar ve yıllar için kullanılır (in July, in 2020), günler için değil.",
+        "on / in / at: \"in the cafe\" kafenin içinde demek; buluşma noktası anlatılırken at kullanılır.",
+        "at / on / in: at saatler için (at seven), gün adı için değil."
+      ],
+      "kaynak": "tohum",
+      "bolum": null,
+      "zorluk": 2
+    },
+    {
+      "id": "tohum-022",
+      "konu": "g-edat",
+      "eksen": "edattan sonra fiil -ing alir",
+      "tip": "dilbilgisi",
+      "parca": null,
+      "soru": "My little brother is afraid _____ dogs, so he never listens _____ me when I talk _____ walking in the park.",
+      "secenekler": [
+        "of / to / about",
+        "from / to / about",
+        "of / at / of",
+        "from / at / about"
+      ],
+      "cevap": 0,
+      "neden": "afraid of değişmez bir kalıptır. listen fiili to ister. talk about'tan sonra fiil -ing alır: about walking.",
+      "celdiriciler": [
+        "from / to / about: Türkçede \"köpeklerden korkar\" deriz ama İngilizcede kalıp afraid of'tur, from değil.",
+        "of / at / of: listen at diye bir kalıp yok; dinlemek to ister.",
+        "from / at / about: ilk iki edat da yanlış, sadece sonuncusu doğru."
+      ],
+      "kaynak": "tohum",
+      "bolum": null,
+      "zorluk": 3
+    },
+    {
+      "id": "tohum-023",
+      "konu": "g-gecmis-zaman",
+      "eksen": "soru: Did + yalin fiil",
+      "tip": "dilbilgisi",
+      "parca": null,
+      "soru": "A: _____ you enjoy the concert last night? / B: Yes, but we _____ home very late.",
+      "secenekler": [
+        "Do / went",
+        "Did / went",
+        "Did / goed",
+        "Did / go"
+      ],
+      "cevap": 1,
+      "neden": "\"last night\" geçmiş demek; soru Did ile kurulur ve fiil yalın kalır (enjoy). İkinci boşlukta go fiilinin geçmişi düzensizdir: went.",
+      "celdiriciler": [
+        "Do / went: cümlede \"last night\" var, geniş zaman sorusu olamaz.",
+        "Did / goed: go düzensiz bir fiildir, -ed almaz.",
+        "Did / go: ikinci kısım soru değil, düz bir geçmiş cümlesi; fiil geçmiş hâlde olmalı."
+      ],
+      "kaynak": "tohum",
+      "bolum": null,
+      "zorluk": 2
+    },
+    {
+      "id": "tohum-024",
+      "konu": "g-gecmis-zaman",
+      "eksen": "olumsuz didn't + yalin fiil",
+      "tip": "dilbilgisi",
+      "parca": null,
+      "soru": "I _____ my keys at the office yesterday, so I _____ get into my flat and _____ at a friend's house.",
+      "secenekler": [
+        "left / didn't / stayed",
+        "leave / didn't / stayed",
+        "left / don't / stayed",
+        "left / didn't / stay"
+      ],
+      "cevap": 0,
+      "neden": "yesterday geçmiş demek: leave düzensizdir, left olur. Olumsuzda didn't kullanılır ve arkasından fiil yalın kalır: didn't get. Üçüncüsü ayrı bir iş, düzenli geçmiş: stayed.",
+      "celdiriciler": [
+        "leave / didn't / stayed: yesterday varken ilk fiil de geçmiş hâlde olmalı.",
+        "left / don't / stayed: don't geniş zamandır, cümlenin tamamı geçmişte geçiyor.",
+        "left / didn't / stay: son fiil didn't'a bağlı değil, \"and\" ile başlayan ayrı bir iş; kendi geçmiş hâlini alır."
+      ],
+      "kaynak": "tohum",
+      "bolum": null,
+      "zorluk": 3
+    },
+    {
+      "id": "tohum-025",
+      "konu": "v-a1",
+      "eksen": "cumledeki ipucundan kelimeyi bulma",
+      "tip": "kelime",
+      "parca": null,
+      "soru": "I can't read the small letters on the menu. I need my _____.",
+      "secenekler": [
+        "shoes",
+        "glasses",
+        "gloves",
+        "keys"
+      ],
+      "cevap": 1,
+      "neden": "Küçük harfleri okuyamamak görmeyle ilgilidir; çözümü gözlüktür: glasses.",
+      "celdiriciler": [
+        "shoes: ayakkabı, okumakla ilgisi yok.",
+        "gloves: eldiven, elleri sıcak tutar.",
+        "keys: anahtar, kapı açar."
+      ],
+      "kaynak": "tohum",
+      "bolum": null,
+      "zorluk": 2
+    },
+    {
+      "id": "tohum-026",
+      "konu": "v-a1",
+      "eksen": "gunluk kaliplar (get home, go to work)",
+      "tip": "kelime",
+      "parca": null,
+      "soru": "My grandmother is 80 years old, but she still _____ every morning and _____ home at noon. She says walking keeps her healthy.",
+      "secenekler": [
+        "sleeps / gets",
+        "walks / gets",
+        "walks / takes",
+        "runs / makes"
+      ],
+      "cevap": 1,
+      "neden": "Son cümledeki \"walking keeps her healthy\" ipucu veriyor: walks. Kişinin kendi eve dönüşü get home kalıbıyla söylenir.",
+      "celdiriciler": [
+        "sleeps / gets: son cümle yürümekten bahsediyor, uyumaktan değil.",
+        "walks / takes: take home \"birini/bir şeyi eve götürmek\" demek; kendi dönüşü değil.",
+        "runs / makes: make home diye bir kalıp yok; ayrıca metin yürümeyi vurguluyor."
+      ],
+      "kaynak": "tohum",
+      "bolum": null,
+      "zorluk": 3
+    },
+    {
+      "id": "tohum-027",
+      "konu": "g-gecmis-surekli",
+      "eksen": "gecmiste belirli bir an (At nine o'clock...)",
+      "tip": "dilbilgisi",
+      "parca": null,
+      "soru": "At nine o'clock last night, we _____ dinner. That's why nobody answered the phone.",
+      "secenekler": [
+        "have",
+        "had",
+        "were having",
+        "are having"
+      ],
+      "cevap": 2,
+      "neden": "\"At nine o'clock last night\" geçmişte belirli bir anı gösteriyor; o anda devam eden iş was/were + -ing ile anlatılır.",
+      "celdiriciler": [
+        "have: geniş zaman, cümle ise geçmişe ait.",
+        "had: bitmiş bir iş anlatır; burada o anda sürüyor olması vurgulanıyor.",
+        "are having: şu ana ait, ama cümlede last night var."
+      ],
+      "kaynak": "tohum",
+      "bolum": null,
+      "zorluk": 2
+    },
+    {
+      "id": "tohum-028",
+      "konu": "g-gecmis-surekli",
+      "eksen": "when + duz gecmis (araya giren is)",
+      "tip": "dilbilgisi",
+      "parca": null,
+      "soru": "While my father _____ the car, my brother _____ the ladder and _____ his arm.",
+      "secenekler": [
+        "washed / climbed / broke",
+        "was washing / climbed / broke",
+        "was washing / was climbing / was breaking",
+        "washed / was climbing / broke"
+      ],
+      "cevap": 1,
+      "neden": "while'dan sonra uzun süren iş gelir: was washing. Araya giren kısa işler düz geçmiş alır: climbed, broke.",
+      "celdiriciler": [
+        "washed / climbed / broke: while devam eden bir iş ister, düz geçmiş değil.",
+        "was washing / was climbing / was breaking: kolunu kırmak anlık bir olay, sürüyor olamaz.",
+        "washed / was climbing / broke: süren iş while tarafında olmalı; yapılar yer değiştirmiş."
+      ],
+      "kaynak": "tohum",
+      "bolum": null,
+      "zorluk": 3
+    },
+    {
+      "id": "tohum-029",
+      "konu": "g-yakin-gelecek",
+      "eksen": "gorunen belirti (Look at those clouds!)",
+      "tip": "dilbilgisi",
+      "parca": null,
+      "soru": "Look at those dark clouds! It _____ very soon.",
+      "secenekler": [
+        "rains",
+        "is raining",
+        "is going to rain",
+        "rained"
+      ],
+      "cevap": 2,
+      "neden": "Gökyüzündeki bulutlar görünen bir belirtidir; belirtiye dayanan gelecek going to ile kurulur.",
+      "celdiriciler": [
+        "rains: genel bir doğruyu ya da alışkanlığı anlatır.",
+        "is raining: şu an yağıyor demek, ama henüz yağmıyor.",
+        "rained: geçmiş; cümle ise \"very soon\" diyor."
+      ],
+      "kaynak": "tohum",
+      "bolum": null,
+      "zorluk": 2
+    },
+    {
+      "id": "tohum-030",
+      "konu": "g-yakin-gelecek",
+      "eksen": "will ile ayrim: plan mi anlik karar mi",
+      "tip": "dilbilgisi",
+      "parca": null,
+      "soru": "A: We've bought the tickets. We _____ Rome next month. / B: That's great! I'm sure you _____ it, but you _____ see everything in three days.",
+      "secenekler": [
+        "will visit / will love / won't",
+        "are going to visit / will love / won't",
+        "are going to visit / are going to love / aren't going to",
+        "visit / will love / don't"
+      ],
+      "cevap": 1,
+      "neden": "Biletler alınmış, yani plan önceden yapılmış: are going to visit. \"I'm sure\" bir tahmindir: will love. Tahminin olumsuzu: won't.",
+      "celdiriciler": [
+        "will visit / will love / won't: bilet alınmış, bu anlık bir karar değil, hazır bir plan.",
+        "are going to visit / are going to love / aren't going to: karşı tarafın hislerine dair tahmin yapılıyor; ortada plan ya da görünen belirti yok.",
+        "visit / will love / don't: ilk boşlukta gelecek yapısı yok, sonuncusu da geniş zaman olmuş."
+      ],
+      "kaynak": "tohum",
+      "bolum": null,
+      "zorluk": 3
+    },
+    {
+      "id": "tohum-031",
+      "konu": "g-gelecek-will",
+      "eksen": "anlik karar (I'll get it!)",
+      "tip": "dilbilgisi",
+      "parca": null,
+      "soru": "A: The phone is ringing. / B: Don't worry, I _____ it.",
+      "secenekler": [
+        "am answering",
+        "answer",
+        "will answer",
+        "am going to answer"
+      ],
+      "cevap": 2,
+      "neden": "Telefon o anda çalıyor ve karar konuşma anında veriliyor; anlık karar will ile söylenir.",
+      "celdiriciler": [
+        "am answering: şu an cevaplıyor demek, oysa henüz açmadı.",
+        "answer: alışkanlık anlatır.",
+        "am going to answer: önceden yapılmış bir plan gerektirir; karar şimdi verildi."
+      ],
+      "kaynak": "tohum",
+      "bolum": null,
+      "zorluk": 2
+    },
+    {
+      "id": "tohum-032",
+      "konu": "g-gelecek-will",
+      "eksen": "will + yalin fiil",
+      "tip": "dilbilgisi",
+      "parca": null,
+      "soru": "Don't worry about the exam. I think you _____ it easily, and if you need help, I _____ you. I _____ let you fail.",
+      "secenekler": [
+        "pass / help / won't",
+        "will pass / will help / won't",
+        "will pass / help / don't",
+        "will passes / will help / won't"
+      ],
+      "cevap": 1,
+      "neden": "\"I think\" bir tahmindir: will pass. İkinci boşlukta söz veriliyor: will help. Sözün olumsuzu won't ve ardından fiil yalın kalır: won't let.",
+      "celdiriciler": [
+        "pass / help / won't: ilk iki boşlukta gelecek yapısı yok, geniş zaman olmuş.",
+        "will pass / help / don't: ikinci boşlukta will düşmüş; don't geniş zaman olumsuzudur, geleceği anlatmaz.",
+        "will passes / will help / won't: will'den sonra fiile -s takılmaz, fiil hep yalın kalır."
+      ],
+      "kaynak": "tohum",
+      "bolum": null,
+      "zorluk": 3
+    },
+    {
+      "id": "tohum-033",
+      "konu": "g-present-perfect",
+      "eksen": "already / yet / just",
+      "tip": "dilbilgisi",
+      "parca": null,
+      "soru": "I _____ my homework yet, so I can't go out with you tonight.",
+      "secenekler": [
+        "didn't finish",
+        "haven't finished",
+        "don't finish",
+        "am not finishing"
+      ],
+      "cevap": 1,
+      "neden": "\"yet\" henüz tamamlanmamış, bugüne uzanan bir işi anlatır; bu yapı have/has + fiilin 3. hâli ile kurulur.",
+      "celdiriciler": [
+        "didn't finish: net bir geçmiş an gerektirir, yet ile birlikte kullanılmaz.",
+        "don't finish: alışkanlık anlatır.",
+        "am not finishing: şu an bitirmiyor demek; henüz bitmemiş olmakla aynı şey değil."
+      ],
+      "kaynak": "tohum",
+      "bolum": null,
+      "zorluk": 2
+    },
+    {
+      "id": "tohum-034",
+      "konu": "g-present-perfect",
+      "eksen": "net gecmis belirteci varsa kullanilmaz",
+      "tip": "dilbilgisi",
+      "parca": null,
+      "soru": "My sister _____ in London since 2019. She _____ there right after she _____ from university.",
+      "secenekler": [
+        "lives / moved / graduated",
+        "has lived / moved / graduated",
+        "has lived / has moved / has graduated",
+        "lived / moved / has graduated"
+      ],
+      "cevap": 1,
+      "neden": "since 2019 geçmişte başlayıp hâlâ süren durumu gösterir: has lived. Taşınmak ve mezun olmak ise bitmiş, zamanı belli işlerdir: moved, graduated.",
+      "celdiriciler": [
+        "lives / moved / graduated: since gören boşluk geniş zaman olamaz.",
+        "has lived / has moved / has graduated: taşınma ve mezuniyet tek seferlik, tarihi belli bitmiş olaylardır; düz geçmiş alır.",
+        "lived / moved / has graduated: ilk durum hâlâ sürüyor (since 2019), bitmiş gibi yazılamaz."
+      ],
+      "kaynak": "tohum",
+      "bolum": null,
+      "zorluk": 3
+    },
+    {
+      "id": "tohum-035",
+      "konu": "g-edilgen",
+      "eksen": "gecmis edilgen: was/were + 3. hal",
+      "tip": "dilbilgisi",
+      "parca": null,
+      "soru": "The bridge _____ in 1890, and it is still used by thousands of cars every day.",
+      "secenekler": [
+        "built",
+        "was built",
+        "was building",
+        "has built"
+      ],
+      "cevap": 1,
+      "neden": "Köprüyü kimin yaptığı söylenmiyor, önemli olan köprünün kendisi. Geçmiş edilgen: was + fiilin 3. hâli.",
+      "celdiriciler": [
+        "built: etken yapı; köprü kendi kendini yapamaz.",
+        "was building: \"inşa ediyordu\" demek, işi yapan birine ihtiyaç duyar.",
+        "has built: hem etken hem de 1890 gibi net bir tarihle kullanılmaz."
+      ],
+      "kaynak": "tohum",
+      "bolum": null,
+      "zorluk": 2
+    },
+    {
+      "id": "tohum-036",
+      "konu": "g-edilgen",
+      "eksen": "duzensiz fiilin 3. hali (break->broken)",
+      "tip": "dilbilgisi",
+      "parca": null,
+      "soru": "All the windows _____ during the storm last night, and they _____ by a local company tomorrow.",
+      "secenekler": [
+        "broke / will repair",
+        "were broken / will be repaired",
+        "were broke / will be repaired",
+        "have been broken / will repair"
+      ],
+      "cevap": 1,
+      "neden": "Camları kıranın kim olduğu belli değil, geçmiş edilgen gerekir ve break fiilinin 3. hâli broken'dır. Yarın yapılacak iş için gelecek edilgen: will be repaired.",
+      "celdiriciler": [
+        "broke / will repair: iki fiil de etken; camlar kendi kırılmaz, kendini onarmaz.",
+        "were broke / will be repaired: break fiilinin 3. hâli broke değil broken'dır.",
+        "have been broken / will repair: \"last night\" net bir geçmiş belirtecidir, have been ile kullanılmaz; ikinci fiil de etken kalmış."
+      ],
+      "kaynak": "tohum",
+      "bolum": null,
+      "zorluk": 3
+    },
+    {
+      "id": "tohum-037",
+      "konu": "g-modal-yetenek",
+      "eksen": "cumledeki zaman kelimesine bakma",
+      "tip": "dilbilgisi",
+      "parca": null,
+      "soru": "When my grandfather was young, he _____ run ten kilometres, but now he _____ even walk to the shop.",
+      "secenekler": [
+        "can / can't",
+        "could / can't",
+        "could / couldn't",
+        "can / couldn't"
+      ],
+      "cevap": 1,
+      "neden": "\"When he was young\" geçmişe ait: could. \"now\" şu ana ait: can't. Zaman kelimeleri hangisini seçeceğini söylüyor.",
+      "celdiriciler": [
+        "can / can't: ilk kısım geçmişte geçiyor, can şu an içindir.",
+        "could / couldn't: ikinci boşlukta \"now\" var, geçmiş kullanılamaz.",
+        "can / couldn't: iki boşlukta da zaman ters yerleştirilmiş."
+      ],
+      "kaynak": "tohum",
+      "bolum": null,
+      "zorluk": 2
+    },
+    {
+      "id": "tohum-038",
+      "konu": "g-modal-yetenek",
+      "eksen": "modaldan sonra fiil yalin",
+      "tip": "dilbilgisi",
+      "parca": null,
+      "soru": "I'm sorry, I _____ come to your party last week because I was ill. I _____ hardly _____ out of bed.",
+      "secenekler": [
+        "can't / can't / get",
+        "couldn't / could / get",
+        "couldn't / couldn't / get",
+        "couldn't / couldn't / got"
+      ],
+      "cevap": 2,
+      "neden": "\"last week\" ve \"was ill\" cümleyi geçmişe çekiyor: couldn't. İkinci boşluk da aynı geçmiş duruma ait. Modaldan sonra fiil hep yalın kalır: get.",
+      "celdiriciler": [
+        "can't / can't / get: cümlede last week ve was ill var, tamamı geçmişte geçiyor.",
+        "couldn't / could / get: hastayken yataktan zor kalkıyordu; could olumlu anlam verir ve cümleyle çelişir.",
+        "couldn't / couldn't / got: modalın arkasından fiil yalın gelir, geçmiş hâlini almaz."
+      ],
+      "kaynak": "tohum",
+      "bolum": null,
+      "zorluk": 3
+    },
+    {
+      "id": "tohum-039",
+      "konu": "g-kosul1",
+      "eksen": "sart kisminda will kullanilmaz",
+      "tip": "dilbilgisi",
+      "parca": null,
+      "soru": "If you _____ hard, you _____ the exam next month without any problem.",
+      "secenekler": [
+        "will study / pass",
+        "study / will pass",
+        "studied / would pass",
+        "study / pass"
+      ],
+      "cevap": 1,
+      "neden": "Gerçekleşmesi mümkün bir şart anlatılıyor: şart kısmı geniş zaman, sonuç kısmı will alır.",
+      "celdiriciler": [
+        "will study / pass: will şart kısmına gelmez, sonuç tarafına gider.",
+        "studied / would pass: bu 2. tip koşuldur, hayali durumlar için kullanılır.",
+        "study / pass: sonuç kısmında gelecek yapısı yok, cümle yarım kalıyor."
+      ],
+      "kaynak": "tohum",
+      "bolum": null,
+      "zorluk": 2
+    },
+    {
+      "id": "tohum-040",
+      "konu": "g-kosul1",
+      "eksen": "unless = if not",
+      "tip": "dilbilgisi",
+      "parca": null,
+      "soru": "_____ you hurry, you _____ the last bus. If that happens, I _____ come and pick you up.",
+      "secenekler": [
+        "If / will miss / will",
+        "Unless / will miss / will",
+        "Unless / miss / will",
+        "If / miss / will"
+      ],
+      "cevap": 1,
+      "neden": "\"Acele etmezsen kaçırırsın\" anlamı var; Unless = if not demektir. Sonuç kısmı will alır: will miss. Üçüncü boşlukta söz veriliyor: will come.",
+      "celdiriciler": [
+        "If / will miss / will: \"If you hurry\" acele edersen demek olur, o zaman otobüsü kaçırmazsın; anlam tersine döner.",
+        "Unless / miss / will: sonuç kısmında gelecek yapısı düşmüş.",
+        "If / miss / will: hem bağlacın anlamı ters hem sonuç kısmı eksik."
+      ],
+      "kaynak": "tohum",
+      "bolum": null,
+      "zorluk": 3
+    },
+    {
+      "id": "tohum-041",
+      "konu": "g-sifat-cumlesi",
+      "eksen": "yer icin where",
+      "tip": "dilbilgisi",
+      "parca": null,
+      "soru": "The restaurant _____ we had dinner last night was surprisingly cheap.",
+      "secenekler": [
+        "who",
+        "which",
+        "where",
+        "whose"
+      ],
+      "cevap": 2,
+      "neden": "Restoran bir yer ve orada bir şey yapıldığı anlatılıyor: where.",
+      "celdiriciler": [
+        "who: yalnızca insanlar için kullanılır.",
+        "which: eşya için kullanılır; ayrıca burada \"which we had dinner\" cümlesi eksik kalır.",
+        "whose: sahiplik anlatır, oysa burada sahip olunan bir şey yok."
+      ],
+      "kaynak": "tohum",
+      "bolum": null,
+      "zorluk": 2
+    },
+    {
+      "id": "tohum-042",
+      "konu": "g-sifat-cumlesi",
+      "eksen": "sahiplik icin whose",
+      "tip": "dilbilgisi",
+      "parca": null,
+      "soru": "I met a woman _____ son works at the company _____ makes those electric cars _____ everyone talks about.",
+      "secenekler": [
+        "who / which / that",
+        "whose / which / that",
+        "whose / who / which",
+        "which / whose / that"
+      ],
+      "cevap": 1,
+      "neden": "Oğul kadına ait, yani sahiplik var: whose. Şirket insan değil: which. Arabalar da eşya: that.",
+      "celdiriciler": [
+        "who / which / that: \"who son\" olmaz; oğlun kime ait olduğu söyleniyor, whose gerekir.",
+        "whose / who / which: şirket bir insan değildir, who alamaz.",
+        "which / whose / that: ilk boşlukta sahiplik anlamı var, which sahipliği anlatmaz."
+      ],
+      "kaynak": "tohum",
+      "bolum": null,
+      "zorluk": 3
+    },
+    {
+      "id": "tohum-043",
+      "konu": "g-karsilastirma",
+      "eksen": "uzun sifat + more",
+      "tip": "dilbilgisi",
+      "parca": null,
+      "soru": "This film is much _____ than the one we watched last week.",
+      "secenekler": [
+        "interesting",
+        "more interesting",
+        "most interesting",
+        "interestinger"
+      ],
+      "cevap": 1,
+      "neden": "interesting uzun bir sıfattır, önüne more gelir. Cümledeki than da karşılaştırma yapıldığını gösteriyor.",
+      "celdiriciler": [
+        "interesting: than varken sıfat yalın bırakılamaz.",
+        "most interesting: en üstünlük derecesidir, than ile kullanılmaz.",
+        "interestinger: uzun sıfatlar -er eki almaz."
+      ],
+      "kaynak": "tohum",
+      "bolum": null,
+      "zorluk": 2
+    },
+    {
+      "id": "tohum-044",
+      "konu": "g-karsilastirma",
+      "eksen": "en ustunluk: the -est / the most",
+      "tip": "dilbilgisi",
+      "parca": null,
+      "soru": "My new phone was _____ than my old one, but the battery is _____. Actually it is _____ phone I have ever bought.",
+      "secenekler": [
+        "cheaper / worse / the worst",
+        "cheaper / more bad / the worst",
+        "more cheap / worse / worst",
+        "cheaper / worse / worst"
+      ],
+      "cevap": 0,
+      "neden": "cheap kısa bir sıfattır: cheaper. bad düzensizdir: worse. \"I have ever bought\" en üstünlük ister ve bu derece the ile kullanılır: the worst.",
+      "celdiriciler": [
+        "cheaper / more bad / the worst: bad düzensizdir, more almaz; karşılaştırma hâli worse'tür.",
+        "more cheap / worse / worst: cheap kısa sıfattır, -er alır; ayrıca en üstünlükte the düşmüş.",
+        "cheaper / worse / worst: en üstünlük derecesinde the zorunludur."
+      ],
+      "kaynak": "tohum",
+      "bolum": null,
+      "zorluk": 3
+    },
+    {
+      "id": "tohum-045",
+      "konu": "v-a2",
+      "eksen": "kisi ozelligi sifatlari (mature, energetic)",
+      "tip": "kelime",
+      "parca": null,
+      "soru": "Fatma is only sixteen, but she is very _____. She takes care of her little brother and never complains.",
+      "secenekler": [
+        "energetic",
+        "mature",
+        "lonely",
+        "expensive"
+      ],
+      "cevap": 1,
+      "neden": "Yaşına göre sorumluluk alıp şikâyet etmemek olgunluktur: mature.",
+      "celdiriciler": [
+        "energetic: enerjik demek, sorumluluk almayı anlatmaz.",
+        "lonely: yalnız demek; metinde yalnızlıktan söz edilmiyor.",
+        "expensive: pahalı demek, insan için kullanılmaz."
+      ],
+      "kaynak": "tohum",
+      "bolum": null,
+      "zorluk": 2
+    },
+    {
+      "id": "tohum-046",
+      "konu": "v-a2",
+      "eksen": "sosyal medya ve iletisim kelimeleri",
+      "tip": "kelime",
+      "parca": null,
+      "soru": "The news spread quickly on social _____ last night. Within an hour, hundreds of people had _____ on the post, and the photo became a _____ of the protest.",
+      "secenekler": [
+        "media / commented / symbol",
+        "medias / commented / signal",
+        "media / shared / symbol",
+        "medium / liked / symbol"
+      ],
+      "cevap": 0,
+      "neden": "Kalıp social media'dır. Bir gönderiye yorum yapmak comment on ile söylenir. Bir şeyin simgesi olmak: symbol.",
+      "celdiriciler": [
+        "medias / commented / signal: media zaten çoğuldur, medias diye bir kullanım yoktur.",
+        "media / shared / symbol: share fiili on edatı almaz; \"shared the post\" denir.",
+        "medium / liked / symbol: social medium denmez; like da on almaz."
+      ],
+      "kaynak": "tohum",
+      "bolum": null,
+      "zorluk": 3
+    },
+    {
+      "id": "tohum-047",
+      "konu": "r-anafikir",
+      "eksen": "MAINLY about kalibi",
+      "tip": "okuma",
+      "parca": null,
+      "soru": "The text is MAINLY about _____.",
+      "secenekler": [
+        "how flowers grow in gardens",
+        "why bees matter for our food",
+        "which fruits people eat most",
+        "how to keep bees at home"
+      ],
+      "cevap": 1,
+      "neden": "Metnin her cümlesi arıların bitkilere ve yediğimiz yiyeceklere katkısını anlatıyor. Tüm metni kapsayan seçenek bu.",
+      "celdiriciler": [
+        "how flowers grow in gardens: çiçekler yalnızca bir örnek olarak geçiyor, konunun kendisi değil. Çok dar.",
+        "which fruits people eat most: metinde hangi meyvelerin en çok yendiği hiç söylenmiyor.",
+        "how to keep bees at home: arı yetiştirmekten hiç bahsedilmiyor."
+      ],
+      "kaynak": "tohum",
+      "bolum": null,
+      "zorluk": 2,
+      "metin": "Bees are small but very important. They carry pollen from one flower to another, and this helps plants grow fruit. Without bees, many of the foods we eat every day would disappear. Sadly, the number of bees is falling in many countries."
+    },
+    {
+      "id": "tohum-048",
+      "konu": "r-anafikir",
+      "eksen": "cok genis / cok dar tuzagi",
+      "tip": "okuma",
+      "parca": null,
+      "soru": "The best title for the text is _____.",
+      "secenekler": [
+        "Companies And Their New Rules",
+        "The Hidden Cost Of Working From Home",
+        "Why Offices Are Better Than Homes",
+        "How To Work Fewer Hours At Home"
+      ],
+      "cevap": 1,
+      "neden": "Metin evden çalışmanın göründüğü kadar rahat olmadığını, buna rağmen çalışanların yine de bunu tercih ettiğini anlatıyor. \"Hidden cost\" bu iki tarafı da kapsıyor.",
+      "celdiriciler": [
+        "Companies And Their New Rules: şirket kuralları yalnızca bir cümlede geçiyor, metnin tamamı değil. Çok dar.",
+        "Why Offices Are Better Than Homes: son cümle tam tersini söylüyor, çoğu çalışan ofise dönmek istemiyor.",
+        "How To Work Fewer Hours At Home: metin öneri vermiyor, mevcut durumu anlatıyor."
+      ],
+      "kaynak": "tohum",
+      "bolum": null,
+      "zorluk": 3,
+      "metin": "Many people think that working from home is always relaxing. In fact, people who work at home often start earlier and stop later than those in offices. They also find it harder to separate work from family life. Some companies have noticed this and now ask their staff to keep fixed hours. However, most workers still say they would not go back to the office."
+    },
+    {
+      "id": "tohum-049",
+      "konu": "r-detay",
+      "eksen": "es anlamliyla degistirilmis cevap",
+      "tip": "okuma",
+      "parca": null,
+      "soru": "According to the text, Ali _____.",
+      "secenekler": [
+        "drives his car to work",
+        "does not work on Mondays",
+        "opens the shop at six",
+        "works in a library"
+      ],
+      "cevap": 1,
+      "neden": "Metinde \"On Mondays the shop is closed\" yazıyor; dükkân kapalıysa o gün çalışmıyor demektir. Cevap metindeki cümlenin farklı kelimelerle yazılmış hâli.",
+      "celdiriciler": [
+        "drives his car to work: park yeri zor olduğu için tramvayla gittiği söyleniyor.",
+        "opens the shop at six: altı bitiş saati, açılış saati değil.",
+        "works in a library: kitapçıda çalışıyor; kitapçı ile kütüphane farklı yerlerdir."
+      ],
+      "kaynak": "tohum",
+      "bolum": null,
+      "zorluk": 2,
+      "metin": "Ali works at a bookshop in the city centre. He starts at ten in the morning and finishes at six. On Mondays the shop is closed, so he stays at home and reads. He usually goes to work by tram because parking is very difficult there."
+    },
+    {
+      "id": "tohum-050",
+      "konu": "r-detay",
+      "eksen": "NOT mentioned tipi sorular",
+      "tip": "okuma",
+      "parca": null,
+      "soru": "Which of the following is NOT mentioned in the text?",
+      "secenekler": [
+        "the pot used for cooking the coffee",
+        "what is served next to the coffee",
+        "the price of a cup of coffee",
+        "its role in a family ceremony"
+      ],
+      "cevap": 2,
+      "neden": "Metinde cezve, yanında sunulanlar ve nişan töreni geçiyor. Fiyattan hiç söz edilmiyor.",
+      "celdiriciler": [
+        "the pot used for cooking the coffee: cezve adıyla açıkça geçiyor.",
+        "what is served next to the coffee: bir bardak su ve tatlı bir şey denmiş.",
+        "its role in a family ceremony: nişan töreni cümlesinde geçiyor."
+      ],
+      "kaynak": "tohum",
+      "bolum": null,
+      "zorluk": 3,
+      "metin": "The Turkish coffee tradition is more than four hundred years old. The coffee is cooked slowly in a small copper pot called a cezve. It is served in tiny cups, usually with a glass of water and something sweet. In many families the drink is also part of an engagement ceremony, where the bride prepares it for the guests."
+    },
+    {
+      "id": "tohum-051",
+      "konu": "g-perfect-continuous",
+      "eksen": "sonucu ortada olan is (kirli eller)",
+      "tip": "dilbilgisi",
+      "parca": null,
+      "soru": "Look at her eyes. She _____ all morning.",
+      "secenekler": [
+        "cries",
+        "is crying",
+        "has been crying",
+        "cried"
+      ],
+      "cevap": 2,
+      "neden": "Gözlerin hâli, sabahtan beri süren bir işin görünen sonucudur. Bu vurgu have/has been + -ing ile verilir.",
+      "celdiriciler": [
+        "cries: alışkanlık anlatır, o anki durumu değil.",
+        "is crying: yalnızca şu anı anlatır, \"all morning\" süresini kapsamaz.",
+        "cried: bitmiş bir iş; sonucu ortada olan süreklilik vurgusunu vermez."
+      ],
+      "kaynak": "tohum",
+      "bolum": null,
+      "zorluk": 2
+    },
+    {
+      "id": "tohum-052",
+      "konu": "g-perfect-continuous",
+      "eksen": "durum fiilleri (know, like) -ing almaz",
+      "tip": "dilbilgisi",
+      "parca": null,
+      "soru": "I _____ Ahmet since 2015, and we _____ in the same office for three years now. Last month we _____ a big project together.",
+      "secenekler": [
+        "know / have been working / finished",
+        "have known / have been working / finished",
+        "have been knowing / have worked / have finished",
+        "know / work / finished"
+      ],
+      "cevap": 1,
+      "neden": "since 2015 bugüne uzanır ama know bir durum fiilidir, -ing almaz: have known. Üç yıldır süren iş: have been working. \"Last month\" net geçmiş: finished.",
+      "celdiriciler": [
+        "know / have been working / finished: since 2015 varken geniş zaman kullanılamaz.",
+        "have been knowing / have worked / have finished: know süreklilik yapısına girmez; ayrıca last month net bir geçmiş belirtecidir.",
+        "know / work / finished: ilk iki boşluk da bugüne uzanan süreyi anlatmıyor."
+      ],
+      "kaynak": "tohum",
+      "bolum": null,
+      "zorluk": 3
+    },
+    {
+      "id": "tohum-053",
+      "konu": "g-modal-zorunluluk",
+      "eksen": "mustn't = yasak",
+      "tip": "dilbilgisi",
+      "parca": null,
+      "soru": "You _____ touch that wire. It is extremely dangerous.",
+      "secenekler": [
+        "don't have to",
+        "mustn't",
+        "needn't",
+        "shouldn't have"
+      ],
+      "cevap": 1,
+      "neden": "Tehlikeli olduğu için bir yasak konuyor. Yasak mustn't ile söylenir.",
+      "celdiriciler": [
+        "don't have to: \"gerek yok\" demek, yasak değil.",
+        "needn't: bu da \"gerek yok\" anlamı taşır.",
+        "shouldn't have: geçmişte yapılmış bir şey için pişmanlık bildirir."
+      ],
+      "kaynak": "tohum",
+      "bolum": null,
+      "zorluk": 2
+    },
+    {
+      "id": "tohum-054",
+      "konu": "g-modal-zorunluluk",
+      "eksen": "gecmis: had to",
+      "tip": "dilbilgisi",
+      "parca": null,
+      "soru": "Last year we _____ wear a uniform at school. The rule has changed, so we _____ wear it any more, but we _____ come in shorts.",
+      "secenekler": [
+        "must / mustn't / don't have to",
+        "had to / don't have to / mustn't",
+        "have to / mustn't / don't have to",
+        "had to / mustn't / don't have to"
+      ],
+      "cevap": 1,
+      "neden": "\"Last year\" geçmiş mecburiyet: had to. Kural değiştiği için artık gerek yok: don't have to. Şort ise hâlâ yasak: mustn't.",
+      "celdiriciler": [
+        "must / mustn't / don't have to: must fiilinin geçmiş hâli yoktur, geçmiş için had to kullanılır.",
+        "have to / mustn't / don't have to: ilk boşluk geçmişe ait; ayrıca kural kalkmışsa yasak anlamındaki mustn't denmez.",
+        "had to / mustn't / don't have to: kural kalkmış, yeni bir yasak konmamış; son boşlukta ise gerçek bir yasak var."
+      ],
+      "kaynak": "tohum",
+      "bolum": null,
+      "zorluk": 3
+    },
+    {
+      "id": "tohum-055",
+      "konu": "g-kosul2",
+      "eksen": "be fiili icin herkese were",
+      "tip": "dilbilgisi",
+      "parca": null,
+      "soru": "If I _____ you, I would talk to the teacher about this problem today.",
+      "secenekler": [
+        "am",
+        "was",
+        "were",
+        "will be"
+      ],
+      "cevap": 2,
+      "neden": "Senin yerinde olmak mümkün değil, yani hayali bir durum. 2. tip koşulda be fiili herkes için were olur.",
+      "celdiriciler": [
+        "am: gerçek bir durum anlatır, oysa cümlenin devamında would var.",
+        "was: günlük konuşmada duyulsa da bu kalıbın doğrusu were'dür.",
+        "will be: şart kısmında gelecek yapısı kullanılmaz."
+      ],
+      "kaynak": "tohum",
+      "bolum": null,
+      "zorluk": 2
+    },
+    {
+      "id": "tohum-056",
+      "konu": "g-kosul2",
+      "eksen": "1. tip ile ayrim: gercek mi hayali mi",
+      "tip": "dilbilgisi",
+      "parca": null,
+      "soru": "If it _____ tomorrow, we will stay at home. But if I _____ a car, I _____ you to the station anyway.",
+      "secenekler": [
+        "rains / had / would take",
+        "rains / have / will take",
+        "rained / had / would take",
+        "rains / had / will take"
+      ],
+      "cevap": 0,
+      "neden": "İlk cümle gerçekleşmesi mümkün bir şart: rains + will stay (1. tip). İkinci cümlede araba yok, durum hayali: had + would take (2. tip).",
+      "celdiriciler": [
+        "rains / have / will take: \"anyway\" ve şartlı yapı gerçekte araba olmadığını gösteriyor; hayali durum 2. tip ister.",
+        "rained / had / would take: ilk cümlenin sonucu \"will stay\", yani 1. tip; şart kısmı geniş zaman olmalı.",
+        "rains / had / will take: 2. tipin şartı ile 1. tipin sonucu karıştırılamaz; had ile would eşleşir."
+      ],
+      "kaynak": "tohum",
+      "bolum": null,
+      "zorluk": 3
+    },
+    {
+      "id": "tohum-057",
+      "konu": "g-kosul3",
+      "eksen": "If + had + 3. hal, would have + 3. hal",
+      "tip": "dilbilgisi",
+      "parca": null,
+      "soru": "If she _____ the map, she wouldn't have got lost in the old city.",
+      "secenekler": [
+        "read",
+        "reads",
+        "had read",
+        "would read"
+      ],
+      "cevap": 2,
+      "neden": "Geçmişte olmamış bir şeyin sonucu anlatılıyor; şart kısmı had + fiilin 3. hâli ile kurulur.",
+      "celdiriciler": [
+        "read: düz geçmiş; 3. tipte şart kısmı had ile kurulur.",
+        "reads: geniş zaman, oysa olay geçmişte yaşandı.",
+        "would read: would şart kısmına gelmez, sonuç tarafına gider."
+      ],
+      "kaynak": "tohum",
+      "bolum": null,
+      "zorluk": 2
+    },
+    {
+      "id": "tohum-058",
+      "konu": "g-kosul3",
+      "eksen": "2. tip ile ayrim: bugun mu gecmis mi",
+      "tip": "dilbilgisi",
+      "parca": null,
+      "soru": "If I _____ about the meeting, I _____ there yesterday. I am not lazy; nobody told me!",
+      "secenekler": [
+        "knew / would be",
+        "had known / would have been",
+        "knew / would have been",
+        "had known / would be"
+      ],
+      "cevap": 1,
+      "neden": "Toplantı dün olmuş ve kaçırılmış. Hem şart hem sonuç geçmişe çekilir: had known + would have been.",
+      "celdiriciler": [
+        "knew / would be: bu 2. tiptir ve bugüne ait hayali durumları anlatır; oysa toplantı dün oldu.",
+        "knew / would have been: iki taraf farklı zamanlarda kalmış, şart da geçmişe çekilmeliydi.",
+        "had known / would be: sonuç kısmı bugünde kalmış, oysa dün olan bir şey anlatılıyor."
+      ],
+      "kaynak": "tohum",
+      "bolum": null,
+      "zorluk": 3
+    },
+    {
+      "id": "tohum-059",
+      "konu": "g-miktar",
+      "eksen": "a'nin anlami tersine cevirmesi",
+      "tip": "dilbilgisi",
+      "parca": null,
+      "soru": "We still have _____ time before the film starts, so let's have a coffee.",
+      "secenekler": [
+        "little",
+        "a little",
+        "few",
+        "a few"
+      ],
+      "cevap": 1,
+      "neden": "Kahve içmeye yetecek kadar vakit var, yani anlam olumlu. time sayılamaz olduğu için a little.",
+      "celdiriciler": [
+        "little: \"neredeyse hiç yok\" demek, kahve teklifiyle çelişir.",
+        "few: sayılabilir isimler için kullanılır.",
+        "a few: bu da sayılabilir isimler içindir; time sayılamaz."
+      ],
+      "kaynak": "tohum",
+      "bolum": null,
+      "zorluk": 2
+    },
+    {
+      "id": "tohum-060",
+      "konu": "g-miktar",
+      "eksen": "much / many ayrimi",
+      "tip": "dilbilgisi",
+      "parca": null,
+      "soru": "I have _____ friends in this city, so I feel quite lonely. There isn't _____ to do at the weekend either, and I don't know _____ people at work.",
+      "secenekler": [
+        "few / much / many",
+        "a few / many / much",
+        "few / many / much",
+        "a few / much / many"
+      ],
+      "cevap": 0,
+      "neden": "Yalnız hissettiğine göre arkadaş neredeyse yok: few (a'sız). \"to do\" sayılamaz: much. İnsanlar sayılabilir: many.",
+      "celdiriciler": [
+        "a few / many / much: \"a few friends\" birkaç arkadaşı var demek, yalnızlıkla çelişir.",
+        "few / many / much: \"to do\" sayılamaz bir şeydir, many alamaz.",
+        "a few / much / many: ilk boşluktaki a olumlu anlam verir ama devamı \"I feel lonely\" diyor."
+      ],
+      "kaynak": "tohum",
+      "bolum": null,
+      "zorluk": 3
+    },
+    {
+      "id": "tohum-061",
+      "konu": "g-used-to",
+      "eksen": "used to + yalin fiil",
+      "tip": "dilbilgisi",
+      "parca": null,
+      "soru": "I _____ hate vegetables when I was a child, but now I eat them every day.",
+      "secenekler": [
+        "use to",
+        "used to",
+        "am used to",
+        "would"
+      ],
+      "cevap": 1,
+      "neden": "Geçmişte geçerli olan ama artık geçerli olmayan bir durum: used to + yalın fiil.",
+      "celdiriciler": [
+        "use to: olumlu cümlede kalıp used to'dur.",
+        "am used to: \"alışkınım\" demek ve arkasından -ing gelir.",
+        "would: tekrarlanan eylemler için kullanılır, hate gibi durum fiilleriyle kullanılmaz."
+      ],
+      "kaynak": "tohum",
+      "bolum": null,
+      "zorluk": 2
+    },
+    {
+      "id": "tohum-062",
+      "konu": "g-used-to",
+      "eksen": "be used to + -ing (alisik olmak) farki",
+      "tip": "dilbilgisi",
+      "parca": null,
+      "soru": "When I first moved to Ankara, I _____ walk everywhere. Now I _____ taking the metro every day, and I _____ walk long distances any more.",
+      "secenekler": [
+        "used to / am used to / don't",
+        "would / used to / didn't",
+        "used to / used to / don't",
+        "am used to / am used to / didn't"
+      ],
+      "cevap": 0,
+      "neden": "Eskiden yapılan ama artık yapılmayan iş: used to walk. Şimdi alışkın olmak: am used to + -ing. Son cümle bugüne ait olumsuz: don't walk.",
+      "celdiriciler": [
+        "would / used to / didn't: ikinci boşlukta \"alışkın olmak\" anlamı var, used to bu anlamı vermez; ayrıca \"any more\" bugüne işaret ediyor.",
+        "used to / used to / don't: ikinci boşluktan sonra taking (-ing) geliyor; used to yalın fiil ister, be used to -ing ister.",
+        "am used to / am used to / didn't: ilk boşluk geçmişteki alışkanlığı anlatıyor, \"alışkınım\" değil."
+      ],
+      "kaynak": "tohum",
+      "bolum": null,
+      "zorluk": 3
+    },
+    {
+      "id": "tohum-063",
+      "konu": "g-ettirgen",
+      "eksen": "izin: let",
+      "tip": "dilbilgisi",
+      "parca": null,
+      "soru": "My parents never _____ me stay out late when I was at high school.",
+      "secenekler": [
+        "let",
+        "allowed",
+        "made to",
+        "let to"
+      ],
+      "cevap": 0,
+      "neden": "İzin vermek anlamında let kullanılır ve arkasından kişi + yalın fiil gelir: let me stay.",
+      "celdiriciler": [
+        "allowed: allow fiili to ister — allowed me to stay olmalıydı.",
+        "made to: make to diye bir kalıp yok; ayrıca anlam izin değil zorlama olurdu.",
+        "let to: let asla to almaz."
+      ],
+      "kaynak": "tohum",
+      "bolum": null,
+      "zorluk": 2
+    },
+    {
+      "id": "tohum-064",
+      "konu": "g-ettirgen",
+      "eksen": "get + kisi + TO + fiil",
+      "tip": "dilbilgisi",
+      "parca": null,
+      "soru": "The teacher _____ us rewrite the whole essay, but she _____ us use our notes. In the end she _____ the class to hand it in on Monday.",
+      "secenekler": [
+        "made / let / got",
+        "let / made / got",
+        "made / got / let",
+        "got / let / made"
+      ],
+      "cevap": 0,
+      "neden": "Yeniden yazdırmak bir zorlamadır: made us rewrite. Not kullanmaya izin verilmiş: let us use. get fiili kişiden sonra to ister: got the class to hand it in.",
+      "celdiriciler": [
+        "let / made / got: zorlama ile izin yer değiştirmiş; ödevi yeniden yazdırmak izin değildir.",
+        "made / got / let: get'ten sonra to gelmeliydi ama \"use\" yalın duruyor; ayrıca son boşlukta to var, let to almaz.",
+        "got / let / made: ilk boşlukta \"us rewrite\" yalın fiil var, get to ister; son boşlukta to var, make to almaz."
+      ],
+      "kaynak": "tohum",
+      "bolum": null,
+      "zorluk": 3
+    },
+    {
+      "id": "tohum-065",
+      "konu": "g-mastar-gerund",
+      "eksen": "forget to do vs forget doing",
+      "tip": "dilbilgisi",
+      "parca": null,
+      "soru": "I enjoy _____ books, but I always forget _____ them back to the library on time.",
+      "secenekler": [
+        "reading / to take",
+        "to read / taking",
+        "reading / taking",
+        "to read / to take"
+      ],
+      "cevap": 0,
+      "neden": "enjoy fiili -ing ister. forget to do \"yapmayı unutmak\" demektir; kitapları henüz götürmemiş.",
+      "celdiriciler": [
+        "to read / taking: enjoy to read olmaz; ayrıca forget doing \"yaptığını unutmak\" demektir.",
+        "reading / taking: forget taking \"götürdüğünü unutmak\" olur, oysa hiç götürmemiş.",
+        "to read / to take: enjoy fiilinden sonra -ing gelir."
+      ],
+      "kaynak": "tohum",
+      "bolum": null,
+      "zorluk": 2
+    },
+    {
+      "id": "tohum-066",
+      "konu": "g-mastar-gerund",
+      "eksen": "stop to do vs stop doing",
+      "tip": "dilbilgisi",
+      "parca": null,
+      "soru": "He stopped _____ because the doctor warned him. Now he is good at _____ his money, and he has decided _____ a new bike.",
+      "secenekler": [
+        "smoking / saving / to buy",
+        "to smoke / saving / to buy",
+        "smoking / to save / buying",
+        "to smoke / to save / buying"
+      ],
+      "cevap": 0,
+      "neden": "stop doing bir şeyi bırakmak demektir. good at bir edattır, sonrasında -ing gelir. decide fiili to ister.",
+      "celdiriciler": [
+        "to smoke / saving / to buy: stop to smoke \"sigara içmek için durdu\" demektir, doktorun uyarısıyla uyuşmaz.",
+        "smoking / to save / buying: edattan (at) sonra -ing gelir; decide ise to ister.",
+        "to smoke / to save / buying: üç yapının üçünde de hata var."
+      ],
+      "kaynak": "tohum",
+      "bolum": null,
+      "zorluk": 3
+    },
+    {
+      "id": "tohum-067",
+      "konu": "g-had-better",
+      "eksen": "had better + yalin fiil",
+      "tip": "dilbilgisi",
+      "parca": null,
+      "soru": "You _____ take an umbrella. The forecast says it will rain all day.",
+      "secenekler": [
+        "had better",
+        "have better",
+        "are better",
+        "had better to"
+      ],
+      "cevap": 0,
+      "neden": "Yapılmazsa kötü sonuç doğacak bir uyarı var. Kalıp had better'dır ve arkasından yalın fiil gelir.",
+      "celdiriciler": [
+        "have better: böyle bir kalıp yok, kalıp hep had better'dır.",
+        "are better: \"daha iyisin\" demek olur.",
+        "had better to: had better asla to almaz."
+      ],
+      "kaynak": "tohum",
+      "bolum": null,
+      "zorluk": 2
+    },
+    {
+      "id": "tohum-068",
+      "konu": "g-had-better",
+      "eksen": "olumsuz: had better not",
+      "tip": "dilbilgisi",
+      "parca": null,
+      "soru": "We _____ leave now, or we'll miss the train. And you _____ forget your ticket again — they _____ let you on without it.",
+      "secenekler": [
+        "had better / had better not / won't",
+        "should / had better / don't",
+        "had better / hadn't better / won't",
+        "had better not / had better / won't"
+      ],
+      "cevap": 0,
+      "neden": "İlk boşlukta güçlü bir uyarı var: had better. Kalıbın olumsuzu had better not'tur, not kelimesi better'dan sonra gelir. Üçüncüsü gelecek olumsuzu: won't.",
+      "celdiriciler": [
+        "should / had better / don't: \"or we'll miss\" güçlü bir uyarıdır; ayrıca son boşluk geleceğe ait, don't geniş zamandır.",
+        "had better / hadn't better / won't: kalıbın olumsuzu hadn't better değil, had better not'tur.",
+        "had better not / had better / won't: ilk cümlede gitmemek değil gitmek öğütleniyor, olumsuz yanlış yere konmuş."
+      ],
+      "kaynak": "tohum",
+      "bolum": null,
+      "zorluk": 3
+    },
+    {
+      "id": "tohum-069",
+      "konu": "g-baglac",
+      "eksen": "beklenmedik sonuc ipucu",
+      "tip": "dilbilgisi",
+      "parca": null,
+      "soru": "_____ it was raining heavily, they decided to walk home.",
+      "secenekler": [
+        "Because",
+        "So",
+        "Although",
+        "And"
+      ],
+      "cevap": 2,
+      "neden": "Yağmura rağmen yürümek beklenmedik bir sonuçtur; bu ilişki Although ile kurulur.",
+      "celdiriciler": [
+        "Because: sebep bildirir, ama yağmur yürümenin sebebi değil.",
+        "So: sonuç bildirir ve bu şekilde cümle başına gelmez.",
+        "And: iki cümleyi ekler, aralarındaki zıtlığı göstermez."
+      ],
+      "kaynak": "tohum",
+      "bolum": null,
+      "zorluk": 2
+    },
+    {
+      "id": "tohum-070",
+      "konu": "g-baglac",
+      "eksen": "so = bu yuzden",
+      "tip": "dilbilgisi",
+      "parca": null,
+      "soru": "_____ the tickets were expensive, the concert was worth it. We couldn't find a taxi afterwards, _____ we walked home, _____ it was almost midnight.",
+      "secenekler": [
+        "Because / so / although",
+        "Although / so / even though",
+        "Although / because / so",
+        "Even though / because / although"
+      ],
+      "cevap": 1,
+      "neden": "Pahalı olmasına rağmen değdi: Although. Taksi bulunamadı, bu yüzden yürüdüler: so. Gece yarısı olmasına rağmen yürüdüler: even though.",
+      "celdiriciler": [
+        "Because / so / although: pahalı olmak konserin değmesinin sebebi değil; ortada beklenmedik bir sonuç var.",
+        "Although / because / so: taksi bulamamak yürümenin sebebi, yani bağlaç sonucu göstermeli; son boşlukta da zıtlık var.",
+        "Even though / because / although: ikinci boşlukta sebep-sonuç yönü ters kurulmuş."
+      ],
+      "kaynak": "tohum",
+      "bolum": null,
+      "zorluk": 3
+    },
+    {
+      "id": "tohum-071",
+      "konu": "g-wish",
+      "eksen": "su ana dair: wish + gecmis zaman",
+      "tip": "dilbilgisi",
+      "parca": null,
+      "soru": "I wish I _____ how to swim. Then I could join you at the beach every weekend.",
+      "secenekler": [
+        "know",
+        "knew",
+        "have known",
+        "will know"
+      ],
+      "cevap": 1,
+      "neden": "Şu ana dair bir keşke anlatılıyor; wish'ten sonra fiil bir zaman geriye gider: knew.",
+      "celdiriciler": [
+        "know: wish'ten sonra geniş zaman gelmez.",
+        "have known: bu yapı wish ile kullanılmaz.",
+        "will know: keşke anlamında gelecek zaman kullanılmaz."
+      ],
+      "kaynak": "tohum",
+      "bolum": null,
+      "zorluk": 2
+    },
+    {
+      "id": "tohum-072",
+      "konu": "g-wish",
+      "eksen": "gecmis pismanlik: wish + had + 3. hal",
+      "tip": "dilbilgisi",
+      "parca": null,
+      "soru": "I wish I _____ taller — basketball would be much easier. And I really wish I _____ that expensive phone last year; now I have no money at all.",
+      "secenekler": [
+        "was / didn't buy",
+        "were / hadn't bought",
+        "were / didn't buy",
+        "am / hadn't bought"
+      ],
+      "cevap": 1,
+      "neden": "Şu ana dair keşkede be fiili herkes için were olur. İkincisi geçmişteki bir pişmanlık: wish + had + 3. hâl, olumsuzu hadn't bought.",
+      "celdiriciler": [
+        "was / didn't buy: bu kalıpta was değil were kullanılır; ayrıca geçmiş pişmanlık had ile kurulur.",
+        "were / didn't buy: \"last year\" geçmişteki pişmanlığı gösteriyor, düz geçmiş yetmez.",
+        "am / hadn't bought: wish'ten sonra geniş zaman gelmez, fiil bir zaman geri çekilir."
+      ],
+      "kaynak": "tohum",
+      "bolum": null,
+      "zorluk": 3
+    },
+    {
+      "id": "tohum-073",
+      "konu": "v-b1",
+      "eksen": "is dunyasi (income, maintenance, authorized)",
+      "tip": "kelime",
+      "parca": null,
+      "soru": "The factory has not been _____ to release waste into the river, so it must stop production immediately.",
+      "secenekler": [
+        "authorized",
+        "motivated",
+        "promoted",
+        "purchased"
+      ],
+      "cevap": 0,
+      "neden": "Yetki verilmemiş anlamı var; izin ve yetki için authorized kullanılır.",
+      "celdiriciler": [
+        "motivated: motive edilmiş demek, izinle ilgisi yok.",
+        "promoted: terfi ettirilmiş ya da tanıtılmış demek.",
+        "purchased: satın alınmış demek."
+      ],
+      "kaynak": "tohum",
+      "bolum": null,
+      "zorluk": 2
+    },
+    {
+      "id": "tohum-074",
+      "konu": "v-b1",
+      "eksen": "fiil + edat (focus on, achieve a goal)",
+      "tip": "kelime",
+      "parca": null,
+      "soru": "After the course I see the problem from a completely different _____. I can finally _____ on the important parts instead of losing time with every small _____.",
+      "secenekler": [
+        "perspective / focus / distraction",
+        "attitude / focus / innovation",
+        "perspective / achieve / distraction",
+        "maintenance / focus / distraction"
+      ],
+      "cevap": 0,
+      "neden": "Bakış açısı için perspective. focus fiili on edatıyla gelir. Dikkat dağıtan küçük şeyler distraction'dır.",
+      "celdiriciler": [
+        "attitude / focus / innovation: attitude tutum demek, bakış açısı değil; innovation ise yenilik demek, dikkat dağıtıcı değil.",
+        "perspective / achieve / distraction: achieve on diye bir kalıp yok, achieve doğrudan nesne alır (achieve a goal).",
+        "maintenance / focus / distraction: maintenance bakım demek, bir soruna bakış açısını anlatmaz."
+      ],
+      "kaynak": "tohum",
+      "bolum": null,
+      "zorluk": 3
+    },
+    {
+      "id": "tohum-075",
+      "konu": "v-phrasal",
+      "eksen": "give up / put together / take off",
+      "tip": "kelime",
+      "parca": null,
+      "soru": "I've decided to _____ sugar completely. I haven't had any for two weeks now.",
+      "secenekler": [
+        "give up",
+        "put up",
+        "take off",
+        "carry out"
+      ],
+      "cevap": 0,
+      "neden": "Bir alışkanlığı bırakmak give up ile söylenir.",
+      "celdiriciler": [
+        "put up: dayanmak ya da bir şeyi asmak anlamındadır.",
+        "take off: çıkarmak ya da uçağın havalanması demektir.",
+        "carry out: bir işi yürütmek, uygulamak demektir."
+      ],
+      "kaynak": "tohum",
+      "bolum": null,
+      "zorluk": 2
+    },
+    {
+      "id": "tohum-076",
+      "konu": "v-phrasal",
+      "eksen": "look after / look for / look up ayrimi",
+      "tip": "kelime",
+      "parca": null,
+      "soru": "If you don't know the word, _____ in the dictionary. And could you _____ my little sister while I _____ my keys? I can't find them anywhere.",
+      "secenekler": [
+        "look it up / look after / look for",
+        "look up it / look for / look after",
+        "look it up / look for / look after",
+        "look after it / look up / look for"
+      ],
+      "cevap": 0,
+      "neden": "Sözlükten kelimeye bakmak look up'tır ve zamir kalıbın ortasına girer: look it up. Birine göz kulak olmak look after, bir şeyi aramak look for'dur.",
+      "celdiriciler": [
+        "look up it / look for / look after: zamir kalıbın ortasına girer, sonuna gelmez.",
+        "look it up / look for / look after: kardeşine göz kulak olmak look after'dır; look for aramaktır, ikisi yer değiştirmiş.",
+        "look after it / look up / look for: ilk boşlukta sözlükte arama var, look after değil look up gerekir."
+      ],
+      "kaynak": "tohum",
+      "bolum": null,
+      "zorluk": 3
+    },
+    {
+      "id": "tohum-077",
+      "konu": "r-gonderim",
+      "eksen": "there = yer",
+      "tip": "okuma",
+      "parca": null,
+      "soru": "The word \"there\" in the last sentence refers to _____.",
+      "secenekler": [
+        "Kadikoy",
+        "the ferry",
+        "the European side",
+        "the evening"
+      ],
+      "cevap": 2,
+      "neden": "İnsanlar Avrupa yakasına geçiyor ve orada çalışıyor. \"there\" bir yer gösterir; önceki cümlede geçen yer Avrupa yakasıdır.",
+      "celdiriciler": [
+        "Kadikoy: insanlar Kadıköy'den ayrılıp karşıya geçiyor, akşam geri dönüyorlar.",
+        "the ferry: vapur bir ulaşım aracı, çalışılan yer değil.",
+        "the evening: bu bir zaman; there ise yer gösterir."
+      ],
+      "kaynak": "tohum",
+      "bolum": null,
+      "zorluk": 2,
+      "metin": "Kadikoy is one of the busiest districts of Istanbul. Every morning thousands of people take the ferry to cross to the European side. Many of them work there and come back only in the evening."
+    },
+    {
+      "id": "tohum-078",
+      "konu": "r-gonderim",
+      "eksen": "en yakin isim her zaman dogru degil",
+      "tip": "okuma",
+      "parca": null,
+      "soru": "The word \"it\" in the last sentence refers to _____.",
+      "secenekler": [
+        "writing down every word",
+        "the second method",
+        "the teacher",
+        "the brain"
+      ],
+      "cevap": 1,
+      "neden": "Cümle \"it forces the brain\" diyor; beyni seçmeye zorlayan şey ikinci yöntemdir. Zamirin yerine koyup okuyunca yalnızca bu seçenek anlamlı oluyor.",
+      "celdiriciler": [
+        "writing down every word: bu, araştırmacıların daha kötü bulduğu yöntem; cümle ise daha iyi olanı açıklıyor.",
+        "the teacher: öğretmen yakında geçen bir isim ama beyni zorlayan bir yöntemdir, bir kişi değil.",
+        "the brain: beyin zaten cümlenin nesnesi; kendi kendini zorlaması anlamsız olur."
+      ],
+      "kaynak": "tohum",
+      "bolum": null,
+      "zorluk": 3,
+      "metin": "Some students write down every word the teacher says. Others prefer to listen carefully first and take notes at the end. Researchers say the second method works better, because it forces the brain to select the important ideas instead of copying everything."
+    },
+    {
+      "id": "tohum-079",
+      "konu": "r-cikarim",
+      "eksen": "metinde acikca yazmayan sonuc",
+      "tip": "okuma",
+      "parca": null,
+      "soru": "It can be inferred from the text that _____.",
+      "secenekler": [
+        "Meryem's brother has not come home yet",
+        "Meryem lives alone in the house",
+        "the family had dinner together",
+        "Meryem is late for work"
+      ],
+      "cevap": 0,
+      "neden": "Palto askıda değil, oda soğuk ve kahvaltı tabakları hâlâ masada. Bunlar kardeşinin henüz eve gelmediğini gösteriyor. Metin bunu açıkça yazmıyor ama işaretler bu yönde.",
+      "celdiriciler": [
+        "Meryem lives alone in the house: kardeşinden söz ediliyor, yalnız yaşamıyor.",
+        "the family had dinner together: masadaki tabaklar kahvaltıya ait, akşam yemeğine değil.",
+        "Meryem is late for work: saate bakması işe geç kaldığını göstermez; metinde işten hiç söz edilmiyor."
+      ],
+      "kaynak": "tohum",
+      "bolum": null,
+      "zorluk": 2,
+      "metin": "When Meryem opened the door, the room was dark and cold. The plates from breakfast were still on the table, and her brother's coat was not on the hook. She looked at her watch and sighed."
+    },
+    {
+      "id": "tohum-080",
+      "konu": "r-cikarim",
+      "eksen": "asiri genelleme tuzagi",
+      "tip": "okuma",
+      "parca": null,
+      "soru": "It can be inferred from the text that _____.",
+      "secenekler": [
+        "the new phone may not be released as planned",
+        "the camera of the new phone is the best on the market",
+        "the journalists have already tested the phone",
+        "the company has stopped producing phones completely"
+      ],
+      "cevap": 0,
+      "neden": "Tanıtım sayfasının kaldırılması, mühendislerin başka projeye alınması ve soruların cevapsız kalması hep gecikme ya da iptal işareti. Metin bunu söylemiyor ama işaretler bu sonuca götürüyor.",
+      "celdiriciler": [
+        "the camera of the new phone is the best on the market: kameradan söz ediliyor ama kalitesi hakkında hiçbir şey yazmıyor.",
+        "the journalists have already tested the phone: gazeteciler soru soruyor; telefonu denedikleri söylenmiyor.",
+        "the company has stopped producing phones completely: tek bir modelden söz ediliyor; tüm üretimin durduğu aşırı bir genelleme olur."
+      ],
+      "kaynak": "tohum",
+      "bolum": null,
+      "zorluk": 3,
+      "metin": "The company announced that its new phone would be released in March. In February, however, the release page quietly disappeared from the website, and the engineers who had been working on the camera were moved to another project. The company still refuses to answer questions from journalists."
+    },
+    {
+      "id": "tohum-081",
+      "konu": "r-baglamdan-kelime",
+      "eksen": "ornek ya da tekrar ipucu",
+      "tip": "okuma",
+      "parca": null,
+      "soru": "The word \"isolated\" in the text means _____.",
+      "secenekler": [
+        "very cold",
+        "cut off from other places",
+        "full of visitors",
+        "extremely dangerous"
+      ],
+      "cevap": 1,
+      "neden": "Devam eden cümleler yolun kapandığını ve hiçbir aracın ulaşamadığını söylüyor; yani köy dış dünyadan kopuyor.",
+      "celdiriciler": [
+        "very cold: kıştan bahsediliyor ama cümle sıcaklığı değil ulaşımı anlatıyor.",
+        "full of visitors: tam tersi, kimse köye ulaşamıyor.",
+        "extremely dangerous: metinde tehlikeden hiç söz edilmiyor."
+      ],
+      "kaynak": "tohum",
+      "bolum": null,
+      "zorluk": 2,
+      "metin": "The village was completely isolated in winter. The only road was blocked by snow for months, and no bus or car could reach the houses. People had to store enough food in autumn."
+    },
+    {
+      "id": "tohum-082",
+      "konu": "r-baglamdan-kelime",
+      "eksen": "zit anlam ipucu (but, however)",
+      "tip": "okuma",
+      "parca": null,
+      "soru": "The word \"reticent\" in the text means _____.",
+      "secenekler": [
+        "not willing to talk much",
+        "angry with his classmates",
+        "very good at group work",
+        "afraid of teachers"
+      ],
+      "cevap": 0,
+      "neden": "\"however\" bir zıtlık kuruyor: sınıf konuşkan, Ali ise onların tersi. Devamındaki cümle de kısa cevap verdiğini, kendiliğinden konuşmadığını söylüyor.",
+      "celdiriciler": [
+        "angry with his classmates: metinde öfkeden ya da bir tartışmadan söz edilmiyor.",
+        "very good at group work: grup çalışmasını sevenler sınıf arkadaşları; however Ali'yi onlardan ayırıyor.",
+        "afraid of teachers: öğretmen sorduğunda cevap veriyor, korkudan bahsedilmiyor."
+      ],
+      "kaynak": "tohum",
+      "bolum": null,
+      "zorluk": 3,
+      "metin": "Most of his classmates were talkative and loved group work. Ali, however, was rather reticent: he answered questions in a few words and never spoke unless the teacher asked him directly."
+    }
+  ]
+}

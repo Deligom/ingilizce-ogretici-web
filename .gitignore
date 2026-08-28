@@ -1,0 +1,6 @@
+# isletim sistemi
+Thumbs.db
+.DS_Store
+
+# kaynak PDF: uygulama icin gerekli degil, veri zaten data/*.json icinde
+kaynak/*.pdf

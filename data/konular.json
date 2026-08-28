@@ -1,0 +1,865 @@
+{
+  "surum": 3,
+  "aciklama": "Konu ağacı. Her konu: sade Türkçe kural (terim parantezde), yapı, örnek, Türkçe konuşanın tipik tuzağı, teşhis blok numarası ve çeşitlilik eksenleri. AI açıklama/üretim yaparken bu kartı bağlam olarak alır.",
+  "konular": [
+    {
+      "id": "g-be",
+      "ad": "am / is / are — ve geçmişi was / were",
+      "seviye": "A1",
+      "tur": "dilbilgisi",
+      "kural": "Cümlede iş yapan bir fiil yoksa (koşmak, gitmek gibi), yerini 'olmak' fiili doldurur: am/is/are. Geçmiş hâli was/were.",
+      "yapi": "I am · he/she/it is · you/we/they are · geçmiş: I/he/she/it was · you/we/they were",
+      "ornek": {
+        "en": "It is very useful for every student now.",
+        "tr": "Şimdi her öğrenci için çok faydalı."
+      },
+      "tuzak": "Türkçede 'faydalıdır' derken ayrı bir kelime yok, ek var. Bu yüzden Türk öğrenci 'It very useful' der ve is'i unutur. İngilizcede boş bırakılamaz.",
+      "blok": 1,
+      "eksenler": [
+        "is/are secimi (tekil-cogul ozne)",
+        "was/were secimi (gecmis)",
+        "olumsuz isn't/aren't",
+        "soru: Is/Are one gecer",
+        "isim ozneyi zamire cevirme (My brother = he = is)",
+        "be'nin unutulmasi (It very useful yanlisi)"
+      ]
+    },
+    {
+      "id": "g-genis-zaman",
+      "ad": "Geniş zaman ve 3. tekil -s",
+      "seviye": "A1",
+      "tur": "dilbilgisi",
+      "kural": "Her zaman/alışkanlık olarak yapılan işler için fiil yalın kullanılır. Ama özne he, she, it ise fiile -s takılır.",
+      "yapi": "I/you/we/they get · he/she/it gets · olumsuz: don't get / doesn't get",
+      "ornek": {
+        "en": "My brother always gets an A grade.",
+        "tr": "Kardeşim her zaman A alır."
+      },
+      "tuzak": "En sık hata bu. 'My brother' = he demek, o yüzden 'get' değil 'gets'. Cümlede isim görünce onun yerine hangi zamiri koyacağını düşün.",
+      "blok": 1,
+      "eksenler": [
+        "3. tekil -s (he/she/it)",
+        "isim ozne = 3. tekil (My brother -> gets)",
+        "olumsuz doesn't + yalin fiil",
+        "soru: Does he ...? fiil yalin",
+        "cogul ozne -s almaz",
+        "-es/-ies yazimi (go->goes, study->studies)",
+        "siklik zarfi yerlesimi (always/never)"
+      ]
+    },
+    {
+      "id": "g-have-got",
+      "ad": "have / has — sahiplik",
+      "seviye": "A1",
+      "tur": "dilbilgisi",
+      "kural": "'Sahip olmak' için have kullanılır; özne he/she/it ise has olur.",
+      "yapi": "I/you/we/they have · he/she/it has · (İngiliz İngilizcesi: have got / has got)",
+      "ornek": {
+        "en": "My brother has a smartphone now.",
+        "tr": "Kardeşimin şimdi akıllı telefonu var."
+      },
+      "tuzak": "Türkçede 'telefonu var' derken sahip olan değil sahip olunan şey özne gibi durur. İngilizcede özne kişidir: My brother has...",
+      "blok": 1,
+      "eksenler": [
+        "has vs have (3. tekil)",
+        "olumsuz doesn't have",
+        "soru: Does ... have ...?",
+        "have got / has got kalibi",
+        "gecmis had (herkes icin ayni)",
+        "sahiplik have vs bulunma there is"
+      ]
+    },
+    {
+      "id": "g-there-is",
+      "ad": "there is / there are — bir yerde bir şey olması",
+      "seviye": "A1",
+      "tur": "dilbilgisi",
+      "kural": "Bir yerde bir şey bulunduğunu söylerken there is (tek) veya there are (birden fazla) kullanılır.",
+      "yapi": "There is a cafe. · There are lots of cafes. · geçmiş: There was / There were",
+      "ornek": {
+        "en": "There are lots of street cafes in Kizilay.",
+        "tr": "Kızılay'da birçok sokak kafesi var."
+      },
+      "tuzak": "Türkçede hem 'kalemim var' hem 'masada kalem var' aynı ekle kurulur. İngilizcede sahiplik have, bulunma there is. Karıştırma.",
+      "blok": 1,
+      "eksenler": [
+        "tekil there is / cogul there are",
+        "sayilamayan isimle there is",
+        "gecmis there was / there were",
+        "olumsuz there isn't / there aren't any",
+        "soru: Is there...? / Are there...?",
+        "there is vs have ayrimi"
+      ]
+    },
+    {
+      "id": "g-artikel",
+      "ad": "a / an / the — belirtme sözcükleri (artikel)",
+      "seviye": "A1",
+      "tur": "dilbilgisi",
+      "kural": "İlk kez, herhangi biri anlamında geçiyorsa a/an. Karşı taraf hangisinden bahsettiğini biliyorsa the. Tek olan şeyler de the alır (the sun, the pandemic).",
+      "yapi": "a car (herhangi bir araba) · the car (o araba) · a + sessiz harf sesi, an + sesli harf sesi",
+      "ornek": {
+        "en": "During the pandemic, online shopping became a popular option.",
+        "tr": "Pandemi sırasında internetten alışveriş popüler bir seçenek oldu."
+      },
+      "tuzak": "Türkçede artikel yok, o yüzden en çok atlanan konu. Kabaca: the ≈ belirtme hâli '-i' (kapıyı aç = open the door), a ≈ 'bir'.",
+      "blok": 1,
+      "eksenler": [
+        "ilk gecis a/an, ikinci gecis the",
+        "a/an ses kurali (an hour, a university)",
+        "tek olan seyler the (the sun)",
+        "cogul ve sayilamayan genel anlamda artikelsiz",
+        "meslek/tanim: She is a nurse",
+        "yer kaliplari: go to school / go to the school"
+      ]
+    },
+    {
+      "id": "g-iyelik",
+      "ad": "my / your / its — iyelik sıfatları",
+      "seviye": "A1",
+      "tur": "dilbilgisi",
+      "kural": "Bir şeyin kime ait olduğunu isimden önce söyleyen kelimeler. Cansız/hayvan için its.",
+      "yapi": "my · your · his · her · its · our · their",
+      "ornek": {
+        "en": "This is my new car. Its color is red.",
+        "tr": "Bu benim yeni arabam. Rengi kırmızı."
+      },
+      "tuzak": "its (onun) ile it's (it is) ayrı şeyler. Kesme işareti varsa 'o ...dır' demektir.",
+      "blok": 2,
+      "eksenler": [
+        "isim ile iyelik sifati uyumu (Ali -> his)",
+        "cansiz/hayvan icin its",
+        "its vs it's ayrimi",
+        "our/their: birden fazla sahip",
+        "iyelik sifati (my book) vs iyelik zamiri (mine)",
+        "your tekil ve cogulda ayni"
+      ]
+    },
+    {
+      "id": "g-ozne-zamiri",
+      "ad": "I / you / they — özne zamirleri",
+      "seviye": "A1",
+      "tur": "dilbilgisi",
+      "kural": "İşin kim tarafından yapıldığını gösterir. İngilizcede özne asla boş bırakılmaz, çoğul isimlerin yerini they alır.",
+      "yapi": "I · you · he · she · it · we · they",
+      "ornek": {
+        "en": "My favorite food is noodles. They are very good.",
+        "tr": "En sevdiğim yemek erişte. Çok güzeldir."
+      },
+      "tuzak": "Türkçede 'gidiyorum' derken ben demeye gerek yok, ek yeterli. İngilizcede I zorunlu.",
+      "blok": 2,
+      "eksenler": [
+        "cogul isim yerine they",
+        "cansiz tekil isim yerine it",
+        "ozne bos birakilmaz",
+        "ozne zamiri (I) vs nesne zamiri (me)",
+        "iki ozne birlesince we",
+        "kalip ozne: It is raining"
+      ]
+    },
+    {
+      "id": "g-isaret",
+      "ad": "this / these / that / those — işaret sözcükleri",
+      "seviye": "A1",
+      "tur": "dilbilgisi",
+      "kural": "Yakındaki için this (tek) / these (çoğul). Uzaktaki için that (tek) / those (çoğul).",
+      "yapi": "this book · these books · that book · those books",
+      "ornek": {
+        "en": "These boys are my classmates, but that one is in a different class.",
+        "tr": "Bu çocuklar sınıf arkadaşım ama şu diğeri başka sınıfta."
+      },
+      "tuzak": "Tekil mi çoğul mu önce ona bak: 'boys' çoğul olduğu için this değil these olmalı.",
+      "blok": 2,
+      "eksenler": [
+        "tekil this / cogul these",
+        "uzak that / those",
+        "isaret + isim sayi uyumu",
+        "tanistirma kalibi: This is...",
+        "that = az once soylenen sey",
+        "sayilamayan isimle this (this water)"
+      ]
+    },
+    {
+      "id": "g-edat",
+      "ad": "in / on / at / for — edatlar",
+      "seviye": "A1",
+      "tur": "dilbilgisi",
+      "kural": "Yer ve zaman ilişkisini kuran küçük kelimeler. Çoğu zaman kuraldan çok kalıptır, fiille birlikte ezberlenir: wait for, listen to, depend on.",
+      "yapi": "in (içinde, şehir/ay/yıl) · on (üzerinde, gün/tarih) · at (noktada, saat) · for (için, süre)",
+      "ornek": {
+        "en": "Ceyda is waiting for the bus.",
+        "tr": "Ceyda otobüsü bekliyor."
+      },
+      "tuzak": "Türkçedeki eki çevirmeye çalışma. 'Otobüsü bekliyor'da -u eki var ama İngilizce wait fiili yanında hep for ister.",
+      "blok": 2,
+      "eksenler": [
+        "yer: in/on/at ayrimi",
+        "zaman: in (ay/yil) · on (gun) · at (saat)",
+        "fiil + edat kalibi (wait for, listen to)",
+        "sifat + edat (good at, afraid of)",
+        "for + sure",
+        "edattan sonra fiil -ing alir"
+      ]
+    },
+    {
+      "id": "g-gecmis-zaman",
+      "ad": "Geçmiş zaman (past simple)",
+      "seviye": "A1",
+      "tur": "dilbilgisi",
+      "kural": "Bitmiş, ne zaman olduğu belli işler için. Düzenli fiillere -ed takılır, düzensizler ezberlenir (leave→left, go→went).",
+      "yapi": "I left it yesterday. · olumsuz: didn't leave (fiil yalın kalır)",
+      "ornek": {
+        "en": "I left it on your desk yesterday.",
+        "tr": "Dün onu masanıza bırakmıştım."
+      },
+      "tuzak": "Cümlede yesterday, last night, in 1620 gibi bir zaman varsa geçmiş zaman zorunlu. didn't varken fiile tekrar -ed takma.",
+      "blok": 2,
+      "eksenler": [
+        "duzenli fiile -ed",
+        "duzensiz fiil (go->went, leave->left)",
+        "olumsuz didn't + yalin fiil",
+        "soru: Did + yalin fiil",
+        "gecmis belirteci (yesterday, ago, last night)",
+        "was/were ile karistirmama"
+      ]
+    },
+    {
+      "id": "g-gecmis-surekli",
+      "ad": "Geçmişte sürüyordu (past continuous)",
+      "seviye": "A2",
+      "tur": "dilbilgisi",
+      "kural": "Geçmişte bir an devam eden iş. Genelde ikili gelir: uzun süre devam eden iş + araya giren kısa iş.",
+      "yapi": "was/were + fiil-ing · while ... was -ing, ... + geçmiş zaman",
+      "ornek": {
+        "en": "The mirror fell while I was watching the match.",
+        "tr": "Ben maçı izlerken ayna düştü."
+      },
+      "tuzak": "while'dan sonra süreklilik (-ing), when'den sonra genelde düz geçmiş gelir. İki iş de sürüyorsa ikisi de -ing olur.",
+      "blok": 3,
+      "eksenler": [
+        "while + was/were -ing",
+        "when + duz gecmis (araya giren is)",
+        "iki is de suruyorsa ikisi de -ing",
+        "ozne ile was/were uyumu",
+        "olumsuz wasn't/weren't -ing",
+        "gecmiste belirli bir an (At nine o'clock...)"
+      ]
+    },
+    {
+      "id": "g-yakin-gelecek",
+      "ad": "be going to — planlı gelecek",
+      "seviye": "A2",
+      "tur": "dilbilgisi",
+      "kural": "Önceden planlanmış ya da belirtisi ortada olan gelecek işler için.",
+      "yapi": "am/is/are going to + yalın fiil",
+      "ornek": {
+        "en": "Face-to-face education is going to start soon.",
+        "tr": "Yüz yüze eğitim yakında başlayacak."
+      },
+      "tuzak": "Türkçede ikisi de '-ecek'. Ayrım: plan/belirti varsa going to, o anda karar verildiyse ya da tahminse will.",
+      "blok": 3,
+      "eksenler": [
+        "onceden yapilmis plan",
+        "gorunen belirti (Look at those clouds!)",
+        "am/is/are uyumu",
+        "olumsuz isn't going to",
+        "going to + yalin fiil",
+        "will ile ayrim: plan mi anlik karar mi"
+      ]
+    },
+    {
+      "id": "g-gelecek-will",
+      "ad": "will — tahmin ve anlık karar",
+      "seviye": "A2",
+      "tur": "dilbilgisi",
+      "kural": "Tahmin, söz verme veya konuşma anında verilen karar için will + yalın fiil.",
+      "yapi": "will + fiil · olumsuz: won't",
+      "ornek": {
+        "en": "My mom says it will rain soon.",
+        "tr": "Annem yakında yağmur yağacağını söylüyor."
+      },
+      "tuzak": "will'den sonra fiil hep yalın: will rains değil will rain.",
+      "blok": 3,
+      "eksenler": [
+        "tahmin: I think ... will",
+        "anlik karar (I'll get it!)",
+        "soz verme (I promise)",
+        "will + yalin fiil",
+        "olumsuz won't",
+        "going to ile ayrim"
+      ]
+    },
+    {
+      "id": "g-present-perfect",
+      "ad": "have / has + 3. hâl — geçmişten bugüne",
+      "seviye": "A2",
+      "tur": "dilbilgisi",
+      "kural": "Ne zaman olduğu önemli olmayan tecrübeler için ve geçmişte başlayıp hâlâ süren durumlar için.",
+      "yapi": "have/has + fiilin 3. hâli · since (başlangıç noktası) · for (süre) · never, ever, already, yet",
+      "ornek": {
+        "en": "The Johnsons have been in Istanbul since June.",
+        "tr": "Johnson ailesi haziran ayından beri İstanbul'da."
+      },
+      "tuzak": "'Hiç gitmedim' derken Türkçe geçmiş zaman kullanıyoruz, İngilizcede tecrübe olduğu için 'I have never been'. yesterday gibi net zaman varsa bu zaman kullanılmaz.",
+      "blok": 3,
+      "eksenler": [
+        "tecrube: never / ever",
+        "since (baslangic) ve for (sure)",
+        "already / yet / just",
+        "have vs has (3. tekil)",
+        "fiilin 3. hali",
+        "net gecmis belirteci varsa kullanilmaz"
+      ]
+    },
+    {
+      "id": "g-perfect-continuous",
+      "ad": "have been + -ing — süredir yapıyorum",
+      "seviye": "B1",
+      "tur": "dilbilgisi",
+      "kural": "Bir süre önce başlayıp şu ana kadar devam eden işe vurgu yapar; genelde sonucu ortadadır (kirli eller, yorgunluk).",
+      "yapi": "have/has been + fiil-ing · since sabah · for two hours",
+      "ornek": {
+        "en": "I have been cleaning the garage since early morning.",
+        "tr": "Sabahtan beri garajı temizliyorum."
+      },
+      "tuzak": "since/for görürsen 'am cleaning' yanlıştır; süreklilik geçmişe bağlanıyorsa have been -ing.",
+      "blok": 5,
+      "eksenler": [
+        "have/has been + -ing",
+        "since (baslangic) ve for (sure)",
+        "sonucu ortada olan is (kirli eller)",
+        "am -ing ile karistirmama",
+        "hala devam eden ise vurgu",
+        "durum fiilleri (know, like) -ing almaz"
+      ]
+    },
+    {
+      "id": "g-edilgen",
+      "ad": "Edilgen çatı (passive)",
+      "seviye": "A2",
+      "tur": "dilbilgisi",
+      "kural": "İşi kimin yaptığı önemli değilse ya da bilinmiyorsa, işi yapan değil iş gören öne geçer.",
+      "yapi": "be + fiilin 3. hâli · was broken · was prepared · have been carried out",
+      "ornek": {
+        "en": "The window was broken last night.",
+        "tr": "Dün gece cam kırıldı."
+      },
+      "tuzak": "Türkçedeki -il/-in eki gibi düşün: kır-ıl-dı = was broken. be fiilini unutma; 'was broke' değil 'was broken'.",
+      "blok": 4,
+      "eksenler": [
+        "be + fiilin 3. hali",
+        "gecmis edilgen: was/were + 3. hal",
+        "gelecek edilgen: will be + 3. hal",
+        "by ile isi yapani soyleme",
+        "duzensiz fiilin 3. hali (break->broken)",
+        "etken cumleyi edilgene cevirme"
+      ]
+    },
+    {
+      "id": "g-modal-yetenek",
+      "ad": "can / could — yapabilmek",
+      "seviye": "A2",
+      "tur": "dilbilgisi",
+      "kural": "Şu an yapabiliyorsan can, geçmişte yapabiliyorduysan could. Sonrasında fiil hep yalın.",
+      "yapi": "can/could + yalın fiil · olumsuz: can't / couldn't",
+      "ornek": {
+        "en": "I could make friends easily, but now I can't.",
+        "tr": "Eskiden kolay arkadaş edinebiliyordum ama şimdi edinemiyorum."
+      },
+      "tuzak": "Cümlede 'when I was in high school' gibi geçmiş varsa could, 'now' varsa can. Zaman kelimeleri sana hangisini seçmen gerektiğini söyler.",
+      "blok": 4,
+      "eksenler": [
+        "su an: can",
+        "gecmis: could",
+        "olumsuz can't / couldn't",
+        "modaldan sonra fiil yalin",
+        "cumledeki zaman kelimesine bakma",
+        "kibar rica: could you"
+      ]
+    },
+    {
+      "id": "g-modal-zorunluluk",
+      "ad": "must / have to / don't have to — zorunluluk",
+      "seviye": "B1",
+      "tur": "dilbilgisi",
+      "kural": "have to / must = mecbursun. don't have to = mecbur değilsin (ama yapabilirsin). mustn't = yasak.",
+      "yapi": "have to + fiil · don't have to + fiil · mustn't + fiil",
+      "ornek": {
+        "en": "We don't have to wear masks at home. It is not necessary.",
+        "tr": "Evde maske takmak zorunda değiliz. Gerekli değil."
+      },
+      "tuzak": "En kritik ayrım: don't have to (gerek yok) ile mustn't (yasak) aynı şey değil. Cümlede 'not necessary' varsa cevap don't have to.",
+      "blok": 5,
+      "eksenler": [
+        "must / have to = mecburiyet",
+        "don't have to = gerek yok",
+        "mustn't = yasak",
+        "gecmis: had to",
+        "should ile ayrim (tavsiye)",
+        "cumledeki ipucu: It is not necessary"
+      ]
+    },
+    {
+      "id": "g-kosul1",
+      "ad": "1. tip koşul — gerçekleşmesi mümkün",
+      "seviye": "A2",
+      "tur": "dilbilgisi",
+      "kural": "Şart gerçekleşirse sonuç da gerçekten olur. Şart kısmında gelecek zaman kullanılmaz.",
+      "yapi": "If + geniş zaman, ... will + fiil",
+      "ornek": {
+        "en": "If you respect others, people will respect you too.",
+        "tr": "Başkalarına saygı gösterirsen insanlar da sana saygı gösterir."
+      },
+      "tuzak": "'If you will respect' denmez. Türkçede '-irsen' olan kısım İngilizcede geniş zamandır, will diğer tarafa gider.",
+      "blok": 4,
+      "eksenler": [
+        "If + genis zaman, will + fiil",
+        "sart kisminda will kullanilmaz",
+        "unless = if not",
+        "sonuc kisminda emir veya modal",
+        "if cumlesi basta ya da sonda",
+        "2. tip ile ayrim: gercek mi hayali mi"
+      ]
+    },
+    {
+      "id": "g-kosul2",
+      "ad": "2. tip koşul — hayali durum",
+      "seviye": "B1",
+      "tur": "dilbilgisi",
+      "kural": "Şu an gerçek olmayan, hayali durumlar için. Şart kısmında geçmiş zaman kullanılır ama anlam bugündür.",
+      "yapi": "If + geçmiş zaman, ... would/could + fiil · (be fiili için herkese were)",
+      "ornek": {
+        "en": "If superheroes were real, they could save humanity.",
+        "tr": "Süper kahramanlar gerçek olsaydı insanlığı kurtarabilirlerdi."
+      },
+      "tuzak": "Cümlenin devamında 'But they don't exist' gibi bir inkâr varsa durum hayalidir, 2. tip seçilir.",
+      "blok": 6,
+      "eksenler": [
+        "If + gecmis zaman, would/could + fiil",
+        "be fiili icin herkese were",
+        "su ana ait hayali durum",
+        "1. tip ile ayrim: gercek mi hayali mi",
+        "would + yalin fiil",
+        "cumledeki inkar ipucu (But they don't exist)"
+      ]
+    },
+    {
+      "id": "g-kosul3",
+      "ad": "3. tip koşul — geçmiş pişmanlık",
+      "seviye": "B1",
+      "tur": "dilbilgisi",
+      "kural": "Geçmişte olmamış bir şeyin olsaydı ne olacağını anlatır. Artık değiştirilemez.",
+      "yapi": "If + had + 3. hâl, ... would have + 3. hâl",
+      "ornek": {
+        "en": "If humans had been more careful, global warming would not have started.",
+        "tr": "İnsanlar daha dikkatli olsaydı küresel ısınma başlamayacaktı."
+      },
+      "tuzak": "İki tarafı da geçmişe çek: had been ... would not have started. Bir tarafı bugünde bırakmak en sık yapılan hata.",
+      "blok": 6,
+      "eksenler": [
+        "If + had + 3. hal, would have + 3. hal",
+        "gecmisteki pismanlik",
+        "iki tarafi da gecmise cekme",
+        "2. tip ile ayrim: bugun mu gecmis mi",
+        "olumsuz: hadn't / wouldn't have",
+        "could have / might have"
+      ]
+    },
+    {
+      "id": "g-sifat-cumlesi",
+      "ad": "who / which / where / whose — sıfat cümleleri",
+      "seviye": "A2",
+      "tur": "dilbilgisi",
+      "kural": "Bir ismi tarif eden yan cümle kurar. İnsan için who, eşya için which/that, yer için where, sahiplik için whose.",
+      "yapi": "the girl who won · the city where they met · the company whose ads are everywhere",
+      "ornek": {
+        "en": "The girl who won the competition is very clever.",
+        "tr": "Yarışmayı kazanan kız çok zeki."
+      },
+      "tuzak": "Türkçede bu iş '-en/-an' ekiyle olur ve isimden önce gelir (kazanan kız). İngilizcede isimden sonra gelir (the girl who won). Sırası ters.",
+      "blok": 4,
+      "eksenler": [
+        "insan icin who",
+        "esya icin which/that",
+        "yer icin where",
+        "sahiplik icin whose",
+        "yan cumle isimden SONRA gelir",
+        "zaman icin when"
+      ]
+    },
+    {
+      "id": "g-karsilastirma",
+      "ad": "Karşılaştırma (comparative)",
+      "seviye": "A2",
+      "tur": "dilbilgisi",
+      "kural": "İki şeyi karşılaştırırken kısa sıfata -er takılır, uzun sıfatın önüne more gelir. Karşılaştırılan ikinci taraf varsa than zorunludur.",
+      "yapi": "smart → smarter than · beautiful → more beautiful than · iyi/kötü: better / worse",
+      "ornek": {
+        "en": "Children these days are smarter than children in the past.",
+        "tr": "Bugünün çocukları geçmiştekilerden daha zeki."
+      },
+      "tuzak": "Türkçedeki '-den daha' iki parça; İngilizcede -er ve than birlikte gelmek zorunda. Birini unutma.",
+      "blok": 4,
+      "eksenler": [
+        "kisa sifat + -er",
+        "uzun sifat + more",
+        "than zorunlulugu",
+        "duzensiz: good->better, bad->worse",
+        "as ... as ile esitlik",
+        "en ustunluk: the -est / the most"
+      ]
+    },
+    {
+      "id": "g-miktar",
+      "ad": "little / a little / few / a few — miktar",
+      "seviye": "B1",
+      "tur": "dilbilgisi",
+      "kural": "Sayılamayan şeyler için little, sayılabilenler için few. Başında a varsa 'birazcık var' (olumlu), a yoksa 'neredeyse yok' (olumsuz).",
+      "yapi": "little time (neredeyse hiç vakit yok) · a little time (biraz vakit var) · few friends / a few friends",
+      "ornek": {
+        "en": "I have little time, so I can't meet you.",
+        "tr": "Çok az vaktim var, o yüzden görüşemem."
+      },
+      "tuzak": "Devamındaki cümleye bak: 'so I can't' olumsuz sonuç veriyorsa a'sız olan seçilir. Küçücük bir a anlamı tersine çevirir.",
+      "blok": 6,
+      "eksenler": [
+        "sayilamayan: little / a little",
+        "sayilabilir: few / a few",
+        "a'nin anlami tersine cevirmesi",
+        "much / many ayrimi",
+        "devamindaki cumlenin olumlu-olumsuz sonucu",
+        "a lot of her ikisiyle de kullanilir"
+      ]
+    },
+    {
+      "id": "g-used-to",
+      "ad": "used to / would — eskiden yapardım",
+      "seviye": "B1",
+      "tur": "dilbilgisi",
+      "kural": "Geçmişte düzenli yapılan ama artık yapılmayan işler için. used to'dan sonra fiil hep yalın.",
+      "yapi": "used to + yalın fiil · would + yalın fiil (tekrarlanan eylemler için, durumlar için kullanılmaz)",
+      "ornek": {
+        "en": "When I was a child, I would ride a bike every evening.",
+        "tr": "Çocukken her akşam bisiklete binerdim."
+      },
+      "tuzak": "used to have doğru, used to having yanlış. Ayrıca 'be used to + -ing' (alışık olmak) bambaşka bir yapıdır.",
+      "blok": 6,
+      "eksenler": [
+        "used to + yalin fiil",
+        "would ile tekrarlanan eylem",
+        "would durumlar icin kullanilmaz",
+        "be used to + -ing (alisik olmak) farki",
+        "artik yapilmiyor vurgusu",
+        "olumsuz: didn't use to"
+      ]
+    },
+    {
+      "id": "g-ettirgen",
+      "ad": "make / have / let someone do — yaptırmak",
+      "seviye": "B1",
+      "tur": "dilbilgisi",
+      "kural": "Birine bir şey yaptırmak. make, have ve let'ten sonra kişi gelir, sonra fiil to'suz ve yalın gelir.",
+      "yapi": "make someone do · have someone do · let someone do · ama: get someone TO do",
+      "ornek": {
+        "en": "My friends made me do a lot of things.",
+        "tr": "Arkadaşlarım bana birçok şey yaptırdı."
+      },
+      "tuzak": "made me to do yanlış. Sadece get fiili to ister; make, have, let istemez.",
+      "blok": 6,
+      "eksenler": [
+        "make/have/let + kisi + yalin fiil",
+        "get + kisi + TO + fiil",
+        "izin: let",
+        "made me to do yanlisi",
+        "have something done (hizmet aldirma)",
+        "edilgen: was made to do"
+      ]
+    },
+    {
+      "id": "g-mastar-gerund",
+      "ad": "to + fiil mi, fiil-ing mi",
+      "seviye": "B1",
+      "tur": "dilbilgisi",
+      "kural": "Bazı fiiller kendinden sonra to ister (want, decide, forget, hope), bazıları -ing ister (enjoy, finish, avoid, mind). Bu bir kural değil, fiil listesidir.",
+      "yapi": "want to go · enjoy going · edatlardan sonra hep -ing: good at swimming",
+      "ornek": {
+        "en": "Don't forget to lock the door.",
+        "tr": "Kapıyı kilitlemeyi unutma."
+      },
+      "tuzak": "forget to do = yapmayı unutmak (henüz yapılmadı). forget doing = yaptığını unutmak. Anlam tamamen değişir.",
+      "blok": 7,
+      "eksenler": [
+        "want/decide/hope + to",
+        "enjoy/finish/avoid/mind + -ing",
+        "edattan sonra -ing",
+        "forget to do vs forget doing",
+        "stop to do vs stop doing",
+        "fiil listesini ezberleme"
+      ]
+    },
+    {
+      "id": "g-had-better",
+      "ad": "had better — yapsan iyi olur",
+      "seviye": "B1",
+      "tur": "dilbilgisi",
+      "kural": "Yapılmazsa kötü sonuç doğuracak tavsiyeler için. Kalıp değişmez ve sonrasında fiil yalındır.",
+      "yapi": "had better + yalın fiil · olumsuz: had better not",
+      "ornek": {
+        "en": "I had better sleep now before it's too late.",
+        "tr": "Çok geç olmadan uyusam iyi olur."
+      },
+      "tuzak": "have better ya da am better diye bir şey yok. Kalıp hep 'had better' ('d better).",
+      "blok": 7,
+      "eksenler": [
+        "had better + yalin fiil",
+        "olumsuz: had better not",
+        "kalip degismez ('d better)",
+        "should ile ayrim: daha guclu uyari",
+        "have better / am better yanlisi",
+        "yapilmazsa kotu sonuc"
+      ]
+    },
+    {
+      "id": "g-baglac",
+      "ad": "although / even though / because — bağlaçlar",
+      "seviye": "B1",
+      "tur": "dilbilgisi",
+      "kural": "İki cümle arasındaki ilişkiyi kurar. although / even though = rağmen, because = çünkü, so = bu yüzden.",
+      "yapi": "Although + cümle, cümle · Even though + cümle, cümle",
+      "ornek": {
+        "en": "Even though the assignment was hard, half of the students submitted it.",
+        "tr": "Ödev zor olmasına rağmen öğrencilerin yarısı teslim etti."
+      },
+      "tuzak": "İki cümle birbirine ters düşüyorsa although/even though seçilir. Önce anlama bak: beklenmedik bir sonuç var mı?",
+      "blok": 7,
+      "eksenler": [
+        "although / even though = ragmen",
+        "because = cunku",
+        "so = bu yuzden",
+        "but ile ayrim",
+        "beklenmedik sonuc ipucu",
+        "despite / in spite of + isim"
+      ]
+    },
+    {
+      "id": "g-wish",
+      "ad": "wish — keşke",
+      "seviye": "B1",
+      "tur": "dilbilgisi",
+      "kural": "Şu anki bir durumdan şikâyet ya da keşke anlamı. wish'ten sonra fiil bir zaman geriye gider.",
+      "yapi": "I wish I could + fiil · I wish I had + isim · geçmiş pişmanlık: I wish I had + 3. hâl",
+      "ornek": {
+        "en": "I wish I could help her, but I'm far away.",
+        "tr": "Keşke ona yardım edebilseydim ama çok uzağım."
+      },
+      "tuzak": "'I wish I can help' denmez. Şu ana dair keşke bile olsa fiil geri çeker: could.",
+      "blok": 7,
+      "eksenler": [
+        "su ana dair: wish + gecmis zaman",
+        "wish I could + fiil",
+        "gecmis pismanlik: wish + had + 3. hal",
+        "be fiili icin were",
+        "wish + would (sikayet)",
+        "wish I can yanlisi"
+      ]
+    },
+    {
+      "id": "v-a1",
+      "ad": "Temel günlük kelimeler",
+      "seviye": "A1",
+      "tur": "kelime",
+      "kural": "Günlük hayat: yer, meslek, yemek, eşya, basit fiiller.",
+      "yapi": "park, country, milk, glasses, dictionary, jump, help, get home, underline",
+      "ornek": {
+        "en": "I use a dictionary to look up new words.",
+        "tr": "Yeni kelimelere bakmak için sözlük kullanırım."
+      },
+      "tuzak": "Sık görülen kelimeleri cümleyle birlikte ezberle; tek başına ezberlenen kelime sınavda çıkmıyor.",
+      "blok": 3,
+      "eksenler": [
+        "gunluk esya ve yer isimleri",
+        "temel fiiller (jump, help, wear, drink)",
+        "meslek ve aile kelimeleri",
+        "temel sifatlar (good/bad/long/angry)",
+        "gunluk kaliplar (get home, go to work)",
+        "cumledeki ipucundan kelimeyi bulma"
+      ]
+    },
+    {
+      "id": "v-a2",
+      "ad": "Orta düzey kelimeler",
+      "seviye": "A2",
+      "tur": "kelime",
+      "kural": "Soyut ama günlük: topluluk, sembol, medya, olgun, hayran.",
+      "yapi": "community, symbol, media, mature, fan, amazing, energetic",
+      "ornek": {
+        "en": "The heart shape is a symbol of love.",
+        "tr": "Kalp şekli aşkın sembolüdür."
+      },
+      "tuzak": "Cümlenin ipucu kelimesini bul: 'well-known in our local ___' → local ile giden kelime community'dir.",
+      "blok": 5,
+      "eksenler": [
+        "soyut gunluk kelimeler (community, symbol, media)",
+        "kisi ozelligi sifatlari (mature, energetic)",
+        "ipucu kelimeyle eslestirme (local -> community)",
+        "yakin anlamli siklar arasindan secim",
+        "sosyal medya ve iletisim kelimeleri",
+        "olumlu/olumsuz anlam ayrimi"
+      ]
+    },
+    {
+      "id": "v-b1",
+      "ad": "Üst düzey kelimeler",
+      "seviye": "B1",
+      "tur": "kelime",
+      "kural": "Akademik ve iş dünyası: bakış açısı, bakım, yetki, yenilik, dikkat dağıtıcı.",
+      "yapi": "perspective, maintenance, authorized, innovation, distraction, attitude, income, achieve, focus, purchase, promote, motivate",
+      "ornek": {
+        "en": "It is very hard to focus on my studies.",
+        "tr": "Derslerime odaklanmak çok zor."
+      },
+      "tuzak": "Bu seviyede kelimeler birlikte kullanıldıkları edatla ezberlenir: focus ON, achieve a goal, file a complaint.",
+      "blok": 7,
+      "eksenler": [
+        "akademik kelimeler (perspective, innovation)",
+        "is dunyasi (income, maintenance, authorized)",
+        "fiil + edat (focus on, achieve a goal)",
+        "sifatlar: professional, confusing, immediate",
+        "yakin anlamlilardan baglama uyani secme",
+        "olumsuz cagrisimli kelimeler (distraction)"
+      ]
+    },
+    {
+      "id": "v-phrasal",
+      "ad": "Fiil + edat kalıpları (phrasal verb)",
+      "seviye": "B1",
+      "tur": "kelime",
+      "kural": "Fiil ve edat birleşince yeni bir anlam doğar; parçaların anlamından tahmin edilemez.",
+      "yapi": "put together (monte etmek) · give up (bırakmak) · take off (çıkarmak) · carry out (yürütmek) · file a complaint (şikâyet etmek)",
+      "ornek": {
+        "en": "My dad will put it together this weekend.",
+        "tr": "Babam bu hafta sonu onu monte edecek."
+      },
+      "tuzak": "Kelime kelime çevirme. put + together'ı tek bir kelime gibi ezberle.",
+      "blok": 8,
+      "eksenler": [
+        "give up / put together / take off",
+        "carry out, file a complaint",
+        "parcalarin anlamindan tahmin edilemez",
+        "ayrilabilen kaliplar (look it up)",
+        "look after / look for / look up ayrimi",
+        "gunluk kaliplar (get on, turn off)"
+      ]
+    },
+    {
+      "id": "r-anafikir",
+      "ad": "Okuma: ana fikir ve başlık",
+      "seviye": "A2",
+      "tur": "okuma",
+      "kural": "Metnin tamamında tekrar eden konu ana fikirdir. Sadece bir paragrafta geçen şey ana fikir olamaz.",
+      "yapi": "'MAINLY about', 'The best title', 'The MAIN topic' → tüm metni kapsayan seçenek",
+      "ornek": {
+        "en": "The text is MAINLY about the city of London.",
+        "tr": "Metin esas olarak Londra şehri hakkında."
+      },
+      "tuzak": "Metinde geçen ama sadece bir cümlede geçen şeyler tuzak şıktır. 'Çok mu geniş, çok mu dar?' diye sor.",
+      "blok": 5,
+      "eksenler": [
+        "tum metni kapsayan secenek",
+        "cok genis / cok dar tuzagi",
+        "baslik secme",
+        "MAINLY about kalibi",
+        "tek paragrafta gecen sey ana fikir olamaz",
+        "ilk ve son cumleye bakma"
+      ]
+    },
+    {
+      "id": "r-detay",
+      "ad": "Okuma: detay soruları",
+      "seviye": "A2",
+      "tur": "okuma",
+      "kural": "Cevap metinde birebir vardır ama genelde farklı kelimelerle yazılmıştır.",
+      "yapi": "'According to the text...' → sorudaki anahtar kelimeyi metinde bul, o cumleyi oku",
+      "ornek": {
+        "en": "We live in the same apartment. → They live in the same place.",
+        "tr": "Aynı dairede yaşıyoruz. → Aynı yerde yaşıyorlar."
+      },
+      "tuzak": "Sınav metindeki kelimeyi eş anlamlısıyla değiştirir (apartment → place). Kelimeyi değil anlamı ara.",
+      "blok": 5,
+      "eksenler": [
+        "According to the text kalibi",
+        "es anlamliyla degistirilmis cevap",
+        "sorudaki anahtar kelimeyi metinde bulma",
+        "NOT mentioned tipi sorular",
+        "sayilar ve tarihler",
+        "metinde gecen ama soruyu cevaplamayan sik"
+      ]
+    },
+    {
+      "id": "r-gonderim",
+      "ad": "Okuma: 'it', 'there' neyi gösteriyor",
+      "seviye": "B1",
+      "tur": "okuma",
+      "kural": "Zamir genelde bir önceki cümlede geçen isme gönderme yapar. Zamirin yerine adayı koyup cümleyi tekrar oku, mantıklı mı bak.",
+      "yapi": "'What does it refer to?' → zamirin yerine seçeneği yaz, oku",
+      "ornek": {
+        "en": "Oxford Street is a famous area. It's also a good place to earn money.",
+        "tr": "Oxford Caddesi ünlü bir bölge. Ayrıca para kazanmak için de iyi bir yer."
+      },
+      "tuzak": "En yakın isim her zaman doğru cevap değil. Yerine koyup okumak tek güvenilir yöntem.",
+      "blok": 8,
+      "eksenler": [
+        "zamir bir onceki cumleye bakar",
+        "yerine koyup okuma yontemi",
+        "en yakin isim her zaman dogru degil",
+        "it / they / them",
+        "there = yer",
+        "this/that bir onceki fikri gosterebilir"
+      ]
+    },
+    {
+      "id": "r-cikarim",
+      "ad": "Okuma: çıkarım yapma",
+      "seviye": "B1",
+      "tur": "okuma",
+      "kural": "Metinde açıkça yazmayan ama yazılanlardan mantıkla çıkan sonuç.",
+      "yapi": "'It can be inferred/understood from the text...'",
+      "ornek": {
+        "en": "There are still many unanswered questions. → Humans are still looking for answers.",
+        "tr": "Hâlâ cevaplanmamış sorular var. → İnsanlar hâlâ cevap arıyor."
+      },
+      "tuzak": "Kendi bilgini değil, sadece metni kullan. Metinde dayanağı olmayan mantıklı seçenek yanlıştır.",
+      "blok": 8,
+      "eksenler": [
+        "metinde acikca yazmayan sonuc",
+        "It can be inferred kalibi",
+        "kendi bilgini degil metni kullanma",
+        "mantikli ama dayanaksiz sik tuzagi",
+        "yazarin tutumunu sezme",
+        "asiri genelleme tuzagi"
+      ]
+    },
+    {
+      "id": "r-baglamdan-kelime",
+      "ad": "Okuma: bilinmeyen kelimeyi tahmin",
+      "seviye": "B1",
+      "tur": "okuma",
+      "kural": "Kelimenin anlamını cümlenin gerisinden çıkar. Cümlede örnek, tekrar ya da zıt anlam ipucu vardır.",
+      "yapi": "'The word ___ means...' → kelimeyi kapat, cümleyi oku, boşluğa ne yakışıyor?",
+      "ornek": {
+        "en": "our view of the world even more entwined with the stars → closely connected",
+        "tr": "dünyaya bakışımız yıldızlarla daha da iç içe → sıkı sıkıya bağlı"
+      },
+      "tuzak": "Kelimeye benzeyen seçeneği değil, cümleye oturanı seç.",
+      "blok": 8,
+      "eksenler": [
+        "kelimeyi kapatip cumleyi okuma",
+        "ornek ya da tekrar ipucu",
+        "zit anlam ipucu (but, however)",
+        "kelimeye benzeyen sik tuzagi",
+        "cumleye oturan anlami secme",
+        "tanim ipucu (that is, which means)"
+      ]
+    }
+  ]
+}

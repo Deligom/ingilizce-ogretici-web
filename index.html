@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#16233A">
+<title>Neden — İngilizce</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --murekkep:#16233A;
+  --zemin:#F6F7F9;
+  --kart:#FFFFFF;
+  --fosforlu:#FFE45C;
+  --dogru:#1F8A70;
+  --yanlis:#D93F4C;
+  --soluk:#6B7280;
+  --cizgi:#E4E7EC;
+
+  --display:"Fraunces",Georgia,serif;
+  --govde:"Instrument Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,"SF Mono",Consolas,monospace;
+
+  --bosluk:16px;
+  --yuvarlak:14px;
+}
+
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  background:var(--zemin);
+  color:var(--murekkep);
+  font-family:var(--govde);
+  font-size:16px;
+  line-height:1.55;
+  -webkit-text-size-adjust:100%;
+  padding-bottom:env(safe-area-inset-bottom);
+}
+
+/* --- iskelet --- */
+.ust{
+  position:sticky;top:0;z-index:10;
+  display:flex;align-items:center;gap:12px;
+  padding:12px var(--bosluk);
+  background:color-mix(in srgb, var(--zemin) 88%, transparent);
+  backdrop-filter:blur(8px);
+  border-bottom:1px solid var(--cizgi);
+}
+.marka{font-family:var(--display);font-weight:600;font-size:20px;letter-spacing:-.01em}
+.ust .bosluk{flex:1}
+
+main{max-width:640px;margin:0 auto;padding:var(--bosluk) var(--bosluk) 64px}
+
+h1{font-family:var(--display);font-weight:600;font-size:28px;line-height:1.2;margin:8px 0 4px;letter-spacing:-.02em}
+h2{font-family:var(--display);font-weight:600;font-size:20px;margin:28px 0 10px}
+p{margin:0 0 12px}
+.soluk{color:var(--soluk)}
+.kucuk{font-size:14px}
+
+/* --- kart --- */
+.kart{
+  background:var(--kart);
+  border:1px solid var(--cizgi);
+  border-radius:var(--yuvarlak);
+  padding:var(--bosluk);
+  margin-bottom:12px;
+}
+.kart.tiklanir{cursor:pointer;text-align:left;width:100%;font:inherit;color:inherit;display:block}
+.kart.tiklanir:hover{border-color:#C9CFD8}
+
+/* --- dugmeler --- */
+button{font:inherit;color:inherit}
+.dugme{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  min-height:48px;padding:12px 20px;
+  background:var(--murekkep);color:#fff;
+  border:none;border-radius:10px;
+  font-weight:600;cursor:pointer;
+}
+.dugme:hover{background:#20304d}
+.dugme.ikincil{background:transparent;color:var(--murekkep);border:1px solid var(--cizgi)}
+.dugme.ikincil:hover{background:#fff}
+.dugme:disabled{opacity:.45;cursor:default}
+.dugme.tam{width:100%}
+
+:focus-visible{outline:3px solid var(--murekkep);outline-offset:2px;border-radius:4px}
+
+/* --- soru --- */
+.ilerleme-cubuk{height:4px;background:var(--cizgi);border-radius:99px;overflow:hidden;margin-bottom:20px}
+.ilerleme-cubuk > i{display:block;height:100%;background:var(--murekkep);transition:width .25s ease}
+
+.sayac{font-family:var(--display);font-size:14px;color:var(--soluk);margin-bottom:8px}
+
+.parca{
+  background:var(--kart);border:1px solid var(--cizgi);border-radius:var(--yuvarlak);
+  padding:var(--bosluk);margin-bottom:14px;
+  font-family:var(--mono);font-size:14.5px;line-height:1.7;
+  max-height:38vh;overflow-y:auto;
+}
+
+.soru-metni{
+  font-family:var(--mono);font-size:17px;line-height:1.75;
+  margin:0 0 18px;
+}
+.soru-metni .bosluk-isaret{
+  background:var(--fosforlu);border-radius:3px;padding:0 6px;
+}
+
+.sik-liste{display:flex;flex-direction:column;gap:10px;margin-bottom:16px}
+.sik{
+  display:flex;align-items:center;gap:12px;
+  min-height:52px;padding:12px 14px;
+  background:var(--kart);border:1px solid var(--cizgi);border-radius:10px;
+  font-family:var(--mono);font-size:15px;text-align:left;cursor:pointer;width:100%;
+}
+.sik:hover:not(:disabled){border-color:#C9CFD8}
+.sik .harf{
+  flex:0 0 26px;height:26px;display:grid;place-items:center;
+  border:1px solid var(--cizgi);border-radius:6px;
+  font-family:var(--govde);font-size:13px;font-weight:600;color:var(--soluk);
+}
+.sik.secili{border-color:var(--murekkep)}
+.sik.dogru{border-color:var(--dogru);background:#F1F9F6}
+.sik.dogru .harf{border-color:var(--dogru);color:var(--dogru)}
+.sik.yanlis{border-color:var(--yanlis);background:#FDF2F3}
+.sik.yanlis .harf{border-color:var(--yanlis);color:var(--yanlis)}
+.sik:disabled{cursor:default}
+
+/* --- harita --- */
+.harita{display:flex;flex-direction:column;gap:10px}
+.blok{
+  display:flex;align-items:center;gap:12px;
+  padding:14px var(--bosluk);
+  background:var(--kart);border:1px solid var(--cizgi);border-radius:var(--yuvarlak);
+  width:100%;text-align:left;font:inherit;color:inherit;cursor:pointer;
+}
+.blok:disabled{cursor:default;opacity:.55}
+.blok .no{
+  flex:0 0 40px;height:40px;display:grid;place-items:center;
+  border-radius:10px;background:var(--zemin);
+  font-family:var(--display);font-size:17px;font-weight:600;
+}
+.blok.bitti .no{background:var(--murekkep);color:#fff}
+.blok .govde{flex:1;min-width:0;display:block}
+.blok .ad{display:block;font-weight:600;font-size:15px}
+.blok .alt{display:block;font-size:13px;color:var(--soluk);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+.rozet{
+  font-size:12px;font-weight:600;padding:3px 9px;border-radius:99px;
+  border:1px solid var(--cizgi);color:var(--soluk);white-space:nowrap;
+}
+.rozet.zayif{background:var(--fosforlu);border-color:#EBCB3E;color:var(--murekkep)}
+.rozet.iyi{border-color:var(--dogru);color:var(--dogru)}
+
+/* --- konu satiri (sonuc) --- */
+.konu-satir{
+  display:flex;align-items:center;gap:12px;
+  padding:12px 14px;border-bottom:1px solid var(--cizgi);
+}
+.konu-satir:last-child{border-bottom:none}
+.konu-satir .ad{flex:1;min-width:0;font-size:15px}
+.konu-satir .ad small{display:block;color:var(--soluk);font-size:12.5px}
+.konu-satir .oran{font-family:var(--display);font-weight:600;font-size:15px}
+.vurgu{background:var(--fosforlu);border-radius:3px;padding:0 4px}
+
+/* --- form --- */
+label{display:block;font-weight:600;font-size:14px;margin-bottom:6px}
+input[type=password],input[type=text]{
+  width:100%;min-height:48px;padding:12px 14px;
+  border:1px solid var(--cizgi);border-radius:10px;background:var(--kart);
+  font-family:var(--mono);font-size:15px;color:inherit;
+}
+.satir{display:flex;gap:10px;flex-wrap:wrap}
+
+.bildirim{padding:12px 14px;border-radius:10px;font-size:14.5px;margin-bottom:12px}
+.bildirim.ok{background:#F1F9F6;border:1px solid #BFE3D7;color:#14614E}
+.bildirim.hata{background:#FDF2F3;border:1px solid #F3C6CA;color:#9B2B36}
+
+.bos{
+  text-align:center;padding:40px 20px;color:var(--soluk);
+}
+
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+}
+</style>
+</head>
+<body>
+<header class="ust">
+  <span class="marka">Neden</span>
+  <span class="bosluk"></span>
+  <a href="#/" class="dugme ikincil" style="min-height:44px;padding:10px 14px;text-decoration:none">Ana sayfa</a>
+  <a href="#/ayarlar" class="dugme ikincil" style="min-height:44px;padding:10px 14px;text-decoration:none">Ayarlar</a>
+</header>
+<main id="ekran"><p class="soluk">Yükleniyor…</p></main>
+<script type="module" src="./app.js"></script>
+</body>
+</html>
