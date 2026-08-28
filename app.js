@@ -91,12 +91,24 @@ function aciklamaKarti(a) {
   </div>`;
 }
 
+// Model bazen markdown yaziyor. Once HTML kacisi yapariz (guvenlik), sonra
+// yalnizca iki isareti ceviririz: **kalin** ve satir basindaki * madde imi.
+function sohbetMetni(metin) {
+  return kacis(metin)
+    .replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>")
+    .replace(/^\s*\*\s+/gm, "• ");
+}
+
+const mesajHtml = (m) =>
+  `<div class="mesaj ${m.rol === "kullanici" ? "kullanici" : "ai"}">${
+    m.rol === "kullanici" ? kacis(m.metin) : sohbetMetni(m.metin)}</div>`;
+
 function sohbetKarti(mesajlar) {
   return `<div class="sohbet">
     <div class="mesajlar">
       ${mesajlar.length === 0
         ? `<p class="kucuk soluk" style="margin:0">Anlamadığın bir yer varsa sor — bu soru bağlamında cevaplar.</p>`
-        : mesajlar.map(m => `<div class="mesaj ${m.rol === "kullanici" ? "kullanici" : "ai"}">${kacis(m.metin)}</div>`).join("")}
+        : mesajlar.map(mesajHtml).join("")}
     </div>
     <textarea class="sohbet-girdi" rows="2" placeholder="Peki neden 'is' değil de 'are'?"></textarea>
     <div class="satir" style="margin-top:8px">
@@ -145,8 +157,7 @@ function sohbetBagla(kap, soru, secilen, konu) {
     girdi.value = "";
     dugme.disabled = true;
     const kutu = kap.querySelector(".mesajlar");
-    kutu.innerHTML = mesajlar.map(m =>
-      `<div class="mesaj ${m.rol === "kullanici" ? "kullanici" : "ai"}">${kacis(m.metin)}</div>`).join("")
+    kutu.innerHTML = mesajlar.map(mesajHtml).join("")
       + `<p class="yukleniyor" style="margin:0">Yazıyor</p>`;
     kutu.lastElementChild.scrollIntoView({ block: "nearest" });
 
@@ -161,8 +172,7 @@ function sohbetBagla(kap, soru, secilen, konu) {
       const cevap = await aiCagir(a => soruSor(a, baglam, mesajlar));
       mesajlar.push({ rol: "ai", metin: cevap.trim() });
       await db.sohbetYaz(soru.id, mesajlar);
-      kutu.innerHTML = mesajlar.map(m =>
-        `<div class="mesaj ${m.rol === "kullanici" ? "kullanici" : "ai"}">${kacis(m.metin)}</div>`).join("");
+      kutu.innerHTML = mesajlar.map(mesajHtml).join("");
     } catch (hata) {
       mesajlar.pop();                 // gonderilemeyen mesaj gecmise girmesin
       girdi.value = metin;             // yazdigi kaybolmasin, tekrar deneyebilsin
