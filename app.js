@@ -69,6 +69,7 @@ async function zayifKonular() {
 // Anahtar bossa ai.js proxy'ye gider; kullanicinin bir sey yapmasina gerek yok.
 async function aiCagir(isle) {
   const anahtar = await db.ayarOku("apiKey", "");
+  ai.modelSec(await db.ayarOku("model", ai.VARSAYILAN_MODEL));
   const sonuc = await isle(anahtar);
   await db.kotaArtir();
   return sonuc;
@@ -138,6 +139,7 @@ function sohbetKarti(mesajlar, oneriler) {
 // Bir yanlis cevap icin aciklamayi acar: once cache, yoksa AI, sonra sohbet.
 async function nedenAc(kap, soru, secilen, konu) {
   const oneriAcik = await db.ayarOku("oneriler", true);
+  const secilenModel = await db.ayarOku("model", ai.VARSAYILAN_MODEL);
 
   const cizAciklama = (a, mesajlar) => {
     kap.innerHTML = aciklamaKarti(a) +
@@ -735,6 +737,16 @@ async function ayarlarEkrani(sekme = "basit") {
     </div>
 
     <div class="kart">
+      <label for="model">Yapay zekâ modeli</label>
+      <select id="model">
+        ${ai.MODELLER.map(m => `<option value="${m.ad}" ${m.ad === secilenModel ? "selected" : ""}>${m.baslik}</option>`).join("")}
+      </select>
+      <p class="kucuk soluk" style="margin:10px 0 0">
+        ${ai.MODELLER.map(m => `<strong>${m.baslik}:</strong> ${m.aciklama}`).join("<br>")}
+      </p>
+    </div>
+
+    <div class="kart">
       <label for="hedef">Günlük hedef (soru)</label>
       <input id="hedef" type="text" inputmode="numeric" value="${Number(hedef)}">
       <p class="kucuk soluk" style="margin:10px 0 0">Bugünün kuyruğu bu sayı kadar soru getirir.</p>
@@ -846,6 +858,10 @@ async function ayarlarEkrani(sekme = "basit") {
     await db.ayarYaz("apiKey", "");
     ekran.querySelector("#anahtar").value = "";
     goster("ok", "Anahtar silindi.");
+  });
+
+  ekran.querySelector("#model").addEventListener("change", (e) => {
+    db.ayarYaz("model", e.target.value);
   });
 
   ekran.querySelector("#oneriler").addEventListener("change", (e) => {

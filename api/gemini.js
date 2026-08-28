@@ -5,7 +5,7 @@
 //   GEMINI_API_KEY  (zorunlu)  Vercel panelinden eklenir, repoya yazilmaz.
 //   GUNLUK_SINIR    (istege bagli, varsayilan 100) IP basina gunluk istek.
 
-const MODEL = "gemini-2.5-flash";
+const MODEL = "gemini-3.5-flash";
 const KOK = "https://generativelanguage.googleapis.com/v1beta/models/";
 const GUNLUK_SINIR = Number(process.env.GUNLUK_SINIR || 100);
 const EN_BUYUK_GOVDE = 60000;      // karakter

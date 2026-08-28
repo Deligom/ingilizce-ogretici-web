@@ -1,6 +1,27 @@
 // Gemini istemcisi. Tum yapilandirilmis cagrilar responseSchema ile JSON doner.
-const MODEL = "gemini-2.5-flash";
 const KOK = "https://generativelanguage.googleapis.com/v1beta/models/";
+
+// Kullaniciya sunulan iki model. Ayarlar'dan secilir, secim IndexedDB'de durur.
+export const MODELLER = [
+  {
+    ad: "gemini-3.5-flash",
+    baslik: "Gemini 3.5 Flash",
+    aciklama: "Daha iyi anlatım. Açıklamalar ve soru üretimi için önerilir."
+  },
+  {
+    ad: "gemini-3.1-flash-lite",
+    baslik: "Gemini 3.1 Flash Lite",
+    aciklama: "Daha hızlı ve hafif. Kota sıkışınca ya da hız istediğinde."
+  }
+];
+export const VARSAYILAN_MODEL = MODELLER[0].ad;
+
+// app.js her cagridan once ayarlardaki secimi buraya yazar.
+let secilenModel = VARSAYILAN_MODEL;
+export function modelSec(ad) {
+  secilenModel = MODELLER.some(m => m.ad === ad) ? ad : VARSAYILAN_MODEL;
+}
+export const modelAdi = () => secilenModel;
 
 export class AiHata extends Error {
   constructor(mesaj, kod) { super(mesaj); this.kod = kod; }
@@ -32,12 +53,13 @@ async function cagir(anahtar, govde) {
   const proxy = !anahtar;
   let yanit;
   try {
-    yanit = await fetch(proxy ? PROXY_YOLU : KOK + MODEL + ":generateContent", {
+    yanit = await fetch(proxy ? PROXY_YOLU : KOK + secilenModel + ":generateContent", {
       method: "POST",
       headers: proxy
         ? { "Content-Type": "application/json" }
         : { "Content-Type": "application/json", "x-goog-api-key": anahtar },
-      body: JSON.stringify(govde)
+      // Proxy modelini govdeden ogrenir; kendi anahtarinda model URL'de gider.
+      body: JSON.stringify(proxy ? { ...govde, model: secilenModel } : govde)
     });
   } catch {
     throw new AiHata("İnternete ulaşılamadı. Bağlantını kontrol et.", "ag");
