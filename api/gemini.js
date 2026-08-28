@@ -9,7 +9,10 @@ const MODEL = "gemini-2.5-flash";
 const KOK = "https://generativelanguage.googleapis.com/v1beta/models/";
 const GUNLUK_SINIR = Number(process.env.GUNLUK_SINIR || 100);
 const EN_BUYUK_GOVDE = 60000;      // karakter
-const EN_COK_TOKEN = 2048;
+// gemini-2.5-flash dusunen bir model: cevap yazmadan once "dusunme" tokeni
+// harcar ve bu da bu butceden duser. Tavan dar olursa cevap bos doner
+// (finishReason: MAX_TOKENS). Uretimde 10 soru istenebiliyor, genis tutuyoruz.
+const EN_COK_TOKEN = 8192;
 
 // DIKKAT: bu sayac sunucu ornegi bellegindedir. Vercel yeni bir ornek
 // baslattiginda sifirlanir ve ornekler arasinda paylasilmaz, yani kesin bir

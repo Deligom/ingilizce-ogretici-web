@@ -278,7 +278,7 @@ Konu: ${baglam.konuAd} — ${baglam.konuKural}
 export async function anahtarTest(anahtar) {
   const metin = await cagir(anahtar, {
     contents: [{ parts: [{ text: "Sadece 'tamam' yaz." }] }],
-    generationConfig: { maxOutputTokens: 16, temperature: 0 }
+    generationConfig: { maxOutputTokens: 256, temperature: 0 }
   });
   return metin.trim();
 }
