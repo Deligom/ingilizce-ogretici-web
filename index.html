@@ -182,6 +182,51 @@ input[type=password],input[type=text]{
   text-align:center;padding:40px 20px;color:var(--soluk);
 }
 
+/* --- aciklama karti --- */
+.aciklama{
+  border-left:3px solid var(--fosforlu);
+  padding-left:14px;margin-top:14px;
+}
+.aciklama .bolum{margin-bottom:14px}
+.aciklama .bolum:last-child{margin-bottom:0}
+.aciklama .etiket{
+  display:block;font-size:11.5px;font-weight:600;color:var(--soluk);
+  text-transform:uppercase;letter-spacing:.06em;margin-bottom:3px;
+}
+.aciklama .govde{font-size:14.5px;line-height:1.6}
+.aciklama .kural-metni{font-size:15px;line-height:1.65}
+
+.benzer{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
+.benzer li{
+  font-family:var(--mono);font-size:14px;line-height:1.6;
+  background:var(--zemin);border-radius:8px;padding:9px 12px;
+}
+.benzer .cevap{
+  background:var(--fosforlu);border-radius:3px;padding:0 5px;margin-left:6px;
+  font-weight:500;cursor:pointer;
+}
+.benzer .cevap.gizli{background:var(--cizgi);color:transparent;user-select:none}
+
+/* --- sohbet --- */
+.sohbet{margin-top:16px;border-top:1px solid var(--cizgi);padding-top:14px}
+.mesajlar{display:flex;flex-direction:column;gap:10px;margin-bottom:12px}
+.mesaj{font-size:14.5px;line-height:1.6;padding:10px 13px;border-radius:12px;max-width:88%;white-space:pre-wrap}
+.mesaj.kullanici{align-self:flex-end;background:var(--murekkep);color:#fff;border-bottom-right-radius:4px}
+.mesaj.ai{align-self:flex-start;background:var(--zemin);border-bottom-left-radius:4px}
+
+textarea{
+  width:100%;min-height:48px;padding:12px 14px;resize:vertical;
+  border:1px solid var(--cizgi);border-radius:10px;background:var(--kart);
+  font-family:inherit;font-size:15px;line-height:1.5;color:inherit;
+}
+
+.yukleniyor{color:var(--soluk);font-size:14px}
+.yukleniyor::after{
+  content:"";display:inline-block;width:1em;text-align:left;
+  animation:nokta 1.2s steps(4,end) infinite;
+}
+@keyframes nokta{0%{content:""}25%{content:"."}50%{content:".."}75%{content:"..."}}
+
 @media (prefers-reduced-motion:reduce){
   *{animation:none!important;transition:none!important}
 }

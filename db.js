@@ -54,6 +54,35 @@ export async function ilerlemeYaz(konuId, veri) {
   return yaz("ilerleme", konuId, veri);
 }
 
+// --- gunluk kota sayaci ---
+// Bedava kredi sinirli; kac istek attigimizi kullaniciya gosterebilmek icin sayariz.
+function bugun() { return new Date().toISOString().slice(0, 10); }
+
+export async function kotaOku() {
+  const k = (await oku("ayarlar", "kota")) || { tarih: bugun(), sayi: 0 };
+  return k.tarih === bugun() ? k : { tarih: bugun(), sayi: 0 };
+}
+
+export async function kotaArtir() {
+  const k = await kotaOku();
+  k.sayi++;
+  await yaz("ayarlar", "kota", k);
+  return k;
+}
+
+// --- aciklama ve sohbet ---
+// Aciklama secilen sikka bagli: ayni soruda farkli sik secilirse farkli anlatim gerekir.
+export const aciklamaAnahtari = (soruId, secilen) => `${soruId}:${secilen}`;
+
+export const aciklamaOku = (soruId, secilen) =>
+  oku("aciklamalar", aciklamaAnahtari(soruId, secilen));
+
+export const aciklamaYaz = (soruId, secilen, veri) =>
+  yaz("aciklamalar", aciklamaAnahtari(soruId, secilen), veri);
+
+export const sohbetOku = async (soruId) => (await oku("sohbetler", soruId)) || [];
+export const sohbetYaz = (soruId, mesajlar) => yaz("sohbetler", soruId, mesajlar);
+
 // --- teshis bloklari ---
 export async function blokOku(no) {
   return (await oku("teshis", no)) || { durum: "baslamadi", sonSoruIndex: 0, cevaplar: [] };

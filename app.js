@@ -1,6 +1,6 @@
 // Yonlendirme (hash router) ve gorunum montaji.
 import * as db from "./db.js";
-import { anahtarTest, AiHata } from "./ai.js";
+import { anahtarTest, aciklaSoru, soruSor, AiHata } from "./ai.js";
 
 const ekran = document.getElementById("ekran");
 const BLOK_SAYISI = 8;
@@ -59,6 +59,126 @@ async function zayifKonular() {
     .filter(([, v]) => v.zayif)
     .map(([id, v]) => ({ konu: konuHarita.get(id), ...v }))
     .filter(x => x.konu);
+}
+
+// ---------- "Neden?" katmani ----------
+// Her AI cagrisi bedava krediden yer; sayaci burada tek yerden artiririz.
+async function aiCagir(isle) {
+  const anahtar = await db.ayarOku("apiKey", "");
+  if (!anahtar) throw new AiHata("Önce Ayarlar'dan Gemini anahtarını gir.", "anahtaryok");
+  const sonuc = await isle(anahtar);
+  await db.kotaArtir();
+  return sonuc;
+}
+
+function aciklamaKarti(a) {
+  const bolum = (etiket, icerik, sinif = "govde") =>
+    icerik ? `<div class="bolum"><span class="etiket">${etiket}</span>
+      <div class="${sinif}">${kacis(icerik)}</div></div>` : "";
+
+  return `<div class="aciklama">
+    ${bolum("Doğrusu", a.dogruSik + " — " + a.neden)}
+    ${bolum("Kural", a.kural, "kural-metni")}
+    ${bolum("Türkçeyle", a.turkceKarsilastirma)}
+    ${bolum("Senin şıkkın", a.secilenNesiYanlis)}
+    ${bolum("Tuzak", a.tuzak)}
+    ${a.benzerCumleler?.length ? `<div class="bolum">
+      <span class="etiket">Benzer 5 cümle — cevabı görmek için dokun</span>
+      <ul class="benzer">
+        ${a.benzerCumleler.map(c => `<li>${kacis(c.cumle)}
+          <span class="cevap gizli">${kacis(c.cevap)}</span></li>`).join("")}
+      </ul></div>` : ""}
+  </div>`;
+}
+
+function sohbetKarti(mesajlar) {
+  return `<div class="sohbet">
+    <div class="mesajlar">
+      ${mesajlar.length === 0
+        ? `<p class="kucuk soluk" style="margin:0">Anlamadığın bir yer varsa sor — bu soru bağlamında cevaplar.</p>`
+        : mesajlar.map(m => `<div class="mesaj ${m.rol === "kullanici" ? "kullanici" : "ai"}">${kacis(m.metin)}</div>`).join("")}
+    </div>
+    <textarea class="sohbet-girdi" rows="2" placeholder="Peki neden 'is' değil de 'are'?"></textarea>
+    <div class="satir" style="margin-top:8px">
+      <button class="dugme sohbet-gonder" style="min-height:44px;padding:10px 18px">Sor</button>
+    </div>
+  </div>`;
+}
+
+// Bir yanlis cevap icin aciklamayi acar: once cache, yoksa AI, sonra sohbet.
+async function nedenAc(kap, soru, secilen, konu) {
+  const cizAciklama = (a, mesajlar) => {
+    kap.innerHTML = aciklamaKarti(a) + sohbetKarti(mesajlar);
+    kap.querySelectorAll(".benzer .cevap").forEach(e =>
+      e.addEventListener("click", () => e.classList.toggle("gizli")));
+    sohbetBagla(kap, soru, secilen, konu);
+  };
+
+  let aciklama = await db.aciklamaOku(soru.id, secilen);
+  if (!aciklama) {
+    kap.innerHTML = `<p class="yukleniyor" style="margin:14px 0 0">Açıklama hazırlanıyor</p>`;
+    try {
+      aciklama = await aiCagir(a => aciklaSoru(a, soru, secilen, konu));
+      await db.aciklamaYaz(soru.id, secilen, aciklama);
+    } catch (hata) {
+      kap.innerHTML = `<div class="bildirim hata" style="margin:14px 0 0">${kacis(hata.message)}</div>
+        ${hata.kod === "anahtaryok" ? `<a class="dugme ikincil" href="#/ayarlar" style="text-decoration:none">Ayarlar'a git</a>` : ""}`;
+      return;
+    }
+  }
+  cizAciklama(aciklama, await db.sohbetOku(soru.id));
+}
+
+function sohbetBagla(kap, soru, secilen, konu) {
+  const girdi = kap.querySelector(".sohbet-girdi");
+  const dugme = kap.querySelector(".sohbet-gonder");
+  if (!girdi || !dugme) return;
+
+  async function gonder() {
+    const metin = girdi.value.trim();
+    if (!metin) return;
+    // Mesaj once ekranda gorunur ama diske yalnizca cevap gelince yazilir:
+    // cevapsiz kalan kullanici mesaji gecmisi bozar (art arda iki kullanici sirasi).
+    const mesajlar = await db.sohbetOku(soru.id);
+    mesajlar.push({ rol: "kullanici", metin });
+
+    girdi.value = "";
+    dugme.disabled = true;
+    const kutu = kap.querySelector(".mesajlar");
+    kutu.innerHTML = mesajlar.map(m =>
+      `<div class="mesaj ${m.rol === "kullanici" ? "kullanici" : "ai"}">${kacis(m.metin)}</div>`).join("")
+      + `<p class="yukleniyor" style="margin:0">Yazıyor</p>`;
+    kutu.lastElementChild.scrollIntoView({ block: "nearest" });
+
+    try {
+      const baglam = {
+        soru: soru.soru, metin: soru.metin,
+        secenekler: soru.secenekler,
+        dogru: soru.secenekler[soru.cevap],
+        secilen: soru.secenekler[secilen],
+        konuAd: konu.ad, konuKural: konu.kural
+      };
+      const cevap = await aiCagir(a => soruSor(a, baglam, mesajlar));
+      mesajlar.push({ rol: "ai", metin: cevap.trim() });
+      await db.sohbetYaz(soru.id, mesajlar);
+      kutu.innerHTML = mesajlar.map(m =>
+        `<div class="mesaj ${m.rol === "kullanici" ? "kullanici" : "ai"}">${kacis(m.metin)}</div>`).join("");
+    } catch (hata) {
+      mesajlar.pop();                 // gonderilemeyen mesaj gecmise girmesin
+      girdi.value = metin;             // yazdigi kaybolmasin, tekrar deneyebilsin
+      kutu.querySelector(".yukleniyor")?.remove();
+      kutu.insertAdjacentHTML("beforeend",
+        `<div class="bildirim hata" style="margin:0">${kacis(hata.message)}</div>`);
+    } finally {
+      dugme.disabled = false;
+      kutu.lastElementChild?.scrollIntoView({ block: "nearest" });
+    }
+  }
+
+  dugme.addEventListener("click", gonder);
+  girdi.addEventListener("keydown", (e) => {
+    if (e.key === "Enter" && (e.ctrlKey || e.metaKey)) { e.preventDefault(); gonder(); }
+  });
 }
 
 // ---------- gorunumler ----------
@@ -268,7 +388,9 @@ async function sonucEkrani(no) {
           <span style="font-family:var(--mono)"><span class="vurgu">${kacis(s.secenekler[s.cevap])}</span></span></p>
         ${s.neden ? `<p class="kucuk" style="margin:0">${kacis(s.neden)}</p>` : ""}
         ${celdirici ? `<p class="kucuk soluk" style="margin:8px 0 0">${kacis(celdirici)}</p>` : ""}
-        ${!s.neden ? `<p class="kucuk soluk" style="margin:8px 0 0">Ayrıntılı açıklama "Neden?" katmanıyla gelecek (Faz 2).</p>` : ""}
+        <button class="dugme ikincil neden-dugme" data-soru="${kacis(s.id)}" data-secilen="${c.secilen}"
+                style="min-height:44px;padding:10px 18px;margin-top:12px">Neden?</button>
+        <div class="neden-alani"></div>
       </div>`;
     }).join("")}
 
@@ -277,12 +399,30 @@ async function sonucEkrani(no) {
       <a class="dugme ikincil" href="#/" style="text-decoration:none">Ana sayfa</a>
     </div>
   `;
+
+  // "Neden?" dugmeleri: cache'te aciklama varsa aninda acilir, yoksa AI'ya gider.
+  for (const dugme of ekran.querySelectorAll(".neden-dugme")) {
+    const soru = soruHarita.get(dugme.dataset.soru);
+    const secilen = Number(dugme.dataset.secilen);
+    const kap = dugme.nextElementSibling;
+
+    if (await db.aciklamaOku(soru.id, secilen)) dugme.textContent = "Neden? (hazır)";
+
+    dugme.addEventListener("click", async () => {
+      if (kap.innerHTML) { kap.innerHTML = ""; dugme.textContent = "Neden?"; return; }
+      dugme.textContent = "Gizle";
+      await nedenAc(kap, soru, secilen, konuHarita.get(soru.konu));
+    });
+  }
+
   window.scrollTo(0, 0);
 }
 
 async function ayarlarEkrani() {
   const anahtar = await db.ayarOku("apiKey", "");
   const hedef = await db.ayarOku("gunlukHedef", 10);
+  const kota = await db.kotaOku();
+  const aciklamaSayisi = (await db.ciftler("aciklamalar")).length;
 
   ekran.innerHTML = `
     <h1>Ayarlar</h1>
@@ -306,10 +446,22 @@ async function ayarlarEkrani() {
       <p class="kucuk soluk" style="margin:10px 0 0">Alıştırma kuyruğu Faz 3'te bu sayıyı kullanacak.</p>
     </div>
 
+    <h2>Kullanım</h2>
+    <div class="kart">
+      <p style="margin:0 0 4px"><strong>${kota.sayi}</strong> AI isteği <span class="soluk">— bugün</span></p>
+      <p class="kucuk soluk" style="margin:0">
+        Önbellekte <strong>${aciklamaSayisi}</strong> açıklama var; bunlar tekrar açıldığında
+        istek harcamıyor ve çevrimdışı da çalışıyor.
+      </p>
+    </div>
+
     <h2>Veri</h2>
     <div class="kart">
       <p class="kucuk soluk" style="margin-bottom:12px">Tüm ilerlemeyi ve blok cevaplarını siler. Soru bankası korunur.</p>
-      <button class="dugme ikincil" id="sifirla">İlerlemeyi sıfırla</button>
+      <div class="satir">
+        <button class="dugme ikincil" id="sifirla">İlerlemeyi sıfırla</button>
+        <button class="dugme ikincil" id="cache-sil">Açıklama önbelleğini sil</button>
+      </div>
     </div>
   `;
 
@@ -349,6 +501,13 @@ async function ayarlarEkrani() {
     await db.bosalt("teshis");
     await db.bosalt("ilerleme");
     goster("ok", "İlerleme sıfırlandı.");
+  });
+
+  ekran.querySelector("#cache-sil").addEventListener("click", async () => {
+    if (!confirm("Kayıtlı açıklamalar ve sohbetler silinecek; tekrar açmak kota harcar. Emin misin?")) return;
+    await db.bosalt("aciklamalar");
+    await db.bosalt("sohbetler");
+    goster("ok", "Önbellek temizlendi.");
   });
 }
 

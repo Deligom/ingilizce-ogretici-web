@@ -27,14 +27,16 @@
 - [x] Mobil doğrulandı: 375px'te yatay kaydırma yok, dokunma hedefleri ≥44px
 - **Bitti sayılır:** ilk bloğu çözüp 6 dakikada çalışmaya başlayabiliyorum. ✅
 
-## Faz 2 — "Neden?" katmanı
-- [ ] `ai.js`: Gemini istemcisi, `responseSchema`, hata/kota yönetimi, kota sayacı
-- [ ] `aciklaSoru` + açıklama kartı (kısa cevap → kural → Türkçe karşılaştırma → tuzak)
-- [ ] Bankadaki `neden` ve `celdiriciler` alanları önce gösterilir; AI sadece
-      kullanıcı derinleşmek isteyince çağrılır (kota tasarrufu)
-- [ ] Açıklama cache'i (`aciklamalar` store)
-- [ ] Serbest sohbet: açıklamanın altından devam eden soru-cevap, `sohbetler` store
-- **Bitti sayılır:** yanlış yaptığım her soruda "neden?" deyip tatmin olana kadar sorabiliyorum.
+## Faz 2 — "Neden?" katmanı ✅ BİTTİ
+- [x] `ai.js`: Gemini istemcisi, `responseSchema`, hata/kota yönetimi, günlük kota sayacı
+- [x] `aciklaSoru` + açıklama kartı: doğrusu → kural → Türkçeyle → senin şıkkın → tuzak
+- [x] Benzer 5 cümle: dokununca cevabı açılan fosforlu kutular
+- [x] Açıklama cache'i (`aciklamalar` store), anahtar `soruId:secilenSik` —
+      aynı soruda farklı şık farklı anlatım ister. Cache'teki açıklama kota harcamaz.
+- [x] Serbest sohbet: soru bağlamıyla devam eden soru-cevap, `sohbetler` store
+- [x] Gönderilemeyen mesaj geçmişe yazılmaz, girdide kalır (tekrar denenebilir)
+- [x] Ayarlar'da kullanım kartı: bugünkü istek sayısı + önbellekteki açıklama sayısı
+- **Bitti sayılır:** yanlış yaptığım her soruda "neden?" deyip tatmin olana kadar sorabiliyorum. ✅
 
 ## Faz 3 — Alıştırma, tekrar ve soru üretimi
 - [ ] `tekrar.js`: kutu sistemi, `sonrakiTarih` hesabı, günlük kuyruk

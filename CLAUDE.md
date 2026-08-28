@@ -23,7 +23,7 @@ Seviye hedefi: A1 → B1 (lise müfredatı + üniversite seviye tespit sınavı)
 - **Müfredatı AI üretmez.** Konu ağacı sabit JSON. AI sadece *anlatım, soru üretimi
   ve sohbet* katmanı — ne öğrenileceğine değil, nasıl anlatılacağına karışır.
 - **Soru bankası üç katmanlı** (`data/sorular.json` + IndexedDB):
-  `aybu` (100 gerçek sınav sorusu) · `tohum` (55 el yazımı soru, her konuyu 3'e çıkarır) ·
+  `aybu` (100 gerçek sınav sorusu) · `tohum` (82 el yazımı soru, her konuda üç aşamayı doldurur) ·
   `ai` (kullanıcının kendi kotasıyla ürettiği, onaydan geçmiş sorular).
   Uygulama ilk günden soru üretmeden çalışır; üretim bankayı büyütmek içindir.
 - **Cache önce.** Aynı kelime/aynı soru için ikinci kez API'ye gidilmez;
@@ -57,9 +57,9 @@ sw.js, manifest.json  PWA
 | `teshis` | blokNo | `durum` (kilitli/devam/bitti), `sonSoruIndex`, `cevaplar[]` |
 | `hatalar` | otomatik | `soruId`, `konuId`, `secilen`, `tarih`, `cozuldu` |
 | `sozluk` | kelime | `anlam`, `tur`, `ornek`, `tarih` |
-| `aciklamalar` | soruId | AI'nın döndürdüğü açıklama JSON'u |
+| `aciklamalar` | `soruId:secilenSik` | AI'nın döndürdüğü açıklama JSON'u |
 | `sohbetler` | soruId | `mesajlar[]` (rol, metin) |
-| `ayarlar` | anahtar | `apiKey`, `gunlukHedef`, `uretimAdedi` (3-10), `otomatikOnay`, `zorlukTercihi` |
+| `ayarlar` | anahtar | `apiKey`, `gunlukHedef`, `uretimAdedi` (3-10), `otomatikOnay`, `zorlukTercihi`, `kota` |
 
 ## Aşama sistemi (zorluk 1-3)
 
@@ -123,8 +123,8 @@ Kullanıcı metin yapıştırır ya da sınav parçalarından seçer.
 
 Dördü de `responseSchema` ile JSON döner:
 
-1. `aciklaSoru(soru, secilenSik)` →
-   `{ dogruSik, neden, kural, turkceKarsilastirma, benzerCumleler: [5] }`
+1. `aciklaSoru(soru, secilenSik, konuKarti)` → `{ dogruSik, neden, kural,
+   turkceKarsilastirma, secilenNesiYanlis, tuzak, benzerCumleler: [{cumle, cevap}] }`
 2. `kelimeAnlami(kelime, cumle)` → `{ anlam, tur, cumledekiRol, ornek }`
 3. `cumleParcala(cumle)` → `{ parcalar: [{ metin, rol, aciklama }] }`
 4. `uretSorular(konuKarti, eksenler, ornekSorular, mevcutCumleler, adet, zorluk)` →
@@ -206,18 +206,15 @@ Boş ekran davet eder: "Henüz hata yok. Teşhis testini çözünce burası dola
 
 ## Şu an nerede
 
-**Faz 0 bitti.** Veri katmanı hazır ve doğrulandı:
+**Faz 0, 1 ve 2 bitti.** Uygulama yayında:
+https://deligom.github.io/ingilizce-ogretici-web/
 
-- `data/konular.json` — 39 konu, düzgün Türkçe metinler, `blok` 1-8, 235 çeşitlilik ekseni
-- `data/sorular.json` — 182 soru: 100 AYBU (aşama 1) + 82 tohum (aşama 2-3).
-  Her konuda üç aşamanın da en az bir sorusu var.
-- Doğrulama temiz: kırık konu referansı, tekrarlı id, geçersiz cevap indeksi,
-  eksik gerekçe ya da eksik çeldirici yok.
+- Veri: 39 konu, 235 eksen, 182 soru (100 aybu + 82 tohum), üç zorluk aşaması
+- Teşhis: 8 blok, yarıda bırak-devam et, zayıf konu haritası
+- "Neden?": açıklama kartı + benzer 5 cümle + serbest sohbet, hepsi önbellekli
 
-**Faz 1 bitti.** Uygulama çalışıyor: `index.html` + `app.js` (hash router) +
-`db.js` (IndexedDB) + `ai.js` (şimdilik yalnızca anahtar testi). Bloklu teşhis,
-yarıda bırak-devam et, sonuç haritası ve zayıf konu kuyruğu ayakta. Mobil
-doğrulandı. Yayın hedefi GitHub Pages — tüm yollar göreli, `file://` desteklenmez.
+Yayın GitHub Pages'ten; public depo `Deligom/ingilizce-ogretici-web`, yerel dal
+`yayin`. Tüm yollar göreli; `file://` desteklenmez.
 
-Sırada `ROADMAP.md` **Faz 2** var: `ai.js`'e `aciklaSoru`, açıklama kartı,
-`aciklamalar` cache'i ve serbest sohbet.
+Sırada **Faz 3** var: `tekrar.js` kutu sistemi, konu kartı ekranı, günlük alıştırma
+kuyruğu ve soru üretimi (slider + onay kuyruğu).
