@@ -25,6 +25,10 @@
 - [x] Yarıda bırak-devam et: `sonSoruIndex` ile kaldığı sorudan devam
 - [x] Sonuç ekranı: konu bazında oran + yanlışların doğru cevabı ve gerekçesi
 - [x] Mobil doğrulandı: 375px'te yatay kaydırma yok, dokunma hedefleri ≥44px
+- [x] **Bilmiyorum düğmesi:** teşhiste tahmin etmek yerine bilmediğini söyleyebilirsin.
+      Şans eseri tutturulan soru konuyu yanlışlıkla "biliniyor" göstermesin diye.
+- [x] **Sayfalı yanlış incelemesi:** her ekranda tek soru, ileri/geri, ilerleme çubuğu.
+      Uzun kaydırmada yerini kaybetme sorunu çözüldü; index hash'te, geri tuşu çalışıyor.
 - **Bitti sayılır:** ilk bloğu çözüp 6 dakikada çalışmaya başlayabiliyorum. ✅
 
 ## Faz 2 — "Neden?" katmanı ✅ BİTTİ

@@ -95,15 +95,22 @@ const SEMA_ACIKLAMA = {
   required: ["dogruSik", "neden", "kural", "turkceKarsilastirma", "secilenNesiYanlis", "tuzak", "benzerCumleler"]
 };
 
+// secilenIndex null ise ogrenci tahmin etmek yerine "bilmiyorum" demistir:
+// sasirdigi bir sik yok, o yuzden en cazip celdiriciyi ele almasini isteriz.
 export function aciklaSoru(anahtar, soru, secilenIndex, konu) {
+  const bilmiyor = secilenIndex === null || secilenIndex === undefined;
   const siklar = soru.secenekler.map((o, i) => `${i === soru.cevap ? "✓" : " "} ${o}`).join("\n");
-  const istek = `Öğrenci bu soruyu yanlış yaptı.
+  const istek = `${bilmiyor
+    ? "Öğrenci bu soruyu hiç bilmediğini söyledi ve boş bıraktı; tahmin etmedi.\nBu yüzden konuyu sıfırdan anlat."
+    : "Öğrenci bu soruyu yanlış yaptı."}
 
 ${soru.metin ? "Metin:\n" + soru.metin + "\n\n" : ""}Soru: ${soru.soru}
 Şıklar:
 ${siklar}
 Doğru şık: ${soru.secenekler[soru.cevap]}
-Öğrencinin seçtiği: ${soru.secenekler[secilenIndex]}
+${bilmiyor
+  ? "Öğrencinin cevabı: yok (bilmiyorum dedi). secilenNesiYanlis alanına, bu soruda\nen çok kandıran şıkkın hangisi olduğunu ve neden yanlış olduğunu yaz."
+  : "Öğrencinin seçtiği: " + soru.secenekler[secilenIndex]}
 
 Konu kartı:
 - Konu: ${konu.ad}

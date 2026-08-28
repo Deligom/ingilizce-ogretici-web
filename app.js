@@ -155,7 +155,7 @@ function sohbetBagla(kap, soru, secilen, konu) {
         soru: soru.soru, metin: soru.metin,
         secenekler: soru.secenekler,
         dogru: soru.secenekler[soru.cevap],
-        secilen: soru.secenekler[secilen],
+        secilen: secilen === null ? "(bilmiyorum dedi)" : soru.secenekler[secilen],
         konuAd: konu.ad, konuKural: konu.kural
       };
       const cevap = await aiCagir(a => soruSor(a, baglam, mesajlar));
@@ -273,9 +273,14 @@ async function blokEkrani(no) {
       </div>
       <div class="satir">
         <button class="dugme" id="ileri" disabled>${i === sorular.length - 1 ? "Bitir ve haritayı gör" : "Sonraki soru"}</button>
-        <button class="dugme ikincil" id="cik">Sonra devam ederim</button>
+        <button class="dugme ikincil" id="bilmiyorum">Bilmiyorum</button>
       </div>
-      <p class="kucuk soluk" style="margin-top:14px">Bu bir teşhis; doğru cevabı ve açıklamaları blok bitince topluca göreceksin.</p>
+      <p class="kucuk soluk" style="margin-top:14px">
+        Emin değilsen tahmin etme, <strong>Bilmiyorum</strong> de — şans eseri tutturduğun soru
+        haritanı bozar, o konuyu biliyor sayarız.
+      </p>
+      <p style="margin-top:10px"><button class="dugme ikincil" id="cik"
+        style="min-height:44px;padding:10px 18px">Sonra devam ederim</button></p>
     `;
 
     ekran.querySelectorAll(".sik").forEach(d => d.addEventListener("click", () => {
@@ -285,13 +290,21 @@ async function blokEkrani(no) {
       ekran.querySelector("#ileri").disabled = false;
     }));
 
-    ekran.querySelector("#ileri").addEventListener("click", ileri);
+    ekran.querySelector("#ileri").addEventListener("click", () => ileri(false));
+    ekran.querySelector("#bilmiyorum").addEventListener("click", () => ileri(true));
     ekran.querySelector("#cik").addEventListener("click", () => git("#/"));
   }
 
-  async function ileri() {
+  // bilmiyorum = kullanici tahmin etmek yerine bilmedigini soyledi. Yanlis sayilir
+  // ama incelemede ayri gosterilir: sasirdigi bir sik yok, aciklamasi da farkli.
+  async function ileri(bilmiyorum) {
     const s = sorular[i];
-    durum.cevaplar[i] = { soruId: s.id, konu: s.konu, secilen, dogruMu: secilen === s.cevap };
+    durum.cevaplar[i] = {
+      soruId: s.id, konu: s.konu,
+      secilen: bilmiyorum ? null : secilen,
+      dogruMu: !bilmiyorum && secilen === s.cevap,
+      bilmiyorum: !!bilmiyorum
+    };
     i++;
     secilen = null;
 
@@ -350,6 +363,7 @@ async function sonucEkrani(no) {
   }
 
   const yanlislar = durum.cevaplar.filter(c => !c.dogruMu);
+  const bilmiyorumSayisi = yanlislar.filter(c => c.bilmiyorum).length;
   const toplamDogru = durum.cevaplar.length - yanlislar.length;
 
   ekran.innerHTML = `
@@ -373,48 +387,85 @@ async function sonucEkrani(no) {
       }).join("")}
     </div>
 
-    ${yanlislar.length ? `<h2>Yanlış yaptıkların</h2>` : ""}
-    ${yanlislar.map(c => {
-      const s = soruHarita.get(c.soruId);
-      if (!s) return "";
-      const secilenMetin = s.secenekler[c.secilen];
-      const celdirici = s.celdiriciler?.find(t => t.startsWith(secilenMetin));
-      return `<div class="kart">
-        ${s.metin ? `<div class="kucuk soluk" style="margin-bottom:8px">Metne dayalı soru</div>` : ""}
-        <p class="soru-metni" style="font-size:15px;margin-bottom:12px">${soruGoster(s.soru)}</p>
-        <p class="kucuk" style="margin:0 0 6px"><span style="color:var(--yanlis)">Senin cevabın:</span>
-          <span style="font-family:var(--mono)">${kacis(secilenMetin)}</span></p>
-        <p class="kucuk" style="margin:0 0 10px"><span style="color:var(--dogru)">Doğrusu:</span>
-          <span style="font-family:var(--mono)"><span class="vurgu">${kacis(s.secenekler[s.cevap])}</span></span></p>
-        ${s.neden ? `<p class="kucuk" style="margin:0">${kacis(s.neden)}</p>` : ""}
-        ${celdirici ? `<p class="kucuk soluk" style="margin:8px 0 0">${kacis(celdirici)}</p>` : ""}
-        <button class="dugme ikincil neden-dugme" data-soru="${kacis(s.id)}" data-secilen="${c.secilen}"
-                style="min-height:44px;padding:10px 18px;margin-top:12px">Neden?</button>
-        <div class="neden-alani"></div>
-      </div>`;
-    }).join("")}
+    ${yanlislar.length ? `
+      <div class="kart" style="margin-top:18px">
+        <p style="margin:0 0 4px"><strong>${yanlislar.length} soruyu kaçırdın</strong>
+          ${bilmiyorumSayisi ? `<span class="soluk">— ${bilmiyorumSayisi} tanesinde bilmiyorum dedin</span>` : ""}</p>
+        <p class="kucuk soluk" style="margin:0 0 12px">Tek tek geçelim: her sayfada bir soru,
+          doğrusu, gerekçesi ve istersen "Neden?" ile ayrıntılı anlatım.</p>
+        <a class="dugme" href="#/inceleme/${no}/0" style="text-decoration:none">Yanlışları incele</a>
+      </div>` : `<div class="kart bos" style="margin-top:18px">Bu blokta hiç yanlışın yok. Temiz geçtin.</div>`}
 
     <div class="satir" style="margin-top:20px">
-      ${no < BLOK_SAYISI ? `<a class="dugme" href="#/blok/${no + 1}" style="text-decoration:none">Blok ${yonelme(no + 1)} geç</a>` : ""}
+      ${no < BLOK_SAYISI ? `<a class="dugme ikincil" href="#/blok/${no + 1}" style="text-decoration:none">Blok ${yonelme(no + 1)} geç</a>` : ""}
       <a class="dugme ikincil" href="#/" style="text-decoration:none">Ana sayfa</a>
     </div>
   `;
+  window.scrollTo(0, 0);
+}
 
-  // "Neden?" dugmeleri: cache'te aciklama varsa aninda acilir, yoksa AI'ya gider.
-  for (const dugme of ekran.querySelectorAll(".neden-dugme")) {
-    const soru = soruHarita.get(dugme.dataset.soru);
-    const secilen = Number(dugme.dataset.secilen);
-    const kap = dugme.nextElementSibling;
+// Sayfa sayfa yanlis incelemesi: her ekranda tek soru. Uzun kaydirmada yerini
+// kaybetme sorununu cozer; index hash'te durdugu icin geri tusu de calisir.
+async function incelemeEkrani(no, index) {
+  const durum = await db.blokOku(no);
+  if (durum.durum !== "bitti") return git("#/blok/" + no);
 
-    if (await db.aciklamaOku(soru.id, secilen)) dugme.textContent = "Neden? (hazır)";
+  const sorular = await blokSorulari(no);
+  const soruHarita = new Map(sorular.map(s => [s.id, s]));
+  const yanlislar = durum.cevaplar.filter(c => !c.dogruMu);
+  if (!yanlislar.length) return git("#/sonuc/" + no);
 
-    dugme.addEventListener("click", async () => {
-      if (kap.innerHTML) { kap.innerHTML = ""; dugme.textContent = "Neden?"; return; }
-      dugme.textContent = "Gizle";
-      await nedenAc(kap, soru, secilen, konuHarita.get(soru.konu));
-    });
-  }
+  const i = Math.max(0, Math.min(index, yanlislar.length - 1));
+  const c = yanlislar[i];
+  const s = soruHarita.get(c.soruId);
+  const konu = konuHarita.get(s.konu);
+  const secilen = c.bilmiyorum ? null : c.secilen;
+  const secilenMetin = c.bilmiyorum ? null : s.secenekler[c.secilen];
+  const celdirici = secilenMetin && s.celdiriciler?.find(t => t.startsWith(secilenMetin));
 
+  ekran.innerHTML = `
+    <div class="ilerleme-cubuk"><i style="width:${((i + 1) / yanlislar.length) * 100}%"></i></div>
+    <div class="sayac">Blok ${no} · Yanlış ${i + 1} / ${yanlislar.length}
+      · <a href="#/sonuc/${no}" style="color:inherit">haritaya dön</a></div>
+
+    <div class="kart">
+      ${s.metin ? `<div class="parca" style="max-height:26vh;margin-bottom:12px">${kacis(s.metin)}</div>` : ""}
+      <p class="soru-metni" style="font-size:16px;margin-bottom:14px">${soruGoster(s.soru)}</p>
+
+      ${c.bilmiyorum
+        ? `<p class="kucuk soluk" style="margin:0 0 6px">Bilmiyorum dedin — iyi yaptın, tahmin etmedin.</p>`
+        : `<p class="kucuk" style="margin:0 0 6px"><span style="color:var(--yanlis)">Senin cevabın:</span>
+             <span style="font-family:var(--mono)">${kacis(secilenMetin)}</span></p>`}
+      <p class="kucuk" style="margin:0 0 10px"><span style="color:var(--dogru)">Doğrusu:</span>
+        <span style="font-family:var(--mono)"><span class="vurgu">${kacis(s.secenekler[s.cevap])}</span></span></p>
+
+      ${s.neden ? `<p class="kucuk" style="margin:0">${kacis(s.neden)}</p>` : ""}
+      ${celdirici ? `<p class="kucuk soluk" style="margin:8px 0 0">${kacis(celdirici)}</p>` : ""}
+
+      <button class="dugme ikincil" id="neden-dugme"
+              style="min-height:44px;padding:10px 18px;margin-top:12px">Neden?</button>
+      <div class="neden-alani"></div>
+    </div>
+
+    <div class="satir" style="margin-top:16px">
+      <button class="dugme ikincil" id="onceki" ${i === 0 ? "disabled" : ""}>← Önceki</button>
+      ${i === yanlislar.length - 1
+        ? `<a class="dugme" href="#/sonuc/${no}" style="text-decoration:none">Bitir</a>`
+        : `<button class="dugme" id="sonraki">Sonraki →</button>`}
+    </div>
+  `;
+
+  const dugme = ekran.querySelector("#neden-dugme");
+  const kap = ekran.querySelector(".neden-alani");
+  if (await db.aciklamaOku(s.id, secilen)) dugme.textContent = "Neden? (hazır)";
+  dugme.addEventListener("click", async () => {
+    if (kap.innerHTML) { kap.innerHTML = ""; dugme.textContent = "Neden?"; return; }
+    dugme.textContent = "Gizle";
+    await nedenAc(kap, s, secilen, konu);
+  });
+
+  ekran.querySelector("#onceki")?.addEventListener("click", () => git(`#/inceleme/${no}/${i - 1}`));
+  ekran.querySelector("#sonraki")?.addEventListener("click", () => git(`#/inceleme/${no}/${i + 1}`));
   window.scrollTo(0, 0);
 }
 
@@ -520,6 +571,7 @@ async function yonlendir() {
     if (yol[0] === "ayarlar") return await ayarlarEkrani();
     if (yol[0] === "blok" && yol[1]) return await blokEkrani(Number(yol[1]));
     if (yol[0] === "sonuc" && yol[1]) return await sonucEkrani(Number(yol[1]));
+    if (yol[0] === "inceleme" && yol[1]) return await incelemeEkrani(Number(yol[1]), Number(yol[2]) || 0);
     return await anaSayfa();
   } catch (hata) {
     ekran.innerHTML = `<div class="bildirim hata">Bir şeyler ters gitti: ${kacis(hata.message)}</div>
