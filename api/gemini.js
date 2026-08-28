@@ -62,12 +62,34 @@ function govdeyiSuz(g) {
   return suzulmus;
 }
 
+// Istemci model secebilir ama serbest metin gecirmeyiz: Google'in listesinden
+// dogrulanir. Liste bir kez cekilip bellekte tutulur.
+let modelOnbellek = { zaman: 0, liste: [] };
+
+async function modelListesi(anahtar) {
+  if (modelOnbellek.liste.length && Date.now() - modelOnbellek.zaman < 6 * 3600 * 1000) {
+    return modelOnbellek.liste;
+  }
+  const yanit = await fetch("https://generativelanguage.googleapis.com/v1beta/models?pageSize=200", {
+    headers: { "x-goog-api-key": anahtar }
+  });
+  if (!yanit.ok) return modelOnbellek.liste;
+  const veri = await yanit.json();
+  const liste = (veri.models || [])
+    .filter(m => (m.supportedGenerationMethods || []).includes("generateContent"))
+    .map(m => ({
+      ad: String(m.name || "").replace(/^models\//, ""),
+      baslik: m.displayName || "",
+      girdi: m.inputTokenLimit,
+      cikti: m.outputTokenLimit
+    }))
+    .filter(m => m.ad.startsWith("gemini-"));
+  modelOnbellek = { zaman: Date.now(), liste };
+  return liste;
+}
+
 module.exports = async (req, res) => {
   res.setHeader("Cache-Control", "no-store");
-
-  if (req.method !== "POST") {
-    return res.status(405).json({ hata: "Yalnızca POST kabul edilir." });
-  }
 
   const anahtar = process.env.GEMINI_API_KEY;
   if (!anahtar) {
@@ -75,6 +97,19 @@ module.exports = async (req, res) => {
       hata: "Sunucuda GEMINI_API_KEY tanımlı değil. Ayarlar'dan kendi anahtarını girebilirsin.",
       kod: "sunucuanahtaryok"
     });
+  }
+
+  // GET: kullanilabilir model listesi (Ayarlar ekranindaki secim kutusu icin).
+  if (req.method === "GET") {
+    try {
+      return res.status(200).json({ modeller: await modelListesi(anahtar) });
+    } catch {
+      return res.status(502).json({ hata: "Model listesi alınamadı.", kod: "ag" });
+    }
+  }
+
+  if (req.method !== "POST") {
+    return res.status(405).json({ hata: "Yalnızca GET ve POST kabul edilir." });
   }
 
   const ip = String(req.headers["x-forwarded-for"] || "").split(",")[0].trim()
@@ -96,6 +131,14 @@ module.exports = async (req, res) => {
   const suzulmus = govdeyiSuz(govde);
   if (!suzulmus) return res.status(400).json({ hata: "Geçersiz istek gövdesi." });
 
+  // Istemcinin istedigi model, Google'in listesinde varsa kullanilir; yoksa
+  // varsayilana duseriz. Serbest metin asla URL'ye gecmez.
+  let model = MODEL;
+  if (typeof govde.model === "string" && govde.model !== MODEL) {
+    const liste = await modelListesi(anahtar).catch(() => []);
+    if (liste.some(m => m.ad === govde.model)) model = govde.model;
+  }
+
   const metin = JSON.stringify(suzulmus);
   if (metin.length > EN_BUYUK_GOVDE) {
     return res.status(413).json({ hata: "İstek fazla büyük." });
@@ -104,7 +147,7 @@ module.exports = async (req, res) => {
   const kullanilan = sayacArtir(ip);
 
   try {
-    const yanit = await fetch(KOK + MODEL + ":generateContent", {
+    const yanit = await fetch(KOK + model + ":generateContent", {
       method: "POST",
       headers: { "Content-Type": "application/json", "x-goog-api-key": anahtar },
       body: metin
@@ -112,6 +155,7 @@ module.exports = async (req, res) => {
 
     const veri = await yanit.json().catch(() => null);
     res.setHeader("X-Kalan-Istek", String(Math.max(0, GUNLUK_SINIR - kullanilan)));
+    res.setHeader("X-Model", model);
 
     if (!yanit.ok) {
       // Google'in hata metnini oldugu gibi gecirmeyiz; anahtar bilgisi sizabilir.
