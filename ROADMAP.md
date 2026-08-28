@@ -68,13 +68,16 @@
 - [x] **Ayarlar Basit / Gelişmiş** olarak ikiye ayrıldı; varsayılan Basit
 - **Bitti sayılır:** her gün açtığımda bana 10 dakikalık doğru kuyruk geliyor ve
   banka boşalınca tek düğmeyle dolduruyorum. ✅
-## Faz 4 — Okuma modu
-- [ ] Metin yapıştırma / sınav parçalarından seçme
-- [ ] Kelimeye çift tık → `kelimeAnlami`, `sozluk` cache
-- [ ] Cümleye uzun bas → `cumleParcala`, cümle şeridi + fosforlu animasyon
-- [ ] İşaretlenen kelimeler → kelime kartı kuyruğuna
-- **Bitti sayılır:** herhangi bir İngilizce metni açıp takıldığım yeri anında çözebiliyorum.
-
+## Faz 4 — Okuma modu ✅ BİTTİ
+- [x] Metin yapıştırma, kaydedilen metinlere geri dönme, sınav parçalarından seçme
+- [x] Kelimeye dokun → anlam, tür, cümledeki rolü, örnek. Önce `sozluk` önbelleği.
+- [x] Cümleye uzun bas (masaüstünde çift tık) → cümle şeridi + fosforlu kalem darbesi
+- [x] Şerit blokları: kim / ne yapıyor / neyi / nerede; bloğa dokununca ne işe yaradığı
+- [x] `cumleParcala` sözleşmesi + Türkçe karşılık
+- [x] İşaretlenen kelimeler → `#/kelimeler` (Bilmediklerim / Baktıklarım)
+- [x] Model seçimi: Gemini 3.5 Flash / 3.1 Flash Lite (Ayarlar → Basit)
+- [x] 503 (model yoğun) için sunucuda yeniden deneme — canlı testte yakalandı
+- **Bitti sayılır:** herhangi bir İngilizce metni açıp takıldığım yeri anında çözebiliyorum. ✅
 ## Faz 5 — PWA ve cila
 - [ ] `manifest.json`, `sw.js`, ana ekrana ekleme
 - [ ] Çevrimdışı: seed veriler + cache'lenmiş açıklamalar + üretilmiş sorular çalışır
