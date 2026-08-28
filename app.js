@@ -1,6 +1,6 @@
 // Yonlendirme (hash router) ve gorunum montaji.
 import * as db from "./db.js";
-import { anahtarTest, aciklaSoru, soruSor, AiHata } from "./ai.js";
+import { anahtarTest, aciklaSoru, soruSor, kelimeAnlami, cumleParcala, AiHata } from "./ai.js";
 import * as ai from "./ai.js";
 import * as tekrar from "./tekrar.js";
 import * as uretim from "./uretim.js";
@@ -10,6 +10,7 @@ const BLOK_SAYISI = 8;
 const ZAYIF_ESIK = 0.6; // %60 altinda kalan konu "calisilacak" kuyruguna girer
 
 let KONULAR = [];
+let TESHIS_PARCALARI = [];
 let konuHarita = new Map();
 
 // ---------- yardimcilar ----------
@@ -296,6 +297,8 @@ async function anaSayfa() {
          </div>`}
 
     <div class="satir" style="margin-top:18px">
+      <a class="dugme ikincil" href="#/oku" style="text-decoration:none">Okuma</a>
+      <a class="dugme ikincil" href="#/kelimeler" style="text-decoration:none">Kelimelerim</a>
       <a class="dugme ikincil" href="#/hatalar" style="text-decoration:none">Hata bankası</a>
       <a class="dugme ikincil" href="#/ayarlar" style="text-decoration:none">Ayarlar</a>
     </div>
@@ -707,6 +710,294 @@ async function calisEkrani() {
   window.scrollTo(0, 0);
 }
 
+// ---------- Okuma modu ----------
+// Metin kelime kelime isaretlenir: kelimeye dokun -> anlam, cumleye uzun bas ->
+// cumle seridi. Ikisi de once IndexedDB onbellegine bakar, kota harcamaz.
+
+// Metni cumlelere, cumleleri kelimelere boler. Noktalama kelimeden ayri tutulur
+// ki "door." ile "door" ayni sozluk kaydina dussun.
+function metniIsle(metin) {
+  const cumleler = String(metin)
+    .split(/\n{2,}/)
+    .flatMap(paragraf => ({ paragraf, cumleler: paragraf.match(/[^.!?]+[.!?]*\s*/g) || [paragraf] }))
+    .filter(p => p.paragraf.trim());
+  return cumleler;
+}
+
+const KELIME_DESENI = /([A-Za-zÀ-ÿ]+(?:['’][A-Za-z]+)?)/g;
+
+function cumleHtml(cumle, cumleIndex) {
+  let html = "";
+  let son = 0;
+  for (const eslesme of cumle.matchAll(KELIME_DESENI)) {
+    html += kacis(cumle.slice(son, eslesme.index));
+    html += `<span class="kelime" data-kelime="${kacis(eslesme[1])}">${kacis(eslesme[1])}</span>`;
+    son = eslesme.index + eslesme[1].length;
+  }
+  html += kacis(cumle.slice(son));
+  return `<span class="cumle" data-i="${cumleIndex}">${html}</span>`;
+}
+
+async function okumaEkrani(metinId) {
+  const kayitlar = await db.metinler();
+
+  // --- metin secilmediyse: yapistirma ekrani ---
+  if (!metinId) {
+    const parcalar = TESHIS_PARCALARI;
+    ekran.innerHTML = `
+      <h1>Okuma</h1>
+      <p class="soluk">Bir metin yapıştır ya da sınav parçalarından birini seç.
+        Kelimeye dokununca anlamı, cümleye uzun basınca cümlenin iskeleti çıkar.</p>
+
+      <div class="kart">
+        <label for="metin-girdi">Metin yapıştır</label>
+        <textarea id="metin-girdi" rows="6" placeholder="İngilizce bir metin yapıştır…"></textarea>
+        <div class="satir" style="margin-top:10px">
+          <button class="dugme" id="metin-ac">Oku</button>
+        </div>
+      </div>
+
+      ${kayitlar.length ? `
+        <h2>Kaldığın metinler</h2>
+        <div class="kart" style="padding:0">
+          ${kayitlar.slice().reverse().map(m => `<div class="konu-satir">
+            <a class="ad" href="#/oku/${kacis(m.id)}" style="color:inherit;text-decoration:none">
+              ${kacis(m.baslik)}
+              <small>${new Date(m.tarih).toLocaleDateString("tr-TR")} · ${m.metin.split(/\s+/).length} kelime</small>
+            </a>
+            <button class="ok metin-sil" data-id="${kacis(m.id)}" aria-label="Sil">×</button>
+          </div>`).join("")}
+        </div>` : ""}
+
+      <h2>Sınav parçaları</h2>
+      <div class="kart" style="padding:0">
+        ${parcalar.map((p, i) => `<a class="konu-satir" href="#/oku/parca-${i}"
+            style="color:inherit;text-decoration:none">
+          <span class="ad">${kacis(p.metin.slice(0, 60))}…
+            <small>${p.metin.split(/\s+/).length} kelime</small></span>
+        </a>`).join("")}
+      </div>`;
+
+    ekran.querySelector("#metin-ac").addEventListener("click", async () => {
+      const metin = ekran.querySelector("#metin-girdi").value.trim();
+      if (!metin) return;
+      const id = "m" + Date.now();
+      await db.metinYaz(id, {
+        id, metin,
+        baslik: metin.slice(0, 50).replace(/\s+/g, " ") + (metin.length > 50 ? "…" : ""),
+        tarih: new Date().toISOString()
+      });
+      git("#/oku/" + id);
+    });
+
+    ekran.querySelectorAll(".metin-sil").forEach(d => d.addEventListener("click", async (e) => {
+      e.preventDefault();
+      await db.metinSil(d.dataset.id);
+      yonlendir();
+    }));
+    return;
+  }
+
+  // --- metin gorunumu ---
+  let metin;
+  if (metinId.startsWith("parca-")) {
+    const p = TESHIS_PARCALARI[Number(metinId.slice(6))];
+    if (!p) return git("#/oku");
+    metin = p.metin;
+  } else {
+    const kayit = await db.metinYaz && (await db.oku("metinler", metinId));
+    if (!kayit) return git("#/oku");
+    metin = kayit.metin;
+  }
+
+  const paragraflar = metniIsle(metin);
+  let sayac = 0;
+  const cumleListesi = [];
+  const govde = paragraflar.map(p =>
+    `<p class="okuma-paragraf">${p.cumleler.map(c => {
+      cumleListesi.push(c.trim());
+      return cumleHtml(c, sayac++);
+    }).join("")}</p>`).join("");
+
+  ekran.innerHTML = `
+    <div class="sayac"><a href="#/oku" style="color:inherit">← metinler</a>
+      · ${cumleListesi.length} cümle</div>
+    <div class="okuma-govde">${govde}</div>
+    <div id="okuma-panel"></div>
+    <p class="kucuk soluk" style="margin-top:18px">
+      Kelimeye <strong>dokun</strong> → anlamı. Cümleye <strong>uzun bas</strong> → cümle şeridi.
+      Açılanlar kaydedilir, ikinci kez internet gerekmez.
+    </p>`;
+
+  const panel = ekran.querySelector("#okuma-panel");
+
+  // --- kelimeye dokunma ---
+  ekran.querySelectorAll(".kelime").forEach(el => {
+    el.addEventListener("click", async (e) => {
+      e.stopPropagation();
+      ekran.querySelectorAll(".kelime.acik").forEach(x => x.classList.remove("acik"));
+      el.classList.add("acik");
+      const kelime = el.dataset.kelime;
+      const cumle = cumleListesi[Number(el.closest(".cumle").dataset.i)] || "";
+      await kelimeAc(panel, kelime, cumle);
+    });
+  });
+
+  // --- cumleye uzun basma (ve masaustunde cift tiklama) ---
+  ekran.querySelectorAll(".cumle").forEach(el => {
+    let zamanlayici = null;
+    const basla = () => {
+      zamanlayici = setTimeout(async () => {
+        zamanlayici = null;
+        ekran.querySelectorAll(".cumle.acik").forEach(x => x.classList.remove("acik"));
+        el.classList.add("acik");
+        await cumleAc(panel, cumleListesi[Number(el.dataset.i)]);
+      }, 450);
+    };
+    const iptal = () => { if (zamanlayici) { clearTimeout(zamanlayici); zamanlayici = null; } };
+    el.addEventListener("pointerdown", basla);
+    el.addEventListener("pointerup", iptal);
+    el.addEventListener("pointerleave", iptal);
+    el.addEventListener("pointercancel", iptal);
+    el.addEventListener("contextmenu", (e) => e.preventDefault());
+    el.addEventListener("dblclick", async () => {
+      iptal();
+      ekran.querySelectorAll(".cumle.acik").forEach(x => x.classList.remove("acik"));
+      el.classList.add("acik");
+      await cumleAc(panel, cumleListesi[Number(el.dataset.i)]);
+    });
+  });
+
+  window.scrollTo(0, 0);
+}
+
+async function kelimeAc(panel, kelime, cumle) {
+  const ciz = (k, onbellekten) => {
+    panel.innerHTML = `
+      <div class="kart okuma-panel-kart">
+        <div class="satir" style="justify-content:space-between;align-items:baseline">
+          <span class="panel-baslik">${kacis(kelime)}</span>
+          <span class="kucuk soluk">${kacis(k.tur || "")}${onbellekten ? " · kayıtlı" : ""}</span>
+        </div>
+        <p style="margin:8px 0 10px;font-size:16px"><span class="vurgu">${kacis(k.anlam)}</span></p>
+        ${k.cumledekiRol ? `<p class="kucuk" style="margin:0 0 8px"><strong>Bu cümlede:</strong> ${kacis(k.cumledekiRol)}</p>` : ""}
+        ${k.ornek ? `<p class="kucuk" style="margin:0 0 12px;font-family:var(--mono)">${kacis(k.ornek)}</p>` : ""}
+        <div class="satir">
+          <button class="dugme ikincil ${k.isaretli ? "secili" : ""}" id="isaretle"
+            style="min-height:44px;padding:10px 16px">
+            ${k.isaretli ? "İşaretli — kelime kartında" : "Bunu bilmiyorum"}
+          </button>
+          <button class="dugme ikincil" id="panel-kapat" style="min-height:44px;padding:10px 16px">Kapat</button>
+        </div>
+      </div>`;
+
+    panel.querySelector("#panel-kapat").addEventListener("click", () => {
+      panel.innerHTML = "";
+      ekran.querySelectorAll(".kelime.acik,.cumle.acik").forEach(x => x.classList.remove("acik"));
+    });
+    panel.querySelector("#isaretle").addEventListener("click", async () => {
+      await db.kelimeIsaretle(kelime, !k.isaretli);
+      k.isaretli = !k.isaretli;
+      ciz(k, true);
+    });
+  };
+
+  const kayitli = await db.kelimeOku(kelime);
+  if (kayitli) return ciz(kayitli, true);
+
+  panel.innerHTML = `<div class="kart"><p class="yukleniyor" style="margin:0">${kacis(kelime)} aranıyor</p></div>`;
+  try {
+    const veri = await aiCagir(a => kelimeAnlami(a, kelime, cumle));
+    await db.kelimeYaz(kelime, veri);
+    ciz(await db.kelimeOku(kelime), false);
+  } catch (hata) {
+    panel.innerHTML = `<div class="bildirim hata">${kacis(hata.message)}</div>`;
+  }
+}
+
+async function cumleAc(panel, cumle) {
+  const ciz = (veri, onbellekten) => {
+    panel.innerHTML = `
+      <div class="kart okuma-panel-kart">
+        <div class="satir" style="justify-content:space-between;align-items:baseline">
+          <span class="panel-baslik">Cümle şeridi</span>
+          <span class="kucuk soluk">${onbellekten ? "kayıtlı" : ""}</span>
+        </div>
+        <div class="serit">
+          ${veri.parcalar.map((p, i) => `
+            <div class="serit-blok" data-i="${i}" tabindex="0">
+              <span class="serit-metin">${kacis(p.metin.trim())}</span>
+              <span class="serit-rol">${kacis(p.rol)}</span>
+            </div>`).join("")}
+        </div>
+        <div id="serit-aciklama" class="kucuk soluk" style="min-height:1.6em;margin-top:10px">
+          Bir bloğa dokun, ne işe yaradığını yazsın.
+        </div>
+        ${veri.turkce ? `<p class="kucuk" style="margin:12px 0 0"><strong>Türkçesi:</strong> ${kacis(veri.turkce)}</p>` : ""}
+        <div class="satir" style="margin-top:12px">
+          <button class="dugme ikincil" id="panel-kapat" style="min-height:44px;padding:10px 16px">Kapat</button>
+        </div>
+      </div>`;
+
+    const yazi = panel.querySelector("#serit-aciklama");
+    panel.querySelectorAll(".serit-blok").forEach(blok => {
+      const goster = () => {
+        panel.querySelectorAll(".serit-blok").forEach(b => b.classList.remove("cizili"));
+        blok.classList.add("cizili");
+        yazi.textContent = veri.parcalar[Number(blok.dataset.i)].aciklama;
+      };
+      blok.addEventListener("click", goster);
+      blok.addEventListener("keydown", (e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); goster(); } });
+    });
+    panel.querySelector("#panel-kapat").addEventListener("click", () => {
+      panel.innerHTML = "";
+      ekran.querySelectorAll(".kelime.acik,.cumle.acik").forEach(x => x.classList.remove("acik"));
+    });
+  };
+
+  const kayitli = await db.cumleOku(cumle);
+  if (kayitli) return ciz(kayitli, true);
+
+  panel.innerHTML = `<div class="kart"><p class="yukleniyor" style="margin:0">Cümle çözümleniyor</p></div>`;
+  try {
+    const veri = await aiCagir(a => cumleParcala(a, cumle));
+    await db.cumleYaz(cumle, veri);
+    ciz(veri, false);
+  } catch (hata) {
+    panel.innerHTML = `<div class="bildirim hata">${kacis(hata.message)}</div>`;
+  }
+}
+
+// Isaretlenen kelimeler burada birikir: gun sonunda kelime kartina donusur.
+async function kelimelerEkrani() {
+  const hepsi = await db.tumu("sozluk");
+  const isaretli = hepsi.filter(k => k.isaretli);
+  const digerleri = hepsi.filter(k => !k.isaretli);
+
+  const satir = (k) => `<div class="konu-satir">
+    <span class="ad"><strong>${kacis(k.kelime)}</strong>
+      <small>${kacis(k.tur || "")} · ${kacis(k.anlam)}</small></span>
+    <span class="oran soluk">${k.gorulme || 1}×</span>
+  </div>`;
+
+  ekran.innerHTML = `
+    <h1>Kelimelerim</h1>
+    ${hepsi.length === 0
+      ? `<div class="kart bos">Henüz kelime yok. Okuma modunda bir kelimeye dokununca burası dolar.</div>`
+      : `
+        <h2>Bilmediğim kelimeler (${isaretli.length})</h2>
+        ${isaretli.length
+          ? `<div class="kart" style="padding:0">${isaretli.map(satir).join("")}</div>`
+          : `<div class="kart bos">Hiç işaretlemedin. Okurken "Bunu bilmiyorum" de.</div>`}
+        <h2>Baktıklarım (${digerleri.length})</h2>
+        ${digerleri.length ? `<div class="kart" style="padding:0">${digerleri.map(satir).join("")}</div>` : ""}`}
+    <div class="satir" style="margin-top:18px">
+      <a class="dugme ikincil" href="#/oku" style="text-decoration:none">Okumaya dön</a>
+      <a class="dugme ikincil" href="#/" style="text-decoration:none">Ana sayfa</a>
+    </div>`;
+  window.scrollTo(0, 0);
+}
+
 async function ayarlarEkrani(sekme = "basit") {
   const anahtar = await db.ayarOku("apiKey", "");
   const hedef = await db.ayarOku("gunlukHedef", 10);
@@ -1023,6 +1314,8 @@ async function yonlendir() {
     if (yol[0] === "ayarlar") return await ayarlarEkrani(yol[1]);
     if (yol[0] === "onay") return await onayEkrani();
     if (yol[0] === "hatalar") return await hatalarEkrani();
+    if (yol[0] === "oku") return await okumaEkrani(yol[1] || null);
+    if (yol[0] === "kelimeler") return await kelimelerEkrani();
     if (yol[0] === "calis") return await calisEkrani();
     if (yol[0] === "blok" && yol[1]) return await blokEkrani(Number(yol[1]));
     if (yol[0] === "sonuc" && yol[1]) return await sonucEkrani(Number(yol[1]));
@@ -1038,6 +1331,7 @@ async function yonlendir() {
 async function baslat() {
   try {
     KONULAR = (await (await fetch("./data/konular.json")).json()).konular;
+    TESHIS_PARCALARI = (await (await fetch("./data/teshis-testi.json")).json()).parcalar || [];
     konuHarita = new Map(KONULAR.map(k => [k.id, k]));
 
     if (await db.seedGerekliMi()) {

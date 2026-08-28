@@ -65,6 +65,37 @@ export async function ilerlemeYaz(konuId, veri) {
   return yaz("ilerleme", konuId, veri);
 }
 
+// --- okuma modu: sozluk ve cumle onbellegi ---
+// Ayni kelime/cumle icin ikinci kez API'ye gidilmez.
+const kucult = (s) => String(s).toLowerCase().trim();
+
+export const kelimeOku = (kelime) => oku("sozluk", kucult(kelime));
+
+export async function kelimeYaz(kelime, veri) {
+  const mevcut = await kelimeOku(kelime);
+  return yaz("sozluk", kucult(kelime), {
+    ...veri,
+    kelime: kucult(kelime),
+    tarih: new Date().toISOString(),
+    gorulme: (mevcut?.gorulme || 0) + 1,
+    isaretli: mevcut?.isaretli ?? false
+  });
+}
+
+export async function kelimeIsaretle(kelime, isaretli) {
+  const mevcut = await kelimeOku(kelime);
+  if (!mevcut) return;
+  return yaz("sozluk", kucult(kelime), { ...mevcut, isaretli });
+}
+
+export const cumleOku = (cumle) => oku("cumleler", kucult(cumle));
+export const cumleYaz = (cumle, veri) => yaz("cumleler", kucult(cumle), veri);
+
+// Okunan metinler: kullanici yapistirdigi metne geri donebilsin.
+export const metinler = () => tumu("metinler");
+export const metinYaz = (id, veri) => yaz("metinler", id, veri);
+export const metinSil = (id) => sil("metinler", id);
+
 // --- gunluk kota sayaci ---
 // Bedava kredi sinirli; kac istek attigimizi kullaniciya gosterebilmek icin sayariz.
 function bugun() { return new Date().toISOString().slice(0, 10); }

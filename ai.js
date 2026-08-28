@@ -193,7 +193,47 @@ export function kelimeAnlami(anahtar, kelime, cumle) {
   });
 }
 
-// ---------- 3. Soru uretimi ----------
+// ---------- 3. Cumle parcalama (cumle seridi) ----------
+// Cumle kelime bloklarina ayrilir, her blogun altinda rolu yazar.
+// Roller Turkce soru kaliplariyla verilir: "kim", "ne yapiyor", "neyi", "nerede".
+const SEMA_PARCA = {
+  type: "object",
+  properties: {
+    parcalar: {
+      type: "array",
+      items: {
+        type: "object",
+        properties: {
+          metin: { type: "string", description: "Cümlenin bu parçası, olduğu gibi" },
+          rol: { type: "string", description: "Kısa rol etiketi: kim / ne yapıyor / neyi / nerede / ne zaman / nasıl" },
+          aciklama: { type: "string", description: "Bu parça ne işe yarıyor, tek kısa cümle" }
+        },
+        required: ["metin", "rol", "aciklama"]
+      }
+    },
+    turkce: { type: "string", description: "Cümlenin doğal Türkçe karşılığı" }
+  },
+  required: ["parcalar", "turkce"]
+};
+
+export function cumleParcala(anahtar, cumle) {
+  return json(anahtar, {
+    sistem: SISTEM,
+    istek: `Bu İngilizce cümleyi anlamlı parçalara ayır:
+
+${cumle}
+
+Kurallar:
+- Parçaları soldan sağa, cümledeki sırayla ver. Birleştirince cümlenin tamamı çıksın.
+- Kelime kelime bölme; anlam taşıyan öbekleri bir arada tut ("in the morning" tek parça).
+- Rol etiketini Türkçe soru kalıbıyla yaz: kim, ne yapıyor, neyi, nerede, ne zaman, nasıl.
+- Yardımcı fiil ve edat gibi parçalar için rolü "bağlayıcı" ya da "zaman eki" gibi yaz.`,
+    sema: SEMA_PARCA,
+    sicaklik: 0.2
+  });
+}
+
+// ---------- 4. Soru uretimi ----------
 const SEMA_URETIM = {
   type: "object",
   properties: {
