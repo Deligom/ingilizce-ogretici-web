@@ -53,8 +53,10 @@ async function cagir(anahtar, govde) {
     if (proxy) {
       const veri = await yanit.json().catch(() => null);
       if (veri?.hata) throw new AiHata(veri.hata, veri.kod || "sunucu");
-      if (yanit.status === 404)
-        throw new AiHata("Bu kopyada paylaşılan anahtar yok. Ayarlar'dan kendi anahtarını gir.", "proxyyok");
+      // Statik barindirmada (GitHub Pages) /api yoktur: POST'a 404 ya da 405 doner
+      // ve govde JSON degildir. Kullaniciya dogru yolu gosterelim.
+      if (!veri || yanit.status === 404 || yanit.status === 405)
+        throw new AiHata("Bu kopyada paylaşılan anahtar yok. Ayarlar'dan kendi Gemini anahtarını gir.", "proxyyok");
       throw new AiHata("Sunucu hatası (" + yanit.status + ").", "sunucu");
     }
     const metin = await yanit.text().catch(() => "");
