@@ -50,20 +50,24 @@
       HTML kaçışı önce yapıldığı için model sayfaya kod enjekte edemez.
 - **Bitti sayılır:** yanlış yaptığım her soruda "neden?" deyip tatmin olana kadar sorabiliyorum. ✅
 
-## Faz 3 — Alıştırma, tekrar ve soru üretimi
-- [ ] `tekrar.js`: kutu sistemi, `sonrakiTarih` hesabı, günlük kuyruk
-- [ ] Konu kartı ekranı (`konular.json`'dan kural + örnek + tuzak)
-- [ ] Benzer 5 cümle üretimi ve arka arkaya çözüm modu
-- [ ] **Soru üretimi:** Ayarlar'da düğme + slider (3-10, varsayılan 5).
-      Prompt'a konu kartı + `eksenler` + tohum sorular (üslup örneği) +
-      bankadaki mevcut cümleler ("bunları tekrar etme") girer.
-- [ ] **Onay kuyruğu:** üretilen sorular `onayBekleyen` olarak gelir, ✓/✗ ile elenir.
-      Yerelde ön eleme: şema kontrolü + mevcut sorulara benzerlik filtresi.
-- [ ] Hata bankası ekranı: etikete göre gruplanmış, "bunu tekrar çöz" düğmesi
-- [ ] Günlük hedef + seri (streak)
+## Faz 3 — Alıştırma, tekrar ve soru üretimi ✅ BİTTİ
+- [x] `tekrar.js`: kutu 0-5, aralıklar 0/1/3/7/16/35 gün, günlük kuyruk
+- [x] Kutu **konuya** ait, soruya değil — öğrenilen şey bir soruyu hatırlamak değil,
+      bir kuralı fark etmek. Kutu yükseldikçe aşama yükselir (0-1→1, 2-3→2, 4-5→3).
+- [x] Soru seçimi: önce doğru zorlukta, en uzun süre önce çözülmüş olan.
+      Zorluk tutmazsa bir kademe yakınına düşer; banka küçükken akış tıkanmaz.
+- [x] Konu kartı ekranı: kural, yapı, örnek (en/tr), tuzak kutusu
+- [x] Alıştırma ekranı (`#/calis`): cevap anında gösterilir, banka gerekçesi çıkar,
+      "Neden?" hazır bekler. Teşhis ölçer, alıştırma öğretir.
+- [x] Günlük hedef + seri (streak), ana sayfada "Bugünün kuyruğu" kutusu
+- [x] Hata bankası (`#/hatalar`): konuya göre gruplanmış, en çok hata üstte
+- [x] **Soru üretimi** (`uretim.js`): Ayarlar → Gelişmiş'te konu + aşama + slider (3-10)
+- [x] Yerel eleme (API'siz): şema kontrolü + bankaya benzerlik + parti içi tekrar.
+      Elenen soru kota harcamaz. Jaccard eşiği %55.
+- [x] Onay kuyruğu (`#/onay`): tek tek gözden geçirilir, onaylanan bankaya girer
+- [x] **Ayarlar Basit / Gelişmiş** olarak ikiye ayrıldı; varsayılan Basit
 - **Bitti sayılır:** her gün açtığımda bana 10 dakikalık doğru kuyruk geliyor ve
-  banka boşalınca tek düğmeyle dolduruyorum.
-
+  banka boşalınca tek düğmeyle dolduruyorum. ✅
 ## Faz 4 — Okuma modu
 - [ ] Metin yapıştırma / sınav parçalarından seçme
 - [ ] Kelimeye çift tık → `kelimeAnlami`, `sozluk` cache

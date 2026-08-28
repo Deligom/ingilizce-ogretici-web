@@ -2,6 +2,7 @@
 import * as db from "./db.js";
 import { anahtarTest, aciklaSoru, soruSor, AiHata } from "./ai.js";
 import * as tekrar from "./tekrar.js";
+import * as uretim from "./uretim.js";
 
 const ekran = document.getElementById("ekran");
 const BLOK_SAYISI = 8;
@@ -290,6 +291,11 @@ async function anaSayfa() {
              <span class="oran soluk">${z.kutu ?? 0}/5</span>
            </div>`).join("")}
          </div>`}
+
+    <div class="satir" style="margin-top:18px">
+      <a class="dugme ikincil" href="#/hatalar" style="text-decoration:none">Hata bankası</a>
+      <a class="dugme ikincil" href="#/ayarlar" style="text-decoration:none">Ayarlar</a>
+    </div>
   `;
 }
 
@@ -698,15 +704,17 @@ async function calisEkrani() {
   window.scrollTo(0, 0);
 }
 
-async function ayarlarEkrani() {
+async function ayarlarEkrani(sekme = "basit") {
   const anahtar = await db.ayarOku("apiKey", "");
   const hedef = await db.ayarOku("gunlukHedef", 10);
+  const oneriAcik = await db.ayarOku("oneriler", true);
   const kota = await db.kotaOku();
   const aciklamaSayisi = (await db.ciftler("aciklamalar")).length;
-  const oneriAcik = await db.ayarOku("oneriler", true);
+  const bekleyenSayisi = (await uretim.bekleyenler()).length;
+  const uretimAdedi = Number(await db.ayarOku("uretimAdedi", 5));
+  const gelismis = sekme === "gelismis";
 
-  ekran.innerHTML = `
-    <h1>Ayarlar</h1>
+  const basitPanel = `
     <div class="kart">
       <label for="anahtar">Gemini API anahtarı</label>
       <input id="anahtar" type="password" value="${kacis(anahtar)}" placeholder="AIza…" autocomplete="off" spellcheck="false">
@@ -724,7 +732,7 @@ async function ayarlarEkrani() {
     <div class="kart">
       <label for="hedef">Günlük hedef (soru)</label>
       <input id="hedef" type="text" inputmode="numeric" value="${Number(hedef)}">
-      <p class="kucuk soluk" style="margin:10px 0 0">Alıştırma kuyruğu Faz 3'te bu sayıyı kullanacak.</p>
+      <p class="kucuk soluk" style="margin:10px 0 0">Bugünün kuyruğu bu sayı kadar soru getirir.</p>
     </div>
 
     <div class="kart">
@@ -733,29 +741,81 @@ async function ayarlarEkrani() {
         <span>Sohbette hazır soru önerileri</span>
       </label>
       <p class="kucuk soluk" style="margin:8px 0 0">
-        Sohbet kutusunun üstünde "Neden bu olmuyor?" gibi hazır sorular çıkar.
-        Dokununca kutuya yazılır, göndermeden önce değiştirebilirsin.
+        Sohbet kutusunun üstünde hazır sorular çıkar. Dokununca kutuya yazılır,
+        göndermeden önce değiştirebilirsin.
       </p>
     </div>
 
-    <h2>Kullanım</h2>
     <div class="kart">
       <p style="margin:0 0 4px"><strong>${kota.sayi}</strong> AI isteği <span class="soluk">— bugün</span></p>
       <p class="kucuk soluk" style="margin:0">
         Önbellekte <strong>${aciklamaSayisi}</strong> açıklama var; bunlar tekrar açıldığında
         istek harcamıyor ve çevrimdışı da çalışıyor.
       </p>
+    </div>`;
+
+  const konuSecenekleri = KONULAR.map(k =>
+    `<option value="${kacis(k.id)}">${kacis(k.ad)} (${k.seviye})</option>`).join("");
+
+  const gelismisPanel = `
+    <div class="kart">
+      <h2 style="margin:0 0 4px;font-size:18px">Soru üret</h2>
+      <p class="kucuk soluk" style="margin:0 0 14px">
+        Bir konu için yeni sorular üretir. Tek istekte hepsi birden gelir, sonra
+        onayına sunulur. Onayladıkların bankaya kalıcı yazılır, ikinci kez kota harcamaz.
+      </p>
+
+      <label for="uretim-konu">Konu</label>
+      <select id="uretim-konu">${konuSecenekleri}</select>
+
+      <label for="uretim-zorluk" style="margin-top:14px">Aşama</label>
+      <select id="uretim-zorluk">
+        <option value="1">1 — Tanı (tek ipucu)</option>
+        <option value="2" selected>2 — Ayırt et (ipucu bağlamda)</option>
+        <option value="3">3 — Karıştır (birden çok konu)</option>
+      </select>
+
+      <label for="uretim-adet" style="margin-top:14px">Kaç soru: <strong id="adet-yazi">${uretimAdedi}</strong></label>
+      <input type="range" id="uretim-adet" min="3" max="10" step="1" value="${uretimAdedi}">
+      <p class="kucuk soluk" style="margin:6px 0 14px">
+        Az sayıda istemek çeşitliliği artırır. Her üretim bir AI çağrısıdır.
+      </p>
+
+      <div id="uretim-bildirim"></div>
+      <button class="dugme" id="uret">Üret</button>
     </div>
 
-    <h2>Veri</h2>
     <div class="kart">
-      <p class="kucuk soluk" style="margin-bottom:12px">Tüm ilerlemeyi ve blok cevaplarını siler. Soru bankası korunur.</p>
+      <h2 style="margin:0 0 4px;font-size:18px">Onay kuyruğu</h2>
+      <p class="kucuk soluk" style="margin:0 0 12px">
+        Üretilen sorular buraya düşer. Onayladıkların bankaya girer, reddettiklerin silinir.
+      </p>
+      <a class="dugme ${bekleyenSayisi ? "" : "ikincil"}" href="#/onay" style="text-decoration:none">
+        ${bekleyenSayisi ? bekleyenSayisi + " soru onay bekliyor" : "Kuyruk boş"}
+      </a>
+    </div>
+
+    <div class="kart">
+      <h2 style="margin:0 0 4px;font-size:18px">Veri</h2>
+      <p class="kucuk soluk" style="margin:0 0 12px">
+        Sıfırlama ilerlemeni ve blok cevaplarını siler; soru bankası korunur.
+      </p>
       <div class="satir">
         <button class="dugme ikincil" id="sifirla">İlerlemeyi sıfırla</button>
         <button class="dugme ikincil" id="cache-sil">Açıklama önbelleğini sil</button>
       </div>
+    </div>`;
+
+  ekran.innerHTML = `
+    <h1>Ayarlar</h1>
+    <div class="sekmeler">
+      <a class="sekme ${gelismis ? "" : "aktif"}" href="#/ayarlar">Basit</a>
+      <a class="sekme ${gelismis ? "aktif" : ""}" href="#/ayarlar/gelismis">Gelişmiş</a>
     </div>
+    ${gelismis ? gelismisPanel : basitPanel}
   `;
+
+  if (gelismis) return gelismisBagla();
 
   const bildirim = ekran.querySelector("#bildirim");
   const goster = (tur, metin) => { bildirim.innerHTML = `<div class="bildirim ${tur}">${kacis(metin)}</div>`; };
@@ -792,28 +852,155 @@ async function ayarlarEkrani() {
     db.ayarYaz("gunlukHedef", n);
   });
 
-  ekran.querySelector("#sifirla").addEventListener("click", async () => {
-    if (!confirm("Tüm blok cevapların ve konu ilerlemen silinecek. Emin misin?")) return;
-    await db.bosalt("teshis");
-    await db.bosalt("ilerleme");
-    goster("ok", "İlerleme sıfırlandı.");
-  });
+  function gelismisBagla() {
+    const kaydirak = ekran.querySelector("#uretim-adet");
+    const yazi = ekran.querySelector("#adet-yazi");
+    const bildirim2 = ekran.querySelector("#uretim-bildirim");
+    const goster2 = (tur, metin) => { bildirim2.innerHTML = `<div class="bildirim ${tur}">${metin}</div>`; };
 
-  ekran.querySelector("#cache-sil").addEventListener("click", async () => {
-    if (!confirm("Kayıtlı açıklamalar ve sohbetler silinecek; tekrar açmak kota harcar. Emin misin?")) return;
-    await db.bosalt("aciklamalar");
-    await db.bosalt("sohbetler");
-    goster("ok", "Önbellek temizlendi.");
-  });
+    kaydirak.addEventListener("input", () => {
+      yazi.textContent = kaydirak.value;
+      db.ayarYaz("uretimAdedi", Number(kaydirak.value));
+    });
+
+    ekran.querySelector("#uret").addEventListener("click", async (e) => {
+      const konu = konuHarita.get(ekran.querySelector("#uretim-konu").value);
+      const zorluk = Number(ekran.querySelector("#uretim-zorluk").value);
+      const adet = Number(kaydirak.value);
+      e.target.disabled = true;
+      goster2("ok", `<span class="yukleniyor">${adet} soru üretiliyor</span>`);
+      try {
+        const sonuc = await aiCagir(a => uretim.uret(a, konu, adet, zorluk));
+        const elenenMetni = sonuc.elenen.length
+          ? `<br><span class="soluk">${sonuc.elenen.length} tanesi elendi: ${
+              kacis(sonuc.elenen.map(x => x.sebep).join(", "))}</span>`
+          : "";
+        goster2(sonuc.kabul ? "ok" : "hata",
+          `${sonuc.kabul} soru onay kuyruğuna eklendi.${elenenMetni}`);
+      } catch (hata) {
+        goster2("hata", kacis(hata instanceof AiHata ? hata.message : hata.message));
+      } finally {
+        e.target.disabled = false;
+      }
+    });
+
+    ekran.querySelector("#sifirla").addEventListener("click", async () => {
+      if (!confirm("Tüm blok cevapların ve konu ilerlemen silinecek. Emin misin?")) return;
+      await db.bosalt("teshis");
+      await db.bosalt("ilerleme");
+      goster2("ok", "İlerleme sıfırlandı.");
+    });
+
+    ekran.querySelector("#cache-sil").addEventListener("click", async () => {
+      if (!confirm("Kayıtlı açıklamalar ve sohbetler silinecek; tekrar açmak kota harcar. Emin misin?")) return;
+      await db.bosalt("aciklamalar");
+      await db.bosalt("sohbetler");
+      goster2("ok", "Önbellek temizlendi.");
+    });
+  }
 }
 
+// Uretilen sorular tek tek onaydan gecer: yanlis cevap anahtari yanlis ogretir.
+async function onayEkrani() {
+  const bekleyen = await uretim.bekleyenler();
+
+  if (!bekleyen.length) {
+    ekran.innerHTML = `
+      <h1>Onay kuyruğu boş</h1>
+      <p class="soluk">Ayarlar → Gelişmiş'ten yeni sorular üretebilirsin.</p>
+      <a class="dugme" href="#/ayarlar/gelismis" style="text-decoration:none">Ayarlar'a git</a>`;
+    return;
+  }
+
+  const s = bekleyen[0];
+  const konu = konuHarita.get(s.konu);
+
+  ekran.innerHTML = `
+    <div class="sayac">Onay bekleyen: ${bekleyen.length} soru</div>
+    <h1 style="font-size:23px">${kacis(konu ? konu.ad : s.konu)}</h1>
+    <p class="kucuk soluk" style="margin-bottom:14px">Aşama ${s.zorluk}${s.eksen ? " · " + kacis(s.eksen) : ""}</p>
+
+    <div class="kart">
+      <p class="soru-metni" style="font-size:16px">${soruGoster(s.soru)}</p>
+      <div class="sik-liste">
+        ${s.secenekler.map((o, j) => `
+          <div class="sik ${j === s.cevap ? "dogru" : ""}" style="cursor:default">
+            <span class="harf">${HARFLER[j]}</span><span>${kacis(o)}</span>
+          </div>`).join("")}
+      </div>
+      <p class="kucuk" style="margin:0 0 8px"><strong>Gerekçe:</strong> ${kacis(s.neden)}</p>
+      ${s.celdiriciler.map(c => `<p class="kucuk soluk" style="margin:0 0 4px">${kacis(c)}</p>`).join("")}
+    </div>
+
+    <div class="satir">
+      <button class="dugme" id="onayla">Bankaya ekle</button>
+      <button class="dugme ikincil" id="reddet">Sil</button>
+      <a class="dugme ikincil" href="#/ayarlar/gelismis" style="text-decoration:none">Sonra</a>
+    </div>
+    <p class="kucuk soluk" style="margin-top:12px">
+      Cevap anahtarını ve gerekçeleri kontrol et. Birden fazla şık doğruysa ya da
+      gerekçe tutmuyorsa sil — yanlış soru yanlış öğretir.
+    </p>`;
+
+  ekran.querySelector("#onayla").addEventListener("click", async () => {
+    await uretim.onayla(s.id); yonlendir();
+  });
+  ekran.querySelector("#reddet").addEventListener("click", async () => {
+    await uretim.reddet(s.id); yonlendir();
+  });
+  window.scrollTo(0, 0);
+}
+
+// Hata bankasi: yanlis yapilan sorular konuya gore gruplanir, en cok hata ustte.
+async function hatalarEkrani() {
+  const hepsi = await db.tumu("sorular");
+  const hatalilar = hepsi.filter(s => (s.hataSayisi || 0) > 0);
+
+  if (!hatalilar.length) {
+    ekran.innerHTML = `
+      <h1>Hata bankası</h1>
+      <div class="kart bos">Henüz hata yok. Alıştırma yaptıkça burası dolar.</div>
+      <a class="dugme ikincil" href="#/" style="text-decoration:none">Ana sayfa</a>`;
+    return;
+  }
+
+  const gruplar = new Map();
+  for (const s of hatalilar) {
+    if (!gruplar.has(s.konu)) gruplar.set(s.konu, []);
+    gruplar.get(s.konu).push(s);
+  }
+  const toplamHata = (liste) => liste.reduce((t, s) => t + s.hataSayisi, 0);
+  const sirali = [...gruplar.entries()].sort((a, b) => toplamHata(b[1]) - toplamHata(a[1]));
+
+  ekran.innerHTML = `
+    <h1>Hata bankası</h1>
+    <p class="soluk">${hatalilar.length} soruda takıldın. En çok hata yaptığın konu üstte.</p>
+    ${sirali.map(([konuId, sorular]) => {
+      const k = konuHarita.get(konuId);
+      return `<div class="kart" style="padding:0">
+        <div class="konu-satir" style="border-bottom:1px solid var(--cizgi)">
+          <span class="ad"><strong>${kacis(k ? k.ad : konuId)}</strong>
+            <small>${k ? k.seviye : ""} · ${toplamHata(sorular)} hata</small></span>
+        </div>
+        ${sorular.map(s => `<div class="konu-satir">
+          <span class="ad" style="font-family:var(--mono);font-size:13.5px">${soruGoster(s.soru)}
+            <small style="font-family:var(--govde)">doğrusu: ${kacis(s.secenekler[s.cevap])}</small></span>
+          <span class="oran soluk">${s.hataSayisi}×</span>
+        </div>`).join("")}
+      </div>`;
+    }).join("")}
+    <a class="dugme ikincil" href="#/" style="text-decoration:none">Ana sayfa</a>`;
+  window.scrollTo(0, 0);
+}
 // ---------- yonlendirme ----------
 function git(hash) { location.hash = hash; }
 
 async function yonlendir() {
   const yol = location.hash.replace(/^#\/?/, "").split("/");
   try {
-    if (yol[0] === "ayarlar") return await ayarlarEkrani();
+    if (yol[0] === "ayarlar") return await ayarlarEkrani(yol[1]);
+    if (yol[0] === "onay") return await onayEkrani();
+    if (yol[0] === "hatalar") return await hatalarEkrani();
     if (yol[0] === "calis") return await calisEkrani();
     if (yol[0] === "blok" && yol[1]) return await blokEkrani(Number(yol[1]));
     if (yol[0] === "sonuc" && yol[1]) return await sonucEkrani(Number(yol[1]));

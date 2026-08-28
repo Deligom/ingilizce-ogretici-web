@@ -145,7 +145,84 @@ export function kelimeAnlami(anahtar, kelime, cumle) {
   });
 }
 
-// ---------- 3. Serbest sohbet ----------
+// ---------- 3. Soru uretimi ----------
+const SEMA_URETIM = {
+  type: "object",
+  properties: {
+    sorular: {
+      type: "array",
+      items: {
+        type: "object",
+        properties: {
+          eksen: { type: "string", description: "Verilen eksen listesinden hangisini ölçtüğü" },
+          soru: { type: "string", description: "Boşluk ___ ile gösterilmiş İngilizce cümle" },
+          secenekler: { type: "array", items: { type: "string" }, description: "Tam 4 şık" },
+          cevap: { type: "integer", description: "Doğru şıkkın 0-3 arası indeksi" },
+          neden: { type: "string", description: "Doğru şıkkın gerekçesi, sade Türkçe, tek cümle" },
+          celdiriciler: {
+            type: "array", items: { type: "string" },
+            description: "Üç yanlış şık için 'şıkmetni: neden yanlış' biçiminde üç açıklama"
+          }
+        },
+        required: ["eksen", "soru", "secenekler", "cevap", "neden", "celdiriciler"]
+      }
+    }
+  },
+  required: ["sorular"]
+};
+
+const ZORLUK_TARIFI = {
+  1: "Aşama 1 (tanı): tek kural, tek ipucu. Tek boşluk, cevap doğrudan görünür.",
+  2: "Aşama 2 (ayırt et): ipucu ikinci cümlede gizli olsun, cümle tek başına çözülemesin. Çeldiriciler birbirine yakın olsun.",
+  3: "Aşama 3 (karıştır): iki ya da üç boşluk, birden çok konu iç içe. Her şık boşlukların hepsini birden doldursun, hepsi doğru olmalı."
+};
+
+// Tek istekte liste isteyince model kendi ilk cevabini tekrar eder. Uc kaldirac:
+// (1) eksen listesi dagitilir, (2) mevcut cumleler "tekrar etme" diye verilir,
+// (3) tohum sorular uslup ornegi olarak gonderilir. Sicaklik da yuksek tutulur.
+export function uretSorular(anahtar, konu, eksenler, ornekSorular, mevcutCumleler, adet, zorluk) {
+  const ornekMetni = ornekSorular.slice(0, 3).map(s =>
+    `Cümle: ${s.soru}\nŞıklar: ${s.secenekler.join(" | ")}\nDoğru: ${s.secenekler[s.cevap]}\nGerekçe: ${s.neden || "-"}`
+  ).join("\n\n");
+
+  const istek = `Bir İngilizce sorusu bankası için ${adet} yeni çoktan seçmeli soru yaz.
+
+KONU KARTI
+- Konu: ${konu.ad} (${konu.seviye})
+- Kural: ${konu.kural}
+- Yapı: ${konu.yapi}
+- Türkçe konuşanın tuzağı: ${konu.tuzak}
+
+ZORLUK
+${ZORLUK_TARIFI[zorluk] || ZORLUK_TARIFI[1]}
+
+ÖLÇÜLECEK EKSENLER
+Aşağıdaki eksenlerden ${adet} FARKLI tanesini seç ve her soruda birini ölç.
+Aynı ekseni iki kez kullanma. Hangi ekseni ölçtüğünü "eksen" alanına yaz.
+${eksenler.map((e, i) => `${i + 1}. ${e}`).join("\n")}
+
+ÜSLUP ÖRNEĞİ (bu bankadaki mevcut sorular — biçimi taklit et, içeriği değil)
+${ornekMetni || "(örnek yok)"}
+
+BUNLARI TEKRAR ETME
+Aşağıdaki cümleler bankada zaten var. Aynı özneyi, aynı fiili ve aynı kalıbı
+tekrar kullanma; farklı bağlamlar kur (iş, seyahat, yemek, spor, okul, aile).
+${mevcutCumleler.slice(0, 25).map(c => "- " + c).join("\n")}
+
+KURALLAR
+- Boşluğu ___ (üç alt çizgi) ile göster.
+- Tam 4 şık yaz, hepsi birbirinden farklı olsun.
+- Yalnızca BİR şık doğru olsun. Bundan emin ol: diğer üçünün her biri için
+  "neden yanlış" yazabiliyor olmalısın. Yazamıyorsan o şıkkı değiştir.
+- celdiriciler alanına üç açıklama yaz, her biri şıkkın metniyle başlasın.
+- Gerekçeler sade Türkçe olsun, terimi parantezde ver.`;
+
+  return json(anahtar, {
+    sistem: SISTEM, istek, sema: SEMA_URETIM, sicaklik: 1.0
+  });
+}
+
+// ---------- 4. Serbest sohbet ----------
 // Duz metin doner; baglam olarak soru, siklar, secilen sik ve konu karti gider.
 export async function soruSor(anahtar, baglam, mesajlar) {
   const baglamMetni = `Konuştuğumuz soru:

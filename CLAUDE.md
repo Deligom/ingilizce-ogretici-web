@@ -39,7 +39,7 @@ index.html            tek giriş noktası, tüm görünümler
 app.js                yönlendirme (hash router), görünüm montajı
 db.js                 IndexedDB şeması + CRUD
 ai.js                 Gemini istemcisi, prompt sözleşmeleri, cache katmanı
-tekrar.js             aralıklı tekrar algoritması
+tekrar.js             aralıklı tekrar: kutu, aralık, günlük oturum, soru seçimi
 uretim.js             soru üretimi: prompt kurma, yerel eleme, onay kuyruğu
 data/konular.json     gramer konu ağacı (39 konu) + blok + çeşitlilik eksenleri
 data/sorular.json     birleşik soru bankası (aybu + tohum)
@@ -206,15 +206,20 @@ Boş ekran davet eder: "Henüz hata yok. Teşhis testini çözünce burası dola
 
 ## Şu an nerede
 
-**Faz 0, 1 ve 2 bitti.** Uygulama yayında:
+**Faz 0-3 bitti.** Uygulama yayında:
 https://deligom.github.io/ingilizce-ogretici-web/
 
-- Veri: 39 konu, 235 eksen, 182 soru (100 aybu + 82 tohum), üç zorluk aşaması
-- Teşhis: 8 blok, yarıda bırak-devam et, zayıf konu haritası
-- "Neden?": açıklama kartı + benzer 5 cümle + serbest sohbet, hepsi önbellekli
+- **Veri:** 39 konu, 235 eksen, 182 soru (100 aybu + 82 tohum), üç zorluk aşaması
+- **Teşhis:** 8 blok, geri tuşu, Bilmiyorum, sayfalı yanlış incelemesi
+- **"Neden?":** açıklama kartı + benzer 5 cümle + sohbet + hazır öneriler, hepsi önbellekli
+- **Alıştırma:** günlük kuyruk, konu kartı, anlık geri bildirim, kutu sistemi, seri
+- **Üretim:** Ayarlar → Gelişmiş, yerel eleme, onay kuyruğu
+
+Ekranlar: `#/` · `#/blok/:n` · `#/sonuc/:n` · `#/inceleme/:n/:i` · `#/calis` ·
+`#/hatalar` · `#/onay` · `#/ayarlar` · `#/ayarlar/gelismis`
 
 Yayın GitHub Pages'ten; public depo `Deligom/ingilizce-ogretici-web`, yerel dal
 `yayin`. Tüm yollar göreli; `file://` desteklenmez.
 
-Sırada **Faz 3** var: `tekrar.js` kutu sistemi, konu kartı ekranı, günlük alıştırma
-kuyruğu ve soru üretimi (slider + onay kuyruğu).
+Sırada **Faz 4** var: okuma modu — metin yapıştırma, kelimeye çift tık,
+cümleye uzun bas (cümle şeridi).
