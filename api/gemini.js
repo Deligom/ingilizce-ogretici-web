@@ -146,12 +146,23 @@ module.exports = async (req, res) => {
 
   const kullanilan = sayacArtir(ip);
 
-  try {
-    const yanit = await fetch(KOK + model + ":generateContent", {
+  // 503 "model yogun" gecici bir durumdur; sunucuda tekrar deneriz ki kullanici
+  // bosuna hata gormesin ve kota sayaci ikinci kez artmasin.
+  async function dene(kalanHak) {
+    const y = await fetch(KOK + model + ":generateContent", {
       method: "POST",
       headers: { "Content-Type": "application/json", "x-goog-api-key": anahtar },
       body: metin
     });
+    if (y.status === 503 && kalanHak > 0) {
+      await new Promise(r => setTimeout(r, 1500));
+      return dene(kalanHak - 1);
+    }
+    return y;
+  }
+
+  try {
+    const yanit = await dene(2);
 
     const veri = await yanit.json().catch(() => null);
     res.setHeader("X-Kalan-Istek", String(Math.max(0, GUNLUK_SINIR - kullanilan)));
@@ -159,11 +170,13 @@ module.exports = async (req, res) => {
 
     if (!yanit.ok) {
       // Google'in hata metnini oldugu gibi gecirmeyiz; anahtar bilgisi sizabilir.
-      const kod = yanit.status === 429 ? "kota" : "sunucu";
+      const kod = yanit.status === 429 ? "kota" : yanit.status === 503 ? "yogun" : "sunucu";
       return res.status(yanit.status).json({
         hata: yanit.status === 429
           ? "Paylaşılan günlük kota doldu. Yarın tekrar dene ya da kendi anahtarını gir."
-          : `Gemini hatası (${yanit.status}).`,
+          : yanit.status === 503
+            ? "Seçtiğin model şu an yoğun. Birkaç saniye sonra dene ya da Ayarlar'dan Gemini 3.1 Flash Lite'a geç."
+            : `Gemini hatası (${yanit.status}).`,
         kod
       });
     }
