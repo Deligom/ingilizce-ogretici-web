@@ -1,4 +1,4 @@
-# Neden — İngilizce Öğrenme PWA
+# WordNexus — İngilizce Öğrenme PWA
 
 ## Bu proje ne?
 

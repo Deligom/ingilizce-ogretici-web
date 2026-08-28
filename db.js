@@ -5,6 +5,8 @@ import {
 } from "https://cdn.jsdelivr.net/npm/idb-keyval@6.2.1/+esm";
 
 const acik = {};
+// Not: veritabani adlari "neden-" onekini korur. Uygulama adi WordNexus oldu ama
+// bu adlari degistirmek cihazda kayitli ilerlemeyi ve API anahtarini sifirlar.
 function depo(ad) {
   if (!acik[ad]) acik[ad] = createStore("neden-" + ad, ad);
   return acik[ad];

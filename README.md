@@ -1,4 +1,4 @@
-# Neden
+# WordNexus
 
 Türkçe konuşan biri için İngilizce öğrenme uygulaması. Her cümlenin, her kelimenin,
 her sorunun yanında bir **"Neden?"** düğmesi var — sorun bilgi eksikliği değil,

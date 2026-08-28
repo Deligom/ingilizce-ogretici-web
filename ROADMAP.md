@@ -1,4 +1,4 @@
-# Neden — Yol Haritası
+# WordNexus — Yol Haritası
 
 ## Faz 0 — Soru bankası ✅ BİTTİ
 - [x] `konular.json`: her konuya `blok` (1-8) ve `eksenler[]` alanı eklenir.
