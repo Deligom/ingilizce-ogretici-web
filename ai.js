@@ -20,19 +20,43 @@ zorlanıyor, ama Türkçeyi sezgisel biliyor. Kuralları şöyle anlat:
 - Asla "harika bir soru" gibi doldurma cümlesi kurma, doğrudan cevaba gir.
 - İngilizce cümleleri olduğu gibi yaz, çevirisini ayrıca verme (istenmedikçe).`;
 
+// Iki yol var:
+//  - Kullanicinin kendi anahtari varsa dogrudan Gemini'ye gidilir, sinir yoktur.
+//  - Yoksa /api/gemini proxy'sine gidilir; anahtar sunucuda durur, gunluk sinir isler.
+// Proxy yalnizca Vercel yayininda vardir; GitHub Pages kopyasinda kendi anahtarin gerekir.
+export const PROXY_YOLU = "/api/gemini";
+
+export let kalanIstek = null;   // proxy her yanitta bildirir, arayuz gosterir
+
 async function cagir(anahtar, govde) {
+  const proxy = !anahtar;
   let yanit;
   try {
-    yanit = await fetch(KOK + MODEL + ":generateContent", {
+    yanit = await fetch(proxy ? PROXY_YOLU : KOK + MODEL + ":generateContent", {
       method: "POST",
-      headers: { "Content-Type": "application/json", "x-goog-api-key": anahtar },
+      headers: proxy
+        ? { "Content-Type": "application/json" }
+        : { "Content-Type": "application/json", "x-goog-api-key": anahtar },
       body: JSON.stringify(govde)
     });
   } catch {
     throw new AiHata("İnternete ulaşılamadı. Bağlantını kontrol et.", "ag");
   }
 
+  if (proxy) {
+    const kalan = yanit.headers.get("X-Kalan-Istek");
+    if (kalan !== null) kalanIstek = Number(kalan);
+  }
+
   if (!yanit.ok) {
+    // Proxy kendi hata mesajini Turkce ve kodlu doner; oldugu gibi kullaniriz.
+    if (proxy) {
+      const veri = await yanit.json().catch(() => null);
+      if (veri?.hata) throw new AiHata(veri.hata, veri.kod || "sunucu");
+      if (yanit.status === 404)
+        throw new AiHata("Bu kopyada paylaşılan anahtar yok. Ayarlar'dan kendi anahtarını gir.", "proxyyok");
+      throw new AiHata("Sunucu hatası (" + yanit.status + ").", "sunucu");
+    }
     const metin = await yanit.text().catch(() => "");
     if (yanit.status === 400 || yanit.status === 401 || yanit.status === 403)
       throw new AiHata("Anahtar geçersiz ya da bu model için yetkisiz.", "anahtar");

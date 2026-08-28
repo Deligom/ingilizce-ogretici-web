@@ -18,8 +18,12 @@ Seviye hedefi: A1 → B1 (lise müfredatı + üniversite seviye tespit sınavı)
 - **Tek sayfa, PWA.** `manifest.json` + service worker (app shell + JSON verileri cache).
 - **Depolama: IndexedDB.** `idb-keyval` CDN'den. localStorage sadece tema tercihi için.
 - **AI: Gemini `gemini-2.5-flash`**, `responseMimeType: application/json` +
-  `responseSchema` ile yapılandırılmış çıktı. API anahtarı kullanıcıdan Ayarlar'da
-  alınır ve IndexedDB'de saklanır (kişisel kullanım; anahtar repoya yazılmaz).
+  `responseSchema` ile yapılandırılmış çıktı.
+- **İki anahtar yolu.** Kullanıcının kendi anahtarı varsa (Ayarlar → IndexedDB)
+  tarayıcı doğrudan Google'a gider, sınır yoktur. Yoksa `/api/gemini` proxy'sine
+  gider: anahtar `GEMINI_API_KEY` olarak sunucuda durur, tarayıcıya hiç inmez ve
+  IP başına günlük sınır işler. Proxy yalnızca Vercel yayınında vardır; GitHub
+  Pages kopyasında kendi anahtarın gerekir. Anahtar hiçbir durumda repoya yazılmaz.
 - **Müfredatı AI üretmez.** Konu ağacı sabit JSON. AI sadece *anlatım, soru üretimi
   ve sohbet* katmanı — ne öğrenileceğine değil, nasıl anlatılacağına karışır.
 - **Soru bankası üç katmanlı** (`data/sorular.json` + IndexedDB):

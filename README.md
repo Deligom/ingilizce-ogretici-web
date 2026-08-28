@@ -39,6 +39,38 @@ git remote add origin https://github.com/KULLANICI/DEPO.git && git push -u origi
 
 Tüm yollar göreli (`./data/...`), o yüzden alt dizinde yayınlanması sorun değil.
 
+## Vercel'e yayınlama (paylaşılan anahtar için)
+
+Uygulama iki şekilde çalışır:
+
+- **Kendi anahtarınla:** Ayarlar'a Gemini anahtarını girersin, tarayıcı doğrudan
+  Google'a gider. Günlük sınır yoktur, kota senin hesabından düşer. GitHub Pages
+  kopyasında tek seçenek budur.
+- **Paylaşılan anahtarla:** Anahtar sunucuda (`GEMINI_API_KEY`) durur, tarayıcıya
+  hiç inmez. Kullanıcı hiçbir şey yapmadan uygulamayı kullanır; IP başına günlük
+  istek sınırı vardır.
+
+İkincisi için Vercel gerekir. Kurulum, tek seferlik:
+
+1. [vercel.com](https://vercel.com) → GitHub ile giriş yap.
+2. **Add New → Project** → `ingilizce-ogretici-web` deposunu seç → **Import**.
+3. Framework Preset **Other** kalsın; build ayarlarına dokunma (bu proje derlenmiyor).
+4. **Environment Variables** bölümüne ekle:
+   - Name: `GEMINI_API_KEY` · Value: Google AI Studio'dan aldığın anahtar
+   - (isteğe bağlı) Name: `GUNLUK_SINIR` · Value: `100`
+5. **Deploy**. Bir iki dakikada `proje-adi.vercel.app` adresinde yayında olur.
+
+Anahtarı **repoya yazma**; yalnızca Vercel panelinden gir. Her `git push` sonrası
+Vercel kendini otomatik günceller.
+
+### Günlük sınır hakkında dürüst not
+
+`api/gemini.js` içindeki sayaç, sunucu örneğinin **belleğinde** tutulur. Vercel yeni
+bir örnek başlattığında sıfırlanır ve örnekler arasında paylaşılmaz. Yani kötüye
+kullanımı zorlaştıran bir fren, kesin bir sınır değil. Gerçek sınır için bir Redis
+(Upstash ücretsiz katmanı yeter) bağlanmalı; değiştirilmesi gereken tek yer
+`sayacAl` / `sayacArtir` çiftidir.
+
 ## API anahtarı
 
 Gemini anahtarı **repoya yazılmaz**. Uygulama içinde Ayarlar ekranından girilir ve

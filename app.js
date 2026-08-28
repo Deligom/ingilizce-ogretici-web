@@ -1,6 +1,7 @@
 // Yonlendirme (hash router) ve gorunum montaji.
 import * as db from "./db.js";
 import { anahtarTest, aciklaSoru, soruSor, AiHata } from "./ai.js";
+import * as ai from "./ai.js";
 import * as tekrar from "./tekrar.js";
 import * as uretim from "./uretim.js";
 
@@ -65,9 +66,9 @@ async function zayifKonular() {
 
 // ---------- "Neden?" katmani ----------
 // Her AI cagrisi bedava krediden yer; sayaci burada tek yerden artiririz.
+// Anahtar bossa ai.js proxy'ye gider; kullanicinin bir sey yapmasina gerek yok.
 async function aiCagir(isle) {
   const anahtar = await db.ayarOku("apiKey", "");
-  if (!anahtar) throw new AiHata("Önce Ayarlar'dan Gemini anahtarını gir.", "anahtaryok");
   const sonuc = await isle(anahtar);
   await db.kotaArtir();
   return sonuc;
@@ -160,7 +161,8 @@ async function nedenAc(kap, soru, secilen, konu) {
       await db.aciklamaYaz(soru.id, secilen, aciklama);
     } catch (hata) {
       kap.innerHTML = `<div class="bildirim hata" style="margin:14px 0 0">${kacis(hata.message)}</div>
-        ${hata.kod === "anahtaryok" ? `<a class="dugme ikincil" href="#/ayarlar" style="text-decoration:none">Ayarlar'a git</a>` : ""}`;
+        ${["anahtar", "proxyyok", "sunucuanahtaryok", "gunlukSinir"].includes(hata.kod)
+          ? `<a class="dugme ikincil" href="#/ayarlar" style="text-decoration:none">Ayarlar'a git</a>` : ""}`;
       return;
     }
   }
@@ -716,10 +718,13 @@ async function ayarlarEkrani(sekme = "basit") {
 
   const basitPanel = `
     <div class="kart">
-      <label for="anahtar">Gemini API anahtarı</label>
+      <label for="anahtar">Kendi Gemini anahtarın <span class="soluk" style="font-weight:400">— isteğe bağlı</span></label>
       <input id="anahtar" type="password" value="${kacis(anahtar)}" placeholder="AIza…" autocomplete="off" spellcheck="false">
       <p class="kucuk soluk" style="margin:10px 0 14px">
-        Anahtar yalnızca bu cihazdaki tarayıcıda saklanır, hiçbir yere gönderilmez.
+        ${anahtar
+          ? "Kendi anahtarınla çalışıyorsun: günlük sınır yok, kota senin hesabından düşüyor."
+          : "Şu an paylaşılan anahtarla çalışıyorsun; günlük bir istek sınırı var. Sınıra takılmak istemezsen kendi anahtarını gir — sınır kalkar, kota kendi hesabından düşer."}
+        Anahtar yalnızca bu cihazdaki tarayıcıda saklanır.
         <a href="https://aistudio.google.com/apikey" target="_blank" rel="noopener">Google AI Studio</a>'dan ücretsiz alabilirsin.
       </p>
       <div id="bildirim"></div>
@@ -747,7 +752,8 @@ async function ayarlarEkrani(sekme = "basit") {
     </div>
 
     <div class="kart">
-      <p style="margin:0 0 4px"><strong>${kota.sayi}</strong> AI isteği <span class="soluk">— bugün</span></p>
+      <p style="margin:0 0 4px"><strong>${kota.sayi}</strong> AI isteği <span class="soluk">— bugün</span>${
+        !anahtar && ai.kalanIstek !== null ? ` <span class="soluk">· paylaşılan kotadan ${ai.kalanIstek} hakkın kaldı</span>` : ""}</p>
       <p class="kucuk soluk" style="margin:0">
         Önbellekte <strong>${aciklamaSayisi}</strong> açıklama var; bunlar tekrar açıldığında
         istek harcamıyor ve çevrimdışı da çalışıyor.
