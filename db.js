@@ -45,9 +45,18 @@ export async function konununSorulari(konuId, zorluk = null) {
   return hepsi.filter(s => s.konu === konuId && (zorluk === null || s.zorluk === zorluk));
 }
 
-// --- ilerleme ---
-export const ARALIKLAR = [0, 1, 3, 7, 16, 35]; // kutu 0-5, gun
+// Soru cozuldugunde uzerine yazilir: bir daha ayni soruyu ust uste vermemek ve
+// "en uzun sure once cozulen" siralamasini yapabilmek icin.
+export async function soruIsaretle(soruId, dogruMu) {
+  const s = await oku("sorular", soruId);
+  if (!s) return;
+  s.sonCozum = new Date().toISOString();
+  s.cozulme = (s.cozulme || 0) + 1;
+  if (!dogruMu) s.hataSayisi = (s.hataSayisi || 0) + 1;
+  await yaz("sorular", soruId, s);
+}
 
+// --- ilerleme ---
 export async function ilerlemeOku(konuId) {
   return (await oku("ilerleme", konuId)) || { dogru: 0, yanlis: 0, kutu: 0, sonrakiTarih: null };
 }

@@ -153,6 +153,41 @@ button{font:inherit;color:inherit}
 .sik.yanlis .harf{border-color:var(--yanlis);color:var(--yanlis)}
 .sik:disabled{cursor:default}
 
+/* --- konu karti (alistirma) --- */
+.konu-kart .etiket{
+  display:block;font-size:11.5px;font-weight:600;color:var(--soluk);
+  text-transform:uppercase;letter-spacing:.06em;
+}
+.konu-kart .kural-metni{font-size:16px;line-height:1.6}
+.konu-kart .yapi{
+  font-family:var(--mono);font-size:14px;line-height:1.7;
+  background:var(--zemin);border-radius:10px;padding:11px 13px;margin-bottom:14px;
+}
+.konu-kart .ornek{margin-bottom:14px}
+.konu-kart .ornek .en{
+  font-family:var(--mono);font-size:15px;line-height:1.6;
+  border-left:3px solid var(--fosforlu);padding-left:11px;
+}
+.konu-kart .ornek .tr{font-size:14px;padding-left:14px;margin-top:3px}
+.konu-kart .tuzak-kutu{
+  background:#FFFBEB;border:1px solid #F5E3A3;border-radius:10px;padding:11px 13px;
+}
+
+/* --- gunluk kuyruk kutusu (ana sayfa) --- */
+.kuyruk{
+  background:var(--murekkep);color:#fff;border-radius:var(--yuvarlak);
+  padding:18px var(--bosluk);margin-bottom:12px;
+}
+.kuyruk h2{font-family:var(--display);font-size:21px;margin:0 0 4px;color:#fff}
+.kuyruk p{margin:0 0 14px;font-size:14.5px;opacity:.78}
+.kuyruk .dugme{background:#fff;color:var(--murekkep);width:100%}
+.kuyruk .dugme:hover{background:#EDF1F7}
+.seri{
+  display:inline-flex;align-items:center;gap:6px;
+  font-size:13px;font-weight:600;background:rgba(255,255,255,.14);
+  padding:4px 10px;border-radius:99px;margin-bottom:8px;
+}
+
 /* --- harita --- */
 .harita{display:flex;flex-direction:column;gap:10px}
 .blok{

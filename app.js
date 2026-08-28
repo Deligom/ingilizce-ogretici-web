@@ -1,6 +1,7 @@
 // Yonlendirme (hash router) ve gorunum montaji.
 import * as db from "./db.js";
 import { anahtarTest, aciklaSoru, soruSor, AiHata } from "./ai.js";
+import * as tekrar from "./tekrar.js";
 
 const ekran = document.getElementById("ekran");
 const BLOK_SAYISI = 8;
@@ -223,6 +224,12 @@ async function anaSayfa() {
   const sirada = bloklar.find(b => b.durum === "baslamadi");
   const zayif = await zayifKonular();
 
+  const hedef = Number(await db.ayarOku("gunlukHedef", 10));
+  const sayac = (await db.ayarOku("gunlukSayac", null)) || { tarih: tekrar.bugun(), cozulen: 0 };
+  const bugunCozulen = sayac.tarih === tekrar.bugun() ? sayac.cozulen : 0;
+  const seri = (await db.ayarOku("seri", null)) || { sayi: 0, sonGun: null };
+  const vadesi = await tekrar.vadesiGelenler();
+
   let baslangic;
   if (devam) {
     baslangic = `<a class="dugme tam" href="#/blok/${devam.no}">Blok ${yonelme(devam.no)} devam et
@@ -239,6 +246,14 @@ async function anaSayfa() {
     <p class="soluk">${biten === 0
       ? "Sekiz kısa bloktan ilki 15 soru sürüyor. Bitirdiğin an o konuların haritası çıkıyor — testin tamamını beklemene gerek yok."
       : `${biten}/${BLOK_SAYISI} blok bitti.`}</p>
+
+    ${vadesi.length ? `
+      <div class="kuyruk">
+        ${seri.sayi > 1 ? `<span class="seri">🔥 ${seri.sayi} günlük seri</span><br>` : ""}
+        <h2>Bugünün kuyruğu</h2>
+        <p>${vadesi.length} konu tekrar zamanında${bugunCozulen ? ` · bugün ${bugunCozulen}/${hedef} soru çözdün` : ` · ~${hedef} soru, 10 dakika`}</p>
+        <a class="dugme" href="#/calis" style="text-decoration:none">${bugunCozulen >= hedef ? "Devam et" : "Çalışmaya başla"}</a>
+      </div>` : ""}
 
     <div style="margin:20px 0">${baslangic}</div>
 
@@ -270,10 +285,11 @@ async function anaSayfa() {
       : `<div class="kart" style="padding:0">
            ${zayif.map(z => `<div class="konu-satir">
              <span class="ad"><span class="vurgu">${kacis(z.konu.ad)}</span>
-               <small>${z.konu.seviye} · ${z.dogru}/${z.dogru + z.yanlis} doğru</small></span>
+               <small>${z.konu.seviye} · ${z.dogru}/${z.dogru + z.yanlis} doğru${
+                 z.sonrakiTarih ? (z.sonrakiTarih <= tekrar.bugun() ? " · bugün tekrar" : " · " + z.sonrakiTarih + " tekrar") : ""}</small></span>
+             <span class="oran soluk">${z.kutu ?? 0}/5</span>
            </div>`).join("")}
-         </div>
-         <p class="kucuk soluk">Alıştırma modu Faz 3'te geliyor; şimdilik bu liste teşhisin çıktısı.</p>`}
+         </div>`}
   `;
 }
 
@@ -533,6 +549,155 @@ async function incelemeEkrani(no, index) {
   window.scrollTo(0, 0);
 }
 
+// ---------- Alistirma ----------
+// Teshisten farki: burada cevap aninda gosterilir ve ogretilir. Teshis olcer,
+// alistirma ogretir. Kutu her cevapta guncellenir.
+async function calisEkrani() {
+  const hedef = Number(await db.ayarOku("gunlukHedef", 10));
+  const oturum = await tekrar.gunlukOturum(hedef);
+
+  if (!oturum.soruSayisi) {
+    const vadesi = await tekrar.vadesiGelenler();
+    ekran.innerHTML = `
+      <h1>Bugünlük bu kadar</h1>
+      <p class="soluk">${vadesi.length === 0
+        ? "Vadesi gelen konu yok. Yeni bir teşhis bloğu çözersen kuyruk dolar."
+        : "Bu konularda soru kalmadı. Ayarlar'dan yeni soru üretebilirsin."}</p>
+      <div class="satir" style="margin-top:16px">
+        <a class="dugme" href="#/" style="text-decoration:none">Ana sayfa</a>
+        <a class="dugme ikincil" href="#/ayarlar" style="text-decoration:none">Ayarlar</a>
+      </div>`;
+    return;
+  }
+
+  let i = 0;
+  let dogruSayisi = 0, yanlisSayisi = 0;
+  const gorulen = new Set();
+
+  function ciz() {
+    if (i >= oturum.adimlar.length) return bitir();
+    const adim = oturum.adimlar[i];
+    const konu = konuHarita.get(adim.konuId);
+    const kalanSoru = oturum.adimlar.slice(i).filter(a => a.tip === "soru").length;
+    const cozulen = oturum.soruSayisi - kalanSoru;
+
+    const ustBilgi = `
+      <div class="ilerleme-cubuk"><i style="width:${(cozulen / oturum.soruSayisi) * 100}%"></i></div>
+      <div class="sayac">Alıştırma · ${cozulen} / ${oturum.soruSayisi} soru
+        · <a href="#/" style="color:inherit">çık</a></div>`;
+
+    if (adim.tip === "kart") {
+      ekran.innerHTML = ustBilgi + `
+        <div class="kart konu-kart">
+          <span class="etiket">${konu.seviye} · kutu ${adim.kutu}/5</span>
+          <h1 style="font-size:23px;margin:6px 0 12px">${kacis(konu.ad)}</h1>
+          <p class="kural-metni" style="margin-bottom:14px">${kacis(konu.kural)}</p>
+          <div class="yapi">${kacis(konu.yapi)}</div>
+          <div class="ornek">
+            <div class="en">${kacis(konu.ornek.en)}</div>
+            <div class="tr soluk">${kacis(konu.ornek.tr)}</div>
+          </div>
+          <div class="tuzak-kutu">
+            <span class="etiket">Tuzak</span>
+            <p style="margin:2px 0 0;font-size:14.5px">${kacis(konu.tuzak)}</p>
+          </div>
+        </div>
+        <button class="dugme tam" id="basla">Hazırım, soruya geç →</button>`;
+      ekran.querySelector("#basla").addEventListener("click", () => { i++; ciz(); window.scrollTo(0, 0); });
+      return;
+    }
+
+    // --- soru adimi ---
+    const s = adim.soru;
+    let secilen = null, cevaplandi = false;
+
+    ekran.innerHTML = ustBilgi + `
+      <div class="sayac" style="margin-top:-4px">${kacis(konu.ad)}</div>
+      ${s.metin ? `<div class="parca">${kacis(s.metin)}</div>` : ""}
+      <p class="soru-metni">${soruGoster(s.soru)}</p>
+      <div class="sik-liste">
+        ${s.secenekler.map((o, j) => `
+          <button class="sik" data-j="${j}">
+            <span class="harf">${HARFLER[j]}</span><span>${kacis(o)}</span>
+          </button>`).join("")}
+      </div>
+      <div id="geribildirim"></div>`;
+
+    ekran.querySelectorAll(".sik").forEach(d => d.addEventListener("click", async () => {
+      if (cevaplandi) return;
+      cevaplandi = true;
+      secilen = Number(d.dataset.j);
+      const dogruMu = secilen === s.cevap;
+      dogruMu ? dogruSayisi++ : yanlisSayisi++;
+      gorulen.add(adim.konuId);
+
+      ekran.querySelectorAll(".sik").forEach((x, j) => {
+        x.disabled = true;
+        if (j === s.cevap) x.classList.add("dogru");
+        else if (j === secilen) x.classList.add("yanlis");
+      });
+
+      const yeniKutuNo = await tekrar.cevapla(adim.konuId, s, dogruMu);
+      const celdirici = !dogruMu && s.celdiriciler?.find(t => t.startsWith(s.secenekler[secilen]));
+
+      ekran.querySelector("#geribildirim").innerHTML = `
+        <div class="kart" style="border-color:${dogruMu ? "var(--dogru)" : "var(--yanlis)"}">
+          <p style="margin:0 0 6px;font-weight:600;color:${dogruMu ? "var(--dogru)" : "var(--yanlis)"}">
+            ${dogruMu ? "Doğru" : "Yanlış"}
+            <span class="soluk" style="font-weight:400;font-size:14px">— kutu ${yeniKutuNo}/5</span>
+          </p>
+          ${!dogruMu ? `<p class="kucuk" style="margin:0 0 8px">Doğrusu:
+            <span style="font-family:var(--mono)"><span class="vurgu">${kacis(s.secenekler[s.cevap])}</span></span></p>` : ""}
+          ${s.neden ? `<p class="kucuk" style="margin:0">${kacis(s.neden)}</p>` : ""}
+          ${celdirici ? `<p class="kucuk soluk" style="margin:8px 0 0">${kacis(celdirici)}</p>` : ""}
+          <div class="satir" style="margin-top:12px">
+            <button class="dugme" id="devam">${i === oturum.adimlar.length - 1 ? "Oturumu bitir" : "Devam →"}</button>
+            <button class="dugme ikincil" id="neden-dugme"
+              style="min-height:44px;padding:10px 18px">Neden?</button>
+          </div>
+          <div class="neden-alani"></div>
+        </div>`;
+
+      const kap = ekran.querySelector(".neden-alani");
+      const nedenDugme = ekran.querySelector("#neden-dugme");
+      if (await db.aciklamaOku(s.id, secilen)) nedenDugme.textContent = "Neden? (hazır)";
+      nedenDugme.addEventListener("click", async () => {
+        if (kap.innerHTML) { kap.innerHTML = ""; nedenDugme.textContent = "Neden?"; return; }
+        nedenDugme.textContent = "Gizle";
+        await nedenAc(kap, s, secilen, konu);
+      });
+
+      ekran.querySelector("#devam").addEventListener("click", () => { i++; ciz(); window.scrollTo(0, 0); });
+      ekran.querySelector("#geribildirim").scrollIntoView({ block: "nearest", behavior: "smooth" });
+    }));
+  }
+
+  async function bitir() {
+    const sayac = await tekrar.gunuKaydet(dogruSayisi + yanlisSayisi, hedef);
+    const seri = (await db.ayarOku("seri", null)) || { sayi: 0 };
+    const hedefTuttu = sayac.cozulen >= hedef;
+
+    ekran.innerHTML = `
+      <h1>${hedefTuttu ? "Günlük hedef tamam" : "Oturum bitti"}</h1>
+      <p class="soluk">${dogruSayisi} doğru, ${yanlisSayisi} yanlış ·
+        bugün toplam ${sayac.cozulen}/${hedef} soru${seri.sayi > 1 ? ` · ${seri.sayi} günlük seri` : ""}</p>
+      <div class="kart" style="padding:0;margin-top:18px">
+        ${[...gorulen].map(id => {
+          const k = konuHarita.get(id);
+          return `<div class="konu-satir"><span class="ad">${kacis(k.ad)}
+            <small>${k.seviye}</small></span></div>`;
+        }).join("")}
+      </div>
+      <div class="satir" style="margin-top:20px">
+        <a class="dugme" href="#/calis" style="text-decoration:none">Devam et</a>
+        <a class="dugme ikincil" href="#/" style="text-decoration:none">Ana sayfa</a>
+      </div>`;
+  }
+
+  ciz();
+  window.scrollTo(0, 0);
+}
+
 async function ayarlarEkrani() {
   const anahtar = await db.ayarOku("apiKey", "");
   const hedef = await db.ayarOku("gunlukHedef", 10);
@@ -649,6 +814,7 @@ async function yonlendir() {
   const yol = location.hash.replace(/^#\/?/, "").split("/");
   try {
     if (yol[0] === "ayarlar") return await ayarlarEkrani();
+    if (yol[0] === "calis") return await calisEkrani();
     if (yol[0] === "blok" && yol[1]) return await blokEkrani(Number(yol[1]));
     if (yol[0] === "sonuc" && yol[1]) return await sonucEkrani(Number(yol[1]));
     if (yol[0] === "inceleme" && yol[1]) return await incelemeEkrani(Number(yol[1]), Number(yol[2]) || 0);
