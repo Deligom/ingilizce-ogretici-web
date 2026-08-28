@@ -139,7 +139,6 @@ function sohbetKarti(mesajlar, oneriler) {
 // Bir yanlis cevap icin aciklamayi acar: once cache, yoksa AI, sonra sohbet.
 async function nedenAc(kap, soru, secilen, konu) {
   const oneriAcik = await db.ayarOku("oneriler", true);
-  const secilenModel = await db.ayarOku("model", ai.VARSAYILAN_MODEL);
 
   const cizAciklama = (a, mesajlar) => {
     kap.innerHTML = aciklamaKarti(a) +
@@ -712,6 +711,7 @@ async function ayarlarEkrani(sekme = "basit") {
   const anahtar = await db.ayarOku("apiKey", "");
   const hedef = await db.ayarOku("gunlukHedef", 10);
   const oneriAcik = await db.ayarOku("oneriler", true);
+  const secilenModel = await db.ayarOku("model", ai.VARSAYILAN_MODEL);
   const kota = await db.kotaOku();
   const aciklamaSayisi = (await db.ciftler("aciklamalar")).length;
   const bekleyenSayisi = (await uretim.bekleyenler()).length;
