@@ -107,6 +107,10 @@
 - [x] `sw.js` kendi kodumuz için ağ-önce: yeni sürüm bir açılış geriden görünmüyor.
 - [x] Zaman aşımı: `maxDuration` 60sn, parti 4 cümle, 502/504 için doğru mesaj.
 - [x] Kota mesajı modele göre: bir modelin kotası dolunca diğerine yönlendirir.
+- [x] **Varsayılan model Flash Lite oldu.** Google'ın kota ekranı gerçek sayıları
+      gösterdi: 3.5 Flash günde 20 / dakikada 5, Flash Lite günde 500 / dakikada 15.
+      Canlı testte 3.5 Flash'ın kotası doldu. Flash Lite ayrıca daha hızlı çıktı
+      (açıklama 4.4sn'ye karşı 8sn) ve kalite farkı hissedilmiyor.
 
 ## Sonrası (fikir kuyruğu)
 - Kendi PDF sınavını yükleyip soru bankasına ekleme (OCR/metin ayrıştırma)

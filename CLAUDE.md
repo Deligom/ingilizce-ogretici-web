@@ -17,9 +17,13 @@ Seviye hedefi: A1 → B1 (lise müfredatı + üniversite seviye tespit sınavı)
 - **Build yok.** `index.html` + ES modülleri + CDN import. Bundler, npm, node yok.
 - **Tek sayfa, PWA.** `manifest.json` + service worker (app shell + JSON verileri cache).
 - **Depolama: IndexedDB.** `idb-keyval` CDN'den. localStorage sadece tema tercihi için.
-- **AI: Gemini.** Model Ayarlar'dan seçilir: `gemini-3.5-flash` (varsayılan, daha iyi
-  anlatım) ya da `gemini-3.1-flash-lite` (daha hızlı). Çıktı `responseMimeType:
-  application/json` + `responseSchema` ile yapılandırılır.
+- **AI: Gemini.** Model Ayarlar'dan seçilir. Varsayılan `gemini-3.1-flash-lite`;
+  bu bir kalite tercihi değil, aritmetik: ücretsiz katmanda günlük hak
+  **500'e karşı 20** (3.5 Flash), dakikalık hak 15'e karşı 5. Bir öğrenme oturumu
+  kolayca 10-20 istek yiyor, yani 20/gün ile uygulama gün ortasında kapanıyor.
+  `gemini-3.5-flash` seçenek olarak duruyor: anlatımı biraz daha iyi, zor bir
+  konuyu açıklatmak için saklanmalı. Çıktı `responseMimeType: application/json` +
+  `responseSchema` ile yapılandırılır.
 - **İki anahtar yolu.** Kullanıcının kendi anahtarı varsa (Ayarlar → IndexedDB)
   tarayıcı doğrudan Google'a gider, sınır yoktur. Yoksa `/api/gemini` proxy'sine
   gider: anahtar `GEMINI_API_KEY` olarak sunucuda durur, tarayıcıya hiç inmez ve
