@@ -106,6 +106,10 @@ async function cagir(anahtar, govde) {
     if (proxy) {
       const veri = await yanit.json().catch(() => null);
       if (veri?.hata) throw new AiHata(veri.hata, veri.kod || "sunucu");
+      // 502/504: sunucu yaniti JSON degil, ag gecidi hatasi. Istek fazla uzun
+      // surmus demektir; kullaniciya "anahtar yok" demek yaniltici olur.
+      if (yanit.status === 502 || yanit.status === 504)
+        throw new AiHata("İstek çok uzun sürdü. Tekrar dene — kaldığı yerden devam eder.", "sure");
       // Statik barindirmada (GitHub Pages) /api yoktur: POST'a 404 ya da 405 doner
       // ve govde JSON degildir. Kullaniciya dogru yolu gosterelim.
       if (!veri || yanit.status === 404 || yanit.status === 405)

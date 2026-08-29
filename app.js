@@ -715,7 +715,7 @@ async function calisEkrani() {
 // ---------- Okuma modu ----------
 // Metin bir kez cozumlenir, sonrasi anlik ve cevrimdisi. Tek tek istek atmak
 // hem yavas hem de ucak modunda cumleyi tamamen kullanilmaz birakiyordu.
-const COZUM_PARTI = 6;   // tek istekte kac cumle
+const COZUM_PARTI = 4;   // tek istekte kac cumle (kisa tut: uzun istek zaman asimina ugruyor)
 
 async function metniCozumleVeKaydet(cumleler, ilerlemeyiBildir) {
   const eksik = [];
