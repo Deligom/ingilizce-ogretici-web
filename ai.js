@@ -2,16 +2,20 @@
 const KOK = "https://generativelanguage.googleapis.com/v1beta/models/";
 
 // Kullaniciya sunulan iki model. Ayarlar'dan secilir, secim IndexedDB'de durur.
+// Sira onemli: ilki varsayilan. Ucretsiz katmanda gunluk istek haklari
+// arasinda 25 kat fark var (500'e 20), o yuzden varsayilan Flash Lite.
+// Bir ogrenme oturumu kolayca 10-20 istek yer; 20/gun ile uygulama kullanilamaz.
 export const MODELLER = [
-  {
-    ad: "gemini-3.5-flash",
-    baslik: "Gemini 3.5 Flash",
-    aciklama: "Daha iyi anlatım. Açıklamalar ve soru üretimi için önerilir."
-  },
   {
     ad: "gemini-3.1-flash-lite",
     baslik: "Gemini 3.1 Flash Lite",
-    aciklama: "Daha hızlı ve hafif. Kota sıkışınca ya da hız istediğinde."
+    aciklama: "Günde 500 istek, dakikada 15. Hızlı ve bol haklı — günlük kullanım için bu."
+  },
+  {
+    ad: "gemini-3.5-flash",
+    baslik: "Gemini 3.5 Flash",
+    aciklama: "Anlatımı biraz daha iyi ama günde yalnızca 20 istek hakkı var. " +
+              "Takıldığın zor bir konuyu açıklatmak için sakla."
   }
 ];
 export const VARSAYILAN_MODEL = MODELLER[0].ad;

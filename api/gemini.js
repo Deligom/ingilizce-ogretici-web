@@ -5,7 +5,7 @@
 //   GEMINI_API_KEY  (zorunlu)  Vercel panelinden eklenir, repoya yazilmaz.
 //   GUNLUK_SINIR    (istege bagli, varsayilan 100) IP basina gunluk istek.
 
-const MODEL = "gemini-3.5-flash";
+const MODEL = "gemini-3.1-flash-lite";
 const KOK = "https://generativelanguage.googleapis.com/v1beta/models/";
 const GUNLUK_SINIR = Number(process.env.GUNLUK_SINIR || 100);
 const EN_BUYUK_GOVDE = 60000;      // karakter
@@ -176,7 +176,7 @@ module.exports = async (req, res) => {
           // Her modelin gunluk kotasi ayridir: biri dolunca digeri calisabilir.
           ? (model.includes("lite")
               ? "Paylaşılan günlük kota doldu. Yarın sıfırlanır; beklemek istemiyorsan Ayarlar'dan kendi anahtarını girebilirsin."
-              : "Bu modelin günlük kotası doldu. Ayarlar'dan Gemini 3.1 Flash Lite'a geç — onun kotası ayrıdır ve büyük ihtimalle çalışır.")
+              : "Bu modelin günlük hakkı doldu (3.5 Flash'ta günde 20 istek var). Ayarlar'dan Gemini 3.1 Flash Lite'a geç — orada günde 500 hakkın var.")
           : yanit.status === 503
             ? "Seçtiğin model şu an yoğun. Birkaç saniye sonra dene ya da Ayarlar'dan Gemini 3.1 Flash Lite'a geç."
             : `Gemini hatası (${yanit.status}).`,
