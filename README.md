@@ -71,6 +71,20 @@ kullanımı zorlaştıran bir fren, kesin bir sınır değil. Gerçek sınır i�
 (Upstash ücretsiz katmanı yeter) bağlanmalı; değiştirilmesi gereken tek yer
 `sayacAl` / `sayacArtir` çiftidir.
 
+## Sınav parçalarının hazır çözümleri
+
+`data/cozumler.json` altı sınav parçasının cümle çözümlerini ve zor kelimelerini
+taşır (105 cümle, 121 kelime). İlk açılışta IndexedDB'ye yazılır; bu metinler
+çevrimdışı çalışır ve kotadan istek harcamaz.
+
+Yeniden üretmek için (proxy üzerinden gider, anahtar gerekmez):
+
+```bash
+node arac/cozum-uret.js
+```
+
+Yalnızca bazı parçaları yenilemek için: `SADECE=p3,p6 node arac/cozum-uret.js`
+
 ## API anahtarı
 
 Gemini anahtarı **repoya yazılmaz**. Uygulama içinde Ayarlar ekranından girilir ve

@@ -53,6 +53,8 @@ uretim.js             soru üretimi: prompt kurma, yerel eleme, onay kuyruğu
 data/konular.json     gramer konu ağacı (39 konu) + blok + çeşitlilik eksenleri
 data/sorular.json     birleşik soru bankası (aybu + tohum)
 data/teshis-testi.json AYBU 2021-22 sınavının orijinal hali — sınav provası modu için
+data/cozumler.json    sınav parçalarının hazır çözümleri (105 cümle + 121 kelime)
+arac/cozum-uret.js    çözümleri üretir (node arac/cozum-uret.js)
 api/gemini.js         Vercel proxy: anahtarı gizler, günlük sınır uygular
 arac/ikon-uret.js     PWA ikonlarını üretir (node arac/ikon-uret.js)
 ikon/                 üretilmiş PNG ikonlar
@@ -128,7 +130,12 @@ Doğru cevap kutuyu 1 artırır, yanlış cevap 0'a düşürür.
 Kullanıcı metin yapıştırır, sınav parçalarından seçer ya da **AI'ya metin
 yazdırır** (seviye + uzunluk + konu).
 
-**Önce çözümle, sonra oku.** Metin açılınca tek düğme çıkar: "Metni çözümle".
+**Sınav parçaları hazır gelir.** `data/cozumler.json` repoda; ilk açılışta
+IndexedDB'ye tohumlanır. Bu altı metin ilk andan itibaren çevrimdışı çalışır ve
+kullanıcının kotasından tek istek harcanmaz. Çözümlerin kendi sürüm bayrağı var
+(`cozumSurum`), kullanıcının kendi çözümlerinin üzerine yazmaz.
+
+**Kendi metninde: önce çözümle, sonra oku.** Metin açılınca tek düğme çıkar: "Metni çözümle".
 Tüm cümleler 4'erli partiler hâlinde tek seferde çözümlenip IndexedDB'ye yazılır;
 aynı istekte metnin zor kelimeleri de sözlüğe düşer. Bundan sonra her dokunma
 anlık ve çevrimdışı çalışır. Cümle cümle istek atmak hem yavaştı hem de uçak
