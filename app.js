@@ -1,6 +1,7 @@
 // Yonlendirme (hash router) ve gorunum montaji.
 import * as db from "./db.js";
-import { anahtarTest, aciklaSoru, soruSor, kelimeAnlami, cumleParcala, AiHata } from "./ai.js";
+import { anahtarTest, aciklaSoru, soruSor, kelimeAnlami, cumleParcala,
+         metniCozumle, metinUret, metinSohbet, AiHata } from "./ai.js";
 import * as ai from "./ai.js";
 import * as tekrar from "./tekrar.js";
 import * as uretim from "./uretim.js";
@@ -712,6 +713,43 @@ async function calisEkrani() {
 }
 
 // ---------- Okuma modu ----------
+// Metin bir kez cozumlenir, sonrasi anlik ve cevrimdisi. Tek tek istek atmak
+// hem yavas hem de ucak modunda cumleyi tamamen kullanilmaz birakiyordu.
+const COZUM_PARTI = 6;   // tek istekte kac cumle
+
+async function metniCozumleVeKaydet(cumleler, ilerlemeyiBildir) {
+  const eksik = [];
+  for (const c of cumleler) if (!(await db.cumleOku(c))) eksik.push(c);
+  if (!eksik.length) return { cozulen: 0, zorKelime: 0 };
+
+  let cozulen = 0, zorKelime = 0;
+  const partiSayisi = Math.ceil(eksik.length / COZUM_PARTI);
+
+  for (let p = 0; p < partiSayisi; p++) {
+    const parti = eksik.slice(p * COZUM_PARTI, (p + 1) * COZUM_PARTI);
+    ilerlemeyiBildir?.(p + 1, partiSayisi);
+    const veri = await aiCagir(a => metniCozumle(a, parti));
+
+    for (const c of veri.cumleler || []) {
+      // Model cumleyi birebir dondurmezse en yakin eslesmeyi buluruz.
+      const hedef = parti.find(x => x === c.cumle)
+        || parti.find(x => x.replace(/\s+/g, " ").trim() === String(c.cumle).replace(/\s+/g, " ").trim())
+        || parti.find(x => x.startsWith(String(c.cumle).slice(0, 24)));
+      if (!hedef) continue;
+      await db.cumleYaz(hedef, { parcalar: c.parcalar, turkce: c.turkce });
+      cozulen++;
+    }
+    for (const k of veri.zorKelimeler || []) {
+      if (await db.kelimeOku(k.kelime)) continue;
+      await db.kelimeYaz(k.kelime, {
+        anlam: k.anlam, tur: k.tur, cumledekiRol: k.cumledekiRol, ornek: k.ornek
+      });
+      zorKelime++;
+    }
+  }
+  return { cozulen, zorKelime };
+}
+
 // Metin kelime kelime isaretlenir: kelimeye dokun -> anlam, cumleye uzun bas ->
 // cumle seridi. Ikisi de once IndexedDB onbellegine bakar, kota harcamaz.
 
@@ -751,6 +789,29 @@ async function okumaEkrani(metinId) {
         Kelimeye dokununca anlamı, cümleye uzun basınca cümlenin iskeleti çıkar.</p>
 
       <div class="kart">
+        <h2 style="margin:0 0 4px;font-size:18px">AI ile metin üret</h2>
+        <p class="kucuk soluk" style="margin:0 0 12px">
+          Seviyene uygun, istediğin konuda okuma metni yazdırır. Üretilen metin
+          kaydedilir; sonra çözümleyip çevrimdışı da kullanabilirsin.
+        </p>
+        <div class="satir" style="gap:10px;margin-bottom:10px">
+          <select id="uret-seviye" style="flex:1;min-width:110px">
+            <option value="A1">A1 — başlangıç</option>
+            <option value="A2" selected>A2 — orta</option>
+            <option value="B1">B1 — ileri</option>
+          </select>
+          <select id="uret-uzunluk" style="flex:1;min-width:110px">
+            <option value="90">Kısa (~90 kelime)</option>
+            <option value="160" selected>Orta (~160 kelime)</option>
+            <option value="260">Uzun (~260 kelime)</option>
+          </select>
+        </div>
+        <input type="text" id="uret-konu" placeholder="Konu (boş bırakılabilir): kahve, uzay, taşınmak…">
+        <div id="uret-bildirim" style="margin-top:10px"></div>
+        <button class="dugme" id="metin-uret" style="margin-top:4px">Metin üret</button>
+      </div>
+
+      <div class="kart">
         <label for="metin-girdi">Metin yapıştır</label>
         <textarea id="metin-girdi" rows="6" placeholder="İngilizce bir metin yapıştır…"></textarea>
         <div class="satir" style="margin-top:10px">
@@ -778,6 +839,28 @@ async function okumaEkrani(metinId) {
             <small>${p.metin.split(/\s+/).length} kelime</small></span>
         </a>`).join("")}
       </div>`;
+
+    ekran.querySelector("#metin-uret").addEventListener("click", async (e) => {
+      const bildirim = ekran.querySelector("#uret-bildirim");
+      const seviye = ekran.querySelector("#uret-seviye").value;
+      const uzunluk = Number(ekran.querySelector("#uret-uzunluk").value);
+      const konu = ekran.querySelector("#uret-konu").value.trim();
+      e.target.disabled = true;
+      bildirim.innerHTML = `<p class="yukleniyor" style="margin:0">Metin yazılıyor</p>`;
+      try {
+        const veri = await aiCagir(a => metinUret(a, seviye, konu, uzunluk));
+        const id = "m" + Date.now();
+        await db.metinYaz(id, {
+          id, metin: veri.metin, baslik: veri.baslik || "Üretilen metin",
+          seviye, uretilmis: true, tarih: new Date().toISOString()
+        });
+        git("#/oku/" + id);
+      } catch (hata) {
+        bildirim.innerHTML = `<div class="bildirim hata">${kacis(hata.message)}</div>`;
+      } finally {
+        e.target.disabled = false;
+      }
+    });
 
     ekran.querySelector("#metin-ac").addEventListener("click", async () => {
       const metin = ekran.querySelector("#metin-girdi").value.trim();
@@ -822,15 +905,134 @@ async function okumaEkrani(metinId) {
 
   ekran.innerHTML = `
     <div class="sayac"><a href="#/oku" style="color:inherit">← metinler</a>
-      · ${cumleListesi.length} cümle</div>
+      · ${cumleListesi.length} cümle · ${metin.split(/\s+/).length} kelime</div>
+
+    <div class="kart" id="cozum-kart" style="margin-bottom:14px">
+      <div id="cozum-durum"></div>
+    </div>
+
     <div class="okuma-govde">${govde}</div>
     <div id="okuma-panel"></div>
+
+    <div class="kart" id="metin-sohbet">
+      <h2 style="margin:0 0 4px;font-size:18px">Metin hakkında sor</h2>
+      <p class="kucuk soluk" style="margin:0 0 12px">
+        Anlamadığın cümleyi, yapıyı ya da kelimeyi sor. Metnin tamamını görüyor.
+      </p>
+      <div class="mesajlar" id="metin-mesajlar"></div>
+      <div class="oneri-liste" id="metin-oneriler"></div>
+      <textarea class="sohbet-girdi" id="metin-girdi-sohbet" rows="2"
+        placeholder="Örnek: üçüncü cümlede 'have been' neden var?"></textarea>
+      <div class="satir" style="margin-top:8px">
+        <button class="dugme" id="metin-sor" style="min-height:44px;padding:10px 18px">Sor</button>
+      </div>
+    </div>
+
     <p class="kucuk soluk" style="margin-top:18px">
       Kelimeye <strong>dokun</strong> → anlamı. Cümleye <strong>uzun bas</strong> → cümle şeridi.
-      Açılanlar kaydedilir, ikinci kez internet gerekmez.
     </p>`;
 
   const panel = ekran.querySelector("#okuma-panel");
+
+  // --- cozumleme durumu ve dugmesi ---
+  const cozumDurum = ekran.querySelector("#cozum-durum");
+
+  async function cozumDurumunuCiz() {
+    let hazir = 0;
+    for (const c of cumleListesi) if (await db.cumleOku(c)) hazir++;
+    const tamam = hazir === cumleListesi.length;
+
+    cozumDurum.innerHTML = tamam
+      ? `<p style="margin:0;font-size:14.5px"><strong style="color:var(--dogru)">Metin çözümlendi.</strong>
+           <span class="soluk">Artık internet olmadan da çalışır.</span></p>`
+      : `<p style="margin:0 0 4px;font-size:14.5px"><strong>${cumleListesi.length - hazir} cümle çözümlenmedi</strong>
+           ${hazir ? `<span class="soluk">· ${hazir} hazır</span>` : ""}</p>
+         <p class="kucuk soluk" style="margin:0 0 12px">
+           Hepsini bir kerede çözümlersen dokunduğun her cümle anında açılır ve
+           uçak modunda da çalışır.
+         </p>
+         <button class="dugme" id="cozumle">Metni çözümle</button>`;
+
+    const dugme = cozumDurum.querySelector("#cozumle");
+    if (!dugme) return;
+    dugme.addEventListener("click", async () => {
+      dugme.disabled = true;
+      try {
+        const sonuc = await metniCozumleVeKaydet(cumleListesi, (n, toplam) => {
+          cozumDurum.innerHTML =
+            `<p class="yukleniyor" style="margin:0">Çözümleniyor — ${n}/${toplam} bölüm</p>`;
+        });
+        await cozumDurumunuCiz();
+        if (sonuc.zorKelime) {
+          cozumDurum.insertAdjacentHTML("beforeend",
+            `<p class="kucuk soluk" style="margin:8px 0 0">${sonuc.zorKelime} zor kelime de kaydedildi.</p>`);
+        }
+      } catch (hata) {
+        cozumDurum.innerHTML = `<div class="bildirim hata" style="margin:0">${kacis(hata.message)}</div>`;
+        const yeniden = document.createElement("button");
+        yeniden.className = "dugme ikincil";
+        yeniden.textContent = "Tekrar dene";
+        yeniden.addEventListener("click", cozumDurumunuCiz);
+        cozumDurum.appendChild(yeniden);
+      }
+    });
+  }
+  await cozumDurumunuCiz();
+
+  // --- metin sohbeti ---
+  const sohbetAnahtari = "metin:" + (metinId || "?");
+  const mesajKutusu = ekran.querySelector("#metin-mesajlar");
+  const sohbetGirdi = ekran.querySelector("#metin-girdi-sohbet");
+  const sorDugmesi = ekran.querySelector("#metin-sor");
+
+  async function sohbetiCiz() {
+    const mesajlar = await db.sohbetOku(sohbetAnahtari);
+    mesajKutusu.innerHTML = mesajlar.length
+      ? mesajlar.map(mesajHtml).join("")
+      : `<p class="kucuk soluk" style="margin:0">Henüz soru sormadın.</p>`;
+
+    const oneriKutusu = ekran.querySelector("#metin-oneriler");
+    if (await db.ayarOku("oneriler", true)) {
+      const oneriler = [
+        "Bu metnin ana fikri ne?",
+        "Metindeki en zor cümleyi açıklar mısın?",
+        "Burada hangi zamanlar kullanılmış?"
+      ];
+      oneriKutusu.innerHTML = oneriler.map(o => `<button class="oneri">${kacis(o)}</button>`).join("");
+      oneriKutusu.querySelectorAll(".oneri").forEach(o => o.addEventListener("click", () => {
+        sohbetGirdi.value = o.textContent;
+        sohbetGirdi.focus();
+      }));
+    } else {
+      oneriKutusu.innerHTML = "";
+    }
+  }
+  await sohbetiCiz();
+
+  sorDugmesi.addEventListener("click", async () => {
+    const soru = sohbetGirdi.value.trim();
+    if (!soru) return;
+    const mesajlar = await db.sohbetOku(sohbetAnahtari);
+    mesajlar.push({ rol: "kullanici", metin: soru });
+    sohbetGirdi.value = "";
+    sorDugmesi.disabled = true;
+    mesajKutusu.innerHTML = mesajlar.map(mesajHtml).join("")
+      + `<p class="yukleniyor" style="margin:0">Yazıyor</p>`;
+    try {
+      const cevap = await aiCagir(a => metinSohbet(a, metin, mesajlar));
+      mesajlar.push({ rol: "ai", metin: cevap.trim() });
+      await db.sohbetYaz(sohbetAnahtari, mesajlar);
+      await sohbetiCiz();
+    } catch (hata) {
+      mesajlar.pop();
+      sohbetGirdi.value = soru;
+      await sohbetiCiz();
+      mesajKutusu.insertAdjacentHTML("beforeend",
+        `<div class="bildirim hata" style="margin:8px 0 0">${kacis(hata.message)}</div>`);
+    } finally {
+      sorDugmesi.disabled = false;
+    }
+  });
 
   // --- kelimeye dokunma ---
   ekran.querySelectorAll(".kelime").forEach(el => {

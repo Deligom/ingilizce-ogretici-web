@@ -1,6 +1,6 @@
 // Service worker. Amac: uygulama kabugu ve veri dosyalari cevrimdisi acilsin.
 // AI cagrilari asla onbelleklenmez; onlarin onbellegi zaten IndexedDB'de.
-const SURUM = "wordnexus-v1";
+const SURUM = "wordnexus-v2";
 
 // Goreli yollar: site alt dizinde yayinlanabilir (GitHub Pages).
 const KABUK = [
@@ -62,11 +62,28 @@ self.addEventListener("fetch", (olay) => {
     return;
   }
 
-  // Digerleri: onbellek once, arkada sessizce tazele.
+  // Kendi kodumuz ve verimiz: once ag, olmazsa onbellek. Boylece yeni surum
+  // yayinlanir yayinlanmaz gorunur; cevrimdisiyken de calismaya devam eder.
+  // (Onbellek-once olsaydi kullanici guncellemeyi bir acilis geriden gorurdu.)
+  const bizim = url.origin === location.origin;
+
   olay.respondWith((async () => {
+    if (bizim) {
+      try {
+        const yanit = await fetch(istek);
+        if (yanit && yanit.ok) {
+          caches.open(SURUM).then(o => o.put(istek, yanit.clone())).catch(() => {});
+        }
+        return yanit;
+      } catch {
+        return (await caches.match(istek)) || Response.error();
+      }
+    }
+
+    // Disaridan gelenler (yazi tipleri, CDN modulleri): onbellek once, arkada tazele.
     const onbellekteki = await caches.match(istek);
     const agdan = fetch(istek).then(yanit => {
-      if (yanit && yanit.ok && (url.origin === location.origin || istek.destination)) {
+      if (yanit && yanit.ok) {
         caches.open(SURUM).then(o => o.put(istek, yanit.clone())).catch(() => {});
       }
       return yanit;

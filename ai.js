@@ -369,6 +369,124 @@ Konu: ${baglam.konuAd} — ${baglam.konuKural}
   });
 }
 
+// ---------- 5. Toplu metin cozumleme ----------
+// Cumle cumle istemek yerine hepsini tek istekte cozumleriz: hem bekleme
+// dagilmaz hem de metin bir kez cozumlenince tamamen cevrimdisi calisir.
+const SEMA_METIN_COZUM = {
+  type: "object",
+  properties: {
+    cumleler: {
+      type: "array",
+      items: {
+        type: "object",
+        properties: {
+          cumle: { type: "string", description: "Çözümlenen cümle, verilen hâliyle birebir" },
+          parcalar: {
+            type: "array",
+            items: {
+              type: "object",
+              properties: {
+                metin: { type: "string" },
+                rol: { type: "string", description: "kim / ne yapıyor / neyi / nerede / ne zaman / nasıl / bağlayıcı" },
+                aciklama: { type: "string", description: "Bu parça ne işe yarıyor, tek kısa cümle" }
+              },
+              required: ["metin", "rol", "aciklama"]
+            }
+          },
+          turkce: { type: "string", description: "Cümlenin doğal Türkçe karşılığı" }
+        },
+        required: ["cumle", "parcalar", "turkce"]
+      }
+    },
+    zorKelimeler: {
+      type: "array",
+      description: "Metindeki, A2 üstü sayılabilecek en fazla 12 kelime",
+      items: {
+        type: "object",
+        properties: {
+          kelime: { type: "string", description: "Kelimenin metindeki hâli, küçük harfle" },
+          anlam: { type: "string" },
+          tur: { type: "string", description: "isim, fiil, sıfat gibi" },
+          cumledekiRol: { type: "string" },
+          ornek: { type: "string", description: "Kısa İngilizce örnek cümle" }
+        },
+        required: ["kelime", "anlam", "tur", "cumledekiRol", "ornek"]
+      }
+    }
+  },
+  required: ["cumleler", "zorKelimeler"]
+};
+
+export function metniCozumle(anahtar, cumleler) {
+  const istek = `Aşağıdaki cümleleri tek tek çözümle. Cümleleri verildiği sırayla ve
+"cumle" alanına birebir aynı metinle döndür.
+
+${cumleler.map((c, i) => `${i + 1}. ${c}`).join("\n")}
+
+Kurallar:
+- Parçaları soldan sağa, cümledeki sırayla ver; birleştirince cümlenin tamamı çıksın.
+- Kelime kelime bölme; anlam taşıyan öbekleri bir arada tut ("in the morning" tek parça).
+- Rol etiketini Türkçe soru kalıbıyla yaz: kim, ne yapıyor, neyi, nerede, ne zaman, nasıl.
+  Yardımcı fiil ve edat gibi parçalar için "bağlayıcı" yaz.
+- zorKelimeler alanına, bu metinde Türkçe konuşan bir A2 öğrencisini zorlayacak
+  kelimeleri koy. Kolay kelimeleri (the, is, my, good gibi) koyma.`;
+
+  return json(anahtar, { sistem: SISTEM, istek, sema: SEMA_METIN_COZUM, sicaklik: 0.2 });
+}
+
+// ---------- 6. Metin uretimi ----------
+const SEMA_METIN = {
+  type: "object",
+  properties: {
+    baslik: { type: "string", description: "Kısa Türkçe başlık" },
+    metin: { type: "string", description: "İngilizce metin, paragraflar \\n\\n ile ayrılmış" }
+  },
+  required: ["baslik", "metin"]
+};
+
+export function metinUret(anahtar, seviye, konu, kelimeSayisi) {
+  const istek = `${seviye} seviyesinde, yaklaşık ${kelimeSayisi} kelimelik bir İngilizce
+okuma metni yaz.
+
+Konu: ${konu || "günlük hayattan ilgi çekici bir konu seç"}
+
+Kurallar:
+- Metin İngilizce olsun; Türkçe çeviri ekleme.
+- ${seviye} seviyesini aşan yapı kullanma ama kuru olmasın; bir hikâyesi olsun.
+- 2-3 paragraf, paragraflar arasında boş satır bırak.
+- Cümleler ne çok kısa ne çok uzun olsun; okurken akmalı.
+- baslik alanına Türkçe kısa bir başlık yaz.`;
+
+  return json(anahtar, { sistem: SISTEM, istek, sema: SEMA_METIN, sicaklik: 0.9 });
+}
+
+// ---------- 7. Metin sohbeti ----------
+// Soru sohbetinden farki: baglam tek cumle degil, metnin tamami.
+export async function metinSohbet(anahtar, metin, mesajlar) {
+  const baglamMetni = `Öğrenci şu İngilizce metni okuyor:
+
+${metin}
+
+Bu metin hakkında sorular soracak: bir cümleyi anlamadığı, bir yapının neden öyle
+kurulduğu, bir kelimenin ne demek olduğu gibi. Kısa ve doğrudan cevap ver.
+Cevabında metinden alıntı yapabilirsin.`;
+
+  const icerik = [
+    { role: "user", parts: [{ text: baglamMetni }] },
+    { role: "model", parts: [{ text: "Metni okudum, sorunu bekliyorum." }] },
+    ...mesajlar.map(m => ({
+      role: m.rol === "kullanici" ? "user" : "model",
+      parts: [{ text: m.metin }]
+    }))
+  ];
+
+  return cagir(anahtar, {
+    systemInstruction: { parts: [{ text: sistemMetni() }] },
+    contents: icerik,
+    generationConfig: { temperature: 0.4, maxOutputTokens: 1200 }
+  });
+}
+
 // ---------- anahtar testi ----------
 export async function anahtarTest(anahtar) {
   const metin = await cagir(anahtar, {
