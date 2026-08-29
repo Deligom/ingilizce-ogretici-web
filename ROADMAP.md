@@ -78,18 +78,21 @@
 - [x] Model seçimi: Gemini 3.5 Flash / 3.1 Flash Lite (Ayarlar → Basit)
 - [x] 503 (model yoğun) için sunucuda yeniden deneme — canlı testte yakalandı
 - **Bitti sayılır:** herhangi bir İngilizce metni açıp takıldığım yeri anında çözebiliyorum. ✅
-## Faz 5 — PWA ve cila
-- [ ] `manifest.json`, `sw.js`, ana ekrana ekleme
-- [ ] Çevrimdışı: seed veriler + cache'lenmiş açıklamalar + üretilmiş sorular çalışır
-- [ ] Yedekleme: tüm ilerlemeyi ve üretilmiş soru bankasını JSON olarak dışa/içe aktar
-- [ ] Koyu tema
-- [ ] **Anlatım tarzı ayarı** — tek kontrol, üç kademe: Günlük / Dengeli / Terimli.
-      Sistem prompt'una bir cümle ekler. Bilinçli olarak *tek* kontrol: tuzak sayısı,
-      ayrıntı düzeyi, örnek adedi gibi ayrı düğmeler eklemiyoruz. Her düğme kullanıcıya
-      verilmiş bir karar yüküdür; çoğu kişi hiç dokunmaz ve arayüz anlaşılmaz hâle gelir.
-      Varsayılan doğrudan iyi olmalı, ayar istisna olmalı.
-- [ ] Sınav provası modu: `teshis-testi.json`'un orijinal 100 soruluk hali, süreli
-
+## Faz 5 — PWA ve cila ✅ BİTTİ
+- [x] `manifest.json` + ikonlar. İkonlar dışarıdan kütüphane olmadan üretildi:
+      ham piksel + zlib ile PNG yazan küçük bir betik (`scratchpad/ikon.js`).
+      Motif: iki satır metin, altında fosforlu kalemle işaretlenmiş olan.
+- [x] `sw.js`: uygulama kabuğu ve veri dosyaları önbellekte (13 dosya).
+      Gezinme önce ağı dener (yeni sürüm kaçmasın), diğerleri önbellek-önce.
+      **`/api` asla önbelleklenmez** — doğrulandı.
+- [x] Koyu tema: Otomatik / Açık / Koyu. Tercih localStorage'da ve sayfa
+      çizilmeden önce uygulanır, açılışta beyaz yanıp sönme yok.
+- [x] Yedekleme: tüm kullanıcı verisi tek JSON. **API anahtarı yedeğe girmez**,
+      dolayısıyla yedek yüklemek cihazdaki anahtarı ezmez. Gidiş-dönüş doğrulandı.
+- [x] Sınav provası (`#/prova`): AYBU'nun 100 sorusu orijinal sırasıyla, geri
+      bildirim yok, süreli, boş bırakılabilir. Kutu sistemine dokunmaz.
+- [x] Anlatım tarzı: Günlük / Dengeli / Terimli — bilerek tek kontrol.
+- **Bitti sayılır:** telefona kurulup çevrimdışı açılıyor, verim yedeklenebiliyor. ✅
 ## Sonrası (fikir kuyruğu)
 - Kendi PDF sınavını yükleyip soru bankasına ekleme (OCR/metin ayrıştırma)
 - Sesli okuma (Web Speech API) — telaffuz için

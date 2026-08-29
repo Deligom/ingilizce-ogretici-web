@@ -17,8 +17,9 @@ Seviye hedefi: A1 → B1 (lise müfredatı + üniversite seviye tespit sınavı)
 - **Build yok.** `index.html` + ES modülleri + CDN import. Bundler, npm, node yok.
 - **Tek sayfa, PWA.** `manifest.json` + service worker (app shell + JSON verileri cache).
 - **Depolama: IndexedDB.** `idb-keyval` CDN'den. localStorage sadece tema tercihi için.
-- **AI: Gemini `gemini-2.5-flash`**, `responseMimeType: application/json` +
-  `responseSchema` ile yapılandırılmış çıktı.
+- **AI: Gemini.** Model Ayarlar'dan seçilir: `gemini-3.5-flash` (varsayılan, daha iyi
+  anlatım) ya da `gemini-3.1-flash-lite` (daha hızlı). Çıktı `responseMimeType:
+  application/json` + `responseSchema` ile yapılandırılır.
 - **İki anahtar yolu.** Kullanıcının kendi anahtarı varsa (Ayarlar → IndexedDB)
   tarayıcı doğrudan Google'a gider, sınır yoktur. Yoksa `/api/gemini` proxy'sine
   gider: anahtar `GEMINI_API_KEY` olarak sunucuda durur, tarayıcıya hiç inmez ve
@@ -48,6 +49,9 @@ uretim.js             soru üretimi: prompt kurma, yerel eleme, onay kuyruğu
 data/konular.json     gramer konu ağacı (39 konu) + blok + çeşitlilik eksenleri
 data/sorular.json     birleşik soru bankası (aybu + tohum)
 data/teshis-testi.json AYBU 2021-22 sınavının orijinal hali — sınav provası modu için
+api/gemini.js         Vercel proxy: anahtarı gizler, günlük sınır uygular
+arac/ikon-uret.js     PWA ikonlarını üretir (node arac/ikon-uret.js)
+ikon/                 üretilmiş PNG ikonlar
 sw.js, manifest.json  PWA
 ```
 
@@ -63,7 +67,9 @@ sw.js, manifest.json  PWA
 | `sozluk` | kelime | `anlam`, `tur`, `ornek`, `tarih` |
 | `aciklamalar` | `soruId:secilenSik` | AI'nın döndürdüğü açıklama JSON'u |
 | `sohbetler` | soruId | `mesajlar[]` (rol, metin) |
-| `ayarlar` | anahtar | `apiKey`, `gunlukHedef`, `uretimAdedi` (3-10), `otomatikOnay`, `zorlukTercihi`, `kota` |
+| `cumleler` | cümle | cümle şeridi çözümlemesi (parçalar + Türkçesi) |
+| `metinler` | id | okuma modunda yapıştırılan metinler |
+| `ayarlar` | anahtar | `apiKey`, `model`, `uslup`, `gunlukHedef`, `uretimAdedi`, `oneriler`, `kota`, `seri` |
 
 ## Aşama sistemi (zorluk 1-3)
 
@@ -117,11 +123,12 @@ Doğru cevap kutuyu 1 artırır, yanlış cevap 0'a düşürür.
 
 Kullanıcı metin yapıştırır ya da sınav parçalarından seçer.
 
-- **Kelimeye çift tık** → anlam, türü, cümledeki rolü, örnek cümle. Önce `sozluk`
+- **Kelimeye dokun** → anlam, türü, cümledeki rolü, örnek cümle. Önce `sozluk`
   cache'ine bakılır.
-- **Cümleye uzun bas** → cümle mono yazıyla kelime bloklarına ayrılır, her bloğun altında
-  rolü yazar (kim / ne yapıyor / neyi / nerede-ne zaman).
-- Bilinmeyen kelimeler işaretlenir, gün sonunda kelime kartına dönüşür.
+- **Cümleye uzun bas** (masaüstünde çift tık) → cümle mono yazıyla kelime bloklarına
+  ayrılır, her bloğun altında rolü yazar (kim / ne yapıyor / neyi / nerede-ne zaman).
+  Bloğa dokununca fosforlu kalem soldan sağa geçer.
+- "Bunu bilmiyorum" denen kelimeler `#/kelimeler` ekranında birikir.
 
 ## AI sözleşmeleri (`ai.js`)
 
@@ -210,20 +217,28 @@ Boş ekran davet eder: "Henüz hata yok. Teşhis testini çözünce burası dola
 
 ## Şu an nerede
 
-**Faz 0-3 bitti.** Uygulama yayında:
-https://deligom.github.io/ingilizce-ogretici-web/
+**Faz 0-5 bitti. Uygulama tamam.**
 
-- **Veri:** 39 konu, 235 eksen, 182 soru (100 aybu + 82 tohum), üç zorluk aşaması
-- **Teşhis:** 8 blok, geri tuşu, Bilmiyorum, sayfalı yanlış incelemesi
-- **"Neden?":** açıklama kartı + benzer 5 cümle + sohbet + hazır öneriler, hepsi önbellekli
-- **Alıştırma:** günlük kuyruk, konu kartı, anlık geri bildirim, kutu sistemi, seri
-- **Üretim:** Ayarlar → Gelişmiş, yerel eleme, onay kuyruğu
+- **Yayın:** https://ingilizce-ogretici-web.vercel.app (paylaşılan anahtar + günlük sınır)
+- **Yedek yayın:** https://deligom.github.io/ingilizce-ogretici-web (kendi anahtarın gerekir)
+
+| Modül | Durum |
+|---|---|
+| Veri | 39 konu, 235 eksen, 182+ soru, üç zorluk aşaması |
+| Teşhis | 8 blok, geri tuşu, Bilmiyorum, sayfalı yanlış incelemesi |
+| "Neden?" | açıklama kartı, benzer 5 cümle, sohbet, hazır öneriler — hepsi önbellekli |
+| Alıştırma | günlük kuyruk, konu kartı, kutu sistemi, seri |
+| Üretim | Ayarlar → Gelişmiş, yerel eleme, onay kuyruğu |
+| Okuma | metin yapıştırma, kelimeye dokun, cümle şeridi, kelime defteri |
+| PWA | manifest, service worker, çevrimdışı, koyu tema, yedekleme, sınav provası |
 
 Ekranlar: `#/` · `#/blok/:n` · `#/sonuc/:n` · `#/inceleme/:n/:i` · `#/calis` ·
-`#/hatalar` · `#/onay` · `#/ayarlar` · `#/ayarlar/gelismis`
+`#/oku` · `#/oku/:id` · `#/kelimeler` · `#/prova` · `#/hatalar` · `#/onay` ·
+`#/ayarlar` · `#/ayarlar/gelismis`
 
-Yayın GitHub Pages'ten; public depo `Deligom/ingilizce-ogretici-web`, yerel dal
-`yayin`. Tüm yollar göreli; `file://` desteklenmez.
+### Sonraki adım fikirleri
 
-Sırada **Faz 4** var: okuma modu — metin yapıştırma, kelimeye çift tık,
-cümleye uzun bas (cümle şeridi).
+- Gerçek kullanım sonrası: hangi konu kartları anlaşılmıyor, hangi açıklama uzun
+- Kelime kartları: işaretlenen kelimeler için aralıklı tekrar (şu an sadece liste)
+- Yazma alıştırması: Türkçe cümle → İngilizce çeviri, AI hataları konu etiketiyle işaretler
+- Gerçek IP sınırı için Upstash Redis (`api/gemini.js` içinde `sayacAl`/`sayacArtir`)
