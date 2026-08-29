@@ -71,6 +71,7 @@ async function zayifKonular() {
 async function aiCagir(isle) {
   const anahtar = await db.ayarOku("apiKey", "");
   ai.modelSec(await db.ayarOku("model", ai.VARSAYILAN_MODEL));
+  ai.uslupSec(await db.ayarOku("uslup", "dengeli"));
   const sonuc = await isle(anahtar);
   await db.kotaArtir();
   return sonuc;
@@ -998,11 +999,218 @@ async function kelimelerEkrani() {
   window.scrollTo(0, 0);
 }
 
+// ---------- Tema ----------
+// Tercih localStorage'da: IndexedDB asenkron, tema ise sayfa cizilmeden once lazim.
+const TEMALAR = { otomatik: "Cihazla aynı", acik: "Açık", koyu: "Koyu" };
+
+function temaOku() {
+  try { return localStorage.getItem("tema") || "otomatik"; } catch { return "otomatik"; }
+}
+
+function temaUygula(secim) {
+  const koyu = secim === "koyu" ||
+    (secim === "otomatik" && matchMedia("(prefers-color-scheme: dark)").matches);
+  if (koyu) document.documentElement.dataset.tema = "koyu";
+  else delete document.documentElement.dataset.tema;
+  const renk = document.querySelector('meta[name="theme-color"]');
+  if (renk) renk.content = koyu ? "#0E1626" : "#16233A";
+}
+
+function temaYaz(secim) {
+  try {
+    if (secim === "otomatik") localStorage.removeItem("tema");
+    else localStorage.setItem("tema", secim);
+  } catch {}
+  temaUygula(secim);
+}
+
+// ---------- Yedekleme ----------
+// Tum kullanici verisi tek JSON'da. Soru bankasindan yalnizca uretilmis ve
+// cozulmus durumu tasiriz; 182 tohum/aybu sorusu zaten dosyadan geliyor.
+const YEDEK_DEPOLARI = ["ilerleme", "teshis", "aciklamalar", "sohbetler", "sozluk",
+                        "cumleler", "metinler", "onayBekleyen", "ayarlar"];
+
+async function yedekAl() {
+  const veri = { surum: 1, tarih: new Date().toISOString(), depolar: {} };
+  for (const ad of YEDEK_DEPOLARI) {
+    veri.depolar[ad] = await db.ciftler(ad);
+  }
+  // Sorulardan yalnizca uretilmis olanlar ve cozulme izleri
+  const sorular = await db.tumu("sorular");
+  veri.depolar.sorular = sorular
+    .filter(s => s.kaynak === "ai" || s.sonCozum || s.hataSayisi)
+    .map(s => [s.id, s]);
+  // API anahtari yedege girmez: cihazda kalmali.
+  veri.depolar.ayarlar = veri.depolar.ayarlar.filter(([k]) => k !== "apiKey");
+  return veri;
+}
+
+async function yedekYukle(veri) {
+  if (!veri || veri.surum !== 1 || !veri.depolar) throw new Error("Yedek dosyası tanınmadı.");
+  let sayi = 0;
+  for (const [ad, ciftler] of Object.entries(veri.depolar)) {
+    if (!Array.isArray(ciftler)) continue;
+    for (const [anahtar, deger] of ciftler) {
+      await db.yaz(ad, anahtar, deger);
+      sayi++;
+    }
+  }
+  return sayi;
+}
+
+// ---------- Sinav provasi ----------
+// AYBU sinavinin orijinal hali: 100 soru, sirasiyla, geri bildirim yok, sureli.
+// Alistirmadan farki bu: burada ogrenmiyorsun, olcuyorsun.
+async function provaEkrani() {
+  const test = await (await fetch("./data/teshis-testi.json")).json();
+  const sorular = test.sorular;
+  const parcaHarita = new Map(test.parcalar.map(p => [p.id, p.metin]));
+  let durum = (await db.oku("teshis", "prova")) || null;
+
+  if (!durum) {
+    ekran.innerHTML = `
+      <h1>Sınav provası</h1>
+      <p class="soluk">AYBU 2021-22 seviye tespit sınavının tamamı: <strong>100 soru</strong>,
+        orijinal sırasıyla, geri bildirim yok. Bitince puanın ve konu dağılımın çıkar.</p>
+      <div class="kart">
+        <p class="kucuk" style="margin:0 0 6px"><strong>Alıştırmadan farkı:</strong> burada öğrenmiyorsun, ölçüyorsun.
+          Doğru cevaplar ancak sonda görünür, kutu sistemine de dokunmaz.</p>
+        <p class="kucuk soluk" style="margin:0">Süre tutulur ama kesmez. Yarıda bırakırsan kaldığın yerden devam edersin.</p>
+      </div>
+      <div class="satir">
+        <button class="dugme" id="basla">Başla</button>
+        <a class="dugme ikincil" href="#/" style="text-decoration:none">Ana sayfa</a>
+      </div>`;
+    ekran.querySelector("#basla").addEventListener("click", async () => {
+      await db.yaz("teshis", "prova", { durum: "devam", i: 0, cevaplar: [], baslangic: Date.now() });
+      yonlendir();
+    });
+    return;
+  }
+
+  if (durum.durum === "bitti") return provaSonucu(durum, sorular);
+
+  let i = Math.min(durum.i, sorular.length - 1);
+  let secilen = null;
+
+  function ciz() {
+    const s = sorular[i];
+    const gecen = Math.round((Date.now() - durum.baslangic + (durum.gecenSure || 0)) / 60000);
+    secilen = durum.cevaplar[i] ?? null;
+
+    ekran.innerHTML = `
+      <div class="ilerleme-cubuk"><i style="width:${(i / sorular.length) * 100}%"></i></div>
+      <div class="gezinti">
+        <button class="ok" id="geri" ${i === 0 ? "disabled" : ""} aria-label="Önceki">←</button>
+        <span class="sayac" style="margin:0">Prova · ${i + 1} / ${sorular.length} · ${gecen} dk</span>
+      </div>
+      ${s.parca ? `<div class="parca">${kacis(parcaHarita.get(s.parca) || "")}</div>` : ""}
+      <p class="soru-metni">${soruGoster(s.soru)}</p>
+      <div class="sik-liste">
+        ${s.secenekler.map((o, j) => `
+          <button class="sik ${secilen === j ? "secili" : ""}" data-j="${j}">
+            <span class="harf">${HARFLER[j]}</span><span>${kacis(o)}</span>
+          </button>`).join("")}
+      </div>
+      <div class="satir">
+        <button class="dugme" id="ileri">${i === sorular.length - 1 ? "Bitir" : "Sonraki →"}</button>
+        <button class="dugme ikincil" id="cik">Sonra devam ederim</button>
+      </div>
+      <p class="kucuk soluk" style="margin-top:12px">Boş bırakabilirsin; cevaplamadan da ilerleyebilirsin.</p>`;
+
+    ekran.querySelectorAll(".sik").forEach(d => d.addEventListener("click", () => {
+      secilen = Number(d.dataset.j);
+      ekran.querySelectorAll(".sik").forEach(x => x.classList.remove("secili"));
+      d.classList.add("secili");
+    }));
+    ekran.querySelector("#ileri").addEventListener("click", () => git2(1));
+    ekran.querySelector("#geri").addEventListener("click", () => git2(-1));
+    ekran.querySelector("#cik").addEventListener("click", async () => {
+      durum.cevaplar[i] = secilen;
+      durum.i = i;
+      durum.gecenSure = (durum.gecenSure || 0) + (Date.now() - durum.baslangic);
+      durum.baslangic = Date.now();
+      await db.yaz("teshis", "prova", durum);
+      git("#/");
+    });
+  }
+
+  async function git2(yon) {
+    durum.cevaplar[i] = secilen;
+    i += yon;
+    if (i >= sorular.length) {
+      durum.durum = "bitti";
+      durum.gecenSure = (durum.gecenSure || 0) + (Date.now() - durum.baslangic);
+      await db.yaz("teshis", "prova", durum);
+      return provaSonucu(durum, sorular);
+    }
+    durum.i = i;
+    await db.yaz("teshis", "prova", durum);
+    ciz();
+    window.scrollTo(0, 0);
+  }
+
+  ciz();
+  window.scrollTo(0, 0);
+}
+
+async function provaSonucu(durum, sorular) {
+  let dogru = 0, bos = 0;
+  const konuSayim = new Map();
+  sorular.forEach((s, n) => {
+    const c = durum.cevaplar[n];
+    if (c === null || c === undefined) bos++;
+    const d = c === s.cevap;
+    if (d) dogru++;
+    const k = konuSayim.get(s.konu) || { dogru: 0, toplam: 0 };
+    k.toplam++; if (d) k.dogru++;
+    konuSayim.set(s.konu, k);
+  });
+  const dakika = Math.round((durum.gecenSure || 0) / 60000);
+  const zayif = [...konuSayim.entries()]
+    .filter(([, k]) => k.dogru / k.toplam < 0.6)
+    .sort((a, b) => a[1].dogru / a[1].toplam - b[1].dogru / b[1].toplam);
+
+  ekran.innerHTML = `
+    <h1>Prova sonucu</h1>
+    <p class="soluk">${dogru}/100 doğru · ${bos} boş · ${dakika} dakika</p>
+    <div class="kart">
+      <p style="margin:0;font-family:var(--display);font-size:34px;font-weight:600">${dogru}<span class="soluk" style="font-size:20px">/100</span></p>
+    </div>
+    <h2>Zayıf konular (${zayif.length})</h2>
+    ${zayif.length ? `<div class="kart" style="padding:0">
+      ${zayif.map(([id, k]) => {
+        const konu = konuHarita.get(id);
+        return `<div class="konu-satir">
+          <span class="ad"><span class="vurgu">${kacis(konu ? konu.ad : id)}</span>
+            <small>${konu ? konu.seviye : ""}</small></span>
+          <span class="oran" style="color:var(--yanlis)">${k.dogru}/${k.toplam}</span>
+        </div>`;
+      }).join("")}
+    </div>` : `<div class="kart bos">Hiçbir konuda %60 altına düşmedin.</div>`}
+    <div class="satir" style="margin-top:18px">
+      <button class="dugme ikincil" id="sifirla">Provayı sıfırla</button>
+      <a class="dugme ikincil" href="#/" style="text-decoration:none">Ana sayfa</a>
+    </div>
+    <p class="kucuk soluk" style="margin-top:12px">
+      Prova kutu sistemine dokunmaz; günlük kuyruğun bundan etkilenmez.
+    </p>`;
+
+  ekran.querySelector("#sifirla").addEventListener("click", async () => {
+    if (!confirm("Prova cevapların silinecek. Emin misin?")) return;
+    await db.sil("teshis", "prova");
+    yonlendir();
+  });
+  window.scrollTo(0, 0);
+}
+
 async function ayarlarEkrani(sekme = "basit") {
   const anahtar = await db.ayarOku("apiKey", "");
   const hedef = await db.ayarOku("gunlukHedef", 10);
   const oneriAcik = await db.ayarOku("oneriler", true);
   const secilenModel = await db.ayarOku("model", ai.VARSAYILAN_MODEL);
+  const secilenTema = temaOku();
+  const secilenUslup = await db.ayarOku("uslup", "dengeli");
   const kota = await db.kotaOku();
   const aciklamaSayisi = (await db.ciftler("aciklamalar")).length;
   const bekleyenSayisi = (await uretim.bekleyenler()).length;
@@ -1041,6 +1249,23 @@ async function ayarlarEkrani(sekme = "basit") {
       <label for="hedef">Günlük hedef (soru)</label>
       <input id="hedef" type="text" inputmode="numeric" value="${Number(hedef)}">
       <p class="kucuk soluk" style="margin:10px 0 0">Bugünün kuyruğu bu sayı kadar soru getirir.</p>
+    </div>
+
+    <div class="kart">
+      <label for="tema">Görünüm</label>
+      <select id="tema">
+        ${Object.entries(TEMALAR).map(([k, v]) =>
+          `<option value="${k}" ${k === secilenTema ? "selected" : ""}>${v}</option>`).join("")}
+      </select>
+    </div>
+
+    <div class="kart">
+      <label for="uslup">Anlatım tarzı</label>
+      <select id="uslup">
+        ${Object.entries(ai.USLUPLAR).map(([k, v]) =>
+          `<option value="${k}" ${k === secilenUslup ? "selected" : ""}>${v.baslik}</option>`).join("")}
+      </select>
+      <p class="kucuk soluk" style="margin:10px 0 0">${ai.USLUPLAR[secilenUslup]?.aciklama || ""}</p>
     </div>
 
     <div class="kart">
@@ -1105,6 +1330,29 @@ async function ayarlarEkrani(sekme = "basit") {
     </div>
 
     <div class="kart">
+      <h2 style="margin:0 0 4px;font-size:18px">Sınav provası</h2>
+      <p class="kucuk soluk" style="margin:0 0 12px">
+        AYBU sınavının tamamı: 100 soru, orijinal sırasıyla, geri bildirim yok.
+        Kutu sistemine dokunmaz.
+      </p>
+      <a class="dugme ikincil" href="#/prova" style="text-decoration:none">Provaya git</a>
+    </div>
+
+    <div class="kart">
+      <h2 style="margin:0 0 4px;font-size:18px">Yedekleme</h2>
+      <p class="kucuk soluk" style="margin:0 0 12px">
+        İlerlemen, açıklamaların, sohbetlerin, kelimelerin ve ürettiğin sorular tek
+        dosyada iner. API anahtarı yedeğe girmez.
+      </p>
+      <div id="yedek-bildirim"></div>
+      <div class="satir">
+        <button class="dugme ikincil" id="yedek-al">Yedek indir</button>
+        <button class="dugme ikincil" id="yedek-yukle">Yedekten yükle</button>
+        <input type="file" id="yedek-dosya" accept="application/json,.json" hidden>
+      </div>
+    </div>
+
+    <div class="kart">
       <h2 style="margin:0 0 4px;font-size:18px">Veri</h2>
       <p class="kucuk soluk" style="margin:0 0 12px">
         Sıfırlama ilerlemeni ve blok cevaplarını siler; soru bankası korunur.
@@ -1151,6 +1399,13 @@ async function ayarlarEkrani(sekme = "basit") {
     goster("ok", "Anahtar silindi.");
   });
 
+  ekran.querySelector("#tema").addEventListener("change", (e) => temaYaz(e.target.value));
+
+  ekran.querySelector("#uslup").addEventListener("change", async (e) => {
+    await db.ayarYaz("uslup", e.target.value);
+    yonlendir();
+  });
+
   ekran.querySelector("#model").addEventListener("change", (e) => {
     db.ayarYaz("model", e.target.value);
   });
@@ -1194,6 +1449,43 @@ async function ayarlarEkrani(sekme = "basit") {
         goster2("hata", kacis(hata instanceof AiHata ? hata.message : hata.message));
       } finally {
         e.target.disabled = false;
+      }
+    });
+
+    const yedekBildirim = ekran.querySelector("#yedek-bildirim");
+    const yedekGoster = (tur, metin) => {
+      yedekBildirim.innerHTML = `<div class="bildirim ${tur}">${kacis(metin)}</div>`;
+    };
+
+    ekran.querySelector("#yedek-al").addEventListener("click", async () => {
+      try {
+        const veri = await yedekAl();
+        const bag = URL.createObjectURL(new Blob([JSON.stringify(veri)], { type: "application/json" }));
+        const a = document.createElement("a");
+        a.href = bag;
+        a.download = `wordnexus-yedek-${tekrar.bugun()}.json`;
+        a.click();
+        URL.revokeObjectURL(bag);
+        const adet = Object.values(veri.depolar).reduce((t, c) => t + c.length, 0);
+        yedekGoster("ok", `${adet} kayıt indirildi.`);
+      } catch (hata) {
+        yedekGoster("hata", "Yedek alınamadı: " + hata.message);
+      }
+    });
+
+    const dosyaGirdi = ekran.querySelector("#yedek-dosya");
+    ekran.querySelector("#yedek-yukle").addEventListener("click", () => dosyaGirdi.click());
+    dosyaGirdi.addEventListener("change", async () => {
+      const dosya = dosyaGirdi.files?.[0];
+      if (!dosya) return;
+      if (!confirm("Yedekteki kayıtlar mevcutların üzerine yazılacak. Devam edilsin mi?")) return;
+      try {
+        const sayi = await yedekYukle(JSON.parse(await dosya.text()));
+        yedekGoster("ok", `${sayi} kayıt yüklendi. Sayfayı yenile.`);
+      } catch (hata) {
+        yedekGoster("hata", hata.message);
+      } finally {
+        dosyaGirdi.value = "";
       }
     });
 
@@ -1316,6 +1608,7 @@ async function yonlendir() {
     if (yol[0] === "hatalar") return await hatalarEkrani();
     if (yol[0] === "oku") return await okumaEkrani(yol[1] || null);
     if (yol[0] === "kelimeler") return await kelimelerEkrani();
+    if (yol[0] === "prova") return await provaEkrani();
     if (yol[0] === "calis") return await calisEkrani();
     if (yol[0] === "blok" && yol[1]) return await blokEkrani(Number(yol[1]));
     if (yol[0] === "sonuc" && yol[1]) return await sonucEkrani(Number(yol[1]));
@@ -1343,6 +1636,16 @@ async function baslat() {
     ekran.innerHTML = `<div class="bildirim hata">Veri yüklenemedi: ${kacis(hata.message)}
       <br><br>Bu sayfa <code>file://</code> ile açıldıysa çalışmaz; bir sunucudan (GitHub Pages ya da yerel sunucu) açman gerekir.</div>`;
     return;
+  }
+
+  temaUygula(temaOku());
+  matchMedia("(prefers-color-scheme: dark)").addEventListener("change", () => {
+    if (temaOku() === "otomatik") temaUygula("otomatik");
+  });
+
+  // Service worker yalnizca guvenli baglamda calisir (https ya da localhost).
+  if ("serviceWorker" in navigator) {
+    navigator.serviceWorker.register("./sw.js").catch(() => {});
   }
 
   window.addEventListener("hashchange", yonlendir);

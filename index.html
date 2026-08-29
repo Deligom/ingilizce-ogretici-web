@@ -4,6 +4,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#16233A">
+<link rel="manifest" href="./manifest.json">
+<link rel="icon" href="./ikon/ikon-192.png">
+<link rel="apple-touch-icon" href="./ikon/ikon-180.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="WordNexus">
 <title>WordNexus — İngilizce</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -18,6 +23,8 @@
   --yanlis:#D93F4C;
   --soluk:#6B7280;
   --cizgi:#E4E7EC;
+  --vurgu-yazi:#16233A;   /* fosforlu uzerindeki yazi rengi */
+  --sik-secili:#EDF1F7;
 
   --display:"Fraunces",Georgia,serif;
   --govde:"Instrument Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
@@ -25,6 +32,21 @@
 
   --bosluk:16px;
   --yuvarlak:14px;
+}
+
+/* Koyu tema. Fosforlu sari koyu zeminde de imza renk olarak kaliyor ama
+   uzerindeki yazi lacivert kaliyor: sari-uzeri-beyaz okunmaz. */
+:root[data-tema="koyu"]{
+  --murekkep:#E8ECF3;
+  --zemin:#0E1626;
+  --kart:#162134;
+  --fosforlu:#F2D14B;
+  --dogru:#3FBF9E;
+  --yanlis:#F0707C;
+  --soluk:#94A0B4;
+  --cizgi:#26344C;
+  --sik-secili:#1E2C44;
+  color-scheme:dark;
 }
 
 *{box-sizing:border-box}
@@ -68,20 +90,20 @@ p{margin:0 0 12px}
   margin-bottom:12px;
 }
 .kart.tiklanir{cursor:pointer;text-align:left;width:100%;font:inherit;color:inherit;display:block}
-.kart.tiklanir:hover{border-color:#C9CFD8}
+.kart.tiklanir:hover{border-color:var(--soluk)}
 
 /* --- dugmeler --- */
 button{font:inherit;color:inherit}
 .dugme{
   display:inline-flex;align-items:center;justify-content:center;gap:8px;
   min-height:48px;padding:12px 20px;
-  background:var(--murekkep);color:#fff;
+  background:var(--murekkep);color:var(--zemin);
   border:none;border-radius:10px;
   font-weight:600;cursor:pointer;
 }
-.dugme:hover{background:#20304d}
+.dugme:hover{background:color-mix(in srgb, var(--murekkep) 88%, #7f8ea8)}
 .dugme.ikincil{background:transparent;color:var(--murekkep);border:1px solid var(--cizgi)}
-.dugme.ikincil:hover{background:#fff}
+.dugme.ikincil:hover{background:var(--kart)}
 .dugme:disabled{opacity:.45;cursor:default}
 .dugme.tam{width:100%}
 
@@ -101,12 +123,12 @@ button{font:inherit;color:inherit}
   background:var(--kart);border:1px solid var(--cizgi);border-radius:10px;
   font-size:19px;line-height:1;cursor:pointer;color:var(--murekkep);
 }
-.ok:hover:not(:disabled){border-color:#C9CFD8}
+.ok:hover:not(:disabled){border-color:var(--soluk)}
 .ok:disabled{opacity:.35;cursor:default}
 
 /* "Bilmiyorum" daha once secilmisse geri gelindiginde belli olsun */
 .dugme.ikincil.secili{
-  background:#EDF1F7;border-color:var(--murekkep);
+  background:var(--sik-secili);border-color:var(--murekkep);
   box-shadow:inset 0 0 0 1px var(--murekkep);
 }
 
@@ -122,7 +144,7 @@ button{font:inherit;color:inherit}
   margin:0 0 18px;
 }
 .soru-metni .bosluk-isaret{
-  background:var(--fosforlu);border-radius:3px;padding:0 6px;
+  background:var(--fosforlu);color:var(--vurgu-yazi);border-radius:3px;padding:0 6px;
 }
 
 .sik-liste{display:flex;flex-direction:column;gap:10px;margin-bottom:16px}
@@ -132,7 +154,7 @@ button{font:inherit;color:inherit}
   background:var(--kart);border:1px solid var(--cizgi);border-radius:10px;
   font-family:var(--mono);font-size:15px;text-align:left;cursor:pointer;width:100%;
 }
-.sik:hover:not(:disabled){border-color:#C9CFD8}
+.sik:hover:not(:disabled){border-color:var(--soluk)}
 .sik .harf{
   flex:0 0 26px;height:26px;display:grid;place-items:center;
   border:1px solid var(--cizgi);border-radius:6px;
@@ -143,13 +165,13 @@ button{font:inherit;color:inherit}
 .sik.secili{
   border-color:var(--murekkep);
   box-shadow:inset 0 0 0 1.5px var(--murekkep);
-  background:#EDF1F7;
+  background:var(--sik-secili);
   font-weight:500;
 }
-.sik.secili .harf{background:var(--murekkep);color:#fff;border-color:var(--murekkep)}
-.sik.dogru{border-color:var(--dogru);background:#F1F9F6}
+.sik.secili .harf{background:var(--murekkep);color:var(--zemin);border-color:var(--murekkep)}
+.sik.dogru{border-color:var(--dogru);background:color-mix(in srgb, var(--dogru) 10%, var(--kart))}
 .sik.dogru .harf{border-color:var(--dogru);color:var(--dogru)}
-.sik.yanlis{border-color:var(--yanlis);background:#FDF2F3}
+.sik.yanlis{border-color:var(--yanlis);background:color-mix(in srgb, var(--yanlis) 10%, var(--kart))}
 .sik.yanlis .harf{border-color:var(--yanlis);color:var(--yanlis)}
 .sik:disabled{cursor:default}
 
@@ -170,18 +192,18 @@ button{font:inherit;color:inherit}
 }
 .konu-kart .ornek .tr{font-size:14px;padding-left:14px;margin-top:3px}
 .konu-kart .tuzak-kutu{
-  background:#FFFBEB;border:1px solid #F5E3A3;border-radius:10px;padding:11px 13px;
+  background:color-mix(in srgb, var(--fosforlu) 14%, var(--kart));border:1px solid color-mix(in srgb, var(--fosforlu) 45%, var(--kart));border-radius:10px;padding:11px 13px;
 }
 
 /* --- gunluk kuyruk kutusu (ana sayfa) --- */
 .kuyruk{
-  background:var(--murekkep);color:#fff;border-radius:var(--yuvarlak);
+  background:var(--murekkep);color:var(--zemin);border-radius:var(--yuvarlak);
   padding:18px var(--bosluk);margin-bottom:12px;
 }
-.kuyruk h2{font-family:var(--display);font-size:21px;margin:0 0 4px;color:#fff}
+.kuyruk h2{font-family:var(--display);font-size:21px;margin:0 0 4px;color:var(--zemin)}
 .kuyruk p{margin:0 0 14px;font-size:14.5px;opacity:.78}
-.kuyruk .dugme{background:#fff;color:var(--murekkep);width:100%}
-.kuyruk .dugme:hover{background:#EDF1F7}
+.kuyruk .dugme{background:var(--zemin);color:var(--murekkep);width:100%}
+.kuyruk .dugme:hover{background:color-mix(in srgb, var(--zemin) 88%, var(--soluk))}
 .seri{
   display:inline-flex;align-items:center;gap:6px;
   font-size:13px;font-weight:600;background:rgba(255,255,255,.14);
@@ -202,7 +224,7 @@ button{font:inherit;color:inherit}
   border-radius:10px;background:var(--zemin);
   font-family:var(--display);font-size:17px;font-weight:600;
 }
-.blok.bitti .no{background:var(--murekkep);color:#fff}
+.blok.bitti .no{background:var(--murekkep);color:var(--zemin)}
 .blok .govde{flex:1;min-width:0;display:block}
 .blok .ad{display:block;font-weight:600;font-size:15px}
 .blok .alt{display:block;font-size:13px;color:var(--soluk);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
@@ -211,7 +233,7 @@ button{font:inherit;color:inherit}
   font-size:12px;font-weight:600;padding:3px 9px;border-radius:99px;
   border:1px solid var(--cizgi);color:var(--soluk);white-space:nowrap;
 }
-.rozet.zayif{background:var(--fosforlu);border-color:#EBCB3E;color:var(--murekkep)}
+.rozet.zayif{background:var(--fosforlu);border-color:var(--fosforlu);color:var(--vurgu-yazi)}
 .rozet.iyi{border-color:var(--dogru);color:var(--dogru)}
 
 /* --- konu satiri (sonuc) --- */
@@ -223,7 +245,7 @@ button{font:inherit;color:inherit}
 .konu-satir .ad{flex:1;min-width:0;font-size:15px}
 .konu-satir .ad small{display:block;color:var(--soluk);font-size:12.5px}
 .konu-satir .oran{font-family:var(--display);font-weight:600;font-size:15px}
-.vurgu{background:var(--fosforlu);border-radius:3px;padding:0 4px}
+.vurgu{background:var(--fosforlu);color:var(--vurgu-yazi);border-radius:3px;padding:0 4px}
 
 /* --- form --- */
 label{display:block;font-weight:600;font-size:14px;margin-bottom:6px}
@@ -253,7 +275,7 @@ input[type=range]{
   border-radius:9px;font-size:14.5px;font-weight:600;
   color:var(--soluk);text-decoration:none;
 }
-.sekme.aktif{background:var(--kart);color:var(--murekkep);box-shadow:0 1px 2px rgba(22,35,58,.08)}
+.sekme.aktif{background:var(--kart);color:var(--murekkep);box-shadow:0 1px 2px rgba(0,0,0,.12)}
 
 .secenek-satir{
   display:flex;align-items:center;gap:12px;
@@ -265,8 +287,8 @@ input[type=range]{
 }
 
 .bildirim{padding:12px 14px;border-radius:10px;font-size:14.5px;margin-bottom:12px}
-.bildirim.ok{background:#F1F9F6;border:1px solid #BFE3D7;color:#14614E}
-.bildirim.hata{background:#FDF2F3;border:1px solid #F3C6CA;color:#9B2B36}
+.bildirim.ok{background:color-mix(in srgb, var(--dogru) 12%, var(--kart));border:1px solid color-mix(in srgb, var(--dogru) 40%, var(--kart));color:var(--dogru)}
+.bildirim.hata{background:color-mix(in srgb, var(--yanlis) 12%, var(--kart));border:1px solid color-mix(in srgb, var(--yanlis) 40%, var(--kart));color:var(--yanlis)}
 
 .bos{
   text-align:center;padding:40px 20px;color:var(--soluk);
@@ -284,18 +306,18 @@ input[type=range]{
 .okuma-paragraf:last-child{margin-bottom:0}
 
 .cumle{border-radius:4px;transition:background .15s}
-.cumle.acik{background:#EDF1F7;box-shadow:0 0 0 2px #EDF1F7}
+.cumle.acik{background:var(--sik-secili);box-shadow:0 0 0 2px var(--sik-secili)}
 
 .kelime{
   cursor:pointer;border-radius:3px;padding:1px 1px;
   -webkit-tap-highlight-color:transparent;
 }
-.kelime:hover{background:#EDF1F7}
-.kelime.acik{background:var(--fosforlu)}
+.kelime:hover{background:var(--sik-secili)}
+.kelime.acik{background:var(--fosforlu);color:var(--vurgu-yazi)}
 
 .okuma-panel-kart{
   position:sticky;bottom:12px;
-  box-shadow:0 6px 24px rgba(22,35,58,.14);
+  box-shadow:0 6px 24px rgba(0,0,0,.22);
 }
 .panel-baslik{font-family:var(--display);font-weight:600;font-size:19px}
 
@@ -308,9 +330,10 @@ input[type=range]{
   cursor:pointer;position:relative;overflow:hidden;
 }
 .serit-metin{font-family:var(--mono);font-size:14.5px;position:relative;z-index:1}
+.serit-blok.cizili .serit-metin{color:var(--vurgu-yazi)}
 .serit-rol{font-size:11.5px;color:var(--soluk);position:relative;z-index:1}
-.serit-blok.cizili{border-color:#EBCB3E}
-.serit-blok.cizili .serit-rol{color:var(--murekkep);font-weight:600}
+.serit-blok.cizili{border-color:var(--fosforlu)}
+.serit-blok.cizili .serit-rol{color:var(--vurgu-yazi);font-weight:600}
 /* fosforlu kalem darbesi soldan saga gecer */
 .serit-blok.cizili::before{
   content:"";position:absolute;left:0;top:0;bottom:0;width:100%;
@@ -342,7 +365,7 @@ input[type=range]{
   background:var(--zemin);border-radius:8px;padding:9px 12px;
 }
 .benzer .cevap{
-  background:var(--fosforlu);border-radius:3px;padding:0 5px;margin-left:6px;
+  background:var(--fosforlu);color:var(--vurgu-yazi);border-radius:3px;padding:0 5px;margin-left:6px;
   font-weight:500;cursor:pointer;
 }
 .benzer .cevap.gizli{background:var(--cizgi);color:transparent;user-select:none}
@@ -351,7 +374,7 @@ input[type=range]{
 .sohbet{margin-top:16px;border-top:1px solid var(--cizgi);padding-top:14px}
 .mesajlar{display:flex;flex-direction:column;gap:10px;margin-bottom:12px}
 .mesaj{font-size:14.5px;line-height:1.6;padding:10px 13px;border-radius:12px;max-width:88%;white-space:pre-wrap}
-.mesaj.kullanici{align-self:flex-end;background:var(--murekkep);color:#fff;border-bottom-right-radius:4px}
+.mesaj.kullanici{align-self:flex-end;background:var(--murekkep);color:var(--zemin);border-bottom-right-radius:4px}
 .mesaj.ai{align-self:flex-start;background:var(--zemin);border-bottom-left-radius:4px}
 
 /* hazir soru onerileri */
@@ -389,6 +412,14 @@ textarea{
   <a href="#/ayarlar" class="dugme ikincil" style="min-height:44px;padding:10px 14px;text-decoration:none">Ayarlar</a>
 </header>
 <main id="ekran"><p class="soluk">Yükleniyor…</p></main>
+<script>
+// Tema tercihini erken uygula ki sayfa acilirken beyaz yanip sonmesin.
+try {
+  const t = localStorage.getItem("tema");
+  const koyu = t === "koyu" || (!t && matchMedia("(prefers-color-scheme: dark)").matches);
+  if (koyu) document.documentElement.dataset.tema = "koyu";
+} catch {}
+</script>
 <script type="module" src="./app.js"></script>
 </body>
 </html>

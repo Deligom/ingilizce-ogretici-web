@@ -1,0 +1,23 @@
+{
+  "name": "WordNexus — İngilizce",
+  "short_name": "WordNexus",
+  "description": "Türkçe konuşanlar için İngilizce öğrenme uygulaması. Her sorunun yanında bir \"Neden?\" düğmesi.",
+  "lang": "tr",
+  "dir": "ltr",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#F6F7F9",
+  "theme_color": "#16233A",
+  "categories": ["education"],
+  "icons": [
+    { "src": "./ikon/ikon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "./ikon/ikon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "./ikon/ikon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ],
+  "shortcuts": [
+    { "name": "Bugünün kuyruğu", "url": "./#/calis" },
+    { "name": "Okuma", "url": "./#/oku" }
+  ]
+}

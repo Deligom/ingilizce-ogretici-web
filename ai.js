@@ -16,8 +16,39 @@ export const MODELLER = [
 ];
 export const VARSAYILAN_MODEL = MODELLER[0].ad;
 
+// Anlatim tarzi: bilerek TEK kontrol. "Kac tuzak olsun", "ne kadar ayrintili"
+// gibi ayri dugmeler koymuyoruz; her dugme kullaniciya devredilen bir karardir
+// ve cogu kisi hicbirine dokunmaz. Varsayilan dogrudan iyi olmali.
+export const USLUPLAR = {
+  gunluk: {
+    baslik: "Günlük",
+    aciklama: "Terim yok denecek kadar az, sohbet eder gibi. Yeni başlayan için.",
+    ek: "Dilbilgisi terimlerini mümkün olduğunca kullanma; kullanman gerekirse " +
+        "parantez içinde ve günlük bir benzetmeyle ver. Kısa cümleler kur."
+  },
+  dengeli: {
+    baslik: "Dengeli",
+    aciklama: "Sade anlatım, terim parantez içinde. Çoğu kişi için doğru olan bu.",
+    ek: ""
+  },
+  terimli: {
+    baslik: "Terimli",
+    aciklama: "Dilbilgisi terimlerini açıkça kullanır. Sınav çalışan için.",
+    ek: "Dilbilgisi terimlerini açıkça kullan (present simple, third person singular, " +
+        "relative clause gibi) ve Türkçe karşılıklarını da ver. Kural adını söylemekten çekinme."
+  }
+};
+
 // app.js her cagridan once ayarlardaki secimi buraya yazar.
 let secilenModel = VARSAYILAN_MODEL;
+let secilenUslup = "dengeli";
+export function uslupSec(ad) {
+  secilenUslup = USLUPLAR[ad] ? ad : "dengeli";
+}
+const sistemMetni = () => {
+  const ek = USLUPLAR[secilenUslup].ek;
+  return ek ? SISTEM + "\n\nAyrıca: " + ek : SISTEM;
+};
 export function modelSec(ad) {
   secilenModel = MODELLER.some(m => m.ad === ad) ? ad : VARSAYILAN_MODEL;
 }
@@ -102,7 +133,7 @@ async function cagir(anahtar, govde) {
 
 async function json(anahtar, { sistem, istek, sema, sicaklik = 0.3 }) {
   const metin = await cagir(anahtar, {
-    systemInstruction: { parts: [{ text: sistem }] },
+    systemInstruction: { parts: [{ text: sistem === SISTEM ? sistemMetni() : sistem }] },
     contents: [{ role: "user", parts: [{ text: istek }] }],
     generationConfig: {
       responseMimeType: "application/json",
@@ -332,7 +363,7 @@ Konu: ${baglam.konuAd} — ${baglam.konuKural}
   ];
 
   return cagir(anahtar, {
-    systemInstruction: { parts: [{ text: SISTEM }] },
+    systemInstruction: { parts: [{ text: sistemMetni() }] },
     contents: icerik,
     generationConfig: { temperature: 0.4, maxOutputTokens: 800 }
   });
