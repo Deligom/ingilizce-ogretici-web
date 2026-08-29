@@ -1,0 +1,3431 @@
+{
+ "surum": 1,
+ "model": "gemini-3.1-flash-lite",
+ "tarih": "2026-08-29T20:30:46.291Z",
+ "cumleler": {
+  "my name is song mi and i'm from south korea.": {
+   "parcalar": [
+    {
+     "metin": "My name",
+     "rol": "kim",
+     "aciklama": "İngilizcede sahiplik bildiren kelimeler (possessive adjectives) ismin önüne gelir. Türkçedeki gibi ismin sonuna ek gelmez."
+    },
+    {
+     "metin": "is",
+     "rol": "bağlayıcı",
+     "aciklama": "İsim cümlelerinde özne ile isim arasında mutlaka bir yardımcı fiil (to be) kullanılır. Türkçede bu ek halindedir, İngilizcede ayrı yazılır."
+    },
+    {
+     "metin": "Song Mi",
+     "rol": "ne",
+     "aciklama": "Özel isimdir, cümlenin tamamlayıcısıdır."
+    },
+    {
+     "metin": "and",
+     "rol": "bağlayıcı",
+     "aciklama": "İki cümleyi birbirine bağlar."
+    },
+    {
+     "metin": "I'm from South Korea.",
+     "rol": "nereli",
+     "aciklama": "Bir yerden geldiğini belirtirken 'from' edatı kullanılır. Tuzak: Türkçede 'nerelisin' sorusuna 'Kore'denim' denmez, İngilizcede 'I am from Korea' denir."
+    }
+   ],
+   "turkce": "Adım Song Mi ve Güney Kore'denim."
+  },
+  "south korea is a small country.": {
+   "parcalar": [
+    {
+     "metin": "South Korea",
+     "rol": "kim",
+     "aciklama": "Cümlenin öznesidir."
+    },
+    {
+     "metin": "is",
+     "rol": "bağlayıcı",
+     "aciklama": "Durum bildiren cümlelerde fiil yerine kullanılır. Tuzak: Türkçede 'Güney Kore küçük bir ülke' derken fiil kullanmayız, İngilizcede 'is' unutulmamalıdır."
+    },
+    {
+     "metin": "a small country.",
+     "rol": "ne",
+     "aciklama": "Sıfatlar isimden önce gelir. 'a' harfi tekil isimlerin önüne mutlaka gelmelidir."
+    }
+   ],
+   "turkce": "Güney Kore küçük bir ülkedir."
+  },
+  "however, it is very crowded.": {
+   "parcalar": [
+    {
+     "metin": "However,",
+     "rol": "bağlayıcı",
+     "aciklama": "Zıtlık bildiren bir bağlaçtır. Cümlenin başına gelir."
+    },
+    {
+     "metin": "it",
+     "rol": "kim",
+     "aciklama": "Cansız varlıklar veya ülkeler için 'o' anlamında kullanılır."
+    },
+    {
+     "metin": "is very crowded.",
+     "rol": "nasıl",
+     "aciklama": "Durum bildiren sıfattır. Tuzak: 'Crowded' kelimesi 'kalabalık' demektir, 'kalabalık olmak' için 'is' yardımcı fiili şarttır."
+    }
+   ],
+   "turkce": "Ancak, çok kalabalıktır."
+  },
+  "the population is about 50 million.": {
+   "parcalar": [
+    {
+     "metin": "The population",
+     "rol": "kim",
+     "aciklama": "Cümlenin öznesidir."
+    },
+    {
+     "metin": "is",
+     "rol": "bağlayıcı",
+     "aciklama": "Miktar bildiren cümlelerde de yardımcı fiil kullanılır."
+    },
+    {
+     "metin": "about 50 million.",
+     "rol": "ne kadar",
+     "aciklama": "'About' burada 'yaklaşık' anlamındadır. Tuzak: 'About' kelimesini sadece 'hakkında' olarak bilmek yanlıştır, miktar önünde 'yaklaşık' olur."
+    }
+   ],
+   "turkce": "Nüfus yaklaşık 50 milyondur."
+  },
+  "my country has delicious food and a rich culture.": {
+   "parcalar": [
+    {
+     "metin": "My country",
+     "rol": "kim",
+     "aciklama": "Cümlenin öznesi. Türkçedeki 'ülkem' ifadesiyle aynı mantıktır."
+    },
+    {
+     "metin": "has",
+     "rol": "ne yapıyor",
+     "aciklama": "Sahip olmak anlamında fiil. Türkçede 'var' derken İngilizcede 'has' kullanılır; hata olarak 'my country is delicious food' denmesi yaygındır."
+    },
+    {
+     "metin": "delicious food and a rich culture.",
+     "rol": "neyi",
+     "aciklama": "Fiilden etkilenen nesne grubu. 'A' harfi burada bir tane anlamında kullanılır."
+    }
+   ],
+   "turkce": "Ülkemin lezzetli yemekleri ve zengin bir kültürü var."
+  },
+  "i am now living in spain with my two friends.": {
+   "parcalar": [
+    {
+     "metin": "I am now living",
+     "rol": "ne yapıyor",
+     "aciklama": "Şu an devam eden eylem. Türkçedeki '-iyor' ekidir; 'I live now' demek yaygın bir hatadır."
+    },
+    {
+     "metin": "in Spain",
+     "rol": "nerede",
+     "aciklama": "Bulunma durumu. 'In' edatı büyük yerler için kullanılır."
+    },
+    {
+     "metin": "with my two friends.",
+     "rol": "kiminle",
+     "aciklama": "Birliktelik bildiren edat grubu."
+    }
+   ],
+   "turkce": "Şu an iki arkadaşımla İspanya'da yaşıyorum."
+  },
+  "their names are joao and juan.": {
+   "parcalar": [
+    {
+     "metin": "Their names",
+     "rol": "kim",
+     "aciklama": "Onların isimleri. 'Their' sahiplik bildirir."
+    },
+    {
+     "metin": "are",
+     "rol": "bağlayıcı",
+     "aciklama": "İsimleri birbirine bağlayan yardımcı fiil. Türkçede bu ekler kelimeye yapışır, İngilizcede ayrı yazılır."
+    },
+    {
+     "metin": "Joao and Juan.",
+     "rol": "ne",
+     "aciklama": "İsimlerin kendisi."
+    }
+   ],
+   "turkce": "Onların isimleri Joao ve Juan."
+  },
+  "we live in madrid.": {
+   "parcalar": [
+    {
+     "metin": "We",
+     "rol": "kim",
+     "aciklama": "Biz öznesi."
+    },
+    {
+     "metin": "live",
+     "rol": "ne yapıyor",
+     "aciklama": "Yaşamak eylemi. 'Live' fiilini 'living' ile karıştırıp 'we are live' demek sık yapılan bir hatadır."
+    },
+    {
+     "metin": "in Madrid.",
+     "rol": "nerede",
+     "aciklama": "Şehir isimlerinden önce 'in' kullanılır."
+    }
+   ],
+   "turkce": "Biz Madrid'de yaşıyoruz."
+  },
+  "we live in the same apartment.": {
+   "parcalar": [
+    {
+     "metin": "We",
+     "rol": "kim",
+     "aciklama": "İngilizcede özne (subject) her zaman başta gelir, Türkçedeki gibi gizli özne olmaz."
+    },
+    {
+     "metin": "live",
+     "rol": "ne yapıyor",
+     "aciklama": "Türkçedeki fiil çekimi gibi ek almaz, sadece yalın haldedir. Hata: 'We lives' demek yanlıştır."
+    },
+    {
+     "metin": "in the same apartment",
+     "rol": "nerede",
+     "aciklama": "Türkçedeki '-da/-de' eki yerine 'in' kullanılır. Hata: 'in same apartment' diyerek 'the' takısını unutmak yaygındır."
+    }
+   ],
+   "turkce": "Aynı apartmanda yaşıyoruz."
+  },
+  "joao is a physics student and juan is studying chemistry.": {
+   "parcalar": [
+    {
+     "metin": "Joao is a physics student",
+     "rol": "ne yapıyor",
+     "aciklama": "İsim cümlelerinde 'is' (olmak fiili) mutlaka kullanılmalıdır. Hata: 'Joao physics student' diyerek 'is' fiilini düşürmek."
+    },
+    {
+     "metin": "and",
+     "rol": "bağlayıcı",
+     "aciklama": "İki cümleyi birbirine bağlar. Hata: 'and' kelimesinden sonra özneyi tekrar etmemek."
+    },
+    {
+     "metin": "Juan is studying chemistry",
+     "rol": "ne yapıyor",
+     "aciklama": "Şu an yapılan işi anlatırken fiile '-ing' takısı gelir. Hata: 'Juan studies chemistry' diyerek geniş zamanla karıştırmak."
+    }
+   ],
+   "turkce": "Joao fizik öğrencisi ve Juan kimya okuyor."
+  },
+  "juan is 22 years old, joao is 24, and i'm 21.": {
+   "parcalar": [
+    {
+     "metin": "Juan is 22 years old",
+     "rol": "ne yapıyor",
+     "aciklama": "Yaş belirtirken 'have' (sahip olmak) değil, 'be' (olmak) fiili kullanılır. Hata: 'Juan has 22 years' demek."
+    },
+    {
+     "metin": "Joao is 24",
+     "rol": "ne yapıyor",
+     "aciklama": "Yaş söylerken 'years old' kısmını söylemek zorunlu değildir. Hata: 'Joao has 24' demek."
+    },
+    {
+     "metin": "and I'm 21",
+     "rol": "ne yapıyor",
+     "aciklama": "Kendi yaşını söylerken 'I am' kısaltılarak 'I'm' olur. Hata: 'I am' yerine sadece 'I' kullanmak."
+    }
+   ],
+   "turkce": "Juan 22 yaşında, Joao 24 ve ben 21 yaşındayım."
+  },
+  "juan is from barcelona and joao is from lisbon.": {
+   "parcalar": [
+    {
+     "metin": "Juan is from Barcelona",
+     "rol": "nerede",
+     "aciklama": "Bir yerden geldiğini belirtmek için 'from' kullanılır. Hata: 'Juan is Barcelona' diyerek 'from' edatını unutmak."
+    },
+    {
+     "metin": "and",
+     "rol": "bağlayıcı",
+     "aciklama": "İki ayrı durumu birbirine bağlar."
+    },
+    {
+     "metin": "Joao is from Lisbon",
+     "rol": "nerede",
+     "aciklama": "Şehir isimleri özel isimdir ve büyük harfle başlar. Hata: 'from' yerine 'in' kullanmak."
+    }
+   ],
+   "turkce": "Juan Barcelonalı ve Joao Lizbonlu."
+  },
+  "i am in my second year and i am studying computer engineering.": {
+   "parcalar": [
+    {
+     "metin": "I",
+     "rol": "kim",
+     "aciklama": "Özne durumundaki kişi."
+    },
+    {
+     "metin": "am",
+     "rol": "bağlayıcı",
+     "aciklama": "Türkçedeki -im/-ım ekidir. Hata: Türkler 'I in my year' diyerek fiili unutur."
+    },
+    {
+     "metin": "in my second year",
+     "rol": "nerede",
+     "aciklama": "Zaman dilimini belirtir."
+    },
+    {
+     "metin": "and",
+     "rol": "bağlayıcı",
+     "aciklama": "İki cümleyi birbirine bağlar."
+    },
+    {
+     "metin": "I am studying",
+     "rol": "ne yapıyor",
+     "aciklama": "Şu an devam eden işi anlatır. Hata: Türkler 'I study' diyerek geniş zaman kullanır."
+    },
+    {
+     "metin": "computer engineering",
+     "rol": "neyi",
+     "aciklama": "Okunan bölüm."
+    }
+   ],
+   "turkce": "İkinci yılımdayım ve bilgisayar mühendisliği okuyorum."
+  },
+  "i want to be a good software developer.": {
+   "parcalar": [
+    {
+     "metin": "I want",
+     "rol": "ne yapıyor",
+     "aciklama": "İstek bildiren fiil."
+    },
+    {
+     "metin": "to be",
+     "rol": "bağlayıcı",
+     "aciklama": "Fiilden sonra gelen mastar eki. Hata: Türkler 'I want be' diyerek 'to' edatını atlar."
+    },
+    {
+     "metin": "a good software developer",
+     "rol": "neyi",
+     "aciklama": "Olunmak istenen meslek."
+    }
+   ],
+   "turkce": "İyi bir yazılım geliştirici olmak istiyorum."
+  },
+  "joao is in his second year too.": {
+   "parcalar": [
+    {
+     "metin": "Joao",
+     "rol": "kim",
+     "aciklama": "Özne."
+    },
+    {
+     "metin": "is",
+     "rol": "bağlayıcı",
+     "aciklama": "Durum bildiren yardımcı fiil."
+    },
+    {
+     "metin": "in his second year",
+     "rol": "nerede",
+     "aciklama": "Bulunduğu yıl."
+    },
+    {
+     "metin": "too",
+     "rol": "bağlayıcı",
+     "aciklama": "Dahi/de anlamı katar. Hata: Türkler 'too' kelimesini cümlenin başına koyar."
+    }
+   ],
+   "turkce": "Joao da ikinci yılında."
+  },
+  "but juan is now in his first year.": {
+   "parcalar": [
+    {
+     "metin": "But",
+     "rol": "bağlayıcı",
+     "aciklama": "Zıtlık bildirir."
+    },
+    {
+     "metin": "Juan",
+     "rol": "kim",
+     "aciklama": "Özne."
+    },
+    {
+     "metin": "is",
+     "rol": "bağlayıcı",
+     "aciklama": "Durum fiili."
+    },
+    {
+     "metin": "now",
+     "rol": "ne zaman",
+     "aciklama": "Şu an anlamında zaman zarfı. Hata: Türkler 'now' kelimesini cümlenin sonuna koymaya meyillidir."
+    },
+    {
+     "metin": "in his first year",
+     "rol": "nerede",
+     "aciklama": "Bulunduğu yıl."
+    }
+   ],
+   "turkce": "Ama Juan şu an birinci yılında."
+  },
+  "sometimes joao and i have the same classes and we go to the classes together.": {
+   "parcalar": [
+    {
+     "metin": "Sometimes",
+     "rol": "ne zaman",
+     "aciklama": "Zaman zarfı (adverb) cümleye ne sıklıkla yapıldığını ekler. Türkçedeki 'bazen' kelimesiyle aynıdır."
+    },
+    {
+     "metin": "Joao and I",
+     "rol": "kim",
+     "aciklama": "Özne (subject) kısmında 'I' kullanırken Türkçedeki gibi 'ben ve Joao' değil, 'Joao ve ben' sırasını tercih etmelisin. Tuzak: 'Me and Joao' demek yaygın bir hatadır, özne konumunda her zaman 'I' kullanılır."
+    },
+    {
+     "metin": "have the same classes",
+     "rol": "ne yapıyor",
+     "aciklama": "Fiil (verb) öbeği. 'Sahip olmak' anlamındaki 'have' burada derslere girmek anlamında kullanılır."
+    },
+    {
+     "metin": "and",
+     "rol": "bağlayıcı",
+     "aciklama": "İki cümleyi birbirine bağlar."
+    },
+    {
+     "metin": "we go to the classes together",
+     "rol": "ne yapıyor",
+     "aciklama": "Birlikte gitme eylemini belirtir. Tuzak: 'Together' kelimesini fiilden önce koymak Türkçedeki 'birlikte gidiyoruz' dizilimi yüzünden sık yapılan bir hatadır, İngilizcede sona konur."
+    }
+   ],
+   "turkce": "Bazen Joao ve ben aynı derslere sahibiz ve derslere birlikte gidiyoruz."
+  },
+  "this semester, we are taking an algebra class.": {
+   "parcalar": [
+    {
+     "metin": "This semester",
+     "rol": "ne zaman",
+     "aciklama": "Zaman belirten ifade. Cümlenin başında veya sonunda kullanılabilir."
+    },
+    {
+     "metin": "we",
+     "rol": "kim",
+     "aciklama": "Özne."
+    },
+    {
+     "metin": "are taking",
+     "rol": "ne yapıyor",
+     "aciklama": "Şimdiki zaman (present continuous). Ders almak için 'take' fiili kullanılır. Tuzak: 'We take' derseniz genel bir alışkanlıktan bahsetmiş olursunuz, bu dönem için 'are taking' şarttır."
+    },
+    {
+     "metin": "an algebra class",
+     "rol": "neyi",
+     "aciklama": "Nesne."
+    }
+   ],
+   "turkce": "Bu dönem, bir cebir dersi alıyoruz."
+  },
+  "it is fun to go to class and come back together.": {
+   "parcalar": [
+    {
+     "metin": "It is fun",
+     "rol": "ne yapıyor",
+     "aciklama": "Durum bildiren ifade. 'It' burada boş bir özne görevi görür, Türkçede karşılığı yoktur."
+    },
+    {
+     "metin": "to go to class and come back",
+     "rol": "ne",
+     "aciklama": "Mastarlı fiil (infinitive) öbeği. Eylemin kendisini tanımlar."
+    },
+    {
+     "metin": "together",
+     "rol": "nasıl",
+     "aciklama": "Birliktelik belirten zarf."
+    }
+   ],
+   "turkce": "Derslere gidip birlikte geri dönmek eğlencelidir."
+  },
+  "it's fun to study with joao because he is a very good student.": {
+   "parcalar": [
+    {
+     "metin": "It's fun to study with Joao",
+     "rol": "ne yapıyor",
+     "aciklama": "Bir şey yapmanın eğlenceli olduğunu belirtir. Tuzak: 'Study' kelimesini sadece 'ders çalışmak' olarak düşünme, 'öğrenim görmek' anlamında da kullanılır."
+    },
+    {
+     "metin": "because",
+     "rol": "bağlayıcı",
+     "aciklama": "Neden bildiren bağlaç."
+    },
+    {
+     "metin": "he is a very good student",
+     "rol": "ne yapıyor",
+     "aciklama": "Açıklama cümlesi. Tuzak: 'Very' kelimesini 'good'dan önce koymayı unutmak veya 'a' artikeli kullanmamak sık yapılan bir hatadır."
+    }
+   ],
+   "turkce": "Joao ile çalışmak eğlenceli çünkü o çok iyi bir öğrenci."
+  },
+  "i love my new home and my new friends.": {
+   "parcalar": [
+    {
+     "metin": "I",
+     "rol": "kim",
+     "aciklama": "İngilizcede özne her zaman belirtilir, Türkçedeki gibi gizli özne olmaz."
+    },
+    {
+     "metin": "love",
+     "rol": "ne yapıyor",
+     "aciklama": "Türkçedeki fiil çekimi yerine sadece kelimenin kendisini kullanırız. Hata: 'I am love' demek yanlıştır, çünkü 'love' bir durum değil eylemdir."
+    },
+    {
+     "metin": "my new home",
+     "rol": "neyi",
+     "aciklama": "Sıfatlar isimden önce gelir. Hata: 'home new' şeklinde Türkçedeki gibi isimden sonra sıfat koymak yanlıştır."
+    },
+    {
+     "metin": "and",
+     "rol": "bağlayıcı",
+     "aciklama": "İki benzer yapıyı birbirine bağlar."
+    },
+    {
+     "metin": "my new friends",
+     "rol": "neyi",
+     "aciklama": "İngilizcede çoğul ekleri isme gelir, sıfata gelmez."
+    }
+   ],
+   "turkce": "Yeni evimi ve yeni arkadaşlarımı seviyorum."
+  },
+  "arda is a worker.": {
+   "parcalar": [
+    {
+     "metin": "Arda",
+     "rol": "kim",
+     "aciklama": "İngilizcede cümle başında özne mutlaka belirtilir. Türkçede 'Arda işçidir' derken 'o' gizlidir ama İngilizcede 'Arda'yı söylemek zorundasın."
+    },
+    {
+     "metin": "is",
+     "rol": "bağlayıcı",
+     "aciklama": "Türkçedeki '-dir/-dır' ekidir. Türkçede bu ek düşebilir ama İngilizcede cümleyi kurmak için bu yardımcı fiili mutlaka kullanmalısın; 'Arda a worker' dersen hata yaparsın."
+    },
+    {
+     "metin": "a worker",
+     "rol": "ne",
+     "aciklama": "Tekil bir meslekten bahsederken başına 'a' koyarız. Türkçede 'bir' demesek de olur ama İngilizcede 'a' koymazsan eksik kalır."
+    }
+   ],
+   "turkce": "Arda bir işçidir."
+  },
+  "he cuts down trees in the forest.": {
+   "parcalar": [
+    {
+     "metin": "He",
+     "rol": "kim",
+     "aciklama": "Erkekler için 'o' zamiridir. Türkçede cinsiyet ayrımı yoktur ama İngilizcede 'he' veya 'she' ayrımına dikkat etmelisin."
+    },
+    {
+     "metin": "cuts down",
+     "rol": "ne yapıyor",
+     "aciklama": "Kesmek eylemidir. Türkçede 'keser' derken 's' takısı yoktur; İngilizcede 'he/she/it' için fiile 's' takısı eklemeyi unutmak en büyük tuzaktır."
+    },
+    {
+     "metin": "trees",
+     "rol": "neyi",
+     "aciklama": "Ağaçlar demektir. Türkçede 'ağaç keser' derken çoğul yapmayabiliriz ama İngilizcede genel bir şeyden bahsederken çoğul takısı '-s' kullanırız."
+    },
+    {
+     "metin": "in the forest",
+     "rol": "nerede",
+     "aciklama": "Ormanda demektir. Türkçede 'da/de' ekini kelimeye yapıştırırız, İngilizcede ise 'in' kelimesini ayrı yazarız."
+    }
+   ],
+   "turkce": "O, ormandaki ağaçları keser."
+  },
+  "he sells the trees to factories.": {
+   "parcalar": [
+    {
+     "metin": "He",
+     "rol": "kim",
+     "aciklama": "Özne konumundadır. 'He' yerine 'He is' gibi gereksiz yardımcı fiil eklemek sık yapılan bir hatadır."
+    },
+    {
+     "metin": "sells",
+     "rol": "ne yapıyor",
+     "aciklama": "Satmak eylemidir. 'He' olduğu için fiilin sonuna 's' takısı gelir; bunu unutursan İngilizler için yanlış bir zaman kullanmış olursun."
+    },
+    {
+     "metin": "the trees",
+     "rol": "neyi",
+     "aciklama": "Belirli ağaçlar demektir. Türkçede 'ağaçları' derken 'ı' ekiyle belirtiriz, İngilizcede ise 'the' kelimesini kullanırız."
+    },
+    {
+     "metin": "to factories",
+     "rol": "nereye",
+     "aciklama": "Fabrikalara demektir. Türkçede '-a/-e' yönelme ekini kelimeye ekleriz, İngilizcede ise 'to' edatını kullanırız."
+    }
+   ],
+   "turkce": "O, ağaçları fabrikalara satar."
+  },
+  "arda has two horses.": {
+   "parcalar": [
+    {
+     "metin": "Arda",
+     "rol": "kim",
+     "aciklama": "Cümlenin öznesidir. Türkçede 'Arda'nın iki atı var' deriz, İngilizcede ise 'Arda'yı başa alıp 'has' kullanırız."
+    },
+    {
+     "metin": "has",
+     "rol": "ne yapıyor",
+     "aciklama": "Sahip olmak demektir. Türkçede 'var' kelimesiyle kurduğumuz sahiplik cümlelerini İngilizcede 'have/has' fiiliyle kurarız; 'Arda is two horses' dersen 'Arda iki attır' demiş olursun."
+    },
+    {
+     "metin": "two horses",
+     "rol": "neyi",
+     "aciklama": "İki at demektir. Türkçede sayıdan sonra gelen isim çoğul olmaz (iki at), İngilizcede ise sayı birden büyükse isim mutlaka çoğul olur (two horses)."
+    }
+   ],
+   "turkce": "Arda'nın iki atı var."
+  },
+  "these horses help him to carry the trees to the town.": {
+   "parcalar": [
+    {
+     "metin": "These horses",
+     "rol": "kim",
+     "aciklama": "İngilizcede çoğul isimlerin önüne 'these' gelir. Türkçedeki 'bu atlar' ifadesiyle aynıdır."
+    },
+    {
+     "metin": "help",
+     "rol": "ne yapıyor",
+     "aciklama": "İşin yapıldığı ana fiildir. Hata tuzağı: Türkçedeki gibi 'yardımcı olmak' yerine sadece 'help' kullanılır, 'to' eklenmez."
+    },
+    {
+     "metin": "him",
+     "rol": "kime",
+     "aciklama": "Nesne halindeki zamirdir. Türkçedeki 'ona' anlamını karşılar."
+    },
+    {
+     "metin": "to carry",
+     "rol": "ne yapmasına",
+     "aciklama": "Fiilden sonra gelen ikinci fiil 'to' ile bağlanır. Hata tuzağı: 'help'ten sonra 'to' kullanmayı unutmak yaygın bir hatadır."
+    },
+    {
+     "metin": "the trees",
+     "rol": "neyi",
+     "aciklama": "Belirli ağaçlardan bahsettiğimiz için 'the' takısı alır."
+    },
+    {
+     "metin": "to the town",
+     "rol": "nereye",
+     "aciklama": "Yönelme bildiren 'to' edatı, Türkçedeki ismin -e halidir."
+    }
+   ],
+   "turkce": "Bu atlar, ağaçları kasabaya taşımasına yardım ediyor."
+  },
+  "arda wakes up very early.": {
+   "parcalar": [
+    {
+     "metin": "Arda",
+     "rol": "kim",
+     "aciklama": "Cümlenin öznesidir."
+    },
+    {
+     "metin": "wakes up",
+     "rol": "ne yapıyor",
+     "aciklama": "İki kelimeli bir fiildir (phrasal verb). Hata tuzağı: 'up' kısmını söylemeyi unutmak anlamı tamamen değiştirir."
+    },
+    {
+     "metin": "very early",
+     "rol": "ne zaman",
+     "aciklama": "Zamanı niteleyen zarftır. Türkçedeki 'çok erken' ifadesiyle aynıdır."
+    }
+   ],
+   "turkce": "Arda çok erken uyanır."
+  },
+  "he has breakfast and then he starts working.": {
+   "parcalar": [
+    {
+     "metin": "He",
+     "rol": "kim",
+     "aciklama": "Erkekler için kullanılan özne zamiridir."
+    },
+    {
+     "metin": "has breakfast",
+     "rol": "ne yapıyor",
+     "aciklama": "Kahvaltı yapmak eylemi için 'eat' değil 'have' kullanılır. Hata tuzağı: 'eat breakfast' demek İngilizcede çok nadirdir."
+    },
+    {
+     "metin": "and then",
+     "rol": "bağlayıcı",
+     "aciklama": "İki eylemi sıraya koyan bağlaçtır."
+    },
+    {
+     "metin": "he starts working",
+     "rol": "ne yapıyor",
+     "aciklama": "Bir işe başlamayı ifade eder. Hata tuzağı: 'start to work' veya 'start working' ikisi de doğrudur ama 'start work' demek yanlıştır."
+    }
+   ],
+   "turkce": "Kahvaltısını yapar ve sonra çalışmaya başlar."
+  },
+  "he goes to the forest and takes his horses with him.": {
+   "parcalar": [
+    {
+     "metin": "He goes to the forest",
+     "rol": "ne yapıyor",
+     "aciklama": "Gidiş yönünü 'to' ile belirtiriz. Hata tuzağı: 'goes forest' demek yanlıştır, mutlaka 'to' gerekir."
+    },
+    {
+     "metin": "and",
+     "rol": "bağlayıcı",
+     "aciklama": "İki cümleyi birbirine bağlar."
+    },
+    {
+     "metin": "takes his horses",
+     "rol": "neyi",
+     "aciklama": "Birini veya bir şeyi yanında götürmek için 'take' kullanılır."
+    },
+    {
+     "metin": "with him",
+     "rol": "nasıl",
+     "aciklama": "Birliktelik bildiren edattır. Hata tuzağı: 'with he' demek çok yaygın bir hatadır, mutlaka nesne hali olan 'him' kullanılmalıdır."
+    }
+   ],
+   "turkce": "Ormana gider ve atlarını da yanına alır."
+  },
+  "his horses are very fast.": {
+   "parcalar": [
+    {
+     "metin": "His horses",
+     "rol": "kim",
+     "aciklama": "İngilizcede sahiplik ekleri kelimenin başına gelir. Türkçede 'onun atları' derken ek sonda, burada ise başta olur."
+    },
+    {
+     "metin": "are",
+     "rol": "bağlayıcı",
+     "aciklama": "Türkçedeki '-dir/-dır' ekidir. Hata tuzağı: Türkçede bu ekler genelde düşer, İngilizcede ise cümlede mutlaka bir fiil veya bağlayıcı olmalıdır."
+    },
+    {
+     "metin": "very fast",
+     "rol": "nasıl",
+     "aciklama": "Sıfatlar isimden önce gelir. Türkçede 'çok hızlı' derken 'çok' kelimesini 'very' ile karşılarız."
+    }
+   ],
+   "turkce": "Onun atları çok hızlıdır."
+  },
+  "they are also very strong.": {
+   "parcalar": [
+    {
+     "metin": "They",
+     "rol": "kim",
+     "aciklama": "Çoğul öznedir. Türkçedeki 'onlar' karşılığıdır."
+    },
+    {
+     "metin": "are",
+     "rol": "bağlayıcı",
+     "aciklama": "Çoğul öznelerle kullanılan durum bildiren yardımcı fiildir. Hata tuzağı: 'They'den sonra 'is' kullanmak en yaygın hatadır."
+    },
+    {
+     "metin": "also",
+     "rol": "bağlayıcı",
+     "aciklama": "Cümleye 'ayrıca' anlamı katar. Türkçede genelde cümlenin sonuna 'de/da' olarak eklenir."
+    },
+    {
+     "metin": "very strong",
+     "rol": "nasıl",
+     "aciklama": "Durum bildiren sıfat öbeğidir."
+    }
+   ],
+   "turkce": "Onlar ayrıca çok güçlüdür."
+  },
+  "arda's father was a worker too.": {
+   "parcalar": [
+    {
+     "metin": "Arda's father",
+     "rol": "kim",
+     "aciklama": "İsimlere gelen 's eki sahiplik bildirir. Türkçedeki tamlama yapısının tam tersi mantıkla çalışır."
+    },
+    {
+     "metin": "was",
+     "rol": "bağlayıcı",
+     "aciklama": "Geçmiş zaman durum bildiren fiildir. Hata tuzağı: Türkçede geçmiş zamanı 'idi' ile yaparız, İngilizcede ise 'was/were' kullanmak zorunludur."
+    },
+    {
+     "metin": "a worker",
+     "rol": "ne",
+     "aciklama": "Meslek bildiren isimdir. İngilizcede mesleklerden önce mutlaka 'a/an' gelmelidir."
+    },
+    {
+     "metin": "too",
+     "rol": "bağlayıcı",
+     "aciklama": "Cümle sonunda 'de/da' anlamı verir. 'Also' ile aynı anlamdadır ama yeri farklıdır."
+    }
+   ],
+   "turkce": "Arda'nın babası da bir işçiydi."
+  },
+  "he also cut down trees when he was young.": {
+   "parcalar": [
+    {
+     "metin": "He also",
+     "rol": "kim",
+     "aciklama": "Özne ve ekleme yapan bağlaçtır."
+    },
+    {
+     "metin": "cut down",
+     "rol": "ne yapıyor",
+     "aciklama": "Ağaç kesmek için kullanılan öbek fiildir. Hata tuzağı: 'Cut' fiilinin ikinci hali de 'cut' olduğu için geçmiş zamanda değişmez, öğrenciler genelde 'cutted' diye yanlış türetir."
+    },
+    {
+     "metin": "trees",
+     "rol": "neyi",
+     "aciklama": "Nesne durumundaki çoğul isimdir."
+    },
+    {
+     "metin": "when he was young",
+     "rol": "ne zaman",
+     "aciklama": "Zaman bildiren yan cümleciktir. Türkçede 'gençken' diyerek tek kelimeyle ifade ettiğimiz yapıyı İngilizcede cümle olarak kurarız."
+    }
+   ],
+   "turkce": "O, gençken ağaç da keserdi."
+  },
+  "arda's father lives very close to arda.": {
+   "parcalar": [
+    {
+     "metin": "Arda's father",
+     "rol": "kim",
+     "aciklama": "İyelik eki (possessive 's) Türkçedeki tamlayan ekine benzer. Hata tuzağı: Arda's yerine sadece Arda father demek."
+    },
+    {
+     "metin": "lives",
+     "rol": "ne yapıyor",
+     "aciklama": "Özne tekil olduğu için fiile -s takısı gelir. Hata tuzağı: Özneye bakmadan fiili yalın kullanmak."
+    },
+    {
+     "metin": "very close to",
+     "rol": "nerede",
+     "aciklama": "Bir yere yakınlığı belirtir. Hata tuzağı: 'close' kelimesinden sonra 'to' edatını unutmak."
+    },
+    {
+     "metin": "Arda.",
+     "rol": "kim",
+     "aciklama": "Edatın bağlandığı kişidir."
+    }
+   ],
+   "turkce": "Arda'nın babası Arda'ya çok yakın yaşıyor."
+  },
+  "arda always visits him and his mother.": {
+   "parcalar": [
+    {
+     "metin": "Arda",
+     "rol": "kim",
+     "aciklama": "Cümlenin öznesidir."
+    },
+    {
+     "metin": "always",
+     "rol": "ne zaman",
+     "aciklama": "Sıklık zarfı fiilden önce gelir. Hata tuzağı: 'always' kelimesini cümlenin sonuna koymak."
+    },
+    {
+     "metin": "visits",
+     "rol": "ne yapıyor",
+     "aciklama": "Düzenli yapılan işleri anlatır."
+    },
+    {
+     "metin": "him and his mother.",
+     "rol": "neyi",
+     "aciklama": "Nesne zamiridir. Hata tuzağı: 'him' yerine 'he' kullanmak."
+    }
+   ],
+   "turkce": "Arda her zaman onu ve annesini ziyaret eder."
+  },
+  "arda has a small family.": {
+   "parcalar": [
+    {
+     "metin": "Arda",
+     "rol": "kim",
+     "aciklama": "Cümlenin öznesidir."
+    },
+    {
+     "metin": "has",
+     "rol": "ne yapıyor",
+     "aciklama": "Sahip olmak anlamındaki 'have' fiilinin tekil özneye göre çekimidir. Hata tuzağı: 'haves' demek."
+    },
+    {
+     "metin": "a small family.",
+     "rol": "neyi",
+     "aciklama": "Sahip olunan nesnedir."
+    }
+   ],
+   "turkce": "Arda küçük bir aileye sahip."
+  },
+  "he has a wife and a small son.": {
+   "parcalar": [
+    {
+     "metin": "He",
+     "rol": "kim",
+     "aciklama": "Erkekler için kullanılan özne zamiridir."
+    },
+    {
+     "metin": "has",
+     "rol": "ne yapıyor",
+     "aciklama": "Sahip olma durumunu belirtir."
+    },
+    {
+     "metin": "a wife and a small son.",
+     "rol": "neyi",
+     "aciklama": "Belirsiz tekil isimler için 'a' kullanılır. Hata tuzağı: 'a' artikeli kullanmayı unutmak."
+    }
+   ],
+   "turkce": "Onun bir eşi ve küçük bir oğlu var."
+  },
+  "his son is only 2 years old.": {
+   "parcalar": [
+    {
+     "metin": "His son",
+     "rol": "kim",
+     "aciklama": "Türkçedeki iyelik eki gibi düşünebilirsin; 'onun oğlu' anlamındadır. Hata tuzağı: 'His' yerine 'He' demek."
+    },
+    {
+     "metin": "is",
+     "rol": "bağlayıcı",
+     "aciklama": "İsim cümlelerinde özne ile durum arasında köprü kurar. Hata tuzağı: Türkçede karşılığı olmadığı için cümleden tamamen atmak."
+    },
+    {
+     "metin": "only",
+     "rol": "nasıl",
+     "aciklama": "Burada 'sadece' anlamında vurgu yapar. Hata tuzağı: 'Only' kelimesini yanlış yere koyarak cümlenin anlamını değiştirmek."
+    },
+    {
+     "metin": "2 years old",
+     "rol": "ne kadar",
+     "aciklama": "Yaş belirtirken 'old' kelimesini sona ekleriz. Hata tuzağı: '2 years' diyip 'old' kısmını unutmak."
+    }
+   ],
+   "turkce": "Onun oğlu sadece 2 yaşında."
+  },
+  "arda's wife is a nurse and she works in a small hospital in the village.": {
+   "parcalar": [
+    {
+     "metin": "Arda's wife",
+     "rol": "kim",
+     "aciklama": "İsimlere gelen 's eki sahiplik bildirir. Hata tuzağı: 'Arda wife' şeklinde ek kullanmadan yazmak."
+    },
+    {
+     "metin": "is a nurse",
+     "rol": "ne yapıyor",
+     "aciklama": "Mesleklerden önce mutlaka 'a' veya 'an' gelir. Hata tuzağı: 'a' harfini söylemeyi unutmak."
+    },
+    {
+     "metin": "and",
+     "rol": "bağlayıcı",
+     "aciklama": "İki cümleyi birbirine bağlar. Hata tuzağı: Bağlaçtan sonra özneyi (she) tekrar etmemek."
+    },
+    {
+     "metin": "she works",
+     "rol": "ne yapıyor",
+     "aciklama": "Geniş zamanda özne 'o' ise fiile -s takısı gelir. Hata tuzağı: 'work' fiilini takısız kullanmak."
+    },
+    {
+     "metin": "in a small hospital",
+     "rol": "nerede",
+     "aciklama": "Yer bildirirken 'in' kullanılır. Hata tuzağı: 'at' ile 'in' kullanımını karıştırmak."
+    },
+    {
+     "metin": "in the village",
+     "rol": "nerede",
+     "aciklama": "Belirli bir köyden bahsettiğimiz için 'the' kullanılır. Hata tuzağı: 'the' takısını ihmal etmek."
+    }
+   ],
+   "turkce": "Arda'nın eşi bir hemşire ve o köydeki küçük bir hastanede çalışıyor."
+  },
+  "it is sometimes called the city of the red double-decker buses.": {
+   "parcalar": [
+    {
+     "metin": "It",
+     "rol": "kim",
+     "aciklama": "Özne konumundaki zamirdir."
+    },
+    {
+     "metin": "is sometimes called",
+     "rol": "ne yapıyor",
+     "aciklama": "Edilgen yapıdır. Hata: Türkçedeki gibi sadece 'called' diyerek yardımcı fiili atlamak yaygın bir hatadır."
+    },
+    {
+     "metin": "the city of the red double-decker buses",
+     "rol": "ne",
+     "aciklama": "İsmin ne olarak adlandırıldığını belirtir."
+    }
+   ],
+   "turkce": "O, bazen kırmızı çift katlı otobüslerin şehri olarak adlandırılır."
+  },
+  "the red double-decker is a kind of bus in london.": {
+   "parcalar": [
+    {
+     "metin": "The red double-decker",
+     "rol": "kim",
+     "aciklama": "Özne konumundaki isim öbeğidir."
+    },
+    {
+     "metin": "is",
+     "rol": "bağlayıcı",
+     "aciklama": "Durum bildiren yardımcı fiildir."
+    },
+    {
+     "metin": "a kind of bus",
+     "rol": "ne",
+     "aciklama": "Bir tür otobüs olduğunu belirtir."
+    },
+    {
+     "metin": "in London",
+     "rol": "nerede",
+     "aciklama": "Yer bildiren edat öbeğidir. Hata: Türkçede 'Londra'da' derken İngilizcede 'in' edatını unutmak yaygındır."
+    }
+   ],
+   "turkce": "Kırmızı çift katlı, Londra'daki bir otobüs türüdür."
+  },
+  "tourists like the red double-deckers in london.": {
+   "parcalar": [
+    {
+     "metin": "Tourists",
+     "rol": "kim",
+     "aciklama": "İşi yapan öznedir."
+    },
+    {
+     "metin": "like",
+     "rol": "ne yapıyor",
+     "aciklama": "Fiildir. Hata: Türkçede 'hoşlanmak' fiili 'den/-dan' ile kullanılır, İngilizcede ise doğrudan nesne alır."
+    },
+    {
+     "metin": "the red double-deckers",
+     "rol": "neyi",
+     "aciklama": "Fiilden etkilenen nesnedir."
+    },
+    {
+     "metin": "in London",
+     "rol": "nerede",
+     "aciklama": "Yer bildiren edat öbeğidir."
+    }
+   ],
+   "turkce": "Turistler Londra'daki kırmızı çift katlıları severler."
+  },
+  "it is the best way to see the city of london.": {
+   "parcalar": [
+    {
+     "metin": "It",
+     "rol": "kim",
+     "aciklama": "Özne yerine geçer. Türkçedeki gizli özne gibi değil, mutlaka yazılmalıdır."
+    },
+    {
+     "metin": "is",
+     "rol": "ne yapıyor",
+     "aciklama": "Durum bildiren yardımcı fiildir. Türkçede 'dir/dır' ekine karşılık gelir."
+    },
+    {
+     "metin": "the best way",
+     "rol": "ne",
+     "aciklama": "En iyi yol demektir. Türkçedeki sıfat tamlamasıyla aynı mantıktır."
+    },
+    {
+     "metin": "to see",
+     "rol": "ne yapmak için",
+     "aciklama": "Fiilden önce gelen 'to', Türkçedeki '-mek/-mak' mastar ekidir. Hata: 'to' ekini unutup sadece fiili yazmak."
+    },
+    {
+     "metin": "the city of London.",
+     "rol": "neyi",
+     "aciklama": "Londra şehri demektir. 'Of' burada tamlama kurar, Türkçedeki tamlayan ekine (-in) benzer."
+    }
+   ],
+   "turkce": "Londra şehrini görmenin en iyi yolu budur."
+  },
+  "london is famous for many places such as the palace of westminster, buckingham palace, the westminster cathedral and some streets.": {
+   "parcalar": [
+    {
+     "metin": "London",
+     "rol": "kim",
+     "aciklama": "Cümlenin ana öznesidir."
+    },
+    {
+     "metin": "is famous for",
+     "rol": "ne yapıyor",
+     "aciklama": "Bir şey ile ünlü olmak demektir. Hata: 'famous' kelimesinden sonra 'for' kullanmayı unutmak."
+    },
+    {
+     "metin": "many places",
+     "rol": "ne",
+     "aciklama": "Birçok yer demektir."
+    },
+    {
+     "metin": "such as",
+     "rol": "bağlayıcı",
+     "aciklama": "Örnek verirken kullanılır, 'gibi' demektir."
+    },
+    {
+     "metin": "the Palace of Westminster, Buckingham Palace, the Westminster Cathedral and some streets.",
+     "rol": "ne",
+     "aciklama": "Örnek verilen yerlerin listesidir."
+    }
+   ],
+   "turkce": "Londra; Westminster Sarayı, Buckingham Sarayı, Westminster Katedrali ve bazı caddeler gibi birçok yeriyle ünlüdür."
+  },
+  "people love to visit these places.": {
+   "parcalar": [
+    {
+     "metin": "People",
+     "rol": "kim",
+     "aciklama": "İnsanlar demektir, çoğul bir öznedir."
+    },
+    {
+     "metin": "love",
+     "rol": "ne yapıyor",
+     "aciklama": "Sevmek fiilidir."
+    },
+    {
+     "metin": "to visit",
+     "rol": "ne yapmayı",
+     "aciklama": "Ziyaret etmeyi demektir. Hata: 'love' fiilinden sonra gelen fiili mastar yapmadan (to'suz) kullanmak."
+    },
+    {
+     "metin": "these places.",
+     "rol": "neyi",
+     "aciklama": "Bu yerleri demektir."
+    }
+   ],
+   "turkce": "İnsanlar bu yerleri ziyaret etmeyi sever."
+  },
+  "every day, thousands of people spend money on food, clothes and electronics.": {
+   "parcalar": [
+    {
+     "metin": "Every day, ",
+     "rol": "ne zaman",
+     "aciklama": "Zamanı belirtir. Türkçedeki 'her gün' ifadesiyle aynıdır; cümlenin başına veya sonuna gelebilir."
+    },
+    {
+     "metin": "thousands of people ",
+     "rol": "kim",
+     "aciklama": "Özne grubudur. Türkçede 'binlerce insan' derken 'insanlar' çoğul ekini almaz, İngilizcede de 'people' zaten çoğuldur."
+    },
+    {
+     "metin": "spend ",
+     "rol": "ne yapıyor",
+     "aciklama": "Eylem. Türkçedeki 'harcamak' fiilidir. Hata tuzağı: 'spend' kelimesini 'harcamak' yerine 'geçirmek' (zaman için) ile karıştırıp 'spend money' yerine 'pass money' demeyin."
+    },
+    {
+     "metin": "money ",
+     "rol": "neyi",
+     "aciklama": "Nesne. Harcanan şeydir."
+    },
+    {
+     "metin": "on food, clothes and electronics.",
+     "rol": "nereye",
+     "aciklama": "Paranın nereye gittiğini belirtir. Hata tuzağı: Türkçede 'yemeğe harcamak' derken yönelme eki kullanırız, İngilizcede ise 'on' edatı kullanılır."
+    }
+   ],
+   "turkce": "Her gün binlerce insan yemeğe, kıyafete ve elektroniğe para harcıyor."
+  },
+  "it's also a good place to earn money.": {
+   "parcalar": [
+    {
+     "metin": "It's ",
+     "rol": "kim",
+     "aciklama": "Cansız öznedir. Türkçede gizli özne olarak 'o' diye geçer."
+    },
+    {
+     "metin": "also ",
+     "rol": "bağlayıcı",
+     "aciklama": "Cümleye 'ayrıca' anlamı katar. Hata tuzağı: 'also' kelimesini cümlenin sonuna koymayın, fiilden önce kullanın."
+    },
+    {
+     "metin": "a good place ",
+     "rol": "ne",
+     "aciklama": "İsim tamlamasıdır. 'İyi bir yer' demektir."
+    },
+    {
+     "metin": "to earn money.",
+     "rol": "ne için",
+     "aciklama": "Amacı belirtir. 'Para kazanmak için' anlamında kullanılır."
+    }
+   ],
+   "turkce": "Ayrıca orası para kazanmak için iyi bir yer."
+  },
+  "there are many street shows on the street.": {
+   "parcalar": [
+    {
+     "metin": "There are ",
+     "rol": "ne yapıyor",
+     "aciklama": "Varlık bildirir. Türkçedeki 'var' kelimesinin karşılığıdır. Hata tuzağı: 'There are' yerine sadece 'Are' diyerek cümle kurmayın."
+    },
+    {
+     "metin": "many street shows ",
+     "rol": "ne",
+     "aciklama": "Özne grubudur. 'Birçok sokak gösterisi' demektir."
+    },
+    {
+     "metin": "on the street.",
+     "rol": "nerede",
+     "aciklama": "Yer belirtir. 'Sokakta' anlamındadır."
+    }
+   ],
+   "turkce": "Sokakta birçok sokak gösterisi var."
+  },
+  "some people do street magic tricks on oxford street and people give them coins and small amounts of money.": {
+   "parcalar": [
+    {
+     "metin": "Some people ",
+     "rol": "kim",
+     "aciklama": "Özne grubudur. 'Bazı insanlar' demektir."
+    },
+    {
+     "metin": "do street magic tricks ",
+     "rol": "ne yapıyor",
+     "aciklama": "Eylem. 'Sokak sihirbazlığı numaraları yapmak' anlamındadır."
+    },
+    {
+     "metin": "on Oxford Street ",
+     "rol": "nerede",
+     "aciklama": "Yer belirtir. Özel isim olduğu için 'Oxford Caddesi'nde' anlamını taşır."
+    },
+    {
+     "metin": "and ",
+     "rol": "bağlayıcı",
+     "aciklama": "İki cümleyi birbirine bağlar."
+    },
+    {
+     "metin": "people give them ",
+     "rol": "kim ne yapıyor",
+     "aciklama": "İkinci cümlenin özne ve eylemidir. 'İnsanlar onlara verir' demektir."
+    },
+    {
+     "metin": "coins and small amounts of money.",
+     "rol": "neyi",
+     "aciklama": "Nesne grubudur. 'Madeni paralar ve küçük miktarda para' demektir."
+    }
+   ],
+   "turkce": "Bazı insanlar Oxford Caddesi'nde sokak sihirbazlığı numaraları yapıyor ve insanlar onlara madeni para ve küçük miktarda para veriyor."
+  },
+  "firstly, these people who do tricks have little money.": {
+   "parcalar": [
+    {
+     "metin": "Firstly,",
+     "rol": "ne zaman",
+     "aciklama": "Sıralama belirten bir zarftır. Türkçedeki 'ilk olarak' ifadesiyle aynıdır."
+    },
+    {
+     "metin": "these people who do tricks",
+     "rol": "kim",
+     "aciklama": "Özne grubudur. Türkçede 'numara yapan bu insanlar' derken 'numara yapan' kısmı ismin önüne gelir, İngilizcede ise ismin arkasına eklenir. Hata tuzağı: 'these people doing tricks' yerine 'these people who doing tricks' demek yanlıştır."
+    },
+    {
+     "metin": "have",
+     "rol": "ne yapıyor",
+     "aciklama": "Sahip olmak anlamındaki fiildir. Türkçedeki 'var' ifadesinin karşılığıdır."
+    },
+    {
+     "metin": "little money.",
+     "rol": "neyi",
+     "aciklama": "Az miktarda para demektir. Hata tuzağı: 'little' yerine 'small' kelimesini kullanmak yaygın bir hatadır."
+    }
+   ],
+   "turkce": "İlk olarak, numara yapan bu insanların az parası var."
+  },
+  "but after a few hours, it becomes a lot of money.": {
+   "parcalar": [
+    {
+     "metin": "But",
+     "rol": "bağlayıcı",
+     "aciklama": "Cümleleri birbirine bağlayan bir bağlaçtır. Türkçedeki 'ama' ile aynıdır."
+    },
+    {
+     "metin": "after a few hours,",
+     "rol": "ne zaman",
+     "aciklama": "Zaman belirten bir öbektir. Hata tuzağı: 'a few' yerine 'few' demek anlamı 'neredeyse hiç' şeklinde olumsuza çevirir."
+    },
+    {
+     "metin": "it",
+     "rol": "kim",
+     "aciklama": "Önceki cümlede bahsedilen parayı temsil eden öznedir."
+    },
+    {
+     "metin": "becomes",
+     "rol": "ne yapıyor",
+     "aciklama": "Bir durumdan başka bir duruma geçişi anlatır. Türkçedeki 'haline gelmek' veya 'olmak' fiilidir."
+    },
+    {
+     "metin": "a lot of money.",
+     "rol": "neyi",
+     "aciklama": "Çok miktarda para demektir. Hata tuzağı: 'a lot of' yerine sadece 'lot of' demek gramer hatasıdır."
+    }
+   ],
+   "turkce": "Ama birkaç saat sonra, bu çok para haline gelir."
+  },
+  "before 1620, america was a place for native americans.": {
+   "parcalar": [
+    {
+     "metin": "Before 1620,",
+     "rol": "ne zaman",
+     "aciklama": "Zaman belirten ifadeler cümlenin başında veya sonunda kullanılır. Hata: Türkçedeki gibi '1620 before' şeklinde sıralama yapmayın."
+    },
+    {
+     "metin": "America",
+     "rol": "kim",
+     "aciklama": "Cümlenin öznesidir. İngilizcede özne her zaman fiilden önce gelir."
+    },
+    {
+     "metin": "was",
+     "rol": "ne yapıyor",
+     "aciklama": "Geçmiş zaman yardımcı fiilidir (to be). Hata: Türkçede isim cümlelerinde fiil olmadığı için bunu söylemeyi unutmak."
+    },
+    {
+     "metin": "a place",
+     "rol": "ne",
+     "aciklama": "İsim tamlamasıdır. Tekil isimlerden önce 'a' veya 'an' getirilmelidir."
+    },
+    {
+     "metin": "for Native Americans.",
+     "rol": "kimin için",
+     "aciklama": "Edatlı bir öbektir. 'For' kelimesi Türkçedeki '-e/-a' veya 'için' anlamını karşılar."
+    }
+   ],
+   "turkce": "1620'den önce Amerika, Yerli Amerikalılar için bir yerdi."
+  },
+  "then europeans discovered the land of america.": {
+   "parcalar": [
+    {
+     "metin": "Then",
+     "rol": "ne zaman",
+     "aciklama": "Sıralama bildiren bir zarftır. Cümle başına gelerek akışı sağlar."
+    },
+    {
+     "metin": "Europeans",
+     "rol": "kim",
+     "aciklama": "Öznedir. İngilizcede özel isimler ve millet isimleri her zaman büyük harfle başlar."
+    },
+    {
+     "metin": "discovered",
+     "rol": "ne yapıyor",
+     "aciklama": "Geçmiş zaman fiilidir. Hata: Düzenli fiillerin sonuna '-ed' takısı getirmeyi unutmak."
+    },
+    {
+     "metin": "the land of America.",
+     "rol": "neyi",
+     "aciklama": "Belirtili nesnedir. 'Of' yapısı Türkçedeki tamlama eklerinin tersi gibi çalışır."
+    }
+   ],
+   "turkce": "Sonra Avrupalılar Amerika topraklarını keşfetti."
+  },
+  "it was a time of discoveries.": {
+   "parcalar": [
+    {
+     "metin": "It",
+     "rol": "kim",
+     "aciklama": "Cansız varlıklar veya durumlar için kullanılan öznedir. Türkçede bu özne genellikle gizlidir."
+    },
+    {
+     "metin": "was",
+     "rol": "ne yapıyor",
+     "aciklama": "Geçmiş zaman yardımcı fiilidir. Hata: 'It' öznesini kullanmadan doğrudan 'Was a time' demek."
+    },
+    {
+     "metin": "a time of discoveries.",
+     "rol": "ne",
+     "aciklama": "İsim tamlamasıdır. 'Of' ile kurulan tamlamalarda ikinci kelime önce söylenir."
+    }
+   ],
+   "turkce": "Bu, keşifler zamanıydı."
+  },
+  "travelling along the ocean was very popular.": {
+   "parcalar": [
+    {
+     "metin": "Travelling along the ocean",
+     "rol": "kim",
+     "aciklama": "Fiilimsili özne öbeğidir. İngilizcede fiil, '-ing' takısı alarak isimleşebilir."
+    },
+    {
+     "metin": "was",
+     "rol": "ne yapıyor",
+     "aciklama": "Geçmiş zaman yardımcı fiilidir. Hata: Özne uzun olduğu için fiili çoğul (were) yapmak."
+    },
+    {
+     "metin": "very popular.",
+     "rol": "nasıl",
+     "aciklama": "Sıfat öbeğidir. 'Very' kelimesi sıfatın derecesini artırır."
+    }
+   ],
+   "turkce": "Okyanus boyunca seyahat etmek çok popülerdi."
+  },
+  "the europeans discovered so many places during that time.": {
+   "parcalar": [
+    {
+     "metin": "The Europeans",
+     "rol": "kim",
+     "aciklama": "Cümlenin öznesi olan kişileri belirtir. Türkçedeki 'Avrupalılar' karşılığıdır."
+    },
+    {
+     "metin": "discovered",
+     "rol": "ne yapıyor",
+     "aciklama": "Geçmişte yapılan bir eylemi anlatır. Hata tuzağı: Türkçedeki gibi 'discover-ed' yerine 'discover-d' yazmak."
+    },
+    {
+     "metin": "so many places",
+     "rol": "neyi",
+     "aciklama": "Eylemin etkilediği nesnelerdir. Hata tuzağı: 'so many' yerine 'very many' demek."
+    },
+    {
+     "metin": "during that time",
+     "rol": "ne zaman",
+     "aciklama": "Olayın gerçekleştiği zaman dilimini gösterir. Hata tuzağı: 'during' yerine 'in' kullanmak."
+    }
+   ],
+   "turkce": "Avrupalılar o dönemde pek çok yer keşfetti."
+  },
+  "ships were very popular.": {
+   "parcalar": [
+    {
+     "metin": "Ships",
+     "rol": "kim",
+     "aciklama": "Cümlenin öznesidir. Türkçedeki 'Gemiler' karşılığıdır."
+    },
+    {
+     "metin": "were",
+     "rol": "bağlayıcı",
+     "aciklama": "Geçmiş zaman durum bildiren yardımcı fiildir. Hata tuzağı: 'was' ile karıştırıp tekil kullanmak."
+    },
+    {
+     "metin": "very popular",
+     "rol": "nasıl",
+     "aciklama": "Öznenin durumunu açıklar. Hata tuzağı: 'very' kelimesini unutmak."
+    }
+   ],
+   "turkce": "Gemiler çok popülerdi."
+  },
+  "one of these ships was the mayflower.": {
+   "parcalar": [
+    {
+     "metin": "One of these ships",
+     "rol": "kim",
+     "aciklama": "Bir gruptan bir tanesini seçer. Hata tuzağı: 'one of these ship' şeklinde tekil kullanmak."
+    },
+    {
+     "metin": "was",
+     "rol": "bağlayıcı",
+     "aciklama": "Geçmiş zaman durum bildiren yardımcı fiildir. Hata tuzağı: 'were' ile karıştırıp çoğul kullanmak."
+    },
+    {
+     "metin": "the Mayflower",
+     "rol": "ne",
+     "aciklama": "Öznenin ismini belirtir. Hata tuzağı: Özel isim olduğu için 'the' takısını unutmak."
+    }
+   ],
+   "turkce": "Bu gemilerden biri Mayflower'dı."
+  },
+  "in 1620, one hundred and twenty people travelled across the atlantic ocean on the mayflower.": {
+   "parcalar": [
+    {
+     "metin": "In 1620,",
+     "rol": "ne zaman",
+     "aciklama": "Olayın tarihini belirtir. Hata tuzağı: 'In' yerine 'At' kullanmak."
+    },
+    {
+     "metin": "one hundred and twenty people",
+     "rol": "kim",
+     "aciklama": "Eylemi yapan kişi sayısıdır. Hata tuzağı: 'and' bağlacını söylemeyi unutmak."
+    },
+    {
+     "metin": "travelled",
+     "rol": "ne yapıyor",
+     "aciklama": "Geçmişte yapılan eylemdir. Hata tuzağı: 'travel' kelimesini 'travelling' gibi çift L ile yazmamak."
+    },
+    {
+     "metin": "across the Atlantic Ocean",
+     "rol": "nerede",
+     "aciklama": "Eylemin gerçekleştiği yerdir. Hata tuzağı: 'across' yerine 'through' kullanmak."
+    },
+    {
+     "metin": "on the Mayflower",
+     "rol": "nasıl",
+     "aciklama": "Hangi araçla gidildiğini belirtir. Hata tuzağı: 'in' yerine 'on' kullanılması gerektiğini unutmak."
+    }
+   ],
+   "turkce": "1620'de, yüz yirmi kişi Mayflower ile Atlas Okyanusu'nu geçti."
+  },
+  "it left england on september 6th.": {
+   "parcalar": [
+    {
+     "metin": "It",
+     "rol": "kim",
+     "aciklama": "Özne durumundaki zamir. Türkçede 'o' demektir."
+    },
+    {
+     "metin": "left",
+     "rol": "ne yapıyor",
+     "aciklama": "Ayrılmak fiilinin geçmiş zaman hali. Hata tuzağı: Türkçedeki 'terk etmek' ile karıştırıp nesne alması gerektiğini düşünmek; oysa 'ayrılmak' anlamında doğrudan kullanılır."
+    },
+    {
+     "metin": "England",
+     "rol": "neyi",
+     "aciklama": "Eylemden etkilenen yer."
+    },
+    {
+     "metin": "on September 6th.",
+     "rol": "ne zaman",
+     "aciklama": "Belirli tarihlerden önce 'on' kullanılır. Hata tuzağı: Türkçedeki '-de/-da' ekine aldanıp 'in' kullanmak."
+    }
+   ],
+   "turkce": "6 Eylül'de İngiltere'den ayrıldı."
+  },
+  "at first, the weather was good, but later, there were bad storms at sea.": {
+   "parcalar": [
+    {
+     "metin": "At first,",
+     "rol": "ne zaman",
+     "aciklama": "Başlangıçta anlamını verir. Hata tuzağı: 'In first' şeklinde yanlış bir kalıp kurmak."
+    },
+    {
+     "metin": "the weather was good,",
+     "rol": "ne yapıyor",
+     "aciklama": "Durum bildiren cümle. İngilizcede isim cümlesi kurarken mutlaka 'be' fiili (was) gerekir."
+    },
+    {
+     "metin": "but",
+     "rol": "bağlayıcı",
+     "aciklama": "İki zıt durumu birbirine bağlar."
+    },
+    {
+     "metin": "later,",
+     "rol": "ne zaman",
+     "aciklama": "Daha sonra anlamını katar."
+    },
+    {
+     "metin": "there were bad storms",
+     "rol": "ne yapıyor",
+     "aciklama": "Varlık bildiren 'there is/are' yapısının geçmiş zamanı. Hata tuzağı: 'Storms were' diyerek varlık bildiren cümleyi yanlış kurmak."
+    },
+    {
+     "metin": "at sea.",
+     "rol": "nerede",
+     "aciklama": "Denizde anlamını veren kalıplaşmış ifade."
+    }
+   ],
+   "turkce": "Başlangıçta hava iyiydi ama daha sonra denizde kötü fırtınalar oldu."
+  },
+  "eventually, after 2,750 miles, the mayflower arrived in the new world (now america) on november 11th.": {
+   "parcalar": [
+    {
+     "metin": "Eventually,",
+     "rol": "nasıl",
+     "aciklama": "Sonunda, nihayetinde anlamını katar."
+    },
+    {
+     "metin": "after 2,750 miles,",
+     "rol": "ne zaman",
+     "aciklama": "Mesafe belirten zaman zarfı."
+    },
+    {
+     "metin": "the Mayflower arrived",
+     "rol": "ne yapıyor",
+     "aciklama": "Varmak fiili. Hata tuzağı: 'Arrive to' demek; oysa 'arrive in/at' kullanılır."
+    },
+    {
+     "metin": "in the New World (now America)",
+     "rol": "nerede",
+     "aciklama": "Varış noktası."
+    },
+    {
+     "metin": "on November 11th.",
+     "rol": "ne zaman",
+     "aciklama": "Tam tarih belirtirken 'on' kullanılır."
+    }
+   ],
+   "turkce": "Nihayetinde, 2750 mil sonra, Mayflower 11 Kasım'da Yeni Dünya'ya (şimdi Amerika) vardı."
+  },
+  "the people on the ship were the first europeans to live in the new world.": {
+   "parcalar": [
+    {
+     "metin": "The people on the ship",
+     "rol": "kim",
+     "aciklama": "Özne grubu. Türkçedeki 'gemideki insanlar' ifadesinin karşılığı."
+    },
+    {
+     "metin": "were",
+     "rol": "ne yapıyor",
+     "aciklama": "Geçmiş zaman yardımcı fiili."
+    },
+    {
+     "metin": "the first Europeans",
+     "rol": "kim",
+     "aciklama": "Sıfat tamlaması."
+    },
+    {
+     "metin": "to live in the New World.",
+     "rol": "nasıl",
+     "aciklama": "İsimden sonra gelen ve amacı belirten fiil yapısı. Hata tuzağı: 'For living' şeklinde yanlış bir yapı kurmak."
+    }
+   ],
+   "turkce": "Gemideki insanlar Yeni Dünya'da yaşayan ilk Avrupalılardı."
+  },
+  "during the winter, most of the people died in the new world because there was no food.": {
+   "parcalar": [
+    {
+     "metin": "During the winter,",
+     "rol": "ne zaman",
+     "aciklama": "Zaman belirten ifadeler cümlenin başında veya sonunda kullanılır. Hata: Türkçedeki gibi 'winter during' şeklinde kelime sırasını ters çevirmeyin."
+    },
+    {
+     "metin": "most of the people",
+     "rol": "kim",
+     "aciklama": "Özne grubudur. Hata: 'Most people' yerine 'most of people' diyerek 'the' takısını unutmak yaygın bir hatadır."
+    },
+    {
+     "metin": "died",
+     "rol": "ne yapıyor",
+     "aciklama": "Geçmiş zaman fiilidir. Hata: 'Did die' gibi gereksiz yardımcı fiil eklemeyin."
+    },
+    {
+     "metin": "in the New World",
+     "rol": "nerede",
+     "aciklama": "Yer bildiren edat grubudur. Hata: 'At the New World' diyerek yanlış edat kullanmayın."
+    },
+    {
+     "metin": "because there was no food.",
+     "rol": "neden",
+     "aciklama": "Sebep bildiren bağlaçlı cümledir. Hata: 'Because' cümlesini tek başına bir cümle gibi kullanıp noktalamayı unutmayın."
+    }
+   ],
+   "turkce": "Kış boyunca, insanların çoğu yiyecek olmadığı için Yeni Dünya'da öldü."
+  },
+  "a year later, the ship left for england and then returned and brought food and other people from england to live there.": {
+   "parcalar": [
+    {
+     "metin": "A year later,",
+     "rol": "ne zaman",
+     "aciklama": "Zaman zarfıdır. Hata: 'One year later' yerine 'a year later' kalıbını kullanmak daha doğaldır."
+    },
+    {
+     "metin": "the ship",
+     "rol": "kim",
+     "aciklama": "Cümlenin öznesidir. Hata: 'Ship' kelimesini 'the' olmadan kullanmak, belirli bir gemiden bahsettiğimiz için yanlıştır."
+    },
+    {
+     "metin": "left for England",
+     "rol": "ne yapıyor",
+     "aciklama": "Bir yere gitmek için yola çıkmak anlamındadır. Hata: 'Left England' derseniz İngiltere'den ayrıldı anlamı çıkar, 'for' ekini unutmayın."
+    },
+    {
+     "metin": "and then returned and brought food and other people from England to live there.",
+     "rol": "ne yapıyor",
+     "aciklama": "Ardışık eylemleri bağlar. Hata: 'Brought' fiilini 'bringed' şeklinde hatalı çekimlemeyin."
+    }
+   ],
+   "turkce": "Bir yıl sonra, gemi İngiltere'ye doğru yola çıktı ve sonra geri döndü ve orada yaşamak için İngiltere'den yiyecek ve başka insanlar getirdi."
+  },
+  "after this journey, the mayflower sailed across the atlantic ocean four more times.": {
+   "parcalar": [
+    {
+     "metin": "After this journey,",
+     "rol": "ne zaman",
+     "aciklama": "Zaman belirten edat grubudur. Hata: 'After' kelimesinden sonra 'of' gibi gereksiz ekler getirmeyin."
+    },
+    {
+     "metin": "the Mayflower",
+     "rol": "kim",
+     "aciklama": "Özel isimdir. Hata: Özel isimlerin önüne 'the' getirmeyi unutmayın."
+    },
+    {
+     "metin": "sailed across the Atlantic ocean",
+     "rol": "ne yapıyor",
+     "aciklama": "Bir yerden diğerine geçerek yelken açmak. Hata: 'Across' yerine 'through' kullanmak deniz geçişlerinde yanlıştır."
+    },
+    {
+     "metin": "four more times.",
+     "rol": "ne kadar sıklıkla",
+     "aciklama": "Tekrar sayısını belirtir. Hata: 'Four times more' yerine 'four more times' kalıbı daha yaygındır."
+    }
+   ],
+   "turkce": "Bu yolculuktan sonra, Mayflower Atlantik okyanusunu dört kez daha geçti."
+  },
+  "on its final journey, it left england, but it never arrived in america.": {
+   "parcalar": [
+    {
+     "metin": "On its final journey,",
+     "rol": "ne zaman",
+     "aciklama": "Zaman belirten edat grubudur. Hata: 'In its final journey' diyerek yanlış edat kullanmayın."
+    },
+    {
+     "metin": "it left England,",
+     "rol": "ne yapıyor",
+     "aciklama": "Ayrılmak fiilidir. Hata: 'Left to England' diyerek yönelme ekiyle karıştırmayın."
+    },
+    {
+     "metin": "but",
+     "rol": "bağlayıcı",
+     "aciklama": "Zıtlık bildiren bağlaçtır. Hata: 'But' öncesinde virgül kullanmayı unutmayın."
+    },
+    {
+     "metin": "it never arrived in America.",
+     "rol": "ne yapıyor",
+     "aciklama": "Varış fiilidir. Hata: 'Arrived to America' demek yanlıştır, 'arrive' fiili 'in' veya 'at' ile kullanılır."
+    }
+   ],
+   "turkce": "Son yolculuğunda, İngiltere'den ayrıldı ama asla Amerika'ya varmadı."
+  },
+  "having a child is such a wonderful experience for all parents especially when it's the first child.": {
+   "parcalar": [
+    {
+     "metin": "Having a child",
+     "rol": "ne",
+     "aciklama": "İngilizcede bir eylemi özne yapmak için fiile -ing takısı ekleriz. Türkçedeki '-mek/-mak' mastar eki gibidir."
+    },
+    {
+     "metin": "is",
+     "rol": "bağlayıcı",
+     "aciklama": "İsim cümlesi kurarken özne ile durum arasına gelen yardımcı fiildir. Türkçede bu işi ek-fiil yapar."
+    },
+    {
+     "metin": "such a wonderful experience",
+     "rol": "ne",
+     "aciklama": "Bir durumu vurgulamak için kullanılır. Hata tuzağı: Türkçedeki 'çok' kelimesini 'such' yerine kullanıp 'very a wonderful' demek yanlıştır."
+    },
+    {
+     "metin": "for all parents",
+     "rol": "kim için",
+     "aciklama": "Edatlı bir öbektir. Türkçedeki '-için' edatının karşılığıdır."
+    },
+    {
+     "metin": "especially when it's the first child.",
+     "rol": "ne zaman",
+     "aciklama": "Zaman bildiren bir yan cümledir. Hata tuzağı: 'When' kelimesinden sonra soru cümlesi yapısı kurmaya çalışmak yanlıştır."
+    }
+   ],
+   "turkce": "Çocuk sahibi olmak tüm ebeveynler için, özellikle de ilk çocuk olduğunda, harika bir deneyimdir."
+  },
+  "however, child upbringing is not an easy task and comes with so many concerns.": {
+   "parcalar": [
+    {
+     "metin": "However,",
+     "rol": "bağlayıcı",
+     "aciklama": "Cümle başı bağlacıdır. Türkçedeki 'ancak' veya 'fakat' ile aynı işlevi görür."
+    },
+    {
+     "metin": "child upbringing",
+     "rol": "ne",
+     "aciklama": "Çocuk yetiştirme anlamında bir isim tamlamasıdır. Hata tuzağı: 'Upbringing' yerine 'growing' kelimesini kullanmak yanlıştır."
+    },
+    {
+     "metin": "is not an easy task",
+     "rol": "ne yapıyor",
+     "aciklama": "Olumsuz isim cümlesidir. Türkçedeki 'kolay bir iş değildir' ifadesinin tam karşılığıdır."
+    },
+    {
+     "metin": "and comes with so many concerns.",
+     "rol": "ne yapıyor",
+     "aciklama": "Bir şeyin beraberinde getirdiği durumları anlatır. Hata tuzağı: 'Comes with' yerine sadece 'has' kullanmak anlamı zayıflatır."
+    }
+   ],
+   "turkce": "Ancak, çocuk yetiştirmek kolay bir iş değildir ve birçok endişeyi beraberinde getirir."
+  },
+  "every couple has their unique way of child upbringing, but all parents want their child to be successful.": {
+   "parcalar": [
+    {
+     "metin": "Every couple",
+     "rol": "kim",
+     "aciklama": "Her çift anlamında öznedir. Hata tuzağı: 'Every' kelimesinden sonra çoğul isim getirmek yanlıştır."
+    },
+    {
+     "metin": "has their unique way of child upbringing,",
+     "rol": "neye sahip",
+     "aciklama": "Sahiplik bildiren bir yapıdır. Türkçedeki '-in ... yolu vardır' yapısına benzer."
+    },
+    {
+     "metin": "but all parents want their child to be successful.",
+     "rol": "ne yapıyor",
+     "aciklama": "Birinin bir şey olmasını isteme yapısıdır. Hata tuzağı: 'Want' fiilinden sonra 'that' ile cümle kurmaya çalışmak yerine 'to' kullanmak daha doğaldır."
+    }
+   ],
+   "turkce": "Her çiftin kendine has bir çocuk yetiştirme yolu vardır, ancak tüm ebeveynler çocuklarının başarılı olmasını ister."
+  },
+  "if parents' aim is to turn a child into a genius, they can damage their child's psychology.": {
+   "parcalar": [
+    {
+     "metin": "If parents' aim is to turn a child into a genius,",
+     "rol": "ne zaman/koşul",
+     "aciklama": "Koşul bildiren yan cümledir. Hata tuzağı: 'If' cümlesinde 'will' veya 'can' gibi gelecek zaman yardımcı fiilleri kullanmak yanlıştır."
+    },
+    {
+     "metin": "they can damage their child's psychology.",
+     "rol": "ne yapıyor",
+     "aciklama": "Olasılık bildiren ana cümledir. 'Can' burada yetenek değil, ihtimal belirtir."
+    }
+   ],
+   "turkce": "Eğer ebeveynlerin amacı çocuğu bir dahiye dönüştürmekse, çocuklarının psikolojisine zarar verebilirler."
+  },
+  "according to several leading educational psychologists, this is one of the biggest mistakes which some parents make.": {
+   "parcalar": [
+    {
+     "metin": "According to",
+     "rol": "bağlayıcı",
+     "aciklama": "Türkçedeki '-e göre' ekidir. Hata tuzağı: 'According to me' yerine 'According to my opinion' demek yanlıştır."
+    },
+    {
+     "metin": "several leading educational psychologists,",
+     "rol": "kim",
+     "aciklama": "Birkaç önde gelen eğitim psikoloğu. Hata tuzağı: 'Several' kelimesinden sonra gelen ismi çoğul yapmayı unutmak."
+    },
+    {
+     "metin": "this is",
+     "rol": "ne",
+     "aciklama": "Bu, ...-dir. Hata tuzağı: 'This' öznesinden sonra 'is' yardımcı fiilini yazmamak."
+    },
+    {
+     "metin": "one of the biggest mistakes",
+     "rol": "ne",
+     "aciklama": "En büyük hatalardan biri. Hata tuzağı: 'Mistakes' kelimesini tekil bırakmak."
+    },
+    {
+     "metin": "which some parents make.",
+     "rol": "ne yapıyor",
+     "aciklama": "Bazı ebeveynlerin yaptığı. Hata tuzağı: 'Which' yerine 'what' kullanmak."
+    }
+   ],
+   "turkce": "Birkaç önde gelen eğitim psikoloğuna göre, bu bazı ebeveynlerin yaptığı en büyük hatalardan biridir."
+  },
+  "this is because their expectations are unrealistic.": {
+   "parcalar": [
+    {
+     "metin": "This is because",
+     "rol": "bağlayıcı",
+     "aciklama": "Bunun nedeni şudur. Hata tuzağı: 'Because' kelimesinden sonra 'of' getirmek (sadece isim gelirse 'because of' kullanılır)."
+    },
+    {
+     "metin": "their expectations",
+     "rol": "kim",
+     "aciklama": "Onların beklentileri. Hata tuzağı: 'Expectations' kelimesini 'expect' fiiliyle karıştırmak."
+    },
+    {
+     "metin": "are unrealistic.",
+     "rol": "ne yapıyor",
+     "aciklama": "Gerçekçi değil. Hata tuzağı: 'Unrealistic' sıfatını 'unrealistically' zarfı ile karıştırmak."
+    }
+   ],
+   "turkce": "Bunun nedeni beklentilerinin gerçekçi olmamasıdır."
+  },
+  "however, if parents are more realistic and know what to expect from their child, that child may succeed in many areas.": {
+   "parcalar": [
+    {
+     "metin": "However,",
+     "rol": "bağlayıcı",
+     "aciklama": "Ancak/Bununla birlikte. Hata tuzağı: Cümle ortasında kullanırken noktalama işaretlerini yanlış yerleştirmek."
+    },
+    {
+     "metin": "if parents are more realistic",
+     "rol": "nasıl",
+     "aciklama": "Eğer ebeveynler daha gerçekçi olursa. Hata tuzağı: 'If' cümlesinde 'will' kullanmak."
+    },
+    {
+     "metin": "and know what to expect from their child,",
+     "rol": "ne yapıyor",
+     "aciklama": "Ve çocuklarından ne bekleyeceklerini bilirlerse. Hata tuzağı: 'What to expect' yapısını 'what they expect' ile karıştırmak."
+    },
+    {
+     "metin": "that child may succeed in many areas.",
+     "rol": "ne yapıyor",
+     "aciklama": "O çocuk birçok alanda başarılı olabilir. Hata tuzağı: 'Succeed' fiilinden sonra 'in' edatını kullanmamak."
+    }
+   ],
+   "turkce": "Ancak, ebeveynler daha gerçekçi olur ve çocuklarından ne bekleyeceklerini bilirlerse, o çocuk birçok alanda başarılı olabilir."
+  },
+  "moreover, parents should be supportive in their child's choices.": {
+   "parcalar": [
+    {
+     "metin": "Moreover,",
+     "rol": "bağlayıcı",
+     "aciklama": "Dahası/Üstelik. Hata tuzağı: 'Moreover' kelimesini cümlenin sonuna eklemek."
+    },
+    {
+     "metin": "parents should be supportive",
+     "rol": "ne yapıyor",
+     "aciklama": "Ebeveynler destekleyici olmalıdır. Hata tuzağı: 'Should'dan sonra 'to' getirmek."
+    },
+    {
+     "metin": "in their child's choices.",
+     "rol": "nerede",
+     "aciklama": "Çocuklarının seçimlerinde. Hata tuzağı: İyelik ekini ('s) yanlış yere koymak."
+    }
+   ],
+   "turkce": "Dahası, ebeveynler çocuklarının seçimlerinde destekleyici olmalıdır."
+  },
+  "let's consider two kids, cengiz and mehmet.": {
+   "parcalar": [
+    {
+     "metin": "Let's consider",
+     "rol": "ne yapalım",
+     "aciklama": "Hadi düşünelim demektir. Türkçedeki -elim/-alım ekiyle aynı işi görür."
+    },
+    {
+     "metin": "two kids,",
+     "rol": "neyi",
+     "aciklama": "İki çocuk. Türkçede sayıdan sonra gelen isim çoğul olmaz ama İngilizcede olur."
+    },
+    {
+     "metin": "Cengiz and Mehmet.",
+     "rol": "kim",
+     "aciklama": "İsimler. Türkçedeki gibi doğrudan nesne olarak kullanılırlar."
+    }
+   ],
+   "turkce": "Hadi iki çocuğu, Cengiz ve Mehmet'i düşünelim."
+  },
+  "cengiz is very lucky.": {
+   "parcalar": [
+    {
+     "metin": "Cengiz",
+     "rol": "kim",
+     "aciklama": "Cümlenin öznesi. Türkçedeki gibi cümlenin başında yer alır."
+    },
+    {
+     "metin": "is",
+     "rol": "bağlayıcı",
+     "aciklama": "İsim cümlesi kurmak için şarttır. Türkçede ek olarak (dir/dır) verdiğimiz anlamı İngilizcede bu kelime karşılar; genelde unutulur."
+    },
+    {
+     "metin": "very lucky.",
+     "rol": "nasıl",
+     "aciklama": "Çok şanslı. Sıfatlar İngilizcede ismin önüne gelmez, fiilden sonra gelir."
+    }
+   ],
+   "turkce": "Cengiz çok şanslı."
+  },
+  "he is very fond of music, and his parents help him a lot by taking him to concerts and arranging private piano and violin lessons for him.": {
+   "parcalar": [
+    {
+     "metin": "He is very fond of music,",
+     "rol": "ne yapıyor",
+     "aciklama": "Müziğe çok düşkün. 'Fond of' kalıbı bir şeyi sevmek demektir; Türkçedeki 'düşkün' kelimesine yakındır."
+    },
+    {
+     "metin": "and",
+     "rol": "bağlayıcı",
+     "aciklama": "İki cümleyi birbirine bağlar."
+    },
+    {
+     "metin": "his parents help him a lot",
+     "rol": "ne yapıyor",
+     "aciklama": "Ailesi ona çok yardım ediyor. 'Help' kelimesinden sonra gelen 'him' nesne zamiridir."
+    },
+    {
+     "metin": "by taking him to concerts",
+     "rol": "nasıl",
+     "aciklama": "Konserlere götürerek. 'By' edatı 'yaparak/ederek' anlamı katar; Türkçedeki -erek ekiyle aynıdır."
+    },
+    {
+     "metin": "and arranging private piano and violin lessons for him.",
+     "rol": "nasıl",
+     "aciklama": "Özel dersler ayarlayarak. 'Arranging' kelimesi burada planlamak/ayarlamak anlamındadır."
+    }
+   ],
+   "turkce": "O müziğe çok düşkün ve ailesi onu konserlere götürerek ve ona özel piyano ve keman dersleri ayarlayarak çok yardımcı oluyor."
+  },
+  "although cengiz's father plays the trumpet in a large orchestra, he is realistic about his son and never makes cengiz enter music competitions if he is unwilling.": {
+   "parcalar": [
+    {
+     "metin": "Although Cengiz's father plays the trumpet in a large orchestra,",
+     "rol": "ne zaman/nasıl",
+     "aciklama": "Cengiz'in babası büyük bir orkestrada trompet çalsa da. 'Although' zıtlık bildirir; Türkçedeki -sa da/-se de yapısıdır."
+    },
+    {
+     "metin": "he is realistic about his son",
+     "rol": "ne yapıyor",
+     "aciklama": "Oğlu hakkında gerçekçi. 'About' burada 'hakkında' anlamındadır."
+    },
+    {
+     "metin": "and never makes Cengiz enter music competitions",
+     "rol": "ne yapıyor",
+     "aciklama": "Cengiz'i asla yarışmalara sokmaz. 'Make' burada 'zorlamak/yaptırmak' anlamındadır."
+    },
+    {
+     "metin": "if he is unwilling.",
+     "rol": "ne zaman",
+     "aciklama": "Eğer istekli değilse. 'Unwilling' kelimesi 'isteksiz' demektir."
+    }
+   ],
+   "turkce": "Cengiz'in babası büyük bir orkestrada trompet çalsa da, oğlu hakkında gerçekçidir ve Cengiz istekli değilse onu asla müzik yarışmalarına sokmaz."
+  },
+  "cengiz's friend, mehmet, however, is not so lucky.": {
+   "parcalar": [
+    {
+     "metin": "Cengiz's friend, Mehmet,",
+     "rol": "kim",
+     "aciklama": "Türkçedeki 'Cengiz'in arkadaşı Mehmet' yapısıdır. Hata: 'Cengiz friend' diyerek iyelik ekini unutmak."
+    },
+    {
+     "metin": "however,",
+     "rol": "bağlayıcı",
+     "aciklama": "Cümleye 'ama/fakat' anlamı katar. Hata: 'but' gibi cümlenin başına koymak, oysa bu kelime araya girebilir."
+    },
+    {
+     "metin": "is not so lucky.",
+     "rol": "ne yapıyor",
+     "aciklama": "Durum bildiren yüklemdir. Hata: 'is not lucky so' diyerek 'so' kelimesini yanlış yere koymak."
+    }
+   ],
+   "turkce": "Cengiz'in arkadaşı Mehmet ise o kadar şanslı değil."
+  },
+  "although both his parents are successful musicians, they set too high a standard for mehmet.": {
+   "parcalar": [
+    {
+     "metin": "Although both his parents are successful musicians,",
+     "rol": "ne zaman",
+     "aciklama": "Zıtlık bildiren bir giriş cümlesidir. Hata: 'Although' ile başlayıp cümleye 'ama' anlamı katan 'but' eklemek."
+    },
+    {
+     "metin": "they set too high a standard",
+     "rol": "ne yapıyor",
+     "aciklama": "Çok yüksek bir standart belirlemek demektir. Hata: 'a' harfini 'high' kelimesinden önce değil sonra koymak."
+    },
+    {
+     "metin": "for Mehmet.",
+     "rol": "kim için",
+     "aciklama": "Mehmet adına/için anlamındadır. Hata: 'to Mehmet' diyerek yönelme ile karıştırmak."
+    }
+   ],
+   "turkce": "Anne ve babasının ikisi de başarılı müzisyenler olmasına rağmen, Mehmet için çok yüksek bir standart belirliyorlar."
+  },
+  "they want their son to be as successful as they are and so they made him participate in every piano competition.": {
+   "parcalar": [
+    {
+     "metin": "They want their son to be as successful as they are",
+     "rol": "ne istiyorlar",
+     "aciklama": "Birinin bir şey olmasını istemek yapısıdır. Hata: 'want that he is' gibi Türkçeden çeviri yapmak."
+    },
+    {
+     "metin": "and so",
+     "rol": "bağlayıcı",
+     "aciklama": "Bu yüzden anlamını verir. Hata: 'so' kelimesini tek başına kullanıp 'and' bağlacını unutmak."
+    },
+    {
+     "metin": "they made him participate in every piano competition.",
+     "rol": "ne yapıyor",
+     "aciklama": "Birine bir şeyi zorla yaptırmak anlamındadır. Hata: 'made him to participate' diyerek 'to' ekini gereksiz kullanmak."
+    }
+   ],
+   "turkce": "Oğullarının kendileri kadar başarılı olmasını istiyorlar ve bu yüzden onu her piyano yarışmasına katılmaya zorladılar."
+  },
+  "they become very unhappy when he does not win these competitions.": {
+   "parcalar": [
+    {
+     "metin": "They become very unhappy",
+     "rol": "ne yapıyor",
+     "aciklama": "Mutsuz bir hale gelmek demektir. Hata: 'become' yerine sadece 'are' kullanmak."
+    },
+    {
+     "metin": "when he does not win these competitions.",
+     "rol": "ne zaman",
+     "aciklama": "Zaman bildiren yan cümledir. Hata: 'when' cümlesinde 'does not' yerine 'is not' kullanmak."
+    }
+   ],
+   "turkce": "O bu yarışmaları kazanmadığında çok mutsuz oluyorlar."
+  },
+  "as a result, mehmet is always afraid that he will disappoint his parents and now he is always quiet and unhappy.": {
+   "parcalar": [
+    {
+     "metin": "As a result,",
+     "rol": "bağlayıcı",
+     "aciklama": "Sonuç bildiren bir giriş ifadesidir. Türkçedeki 'sonuç olarak' ifadesiyle aynıdır."
+    },
+    {
+     "metin": "Mehmet",
+     "rol": "kim",
+     "aciklama": "Cümlenin öznesidir."
+    },
+    {
+     "metin": "is always afraid",
+     "rol": "ne yapıyor",
+     "aciklama": "Durum bildiren bir yüklemdir. Hata tuzağı: Türkçedeki gibi 'korkuyor' (verb) yerine 'korku içinde' (adjective) yapısını kullanmayı unutup 'fears' demeyin."
+    },
+    {
+     "metin": "that he will disappoint his parents",
+     "rol": "neyden korkuyor",
+     "aciklama": "Korkunun sebebini açıklayan yan cümledir."
+    },
+    {
+     "metin": "and now",
+     "rol": "bağlayıcı",
+     "aciklama": "Zaman belirten bir bağlaçtır."
+    },
+    {
+     "metin": "he is always quiet and unhappy.",
+     "rol": "ne yapıyor",
+     "aciklama": "Öznenin şimdiki durumunu anlatır. Hata tuzağı: 'He is quiet' demek yerine 'He is being quiet' gibi gereksiz bir yapı kurmayın."
+    }
+   ],
+   "turkce": "Sonuç olarak, Mehmet ailesini hayal kırıklığına uğratmaktan her zaman korkar ve şimdi her zaman sessiz ve mutsuzdur."
+  },
+  "in short, although parents love their children so much, they sometimes contribute to causing great damage to their children with too much expectation and unrealistic targets.": {
+   "parcalar": [
+    {
+     "metin": "In short,",
+     "rol": "bağlayıcı",
+     "aciklama": "Özetlemek için kullanılır."
+    },
+    {
+     "metin": "although parents love their children so much,",
+     "rol": "neye rağmen",
+     "aciklama": "Zıtlık bildiren bir yan cümledir. Hata tuzağı: 'Although' ile 'but' kelimelerini aynı cümlede kullanmayın."
+    },
+    {
+     "metin": "they sometimes contribute to causing great damage",
+     "rol": "ne yapıyor",
+     "aciklama": "Ana eylemdir. Hata tuzağı: 'Contribute' kelimesinden sonra 'to' edatını unutmayın."
+    },
+    {
+     "metin": "to their children",
+     "rol": "kime",
+     "aciklama": "Eylemin yöneldiği kişidir."
+    },
+    {
+     "metin": "with too much expectation and unrealistic targets.",
+     "rol": "nasıl",
+     "aciklama": "Eylemin yöntemini belirtir."
+    }
+   ],
+   "turkce": "Kısacası, ebeveynler çocuklarını çok sevseler de, bazen aşırı beklenti ve gerçekçi olmayan hedeflerle çocuklarına büyük zarar vermeye katkıda bulunurlar."
+  },
+  "throughout history humans have looked to the sky to navigate the vast oceans, to decide when to plant their crops and to answer questions of where we came from and how we got here.": {
+   "parcalar": [
+    {
+     "metin": "Throughout history",
+     "rol": "ne zaman",
+     "aciklama": "Zaman zarfı (adverbial phrase). Türkçedeki 'tarih boyunca' ifadesiyle aynıdır."
+    },
+    {
+     "metin": " humans have looked to the sky",
+     "rol": "ne yapıyor",
+     "aciklama": "Yakın geçmiş zaman (present perfect). Türkçede 'bakmışlardır' gibi geçmişten bugüne süren bir durumu anlatır; hata olarak 'looked' (simple past) kullanıp zamanı koparırız."
+    },
+    {
+     "metin": " to navigate the vast oceans,",
+     "rol": "niçin",
+     "aciklama": "Amaç bildiren mastar (infinitive). Türkçedeki '-mek için' ekidir."
+    },
+    {
+     "metin": " to decide when to plant their crops",
+     "rol": "niçin",
+     "aciklama": "Amaç bildiren mastar. 'When' burada zamanı değil, zamanın ne zaman olduğunu belirtir."
+    },
+    {
+     "metin": " and to answer questions of where we came from and how we got here.",
+     "rol": "niçin",
+     "aciklama": "Amaç bildiren mastar. 'Of' burada soruların içeriğini bağlar."
+    }
+   ],
+   "turkce": "Tarih boyunca insanlar, uçsuz bucaksız okyanuslarda yön bulmak, ekinlerini ne zaman ekeceklerine karar vermek ve nereden geldiğimiz ve buraya nasıl ulaştığımız sorularını yanıtlamak için gökyüzüne bakmışlardır."
+  },
+  "it helped us open our eyes, give context to our place in the universe and reshape how we see the world.": {
+   "parcalar": [
+    {
+     "metin": "It helped us",
+     "rol": "ne yapıyor",
+     "aciklama": "Yardımcı olmak fiili. 'Help' fiilinden sonra gelen fiil 'to' almadan da kullanılabilir; hata olarak 'to open' yerine 'to to open' gibi gereksiz ekler ekleriz."
+    },
+    {
+     "metin": " open our eyes,",
+     "rol": "neyi",
+     "aciklama": "Nesne grubu. Gözlerimizi açmamıza yardımcı oldu."
+    },
+    {
+     "metin": " give context to our place in the Universe",
+     "rol": "neyi",
+     "aciklama": "Bağlam kazandırmak. 'Context' kelimesi burada yerimizi anlamlandırmak anlamında kullanılır."
+    },
+    {
+     "metin": " and reshape how we see the world.",
+     "rol": "neyi",
+     "aciklama": "Yeniden şekillendirmek. 'How' burada 'nasıl' anlamında bir isim cümlesi kurar."
+    }
+   ],
+   "turkce": "Gözlerimizi açmamıza, Evrendeki yerimize bağlam kazandırmamıza ve dünyayı görüş şeklimizi yeniden şekillendirmemize yardımcı oldu."
+  },
+  "when copernicus claimed that earth was not the centre of the universe, it started a revolution in thought and ideas.": {
+   "parcalar": [
+    {
+     "metin": "When Copernicus claimed that Earth was not the centre of the Universe,",
+     "rol": "ne zaman",
+     "aciklama": "Zaman zarfı cümlesi. 'That' burada 'olduğunu' anlamını verir; hata olarak 'that' yerine 'which' kullanırız."
+    },
+    {
+     "metin": " it started a revolution",
+     "rol": "ne yapıyor",
+     "aciklama": "Ana cümle. Bir devrim başlattı."
+    },
+    {
+     "metin": " in thought and ideas.",
+     "rol": "nerede",
+     "aciklama": "Yer/alan belirten edat grubu. Düşünce ve fikir alanında."
+    }
+   ],
+   "turkce": "Kopernik, Dünya'nın Evren'in merkezi olmadığını iddia ettiğinde, bu düşünce ve fikirlerde bir devrim başlattı."
+  },
+  "it was a revolution through which religion, science, and society had to adapt to this new world view.": {
+   "parcalar": [
+    {
+     "metin": "It was a revolution",
+     "rol": "ne yapıyor",
+     "aciklama": "Tanımlama cümlesi. Bu bir devrimdi."
+    },
+    {
+     "metin": " through which",
+     "rol": "bağlayıcı",
+     "aciklama": "İlgi zamiri. 'Bu devrim sayesinde/aracılığıyla' anlamını verir; hata olarak 'which' yerine sadece 'that' kullanıp edatı unuturuz."
+    },
+    {
+     "metin": " religion, science, and society had to adapt to this new world view.",
+     "rol": "ne yapıyor",
+     "aciklama": "Zorunluluk bildiren ifade. 'Had to' geçmiş zaman zorunluluğudur; 'adapt to' kalıbı 'uyum sağlamak' anlamında kullanılır."
+    }
+   ],
+   "turkce": "Bu, dinin, bilimin ve toplumun bu yeni dünya görüşüne uyum sağlamak zorunda kaldığı bir devrimdi."
+  },
+  "astronomy has always had a significant impact on our world view.": {
+   "parcalar": [
+    {
+     "metin": "Astronomy",
+     "rol": "kim",
+     "aciklama": "Cümlenin öznesi. Türkçedeki gibi cümlenin başında yer alır."
+    },
+    {
+     "metin": "has always had",
+     "rol": "ne yapıyor",
+     "aciklama": "Geçmişten bugüne süren bir durumu anlatır (Present Perfect). Türkçede 'her zaman sahip olmuştur' derken fiilin sonuna ek getiririz, İngilizcede ise 'have/has' yardımcı fiili kullanılır; hata olarak 'always had' diyerek yardımcı fiili unutma."
+    },
+    {
+     "metin": "a significant impact",
+     "rol": "neyi",
+     "aciklama": "Etkilenen nesne. 'Significant' burada önemli/büyük anlamındadır."
+    },
+    {
+     "metin": "on our world view.",
+     "rol": "nerede/neyin üzerinde",
+     "aciklama": "Etkinin yöneldiği yer. İngilizcede 'impact' kelimesi her zaman 'on' edatı ile kullanılır; Türkçede 'etki' kelimesi yönelme eki alırken İngilizcede edat değişmez."
+    }
+   ],
+   "turkce": "Astronomi, dünya görüşümüz üzerinde her zaman önemli bir etkiye sahip olmuştur."
+  },
+  "early cultures identified celestial objects with the gods and took these gods' movements across the sky as prophecies of what was to come.": {
+   "parcalar": [
+    {
+     "metin": "Early cultures",
+     "rol": "kim",
+     "aciklama": "Cümlenin öznesi. 'Early' burada ilk/eski anlamındadır."
+    },
+    {
+     "metin": "identified celestial objects with the gods",
+     "rol": "ne yapıyor",
+     "aciklama": "Bir şeyi bir şeyle özdeşleştirmek. 'Identify with' kalıbını kullanırken 'with' edatını unutmak en sık yapılan hatadır."
+    },
+    {
+     "metin": "and took these gods' movements across the sky",
+     "rol": "ne yapıyor",
+     "aciklama": "Hareketleri ele almak/kabul etmek. 'Take as' kalıbı bir şeyi bir şey olarak görmek demektir."
+    },
+    {
+     "metin": "as prophecies of what was to come.",
+     "rol": "nasıl",
+     "aciklama": "Gelecek olanın kehaneti olarak. 'What was to come' kalıbı 'gelecekte olacak şeyler' demektir."
+    }
+   ],
+   "turkce": "İlk kültürler gök cisimlerini tanrılarla özdeşleştirdi ve bu tanrıların gökyüzündeki hareketlerini gelecek olanın kehanetleri olarak kabul etti."
+  },
+  "we would now call this astrology, which is far removed from the hard facts and expensive instruments of today's astronomy.": {
+   "parcalar": [
+    {
+     "metin": "We would now call this astrology,",
+     "rol": "ne yapıyor",
+     "aciklama": "Buna astroloji derdik. 'Would' burada geçmişteki bir alışkanlığı veya varsayımı belirtir."
+    },
+    {
+     "metin": "which is far removed from",
+     "rol": "bağlayıcı",
+     "aciklama": "Astrolojiyi tanımlayan ek bilgi. 'Far removed from' ifadesi 'çok uzak' demektir; 'removed' kelimesini sadece 'kaldırılmış' sanmak hatadır."
+    },
+    {
+     "metin": "the hard facts and expensive instruments of today's astronomy.",
+     "rol": "neyden",
+     "aciklama": "Kıyaslanan nesneler. 'Hard facts' somut/kesin gerçekler demektir."
+    }
+   ],
+   "turkce": "Biz buna şimdi astroloji deriz ki bu, günümüz astronomisinin kesin gerçeklerinden ve pahalı aletlerinden çok uzaktır."
+  },
+  "however, there are still hints of this early culture in modern astronomy.": {
+   "parcalar": [
+    {
+     "metin": "However,",
+     "rol": "bağlayıcı",
+     "aciklama": "Zıtlık bildiren zarf. Cümle başına gelir."
+    },
+    {
+     "metin": "there are still hints",
+     "rol": "ne var",
+     "aciklama": "Hala izler var. 'There are' kalıbı 'var' demektir; Türkçedeki 'var' kelimesinin karşılığıdır."
+    },
+    {
+     "metin": "of this early culture",
+     "rol": "neyin",
+     "aciklama": "İzlerin kime ait olduğunu belirtir."
+    },
+    {
+     "metin": "in modern astronomy.",
+     "rol": "nerede",
+     "aciklama": "İzlerin bulunduğu yer."
+    }
+   ],
+   "turkce": "Ancak, modern astronomide bu ilk kültürün hala izleri vardır."
+  },
+  "take, for example, the names of the constellations - groups of stars in the sky: andromeda, the chained maiden of greek mythology, or perseus, the demi-god who saved her.": {
+   "parcalar": [
+    {
+     "metin": "Take, for example,",
+     "rol": "ne yapmalı",
+     "aciklama": "Emir kipiyle örnek veriyoruz. Türkçedeki 'örneğin' ifadesinin fiil halidir."
+    },
+    {
+     "metin": "the names of the constellations",
+     "rol": "neyi",
+     "aciklama": "İsim tamlamasıdır. Türkçede 'takımyıldızların isimleri' derken İngilizcede 'of' ile ters çeviririz."
+    },
+    {
+     "metin": "- groups of stars in the sky:",
+     "rol": "ne",
+     "aciklama": "Ara açıklama cümlesidir. Türkçedeki virgül veya kısa çizgi kullanımıyla aynıdır."
+    },
+    {
+     "metin": "Andromeda, the chained maiden of Greek mythology,",
+     "rol": "ne",
+     "aciklama": "Özel isim ve onu niteleyen sıfat tamlamasıdır. Hata: 'chained' yerine 'chaining' diyerek aktif-pasif ayrımını karıştırabilirsiniz."
+    },
+    {
+     "metin": "or Perseus, the demi-god who saved her.",
+     "rol": "ne",
+     "aciklama": "Alternatif örnektir. 'Who' burada 'ki o' anlamında bağlayıcıdır."
+    }
+   ],
+   "turkce": "Örneğin takımyıldızların isimlerini ele alalım; gökyüzündeki yıldız grupları: Yunan mitolojisindeki zincirlenmiş bakire Andromeda veya onu kurtaran yarı tanrı Perseus."
+  },
+  "we still use the names from this early culture.": {
+   "parcalar": [
+    {
+     "metin": "We still use",
+     "rol": "kim ve ne yapıyor",
+     "aciklama": "Zaman zarfı fiilden önce gelir. Hata: 'We use still' demek Türkçedeki 'hala kullanıyoruz' dizilişine alışkın olduğumuz için sık yapılan bir hatadır."
+    },
+    {
+     "metin": "the names from this early culture.",
+     "rol": "neyi",
+     "aciklama": "İsim öbeğidir. 'Early' burada 'ilk' veya 'eski' anlamında sıfattır."
+    }
+   ],
+   "turkce": "Bu eski kültürden gelen isimleri hala kullanıyoruz."
+  },
+  "now, as our understanding of the world progresses, we find ourselves and our view of the world even more entwined with the stars.": {
+   "parcalar": [
+    {
+     "metin": "Now, as our understanding of the world progresses,",
+     "rol": "ne zaman",
+     "aciklama": "'As' burada 'iken/dıkça' anlamında bağlayıcıdır. Cümle başındaki 'Now' zamanı vurgular."
+    },
+    {
+     "metin": "we find ourselves and our view of the world",
+     "rol": "kim ve neyi",
+     "aciklama": "Nesne konumundaki dönüşlü zamirdir. Hata: 'ourselves' yerine 'us' kullanmak yaygın bir hatadır."
+    },
+    {
+     "metin": "even more entwined with the stars.",
+     "rol": "nasıl",
+     "aciklama": "Durum bildiren sıfat öbeğidir. 'Entwined' pasif bir sıfat olarak 'iç içe geçmiş' demektir."
+    }
+   ],
+   "turkce": "Şimdi, dünya anlayışımız ilerledikçe, kendimizi ve dünyaya bakışımızı yıldızlarla daha da iç içe buluyoruz."
+  },
+  "the discovery that the basic elements that we find in stars, and the gas and dust around them, are the same elements that make up our bodies has further deepened the connection between us and the cosmos.": {
+   "parcalar": [
+    {
+     "metin": "The discovery that the basic elements that we find in stars,",
+     "rol": "ne",
+     "aciklama": "'That' burada 'olduğu gerçeği' anlamında bağlayıcıdır. Hata: 'that' kelimesini cümlede unutmak anlamı koparır."
+    },
+    {
+     "metin": "and the gas and dust around them,",
+     "rol": "ne",
+     "aciklama": "Ek bilgi öbeğidir. 'Around' burada 'etrafındaki' anlamında edattır."
+    },
+    {
+     "metin": "are the same elements that make up our bodies",
+     "rol": "ne yapıyor",
+     "aciklama": "'Make up' bir öbek fiildir (phrasal verb), 'oluşturmak' demektir."
+    },
+    {
+     "metin": "has further deepened the connection between us and the cosmos.",
+     "rol": "ne yaptı",
+     "aciklama": "Present Perfect zamanıdır. 'Further' burada 'daha da' anlamında zarftır."
+    }
+   ],
+   "turkce": "Yıldızlarda bulduğumuz temel elementlerin ve etraflarındaki gaz ve tozun, vücudumuzu oluşturan elementlerle aynı olduğu keşfi, bizimle evren arasındaki bağı daha da derinleştirdi."
+  },
+  "this connection touches our lives, and the awe it inspires is perhaps the reason that the beautiful images astronomy provides us with are so popular in today's culture.": {
+   "parcalar": [
+    {
+     "metin": "This connection",
+     "rol": "kim",
+     "aciklama": "Cümlenin öznesi. Türkçedeki 'bu bağ' ifadesiyle aynıdır."
+    },
+    {
+     "metin": "touches",
+     "rol": "ne yapıyor",
+     "aciklama": "Fiil. Türkçede 'dokunur' derken 'e' hali kullanılır, İngilizcede doğrudan nesneyi alır."
+    },
+    {
+     "metin": "our lives,",
+     "rol": "neyi",
+     "aciklama": "Fiilin etkilendiği nesne. Hata tuzağı: 'touches to our lives' denmez, doğrudan nesne gelir."
+    },
+    {
+     "metin": "and",
+     "rol": "bağlayıcı",
+     "aciklama": "İki cümleyi birbirine bağlar."
+    },
+    {
+     "metin": "the awe it inspires",
+     "rol": "kim",
+     "aciklama": "İkinci cümlenin öznesi. 'İlham verdiği hayranlık' anlamındadır."
+    },
+    {
+     "metin": "is perhaps the reason",
+     "rol": "ne yapıyor",
+     "aciklama": "Durum bildiren fiil. 'Belki de sebebidir' anlamını verir."
+    },
+    {
+     "metin": "that the beautiful images astronomy provides us with",
+     "rol": "nasıl",
+     "aciklama": "Sebebi açıklayan yan cümle. Hata tuzağı: 'provides us' yerine 'provides to us' denmez."
+    },
+    {
+     "metin": "are so popular",
+     "rol": "ne yapıyor",
+     "aciklama": "Öznenin durumunu belirtir."
+    },
+    {
+     "metin": "in today's culture.",
+     "rol": "nerede",
+     "aciklama": "Zaman ve yer bildiren zarf öbeği."
+    }
+   ],
+   "turkce": "Bu bağ hayatlarımıza dokunuyor ve uyandırdığı hayranlık, astronominin bize sunduğu güzel görüntülerin günümüz kültüründe bu kadar popüler olmasının belki de sebebidir."
+  },
+  "there are still many unanswered questions in astronomy.": {
+   "parcalar": [
+    {
+     "metin": "There are",
+     "rol": "ne yapıyor",
+     "aciklama": "Varlık bildiren kalıp. Türkçedeki 'var' kelimesinin karşılığıdır."
+    },
+    {
+     "metin": "still",
+     "rol": "nasıl",
+     "aciklama": "Zaman zarfı. 'Hala' anlamındadır."
+    },
+    {
+     "metin": "many unanswered questions",
+     "rol": "kim",
+     "aciklama": "Cümlenin öznesi. Hata tuzağı: 'There have many questions' denmez, 'There are' kullanılır."
+    },
+    {
+     "metin": "in astronomy.",
+     "rol": "nerede",
+     "aciklama": "Konum belirten edat öbeği."
+    }
+   ],
+   "turkce": "Astronomi alanında hala cevaplanmamış birçok soru var."
+  },
+  "current research is struggling to understand questions like: \"how old are we?": {
+   "parcalar": [
+    {
+     "metin": "Current research",
+     "rol": "kim",
+     "aciklama": "Cümlenin öznesi. 'Mevcut araştırma' demektir."
+    },
+    {
+     "metin": "is struggling",
+     "rol": "ne yapıyor",
+     "aciklama": "Şimdiki zaman fiili. 'Çabalamak, zorlanmak' anlamındadır."
+    },
+    {
+     "metin": "to understand",
+     "rol": "neyi",
+     "aciklama": "Fiilin amacı. Hata tuzağı: 'struggling for understand' denmez, 'to' ile bağlanır."
+    },
+    {
+     "metin": "questions like:",
+     "rol": "neyi",
+     "aciklama": "Örnekleme yapan öbek."
+    },
+    {
+     "metin": "\"How old are we?",
+     "rol": "neyi",
+     "aciklama": "Soru cümlesi. 'Kaç yaşındayız' anlamındadır."
+    }
+   ],
+   "turkce": "Mevcut araştırmalar 'Kaç yaşındayız?' gibi soruları anlamak için çabalıyor."
+  },
+  "\", \"what is the fate of the universe?": {
+   "parcalar": [
+    {
+     "metin": "\", \"",
+     "rol": "bağlayıcı",
+     "aciklama": "Noktalama işareti."
+    },
+    {
+     "metin": "What is the fate",
+     "rol": "kim",
+     "aciklama": "Soru öznesi. 'Kader nedir' anlamındadır."
+    },
+    {
+     "metin": "of the Universe?",
+     "rol": "neyin",
+     "aciklama": "İyelik bildiren edat öbeği. Hata tuzağı: 'Universe's fate' yerine 'fate of the Universe' kullanımı daha yaygındır."
+    }
+   ],
+   "turkce": "Evrenin kaderi nedir?"
+  },
+  "1 london is the capital of the united kingdom (uk).": {
+   "parcalar": [
+    {
+     "metin": "London",
+     "rol": "kim",
+     "aciklama": "Özne konumundaki isimdir."
+    },
+    {
+     "metin": "is",
+     "rol": "bağlayıcı",
+     "aciklama": "Türkçedeki -dir ekidir. Hata: Türkçede bu ek düşebildiği için İngilizcede 'is' kullanmayı unutmak yaygındır."
+    },
+    {
+     "metin": "the capital of the United Kingdom (UK)",
+     "rol": "ne",
+     "aciklama": "Cümlenin yüklemidir. Türkçedeki tamlama yapısının tersidir."
+    }
+   ],
+   "turkce": "Londra, Birleşik Krallık'ın başkentidir."
+  },
+  "2 oxford street is a famous shopping area in central london.": {
+   "parcalar": [
+    {
+     "metin": "Oxford Street",
+     "rol": "kim",
+     "aciklama": "Cümlenin öznesidir."
+    },
+    {
+     "metin": "is",
+     "rol": "ne yapıyor",
+     "aciklama": "Durum bildiren yardımcı fiildir."
+    },
+    {
+     "metin": "a famous shopping area",
+     "rol": "ne",
+     "aciklama": "Ünlü bir alışveriş bölgesidir. Hata: İngilizcede sıfatın isimden önce gelmesi kuralını unutup Türkçedeki gibi 'area shopping' demek."
+    },
+    {
+     "metin": "in central London.",
+     "rol": "nerede",
+     "aciklama": "Merkezi Londra'da demektir."
+    }
+   ],
+   "turkce": "Oxford Caddesi, merkezi Londra'da ünlü bir alışveriş bölgesidir."
+  },
+  "\" and possibly the most interesting: \"how unique is the universe, and could a slightly different universe ever have supported life?": {
+   "parcalar": [
+    {
+     "metin": "and possibly",
+     "rol": "bağlayıcı",
+     "aciklama": "Cümleyi birbirine bağlayan zarf öbeğidir. Türkçedeki 've muhtemelen' ifadesine denk gelir."
+    },
+    {
+     "metin": "the most interesting:",
+     "rol": "ne",
+     "aciklama": "En üstünlük derecesi (superlative) belirtir. Türkçede 'en ilginç olanı' demektir."
+    },
+    {
+     "metin": "\"How unique is the Universe,",
+     "rol": "ne",
+     "aciklama": "Soru cümlesi kurarken yardımcı fiil başa gelir. Türkçede 'Evren ne kadar eşsiz?' deriz."
+    },
+    {
+     "metin": "and could a slightly different Universe",
+     "rol": "ne",
+     "aciklama": "İhtimal bildiren yardımcı fiil (modal) özneden önce gelir. Türkçedeki 'acaba olabilir mi' yapısıdır."
+    },
+    {
+     "metin": "ever have supported life?",
+     "rol": "ne yapıyor",
+     "aciklama": "Geçmişe dönük ihtimali anlatır. Türkçede 'hiç yaşamı desteklemiş olabilir miydi' şeklinde çevrilir."
+    }
+   ],
+   "turkce": "ve muhtemelen en ilginci: Evren ne kadar eşsiz ve biraz farklı bir evren hiç yaşamı destekleyebilir miydi?"
+  },
+  "\" but astronomy is also breaking new records every day, establishing the furthest distances, most massive objects, highest temperatures and most violent explosions.": {
+   "parcalar": [
+    {
+     "metin": "But astronomy is also breaking new records",
+     "rol": "ne yapıyor",
+     "aciklama": "Şimdiki zaman (present continuous) ile devam eden bir eylem anlatılır. Türkçede 'yeni rekorlar kırıyor' demektir."
+    },
+    {
+     "metin": "every day,",
+     "rol": "ne zaman",
+     "aciklama": "Zaman zarfıdır. Türkçedeki 'her gün' ifadesidir."
+    },
+    {
+     "metin": "establishing the furthest distances, most massive objects, highest temperatures and most violent explosions.",
+     "rol": "neyi",
+     "aciklama": "Fiilimsi (participle) kullanarak yapılan işin detaylarını verir. Türkçede 'mesafeleri, nesneleri belirleyerek' şeklinde çevrilir."
+    }
+   ],
+   "turkce": "Ancak astronomi her gün yeni rekorlar kırıyor; en uzak mesafeleri, en büyük nesneleri, en yüksek sıcaklıkları ve en şiddetli patlamaları belirliyor."
+  }
+ },
+ "kelimeler": {
+  "however": {
+   "kelime": "however",
+   "anlam": "Ancak, fakat",
+   "tur": "Bağlaç",
+   "cumledekiRol": "Zıtlık bildirme",
+   "ornek": "It is raining; however, I will go out."
+  },
+  "crowded": {
+   "kelime": "crowded",
+   "anlam": "Kalabalık",
+   "tur": "Sıfat",
+   "cumledekiRol": "Durum belirtme",
+   "ornek": "The bus is very crowded."
+  },
+  "population": {
+   "kelime": "population",
+   "anlam": "Nüfus",
+   "tur": "İsim",
+   "cumledekiRol": "Özne",
+   "ornek": "The population of Turkey is large."
+  },
+  "about": {
+   "kelime": "about",
+   "anlam": "Yaklaşık",
+   "tur": "Zarf",
+   "cumledekiRol": "Miktar belirtme",
+   "ornek": "It costs about 10 dollars."
+  },
+  "delicious": {
+   "kelime": "delicious",
+   "anlam": "lezzetli",
+   "tur": "sıfat",
+   "cumledekiRol": "nesneyi niteleme",
+   "ornek": "This pizza is delicious."
+  },
+  "rich": {
+   "kelime": "rich",
+   "anlam": "zengin",
+   "tur": "sıfat",
+   "cumledekiRol": "nesneyi niteleme",
+   "ornek": "He has a rich history."
+  },
+  "culture": {
+   "kelime": "culture",
+   "anlam": "kültür",
+   "tur": "isim",
+   "cumledekiRol": "nesne",
+   "ornek": "I like Turkish culture."
+  },
+  "apartment": {
+   "kelime": "apartment",
+   "anlam": "daire",
+   "tur": "isim",
+   "cumledekiRol": "yer",
+   "ornek": "I live in a small apartment."
+  },
+  "physics": {
+   "kelime": "physics",
+   "anlam": "fizik",
+   "tur": "isim",
+   "cumledekiRol": "sıfat/isim tamlaması",
+   "ornek": "Physics is a difficult subject."
+  },
+  "studying": {
+   "kelime": "studying",
+   "anlam": "okuyor/çalışıyor",
+   "tur": "fiil",
+   "cumledekiRol": "eylem",
+   "ornek": "She is studying English now."
+  },
+  "chemistry": {
+   "kelime": "chemistry",
+   "anlam": "kimya",
+   "tur": "isim",
+   "cumledekiRol": "nesne",
+   "ornek": "Chemistry is my favorite lesson."
+  },
+  "software": {
+   "kelime": "software",
+   "anlam": "yazılım",
+   "tur": "isim",
+   "cumledekiRol": "neyi",
+   "ornek": "Software is important."
+  },
+  "developer": {
+   "kelime": "developer",
+   "anlam": "geliştirici",
+   "tur": "isim",
+   "cumledekiRol": "neyi",
+   "ornek": "He is a web developer."
+  },
+  "too": {
+   "kelime": "too",
+   "anlam": "de/da",
+   "tur": "zarf",
+   "cumledekiRol": "bağlayıcı",
+   "ornek": "I like coffee too."
+  },
+  "semester": {
+   "kelime": "semester",
+   "anlam": "Dönem (akademik)",
+   "tur": "İsim",
+   "cumledekiRol": "Zaman zarfı öbeği",
+   "ornek": "This semester is very hard."
+  },
+  "algebra": {
+   "kelime": "algebra",
+   "anlam": "Cebir",
+   "tur": "İsim",
+   "cumledekiRol": "Nesne",
+   "ornek": "I hate algebra."
+  },
+  "together": {
+   "kelime": "together",
+   "anlam": "Birlikte",
+   "tur": "Zarf",
+   "cumledekiRol": "Durum zarfı",
+   "ornek": "We live together."
+  },
+  "study": {
+   "kelime": "study",
+   "anlam": "Ders çalışmak",
+   "tur": "Fiil",
+   "cumledekiRol": "Eylem",
+   "ornek": "I need to study for the exam."
+  },
+  "love": {
+   "kelime": "love",
+   "anlam": "sevmek",
+   "tur": "fiil",
+   "cumledekiRol": "yüklem",
+   "ornek": "I love my family."
+  },
+  "new": {
+   "kelime": "new",
+   "anlam": "yeni",
+   "tur": "sıfat",
+   "cumledekiRol": "isim niteleyici",
+   "ornek": "This is a new car."
+  },
+  "worker": {
+   "kelime": "worker",
+   "anlam": "işçi",
+   "tur": "isim",
+   "cumledekiRol": "öznenin mesleği",
+   "ornek": "He is a factory worker."
+  },
+  "cuts down": {
+   "kelime": "cuts down",
+   "anlam": "kesip devirmek",
+   "tur": "fiil",
+   "cumledekiRol": "yapılan iş",
+   "ornek": "He cuts down the old tree."
+  },
+  "forest": {
+   "kelime": "forest",
+   "anlam": "orman",
+   "tur": "isim",
+   "cumledekiRol": "yer",
+   "ornek": "There are many animals in the forest."
+  },
+  "sells": {
+   "kelime": "sells",
+   "anlam": "satmak",
+   "tur": "fiil",
+   "cumledekiRol": "yapılan iş",
+   "ornek": "She sells fresh vegetables."
+  },
+  "factories": {
+   "kelime": "factories",
+   "anlam": "fabrikalar",
+   "tur": "isim",
+   "cumledekiRol": "yönelinen yer",
+   "ornek": "They work in big factories."
+  },
+  "carry": {
+   "kelime": "carry",
+   "anlam": "taşımak",
+   "tur": "fiil",
+   "cumledekiRol": "ne yapmasına",
+   "ornek": "I carry my bag."
+  },
+  "wakes up": {
+   "kelime": "wakes up",
+   "anlam": "uyanmak",
+   "tur": "fiil",
+   "cumledekiRol": "ne yapıyor",
+   "ornek": "She wakes up at 7."
+  },
+  "with him": {
+   "kelime": "with him",
+   "anlam": "onunla",
+   "tur": "edat öbeği",
+   "cumledekiRol": "nasıl",
+   "ornek": "Come with him."
+  },
+  "also": {
+   "kelime": "also",
+   "anlam": "ayrıca, de/da",
+   "tur": "zarf",
+   "cumledekiRol": "bağlayıcı",
+   "ornek": "I also like coffee."
+  },
+  "cut down": {
+   "kelime": "cut down",
+   "anlam": "kesip devirmek",
+   "tur": "öbek fiil",
+   "cumledekiRol": "ne yapıyor",
+   "ornek": "They cut down the old tree."
+  },
+  "young": {
+   "kelime": "young",
+   "anlam": "genç",
+   "tur": "sıfat",
+   "cumledekiRol": "nasıl",
+   "ornek": "She was young then."
+  },
+  "arda's": {
+   "kelime": "arda's",
+   "anlam": "Arda'nın",
+   "tur": "İyelik eki",
+   "cumledekiRol": "Özne tamlayanı",
+   "ornek": "Arda's car is red."
+  },
+  "always": {
+   "kelime": "always",
+   "anlam": "her zaman",
+   "tur": "Zarf",
+   "cumledekiRol": "Zaman belirteci",
+   "ornek": "I always drink tea."
+  },
+  "has": {
+   "kelime": "has",
+   "anlam": "sahip",
+   "tur": "Fiil",
+   "cumledekiRol": "Yüklem",
+   "ornek": "She has a cat."
+  },
+  "close to": {
+   "kelime": "close to",
+   "anlam": "yakın",
+   "tur": "Edat öbeği",
+   "cumledekiRol": "Yer belirteci",
+   "ornek": "My house is close to the park."
+  },
+  "only": {
+   "kelime": "only",
+   "anlam": "sadece",
+   "tur": "zarf",
+   "cumledekiRol": "miktar belirtme",
+   "ornek": "I have only one apple."
+  },
+  "nurse": {
+   "kelime": "nurse",
+   "anlam": "hemşire",
+   "tur": "isim",
+   "cumledekiRol": "meslek",
+   "ornek": "She is a good nurse."
+  },
+  "village": {
+   "kelime": "village",
+   "anlam": "köy",
+   "tur": "isim",
+   "cumledekiRol": "yer",
+   "ornek": "They live in a small village."
+  },
+  "capital": {
+   "kelime": "capital",
+   "anlam": "başkent",
+   "tur": "isim",
+   "cumledekiRol": "nesne",
+   "ornek": "Ankara is the capital of Turkey."
+  },
+  "double-decker": {
+   "kelime": "double-decker",
+   "anlam": "çift katlı",
+   "tur": "sıfat",
+   "cumledekiRol": "isim niteleyici",
+   "ornek": "I sat on the top of the double-decker bus."
+  },
+  "kind of": {
+   "kelime": "kind of",
+   "anlam": "bir tür",
+   "tur": "isim öbeği",
+   "cumledekiRol": "nesne tamamlayıcısı",
+   "ornek": "What kind of music do you like?"
+  },
+  "sometimes": {
+   "kelime": "sometimes",
+   "anlam": "bazen",
+   "tur": "zarf",
+   "cumledekiRol": "zaman zarfı",
+   "ornek": "I sometimes go to work by bus."
+  },
+  "famous": {
+   "kelime": "famous",
+   "anlam": "ünlü",
+   "tur": "sıfat",
+   "cumledekiRol": "öznenin durumunu belirtir",
+   "ornek": "He is a famous singer."
+  },
+  "such as": {
+   "kelime": "such as",
+   "anlam": "örneğin, gibi",
+   "tur": "bağlaç",
+   "cumledekiRol": "örnekleri bağlar",
+   "ornek": "I like fruits such as apples."
+  },
+  "central": {
+   "kelime": "central",
+   "anlam": "merkezi",
+   "tur": "sıfat",
+   "cumledekiRol": "bölgenin yerini niteler",
+   "ornek": "The central station is busy."
+  },
+  "shopping area": {
+   "kelime": "shopping area",
+   "anlam": "alışveriş bölgesi",
+   "tur": "isim tamlaması",
+   "cumledekiRol": "yer belirtir",
+   "ornek": "This is a shopping area."
+  },
+  "thousands": {
+   "kelime": "thousands",
+   "anlam": "binlerce",
+   "tur": "isim",
+   "cumledekiRol": "miktar belirtici",
+   "ornek": "Thousands of birds fly south."
+  },
+  "electronics": {
+   "kelime": "electronics",
+   "anlam": "elektronik eşyalar",
+   "tur": "isim",
+   "cumledekiRol": "nesne",
+   "ornek": "I need to buy some electronics."
+  },
+  "earn": {
+   "kelime": "earn",
+   "anlam": "kazanmak (emekle)",
+   "tur": "fiil",
+   "cumledekiRol": "eylem",
+   "ornek": "She earns a high salary."
+  },
+  "magic tricks": {
+   "kelime": "magic tricks",
+   "anlam": "sihirbazlık numaraları",
+   "tur": "isim öbeği",
+   "cumledekiRol": "nesne",
+   "ornek": "He showed us some magic tricks."
+  },
+  "amounts": {
+   "kelime": "amounts",
+   "anlam": "miktarlar",
+   "tur": "isim",
+   "cumledekiRol": "nesne",
+   "ornek": "Small amounts of water are enough."
+  },
+  "firstly": {
+   "kelime": "firstly",
+   "anlam": "İlk olarak",
+   "tur": "Zarf",
+   "cumledekiRol": "Zaman/Sıralama",
+   "ornek": "Firstly, we should eat."
+  },
+  "tricks": {
+   "kelime": "tricks",
+   "anlam": "Numara, hile",
+   "tur": "İsim",
+   "cumledekiRol": "Nesne",
+   "ornek": "He showed me some magic tricks."
+  },
+  "a few": {
+   "kelime": "a few",
+   "anlam": "Birkaç",
+   "tur": "Miktar belirteci",
+   "cumledekiRol": "Zaman zarfı parçası",
+   "ornek": "I have a few friends here."
+  },
+  "becomes": {
+   "kelime": "becomes",
+   "anlam": "Haline gelmek, dönüşmek",
+   "tur": "Fiil",
+   "cumledekiRol": "Yüklem",
+   "ornek": "The weather becomes cold."
+  },
+  "native": {
+   "kelime": "native",
+   "anlam": "yerli",
+   "tur": "sıfat",
+   "cumledekiRol": "isim niteleme",
+   "ornek": "Native people live here."
+  },
+  "discovered": {
+   "kelime": "discovered",
+   "anlam": "keşfetti",
+   "tur": "fiil",
+   "cumledekiRol": "yüklem",
+   "ornek": "Columbus discovered America."
+  },
+  "along": {
+   "kelime": "along",
+   "anlam": "boyunca",
+   "tur": "edat",
+   "cumledekiRol": "yer bildirme",
+   "ornek": "We walked along the river."
+  },
+  "popular": {
+   "kelime": "popular",
+   "anlam": "popüler, yaygın",
+   "tur": "sıfat",
+   "cumledekiRol": "durum bildirme",
+   "ornek": "Football is a popular sport."
+  },
+  "during": {
+   "kelime": "during",
+   "anlam": "sırasında",
+   "tur": "edat",
+   "cumledekiRol": "ne zaman",
+   "ornek": "I slept during the movie."
+  },
+  "across": {
+   "kelime": "across",
+   "anlam": "boyunca, karşıdan karşıya",
+   "tur": "edat",
+   "cumledekiRol": "nerede",
+   "ornek": "He swam across the river."
+  },
+  "eventually": {
+   "kelime": "eventually",
+   "anlam": "Sonunda, nihayetinde",
+   "tur": "Zarf",
+   "cumledekiRol": "Zaman/Süreç belirteci",
+   "ornek": "Eventually, he finished his work."
+  },
+  "arrived": {
+   "kelime": "arrived",
+   "anlam": "Varmak, ulaşmak",
+   "tur": "Fiil",
+   "cumledekiRol": "Yüklem",
+   "ornek": "We arrived at the station."
+  },
+  "at sea": {
+   "kelime": "at sea",
+   "anlam": "Denizde (açık denizde)",
+   "tur": "Edat öbeği",
+   "cumledekiRol": "Yer belirteci",
+   "ornek": "The ship was at sea for weeks."
+  },
+  "europeans": {
+   "kelime": "europeans",
+   "anlam": "Avrupalılar",
+   "tur": "İsim",
+   "cumledekiRol": "Özne/Nesne tamamlayıcısı",
+   "ornek": "Many Europeans travel in summer."
+  },
+  "left for": {
+   "kelime": "left for",
+   "anlam": "bir yere doğru yola çıkmak",
+   "tur": "fiil öbeği",
+   "cumledekiRol": "eylem",
+   "ornek": "He left for Istanbul yesterday."
+  },
+  "arrived in": {
+   "kelime": "arrived in",
+   "anlam": "varmak, ulaşmak",
+   "tur": "fiil",
+   "cumledekiRol": "eylem",
+   "ornek": "They arrived in London at night."
+  },
+  "upbringing": {
+   "kelime": "upbringing",
+   "anlam": "çocuk yetiştirme",
+   "tur": "isim",
+   "cumledekiRol": "özne",
+   "ornek": "Good upbringing is important."
+  },
+  "concerns": {
+   "kelime": "concerns",
+   "anlam": "endişeler",
+   "tur": "isim",
+   "cumledekiRol": "nesne",
+   "ornek": "I have some concerns about the plan."
+  },
+  "unique": {
+   "kelime": "unique",
+   "anlam": "benzersiz, kendine has",
+   "tur": "sıfat",
+   "cumledekiRol": "niteleme",
+   "ornek": "Everyone has a unique talent."
+  },
+  "turn into": {
+   "kelime": "turn into",
+   "anlam": "dönüştürmek",
+   "tur": "fiil öbeği",
+   "cumledekiRol": "yüklem",
+   "ornek": "The witch turned the prince into a frog."
+  },
+  "damage": {
+   "kelime": "damage",
+   "anlam": "zarar vermek",
+   "tur": "fiil",
+   "cumledekiRol": "yüklem",
+   "ornek": "Don't damage the flowers."
+  },
+  "according to": {
+   "kelime": "according to",
+   "anlam": "göre",
+   "tur": "edat",
+   "cumledekiRol": "bağlayıcı",
+   "ornek": "According to the news, it will rain."
+  },
+  "psychologists": {
+   "kelime": "psychologists",
+   "anlam": "psikologlar",
+   "tur": "isim",
+   "cumledekiRol": "kim",
+   "ornek": "Psychologists study human behavior."
+  },
+  "unrealistic": {
+   "kelime": "unrealistic",
+   "anlam": "gerçekçi olmayan",
+   "tur": "sıfat",
+   "cumledekiRol": "ne yapıyor",
+   "ornek": "His goals are unrealistic."
+  },
+  "succeed": {
+   "kelime": "succeed",
+   "anlam": "başarmak",
+   "tur": "fiil",
+   "cumledekiRol": "ne yapıyor",
+   "ornek": "If you work hard, you will succeed."
+  },
+  "supportive": {
+   "kelime": "supportive",
+   "anlam": "destekleyici",
+   "tur": "sıfat",
+   "cumledekiRol": "ne yapıyor",
+   "ornek": "My family is very supportive."
+  },
+  "fond of": {
+   "kelime": "fond of",
+   "anlam": "bir şeye düşkün olmak, sevmek",
+   "tur": "sıfat öbeği",
+   "cumledekiRol": "yüklem tamamlayıcısı",
+   "ornek": "I am fond of reading books."
+  },
+  "arranging": {
+   "kelime": "arranging",
+   "anlam": "düzenlemek, ayarlamak",
+   "tur": "fiil",
+   "cumledekiRol": "yüklem",
+   "ornek": "She is arranging a meeting."
+  },
+  "realistic": {
+   "kelime": "realistic",
+   "anlam": "gerçekçi",
+   "tur": "sıfat",
+   "cumledekiRol": "yüklem tamamlayıcısı",
+   "ornek": "You must be realistic about your goals."
+  },
+  "unwilling": {
+   "kelime": "unwilling",
+   "anlam": "isteksiz",
+   "tur": "sıfat",
+   "cumledekiRol": "yüklem tamamlayıcısı",
+   "ornek": "He is unwilling to go out."
+  },
+  "makes": {
+   "kelime": "makes",
+   "anlam": "yaptırmak, zorlamak",
+   "tur": "fiil",
+   "cumledekiRol": "yüklem",
+   "ornek": "The teacher makes us study hard."
+  },
+  "standard": {
+   "kelime": "standard",
+   "anlam": "standart, ölçüt",
+   "tur": "isim",
+   "cumledekiRol": "nesne",
+   "ornek": "They set a high standard."
+  },
+  "participate": {
+   "kelime": "participate",
+   "anlam": "katılmak",
+   "tur": "fiil",
+   "cumledekiRol": "yüklem parçası",
+   "ornek": "I want to participate in the race."
+  },
+  "become": {
+   "kelime": "become",
+   "anlam": "haline gelmek, olmak",
+   "tur": "fiil",
+   "cumledekiRol": "yüklem",
+   "ornek": "It becomes cold in winter."
+  },
+  "disappoint": {
+   "kelime": "disappoint",
+   "anlam": "hayal kırıklığına uğratmak",
+   "tur": "fiil",
+   "cumledekiRol": "korkulan eylem",
+   "ornek": "I do not want to disappoint you."
+  },
+  "contribute to": {
+   "kelime": "contribute to",
+   "anlam": "katkıda bulunmak / sebep olmak",
+   "tur": "fiil öbeği",
+   "cumledekiRol": "ana eylem",
+   "ornek": "Smoking contributes to health problems."
+  },
+  "expectation": {
+   "kelime": "expectation",
+   "anlam": "beklenti",
+   "tur": "isim",
+   "cumledekiRol": "zarar sebebi",
+   "ornek": "My expectations are high."
+  },
+  "throughout": {
+   "kelime": "throughout",
+   "anlam": "boyunca",
+   "tur": "edat",
+   "cumledekiRol": "zaman zarfı",
+   "ornek": "Throughout the day, I worked."
+  },
+  "navigate": {
+   "kelime": "navigate",
+   "anlam": "yön bulmak",
+   "tur": "fiil",
+   "cumledekiRol": "eylem",
+   "ornek": "We use maps to navigate."
+  },
+  "crops": {
+   "kelime": "crops",
+   "anlam": "ekinler",
+   "tur": "isim",
+   "cumledekiRol": "nesne",
+   "ornek": "The crops are ready to harvest."
+  },
+  "reshape": {
+   "kelime": "reshape",
+   "anlam": "yeniden biçimlendirmek",
+   "tur": "fiil",
+   "cumledekiRol": "eylem",
+   "ornek": "We need to reshape our plans."
+  },
+  "adapt": {
+   "kelime": "adapt",
+   "anlam": "uyum sağlamak",
+   "tur": "fiil",
+   "cumledekiRol": "eylem",
+   "ornek": "You must adapt to the new rules."
+  },
+  "significant": {
+   "kelime": "significant",
+   "anlam": "Önemli, kayda değer",
+   "tur": "Sıfat",
+   "cumledekiRol": "Etkiyi niteleyen sıfat",
+   "ornek": "A significant change happened."
+  },
+  "celestial": {
+   "kelime": "celestial",
+   "anlam": "Göksel, gökyüzüne ait",
+   "tur": "Sıfat",
+   "cumledekiRol": "Cisimleri niteleyen sıfat",
+   "ornek": "Celestial bodies are stars and planets."
+  },
+  "prophecies": {
+   "kelime": "prophecies",
+   "anlam": "Kehanetler",
+   "tur": "İsim",
+   "cumledekiRol": "Nesne",
+   "ornek": "The book is full of ancient prophecies."
+  },
+  "removed": {
+   "kelime": "removed",
+   "anlam": "Uzak, ayrılmış",
+   "tur": "Sıfat",
+   "cumledekiRol": "Durum bildiren sıfat",
+   "ornek": "His ideas are far removed from reality."
+  },
+  "hints": {
+   "kelime": "hints",
+   "anlam": "İpuçları, izler",
+   "tur": "İsim",
+   "cumledekiRol": "Özne",
+   "ornek": "There are hints of rain in the sky."
+  },
+  "constellations": {
+   "kelime": "constellations",
+   "anlam": "takımyıldızlar",
+   "tur": "isim",
+   "cumledekiRol": "nesne",
+   "ornek": "The constellations look beautiful at night."
+  },
+  "entwined": {
+   "kelime": "entwined",
+   "anlam": "iç içe geçmiş, sarmaş dolaş",
+   "tur": "sıfat",
+   "cumledekiRol": "durum",
+   "ornek": "Our lives are entwined with technology."
+  },
+  "discovery": {
+   "kelime": "discovery",
+   "anlam": "keşif",
+   "tur": "isim",
+   "cumledekiRol": "özne",
+   "ornek": "The discovery of fire changed history."
+  },
+  "cosmos": {
+   "kelime": "cosmos",
+   "anlam": "evren, kozmos",
+   "tur": "isim",
+   "cumledekiRol": "nesne",
+   "ornek": "We are just a small part of the cosmos."
+  },
+  "maiden": {
+   "kelime": "maiden",
+   "anlam": "bakire, genç kız",
+   "tur": "isim",
+   "cumledekiRol": "tanımlayıcı",
+   "ornek": "The maiden sang a lovely song."
+  },
+  "awe": {
+   "kelime": "awe",
+   "anlam": "hayranlık ve korku karışımı duygu",
+   "tur": "isim",
+   "cumledekiRol": "özne",
+   "ornek": "The awe of the stars."
+  },
+  "inspires": {
+   "kelime": "inspires",
+   "anlam": "ilham vermek, uyandırmak",
+   "tur": "fiil",
+   "cumledekiRol": "yüklem",
+   "ornek": "He inspires me."
+  },
+  "struggling": {
+   "kelime": "struggling",
+   "anlam": "zorlanmak, çabalamak",
+   "tur": "fiil",
+   "cumledekiRol": "yüklem",
+   "ornek": "I am struggling with math."
+  },
+  "fate": {
+   "kelime": "fate",
+   "anlam": "kader, akıbet",
+   "tur": "isim",
+   "cumledekiRol": "özne",
+   "ornek": "What is the fate of this project?"
+  },
+  "current": {
+   "kelime": "current",
+   "anlam": "güncel, mevcut",
+   "tur": "sıfat",
+   "cumledekiRol": "sıfat",
+   "ornek": "Current news."
+  },
+  "slightly": {
+   "kelime": "slightly",
+   "anlam": "hafifçe, biraz",
+   "tur": "zarf",
+   "cumledekiRol": "sıfatı derecelendiren zarf",
+   "ornek": "I am slightly tired."
+  },
+  "supported": {
+   "kelime": "supported",
+   "anlam": "desteklemek, olanak sağlamak",
+   "tur": "fiil",
+   "cumledekiRol": "yüklemin parçası",
+   "ornek": "The ground supported the weight."
+  },
+  "establishing": {
+   "kelime": "establishing",
+   "anlam": "belirlemek, kurmak, saptamak",
+   "tur": "fiil",
+   "cumledekiRol": "eylemi açıklayan fiil",
+   "ornek": "They are establishing a new rule."
+  },
+  "massive": {
+   "kelime": "massive",
+   "anlam": "devasa, çok büyük",
+   "tur": "sıfat",
+   "cumledekiRol": "nesneyi niteleyen sıfat",
+   "ornek": "A massive rock fell down."
+  },
+  "violent": {
+   "kelime": "violent",
+   "anlam": "şiddetli, sert",
+   "tur": "sıfat",
+   "cumledekiRol": "patlamaları niteleyen sıfat",
+   "ornek": "The storm was very violent."
+  },
+  "coins": {
+   "kelime": "coins",
+   "anlam": "madeni paralar",
+   "tur": "isim",
+   "cumledekiRol": "nesne",
+   "ornek": "I have some coins in my pocket."
+  },
+  "context": {
+   "kelime": "context",
+   "anlam": "bağlam",
+   "tur": "isim",
+   "cumledekiRol": "nesne",
+   "ornek": "Give me more context."
+  },
+  "prophecy": {
+   "kelime": "prophecy",
+   "anlam": "kehanet",
+   "tur": "isim",
+   "cumledekiRol": "hareketlerin ne olarak görüldüğü",
+   "ornek": "The prophecy came true."
+  },
+  "far removed from": {
+   "kelime": "far removed from",
+   "anlam": "çok uzak, alakasız",
+   "tur": "deyim",
+   "cumledekiRol": "astrolojiyi astronomiden ayırma",
+   "ornek": "His ideas are far removed from reality."
+  },
+  "hint": {
+   "kelime": "hint",
+   "anlam": "ipucu, iz",
+   "tur": "isim",
+   "cumledekiRol": "var olan şey",
+   "ornek": "There is a hint of sadness in her eyes."
+  },
+  "make up": {
+   "kelime": "make up",
+   "anlam": "oluşturmak",
+   "tur": "öbek fiil",
+   "cumledekiRol": "yüklem",
+   "ornek": "Cells make up our bodies."
+  },
+  "connection": {
+   "kelime": "connection",
+   "anlam": "bağlantı",
+   "tur": "isim",
+   "cumledekiRol": "özne",
+   "ornek": "The connection between us is strong."
+  },
+  "possibly": {
+   "kelime": "possibly",
+   "anlam": "muhtemelen",
+   "tur": "zarf",
+   "cumledekiRol": "İhtimal derecesini belirtiyor",
+   "ornek": "It is possibly true."
+  }
+ }
+}

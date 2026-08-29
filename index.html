@@ -413,6 +413,15 @@ textarea{
 </header>
 <main id="ekran"><p class="soluk">Yükleniyor…</p></main>
 <script>
+// GitHub Pages kopyasinda /api yok: paylasilan anahtar calismaz ve kullanici
+// "kota doldu" sanip yaniliyor. Eski yer imleri ve ana ekran kisayollari hep
+// oraya bakiyor, o yuzden hash'i koruyarak Vercel yayinina yonlendiriyoruz.
+(function () {
+  if (location.hostname.endsWith("github.io")) {
+    location.replace("https://ingilizce-ogretici-web.vercel.app/" + location.hash);
+  }
+})();
+
 // Tema tercihini erken uygula ki sayfa acilirken beyaz yanip sonmesin.
 try {
   const t = localStorage.getItem("tema");

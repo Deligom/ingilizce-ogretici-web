@@ -730,11 +730,15 @@ async function metniCozumleVeKaydet(cumleler, ilerlemeyiBildir) {
     ilerlemeyiBildir?.(p + 1, partiSayisi);
     const veri = await aiCagir(a => metniCozumle(a, parti));
 
-    for (const c of veri.cumleler || []) {
-      // Model cumleyi birebir dondurmezse en yakin eslesmeyi buluruz.
+    // Model cumleyi bazen kirpiyor (bastaki paragraf numarasi, tirnak isareti).
+    // Sayilar tutuyorsa siraya guvenmek en saglami.
+    const donen = veri.cumleler || [];
+    const sirayaGuven = donen.length === parti.length;
+    for (const [n, c] of donen.entries()) {
       const hedef = parti.find(x => x === c.cumle)
         || parti.find(x => x.replace(/\s+/g, " ").trim() === String(c.cumle).replace(/\s+/g, " ").trim())
-        || parti.find(x => x.startsWith(String(c.cumle).slice(0, 24)));
+        || parti.find(x => x.startsWith(String(c.cumle).slice(0, 24)))
+        || (sirayaGuven ? parti[n] : null);
       if (!hedef) continue;
       await db.cumleYaz(hedef, { parcalar: c.parcalar, turkce: c.turkce });
       cozulen++;
@@ -1833,6 +1837,17 @@ async function baslat() {
       ekran.innerHTML = `<p class="soluk">Soru bankası hazırlanıyor…</p>`;
       const banka = (await (await fetch("./data/sorular.json")).json()).sorular;
       await db.seedYap(banka);
+
+    }
+
+    // Sinav parcalarinin hazir cozumleri. Kendi surum bayragi var: soru
+    // bankasindan bagimsiz, zaten kurulu cihazlara da gelir.
+    if (await db.cozumGerekliMi()) {
+      ekran.innerHTML = `<p class="soluk">Metin çözümleri yükleniyor…</p>`;
+      try {
+        const cozumler = await (await fetch("./data/cozumler.json")).json();
+        await db.cozumleriTohumla(cozumler);
+      } catch { /* cozumler olmasa da uygulama calisir */ }
     }
   } catch (hata) {
     ekran.innerHTML = `<div class="bildirim hata">Veri yüklenemedi: ${kacis(hata.message)}

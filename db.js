@@ -39,6 +39,33 @@ export async function seedYap(sorular) {
   await ayarYaz("seedSurum", SEED_SURUM);
 }
 
+// Cozumlerin kendi surumu var: soru bankasindan bagimsiz guncellenebilsin,
+// zaten kurulu olan cihazlara da gelsin.
+const COZUM_SURUM = 1;
+
+export async function cozumGerekliMi() {
+  return (await ayarOku("cozumSurum", 0)) !== COZUM_SURUM;
+}
+
+// Sinav parcalarinin hazir cozumleri. Repoda geldigi icin kullanicinin
+// kotasindan tek istek harcanmaz ve bu metinler ilk acilistan itibaren
+// cevrimdisi calisir. Kullanicinin kendi cozumlerinin uzerine yazmaz.
+export async function cozumleriTohumla(veri) {
+  const cd = depo("cumleler"), kd = depo("sozluk");
+  let cumle = 0, kelime = 0;
+  for (const [anahtar, deger] of Object.entries(veri.cumleler || {})) {
+    if (await get(anahtar, cd)) continue;
+    await set(anahtar, deger, cd); cumle++;
+  }
+  for (const [anahtar, deger] of Object.entries(veri.kelimeler || {})) {
+    if (await get(anahtar, kd)) continue;
+    await set(anahtar, { ...deger, tarih: new Date().toISOString(), gorulme: 0, isaretli: false }, kd);
+    kelime++;
+  }
+  await ayarYaz("cozumSurum", COZUM_SURUM);
+  return { cumle, kelime };
+}
+
 // --- soru bankasi sorgulari ---
 export async function konununSorulari(konuId, zorluk = null) {
   const hepsi = await tumu("sorular");

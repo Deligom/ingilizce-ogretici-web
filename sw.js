@@ -1,6 +1,6 @@
 // Service worker. Amac: uygulama kabugu ve veri dosyalari cevrimdisi acilsin.
 // AI cagrilari asla onbelleklenmez; onlarin onbellegi zaten IndexedDB'de.
-const SURUM = "wordnexus-v2";
+const SURUM = "wordnexus-v3";
 
 // Goreli yollar: site alt dizinde yayinlanabilir (GitHub Pages).
 const KABUK = [
@@ -15,6 +15,7 @@ const KABUK = [
   "./data/konular.json",
   "./data/sorular.json",
   "./data/teshis-testi.json",
+  "./data/cozumler.json",
   "./ikon/ikon-192.png",
   "./ikon/ikon-512.png"
 ];
