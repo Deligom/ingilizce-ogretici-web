@@ -93,6 +93,21 @@
       bildirim yok, süreli, boş bırakılabilir. Kutu sistemine dokunmaz.
 - [x] Anlatım tarzı: Günlük / Dengeli / Terimli — bilerek tek kontrol.
 - **Bitti sayılır:** telefona kurulup çevrimdışı açılıyor, verim yedeklenebiliyor. ✅
+## Faz 6 — Okuma modu derinleştirme ✅ BİTTİ
+- [x] **Toplu çözümleme:** tek düğmeyle metnin tamamı çözümlenir (4'erli partiler).
+      Cümle cümle istek atmak hem yavaştı hem de uçak modunda çözümlenmemiş her
+      cümleyi kullanılmaz bırakıyordu. Çözümlendikten sonra dokunmalar **anlık**
+      ve **sıfır ağ isteği** — canlı testte doğrulandı.
+- [x] Aynı istekte metnin zor kelimeleri de çıkarılıp sözlüğe yazılır (12'ye kadar),
+      böylece çoğu kelime dokunması da çevrimdışı karşılanır.
+- [x] Ekranda durum: kaç cümle hazır, kaç tanesi değil.
+- [x] **AI ile metin üretme:** seviye + uzunluk + konu seçilir, metin kaydedilir.
+- [x] **Metin sohbeti:** metnin tamamını gören sohbet — "üçüncü cümlede have been
+      neden var?" gibi sorular. Hazır öneriler de var.
+- [x] `sw.js` kendi kodumuz için ağ-önce: yeni sürüm bir açılış geriden görünmüyor.
+- [x] Zaman aşımı: `maxDuration` 60sn, parti 4 cümle, 502/504 için doğru mesaj.
+- [x] Kota mesajı modele göre: bir modelin kotası dolunca diğerine yönlendirir.
+
 ## Sonrası (fikir kuyruğu)
 - Kendi PDF sınavını yükleyip soru bankasına ekleme (OCR/metin ayrıştırma)
 - Sesli okuma (Web Speech API) — telaffuz için

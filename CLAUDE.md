@@ -121,7 +121,17 @@ Doğru cevap kutuyu 1 artırır, yanlış cevap 0'a düşürür.
 
 ### 3. Okuma
 
-Kullanıcı metin yapıştırır ya da sınav parçalarından seçer.
+Kullanıcı metin yapıştırır, sınav parçalarından seçer ya da **AI'ya metin
+yazdırır** (seviye + uzunluk + konu).
+
+**Önce çözümle, sonra oku.** Metin açılınca tek düğme çıkar: "Metni çözümle".
+Tüm cümleler 4'erli partiler hâlinde tek seferde çözümlenip IndexedDB'ye yazılır;
+aynı istekte metnin zor kelimeleri de sözlüğe düşer. Bundan sonra her dokunma
+anlık ve çevrimdışı çalışır. Cümle cümle istek atmak hem yavaştı hem de uçak
+modunda metni kullanılmaz bırakıyordu.
+
+Metnin altında **metin sohbeti** var: metnin tamamını görür, "şu cümlede bu yapı
+neden var?" gibi sorular sorulur.
 
 - **Kelimeye dokun** → anlam, türü, cümledeki rolü, örnek cümle. Önce `sozluk`
   cache'ine bakılır.
