@@ -173,7 +173,10 @@ module.exports = async (req, res) => {
       const kod = yanit.status === 429 ? "kota" : yanit.status === 503 ? "yogun" : "sunucu";
       return res.status(yanit.status).json({
         hata: yanit.status === 429
-          ? "Paylaşılan günlük kota doldu. Yarın tekrar dene ya da kendi anahtarını gir."
+          // Her modelin gunluk kotasi ayridir: biri dolunca digeri calisabilir.
+          ? (model.includes("lite")
+              ? "Paylaşılan günlük kota doldu. Yarın sıfırlanır; beklemek istemiyorsan Ayarlar'dan kendi anahtarını girebilirsin."
+              : "Bu modelin günlük kotası doldu. Ayarlar'dan Gemini 3.1 Flash Lite'a geç — onun kotası ayrıdır ve büyük ihtimalle çalışır.")
           : yanit.status === 503
             ? "Seçtiğin model şu an yoğun. Birkaç saniye sonra dene ya da Ayarlar'dan Gemini 3.1 Flash Lite'a geç."
             : `Gemini hatası (${yanit.status}).`,
