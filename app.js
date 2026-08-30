@@ -538,6 +538,12 @@ async function incelemeEkrani(no, index) {
   const i = Math.max(0, Math.min(index, yanlislar.length - 1));
   const c = yanlislar[i];
   const s = soruHarita.get(c.soruId);
+  // Soru bankadan kalkmis olabilir (silinmis AI sorusu, degismis banka surumu).
+  // Cokmek yerine o yanlisi atlayalim.
+  if (!s) {
+    if (yanlislar.length === 1) return git("#/sonuc/" + no);
+    return git(`#/inceleme/${no}/${i + 1 < yanlislar.length ? i + 1 : i - 1}`);
+  }
   const konu = konuHarita.get(s.konu);
   const secilen = c.bilmiyorum ? null : c.secilen;
   const secilenMetin = c.bilmiyorum ? null : s.secenekler[c.secilen];
