@@ -217,16 +217,29 @@ const SEMA_KELIME = {
   properties: {
     anlam: { type: "string" },
     tur: { type: "string", description: "isim, fiil, sıfat gibi" },
+    // Ogrencinin en cok takildigi yer: "bought" gorup "buy"i taniyamamak.
+    kokHali: {
+      type: "string",
+      description: "Kelime çekimliyse kök hâli ve hangi çekim olduğu. " +
+        "Örnek: 'buy — 2. hâli (düzensiz fiil)', 'children — child çoğulu'. " +
+        "Kelime zaten yalınsa boş bırak."
+    },
     cumledekiRol: { type: "string" },
     ornek: { type: "string" }
   },
-  required: ["anlam", "tur", "cumledekiRol", "ornek"]
+  required: ["anlam", "tur", "kokHali", "cumledekiRol", "ornek"]
 };
 
 export function kelimeAnlami(anahtar, kelime, cumle) {
   return json(anahtar, {
     sistem: SISTEM,
-    istek: `"${kelime}" kelimesini şu cümledeki kullanımına göre açıkla:\n${cumle}`,
+    istek: `"${kelime}" kelimesini şu cümledeki kullanımına göre açıkla:
+${cumle}
+
+Kelime çekimli bir hâlse (fiilin 2./3. hâli, çoğul, karşılaştırma eki) kokHali
+alanına kök hâlini ve hangi çekim olduğunu yaz. Düzensiz fiillerde bunu mutlaka
+belirt — öğrenci "bought" görüp "buy" olduğunu anlamayabiliyor. Kelime zaten
+yalınsa kokHali alanını boş bırak.`,
     sema: SEMA_KELIME,
     sicaklik: 0.2
   });

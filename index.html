@@ -312,6 +312,11 @@ input[type=range]{
   cursor:pointer;border-radius:3px;padding:1px 1px;
   -webkit-tap-highlight-color:transparent;
 }
+/* Soru ve parca metinlerinde de kelimeler dokunulur; dokunma alani biraz genis
+   olsun ki mono yazida parmakla isabet ettirmek kolay olsun. */
+.soru-metni .kelime,
+.parca .kelime{padding:2px 1px}
+.kelime-panel:empty{display:none}
 .kelime:hover{background:var(--sik-secili)}
 .kelime.acik{background:var(--fosforlu);color:var(--vurgu-yazi)}
 

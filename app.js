@@ -28,9 +28,35 @@ const belirtme = (n) => n + (EK_BELIRTME[n] || "'i");
 
 const SEVIYE_SIRA = { A1: 0, A2: 1, B1: 2 };
 
+const BOSLUK_ISARETI = '<span class="bosluk-isaret">&nbsp;&nbsp;&nbsp;</span>';
+
 // Cumledeki ____ bosluklarini fosforlu isaretle gosterir.
-function soruGoster(metin) {
-  return kacis(metin).replace(/_{3,}/g, '<span class="bosluk-isaret">&nbsp;&nbsp;&nbsp;</span>');
+// dokunulur=true ise kelimeler de sarilir: okuma modundaki kelime arama
+// soru ekranlarinda da calissin. "bought" gorup "buy"i tanimamak cumleyi
+// tamamen cozulemez hale getiriyor.
+function soruGoster(metin, dokunulur = false) {
+  if (!dokunulur) return kacis(metin).replace(/_{3,}/g, BOSLUK_ISARETI);
+
+  const desen = /(_{3,})|([A-Za-zÀ-ÿ]+(?:['’][A-Za-z]+)?)/g;
+  let html = "", son = 0;
+  for (const e of metin.matchAll(desen)) {
+    html += kacis(metin.slice(son, e.index));
+    html += e[1]
+      ? BOSLUK_ISARETI
+      : `<span class="kelime" data-kelime="${kacis(e[2])}">${kacis(e[2])}</span>`;
+    son = e.index + e[0].length;
+  }
+  return html + kacis(metin.slice(son));
+}
+
+// Bir kapsayicidaki kelimelere dokunma davranisini baglar.
+function kelimeleriBagla(kap, panel, baglam) {
+  kap.querySelectorAll(".kelime").forEach(el => el.addEventListener("click", async (e) => {
+    e.stopPropagation();
+    ekran.querySelectorAll(".kelime.acik").forEach(x => x.classList.remove("acik"));
+    el.classList.add("acik");
+    await kelimeAc(panel, el.dataset.kelime, baglam);
+  }));
 }
 
 function blokKonulari(no) {
@@ -523,8 +549,8 @@ async function incelemeEkrani(no, index) {
       · <a href="#/sonuc/${no}" style="color:inherit">haritaya dön</a></div>
 
     <div class="kart">
-      ${s.metin ? `<div class="parca" style="max-height:26vh;margin-bottom:12px">${kacis(s.metin)}</div>` : ""}
-      <p class="soru-metni" style="font-size:16px;margin-bottom:14px">${soruGoster(s.soru)}</p>
+      ${s.metin ? `<div class="parca" style="max-height:26vh;margin-bottom:12px">${soruGoster(s.metin, true)}</div>` : ""}
+      <p class="soru-metni" style="font-size:16px;margin-bottom:14px">${soruGoster(s.soru, true)}</p>
 
       ${c.bilmiyorum
         ? `<p class="kucuk soluk" style="margin:0 0 6px">Bilmiyorum dedin — iyi yaptın, tahmin etmedin.</p>`
@@ -539,6 +565,8 @@ async function incelemeEkrani(no, index) {
       <button class="dugme ikincil" id="neden-dugme"
               style="min-height:44px;padding:10px 18px;margin-top:12px">Neden?</button>
       <div class="neden-alani"></div>
+      <div class="kelime-panel"></div>
+      <p class="kucuk soluk" style="margin:10px 0 0">Bilmediğin kelimeye dokun.</p>
     </div>
 
     <div class="satir" style="margin-top:16px">
@@ -548,6 +576,8 @@ async function incelemeEkrani(no, index) {
         : `<button class="dugme" id="sonraki">Sonraki →</button>`}
     </div>
   `;
+
+  kelimeleriBagla(ekran, ekran.querySelector(".kelime-panel"), s.metin || s.soru);
 
   const dugme = ekran.querySelector("#neden-dugme");
   const kap = ekran.querySelector(".neden-alani");
@@ -670,7 +700,16 @@ async function calisEkrani() {
               style="min-height:44px;padding:10px 18px">Neden?</button>
           </div>
           <div class="neden-alani"></div>
+          <div class="kelime-panel"></div>
         </div>`;
+
+      // Cevap verildikten sonra kelimeler dokunulur olur. Once acsaydik
+      // kelime sorularinin cevabini dogrudan vermis olurduk.
+      const soruAlani = ekran.querySelector(".soru-metni");
+      soruAlani.innerHTML = soruGoster(s.soru, true);
+      const parcaAlani = ekran.querySelector(".parca");
+      if (parcaAlani) parcaAlani.innerHTML = soruGoster(s.metin, true);
+      kelimeleriBagla(ekran, ekran.querySelector(".kelime-panel"), s.metin || s.soru);
 
       const kap = ekran.querySelector(".neden-alani");
       const nedenDugme = ekran.querySelector("#neden-dugme");
@@ -1087,6 +1126,8 @@ async function kelimeAc(panel, kelime, cumle) {
           <span class="kucuk soluk">${kacis(k.tur || "")}${onbellekten ? " · kayıtlı" : ""}</span>
         </div>
         <p style="margin:8px 0 10px;font-size:16px"><span class="vurgu">${kacis(k.anlam)}</span></p>
+        ${k.kokHali ? `<p class="kucuk" style="margin:0 0 8px"><strong>Kök hâli:</strong>
+          <span style="font-family:var(--mono)">${kacis(k.kokHali)}</span></p>` : ""}
         ${k.cumledekiRol ? `<p class="kucuk" style="margin:0 0 8px"><strong>Bu cümlede:</strong> ${kacis(k.cumledekiRol)}</p>` : ""}
         ${k.ornek ? `<p class="kucuk" style="margin:0 0 12px;font-family:var(--mono)">${kacis(k.ornek)}</p>` : ""}
         <div class="satir">
