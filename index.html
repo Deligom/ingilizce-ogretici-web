@@ -175,6 +175,28 @@ button{font:inherit;color:inherit}
 .sik.yanlis .harf{border-color:var(--yanlis);color:var(--yanlis)}
 .sik:disabled{cursor:default}
 
+/* Turkce sorulan quiz sorusunda mono yazi yanlis durur: o govde yazisiyla. */
+.soru-metni.duz{font-family:var(--govde);font-size:19px;line-height:1.5}
+/* Quiz siklarinda metin Turkce de olabilir: kapsayici govde yazisina gecer,
+   Ingilizce sik ayrica mono isaretlenir. Teshis/alistirma siklari mono kalir. */
+.sik-liste.quiz .sik{font-family:var(--govde);font-size:15.5px}
+.sik-liste.quiz .sik .sik-en{font-family:var(--mono);font-size:15px}
+
+/* --- kelime quizi --- */
+.quiz-sayilar{display:flex;gap:10px;text-align:center}
+.quiz-sayilar > div{flex:1;min-width:0}
+.quiz-sayilar strong{
+  display:block;font-family:var(--display);font-size:22px;font-weight:600;line-height:1.2;
+}
+.quiz-sayilar small{display:block;font-size:12px;color:var(--soluk);margin-top:2px}
+.quiz-gelismis{margin-top:14px;border-top:1px solid var(--cizgi);padding-top:12px}
+.quiz-gelismis summary{
+  cursor:pointer;font-weight:600;font-size:14px;color:var(--soluk);
+  min-height:32px;display:flex;align-items:center;
+}
+.quiz-gelismis .secenek-satir small{font-size:12.5px;line-height:1.45}
+.quiz-kart{margin-top:4px}
+
 /* --- konu karti (alistirma) --- */
 .konu-kart .etiket{
   display:block;font-size:11.5px;font-weight:600;color:var(--soluk);
@@ -374,6 +396,7 @@ input[type=range]{
   font-weight:500;cursor:pointer;
 }
 .benzer .cevap.gizli{background:var(--cizgi);color:transparent;user-select:none}
+.benzer-tr{display:block;font-family:var(--govde);font-size:12.5px;color:var(--soluk);margin-top:4px}
 
 /* --- sohbet --- */
 .sohbet{margin-top:16px;border-top:1px solid var(--cizgi);padding-top:14px}

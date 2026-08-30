@@ -49,6 +49,7 @@ app.js                yönlendirme (hash router), görünüm montajı
 db.js                 IndexedDB şeması + CRUD
 ai.js                 Gemini istemcisi, prompt sözleşmeleri, cache katmanı
 tekrar.js             aralıklı tekrar: kutu, aralık, günlük oturum, soru seçimi
+quiz.js               kelime quizi: havuz ağırlıklandırma, dört soru tipi, çeldirici seçimi
 uretim.js             soru üretimi: prompt kurma, yerel eleme, onay kuyruğu
 data/konular.json     gramer konu ağacı (39 konu) + blok + çeşitlilik eksenleri
 data/sorular.json     birleşik soru bankası (aybu + tohum)
@@ -70,7 +71,7 @@ sw.js, manifest.json  PWA
 | `onayBekleyen` | otomatik | AI'nın ürettiği, kullanıcının henüz ✓/✗ yapmadığı sorular |
 | `teshis` | blokNo | `durum` (kilitli/devam/bitti), `sonSoruIndex`, `cevaplar[]` |
 | `hatalar` | otomatik | `soruId`, `konuId`, `secilen`, `tarih`, `cozuldu` |
-| `sozluk` | kelime | `anlam`, `tur`, `ornek`, `tarih` |
+| `sozluk` | kelime | `anlam`, `tur`, `kokHali`, `cumledekiRol`, `ornek`, `tarih`, `isaretli`, `gorulme` + quiz alanları: `kutu` (0-5), `sonrakiTarih`, `quizDogru`, `quizYanlis` |
 | `aciklamalar` | `soruId:secilenSik` | AI'nın döndürdüğü açıklama JSON'u |
 | `sohbetler` | soruId | `mesajlar[]` (rol, metin) |
 | `cumleler` | cümle | cümle şeridi çözümlemesi (parçalar + Türkçesi) |
@@ -94,7 +95,7 @@ AYBU soruları doğası gereği aşama 1'dir (placement testi, tek ipuçlu); toh
 sorular aşama 2 ve 3'ü doldurur. `uretSorular` da `zorluk` parametresi alır ve
 o aşamanın tohum sorusunu üslup örneği olarak görür.
 
-## Üç modül
+## Dört modül
 
 ### 1. Teşhis — bloklu, checkpoint'li
 
@@ -145,7 +146,17 @@ Metnin altında **metin sohbeti** var: metnin tamamını görür, "şu cümlede 
 neden var?" gibi sorular sorulur.
 
 - **Kelimeye dokun** → anlam, türü, kök hâli, cümledeki rolü, örnek cümle.
-  Önce `sozluk` cache'ine bakılır.
+  Sıra: yerel durak kelime listesi → `sozluk` cache'i → AI. İlk ikisi kotasız ve anlık.
+
+  **Bir dokunuş, bir istek, bütün cümle.** Kelime önbellekte yoksa yalnızca o kelime
+  değil, **cümlenin tüm içerik kelimeleri** tek istekte çözülüp sözlüğe yazılır
+  (`cumleKelimeleri`). Bir paragrafta 15 kelimeye bakmak 15 istek yerine birkaç istek
+  eder. `the, is, my` gibi ~70 işlev kelimesi (`DURAK_KELIMELER`) hiç API'ye gitmez:
+  karşılıkları gömülü, anlamları bağlama göre değişmiyor. Bunlar sözlüğe de yazılmaz —
+  quiz havuzunu doldurmasınlar.
+
+  Panelde tek bir istek numarası tutulur (`sonKelimeIstegi`). Bunsuz: A kelimesine
+  dokunup beklerken B'ye dokununca A'nın geç gelen cevabı B'nin üzerine yazıyordu.
 
 Kelime arama yalnızca okumada değil, **cevabın göründüğü her yerde** var:
 yanlış incelemesinde (`#/inceleme`) ve alıştırmada cevap verildikten sonra.
@@ -156,6 +167,33 @@ cevaptan önce açık olsaydı kelime sorularının cevabını doğrudan vermiş
   Bloğa dokununca fosforlu kalem soldan sağa geçer.
 - "Bunu bilmiyorum" denen kelimeler `#/kelimeler` ekranında birikir.
 
+### 4. Kelime quizi (`quiz.js`)
+
+Okurken ve soru çözerken sözlükte biriken kelimeleri sorar. **Tek AI isteği harcamaz:**
+soru gövdesi de çeldiriciler de kayıtlı verilerden kurulur, o yüzden uçuş modunda çalışır.
+
+Dört soru tipi. Birden fazla seçilirse kelimelere sırayla dağıtılır; bir kelime seçilen
+tipi desteklemiyorsa (örnek cümlesi yok, kök hâli boş) sessizce başka tipe düşer:
+
+| Tip | Soru | Çeldirici |
+|---|---|---|
+| `entr` | kelime → Türkçe anlamı | aynı türden başka kelimelerin anlamları |
+| `tren` | Türkçe anlam → kelime | aynı türden başka kelimeler |
+| `bosluk` | kelimenin `ornek` cümlesi, kelime yeri `___` | aynı türden başka kelimeler |
+| `kok` | çekimli kelime → kök hâli (`bought` → `buy`) | başka kelimelerin kök hâlleri |
+
+**Ağırlıklandırma** (`agirlik`): "bunu bilmiyorum" denen kelime +100, hiç sorulmamış +40,
+vadesi gelmiş +50, kutu düştükçe +10/kademe, quizde takıldıkça +6/hata, bildikçe -2.
+Eşit puanlılar karıştırılır ki her tur aynı sırayla gelmesin. Kutusu dolmuş ve vadesi
+gelmemiş kelime havuzdan çıkar — bildiği kelimeyi tekrar sormanın faydası yok.
+
+Kutu ve aralıklar konu ilerlemesiyle aynı (`tekrar.js` `ARALIKLAR`): doğru cevap kutuyu
+bir artırır, yanlış sıfıra düşürür. Kelime kutusu `sozluk` kaydında durur, yedeklemeye
+dahildir.
+
+Ayarlar quiz ekranının kendisinde: basit (kaç soru, hangi kelimeler) + Gelişmiş
+(soru tipleri, öğrenilenler de çıksın mı). `ayarlar.quizAyar`'da saklanır.
+
 ## AI sözleşmeleri (`ai.js`)
 
 Dördü de `responseSchema` ile JSON döner:
@@ -165,6 +203,16 @@ Dördü de `responseSchema` ile JSON döner:
 2. `kelimeAnlami(kelime, cumle)` → `{ anlam, tur, kokHali, cumledekiRol, ornek }`
    `kokHali`: çekimli hâllerde kök ve çekim türü — *"buy — 2. hâli (düzensiz fiil)"*.
    Öğrencinin en çok takıldığı yer: `bought` görüp `buy`ı tanıyamamak.
+   **Tek kelime yolu artık yedek.** Normalde 2b çalışır; bu, modelin dokunulan
+   kelimeyi listeden atlaması hâlinde devreye girer.
+2b. `cumleKelimeleri(cumle, kelimeler)` → `{ kelimeler: [{kelime, anlam, tur, kokHali,
+   cumledekiRol, ornek}] }` — bir kelimeye dokununca **o cümlenin tüm içerik kelimeleri
+   tek istekte** çözülür. 15 kelimeye 15 istek yerine 1 istek; kalan kelimeler artık
+   anlık ve çevrimdışı açılır. Model burada liste *uydurmuyor*, verilen listeyi
+   dolduruyor — soru üretimindeki tekrara düşme riski burada yok.
+2c. `benzerCumleler(konu, ornekCumle, kacinilacak, adet)` → `{ cumleler: [{cumle, cevap,
+   turkce}] }` — "Başka 5 cümle üret" düğmesi. Cevap düz sohbet metni değil,
+   dokun-cevabı-gör listesi olarak çizilir ve açıklama kaydına eklenir (kalıcı, kotasız).
 3. `cumleParcala(cumle)` → `{ parcalar: [{ metin, rol, aciklama }] }`
 4. `uretSorular(konuKarti, eksenler, ornekSorular, mevcutCumleler, adet, zorluk)` →
    `{ sorular: [{ eksen, soru, secenekler, cevap, neden, celdiriciler }] }`
@@ -257,16 +305,16 @@ Boş ekran davet eder: "Henüz hata yok. Teşhis testini çözünce burası dola
 | "Neden?" | açıklama kartı, benzer 5 cümle, sohbet, hazır öneriler — hepsi önbellekli |
 | Alıştırma | günlük kuyruk, konu kartı, kutu sistemi, seri |
 | Üretim | Ayarlar → Gelişmiş, yerel eleme, onay kuyruğu |
-| Okuma | metin yapıştırma, kelimeye dokun, cümle şeridi, kelime defteri |
+| Okuma | metin yapıştırma, kelimeye dokun (cümle bazlı toplu çözümleme), cümle şeridi, kelime defteri |
+| Quiz | 4 soru tipi, ağırlıklı havuz, kelime bazlı aralıklı tekrar, AI'sız |
 | PWA | manifest, service worker, çevrimdışı, koyu tema, yedekleme, sınav provası |
 
 Ekranlar: `#/` · `#/blok/:n` · `#/sonuc/:n` · `#/inceleme/:n/:i` · `#/calis` ·
-`#/oku` · `#/oku/:id` · `#/kelimeler` · `#/prova` · `#/hatalar` · `#/onay` ·
+`#/oku` · `#/oku/:id` · `#/kelimeler` · `#/quiz` · `#/prova` · `#/hatalar` · `#/onay` ·
 `#/ayarlar` · `#/ayarlar/gelismis`
 
 ### Sonraki adım fikirleri
 
 - Gerçek kullanım sonrası: hangi konu kartları anlaşılmıyor, hangi açıklama uzun
-- Kelime kartları: işaretlenen kelimeler için aralıklı tekrar (şu an sadece liste)
 - Yazma alıştırması: Türkçe cümle → İngilizce çeviri, AI hataları konu etiketiyle işaretler
 - Gerçek IP sınırı için Upstash Redis (`api/gemini.js` içinde `sayacAl`/`sayacArtir`)

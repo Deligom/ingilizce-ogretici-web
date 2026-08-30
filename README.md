@@ -85,13 +85,25 @@ node arac/cozum-uret.js
 
 Yalnızca bazı parçaları yenilemek için: `SADECE=p3,p6 node arac/cozum-uret.js`
 
+## Kota nereye gidiyor
+
+Ücretsiz katmanda istek hakkı sınırlı, o yüzden nerede istek harcandığı bilinçli
+bir karar:
+
+| İşlem | İstek |
+|---|---|
+| Kelimeye dokunma | Cümle başına **1** — o cümlenin bütün kelimeleri birden çözülür |
+| `the`, `is`, `my` gibi işlev kelimeleri | **0** — karşılıkları uygulamada gömülü |
+| Aynı kelimeye ikinci kez bakma | **0** — sözlükte kayıtlı |
+| Kelime quizi (`#/quiz`) | **0** — sorular ve çeldiriciler sözlükten kurulur |
+| Sınav parçalarını okuma | **0** — çözümleri repoda hazır geliyor |
+| Soru açıklaması, sohbet, soru üretimi | istek başına 1 |
+
 ## API anahtarı
 
 Gemini anahtarı **repoya yazılmaz**. Uygulama içinde Ayarlar ekranından girilir ve
 yalnızca o cihazdaki tarayıcının IndexedDB'sinde saklanır. Anahtarı
 [Google AI Studio](https://aistudio.google.com/apikey)'dan ücretsiz alabilirsin.
-
-Faz 1'de anahtar sadece test ediliyor; açıklama ve sohbet Faz 2'de devreye girecek.
 
 ## Dosyalar
 
@@ -100,6 +112,8 @@ index.html             tek giriş noktası, tüm görünümler ve stiller
 app.js                 hash router, ekranlar
 db.js                  IndexedDB katmanı (idb-keyval)
 ai.js                  Gemini istemcisi
+tekrar.js              konu bazlı aralıklı tekrar
+quiz.js                kelime quizi (AI'sız: sorular sözlükten kurulur)
 data/konular.json      39 konu: kural, tuzak, blok, çeşitlilik eksenleri
 data/sorular.json      182 soru: 100 gerçek sınav + 82 el yazımı, 3 zorluk aşaması
 data/teshis-testi.json AYBU sınavının orijinal hâli (sınav provası modu için)

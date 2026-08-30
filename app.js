@@ -1,10 +1,12 @@
 // Yonlendirme (hash router) ve gorunum montaji.
 import * as db from "./db.js";
-import { anahtarTest, aciklaSoru, soruSor, kelimeAnlami, cumleParcala,
-         metniCozumle, metinUret, metinSohbet, AiHata } from "./ai.js";
+import { anahtarTest, aciklaSoru, soruSor, kelimeAnlami, cumleKelimeleri,
+         benzerCumleler, cumleParcala, metniCozumle, metinUret, metinSohbet,
+         AiHata } from "./ai.js";
 import * as ai from "./ai.js";
 import * as tekrar from "./tekrar.js";
 import * as uretim from "./uretim.js";
+import * as quiz from "./quiz.js";
 
 const ekran = document.getElementById("ekran");
 const BLOK_SAYISI = 8;
@@ -49,13 +51,25 @@ function soruGoster(metin, dokunulur = false) {
   return html + kacis(metin.slice(son));
 }
 
+// Metinden, kelimenin gectigi cumleyi ayiklar. Okuma parcali sorularda baglam
+// koca bir paragraf olabiliyor; toplu kelime cozumlemesi paragrafin tamamini
+// degil, dokunulan kelimenin cumlesini kapsasin.
+function kelimeninCumlesi(metin, kelime) {
+  const tam = String(metin || "");
+  if (!tam) return "";
+  const cumleler = tam.match(/[^.!?]+[.!?]*/g) || [tam];
+  const kacisli = kelime.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  const desen = new RegExp("\\b" + kacisli + "\\b", "i");
+  return (cumleler.find(c => desen.test(c)) || tam).trim();
+}
+
 // Bir kapsayicidaki kelimelere dokunma davranisini baglar.
 function kelimeleriBagla(kap, panel, baglam) {
   kap.querySelectorAll(".kelime").forEach(el => el.addEventListener("click", async (e) => {
     e.stopPropagation();
     ekran.querySelectorAll(".kelime.acik").forEach(x => x.classList.remove("acik"));
     el.classList.add("acik");
-    await kelimeAc(panel, el.dataset.kelime, baglam);
+    await kelimeAc(panel, el.dataset.kelime, kelimeninCumlesi(baglam, el.dataset.kelime));
   }));
 }
 
@@ -104,6 +118,11 @@ async function aiCagir(isle) {
   return sonuc;
 }
 
+// Tek benzer cumle satiri. Cevap once gizli; dokununca acilir.
+const benzerSatir = (c) => `<li>${kacis(c.cumle)}
+  <span class="cevap gizli">${kacis(c.cevap)}</span>${
+    c.turkce ? `<small class="benzer-tr">${kacis(c.turkce)}</small>` : ""}</li>`;
+
 function aciklamaKarti(a) {
   const bolum = (etiket, icerik, sinif = "govde") =>
     icerik ? `<div class="bolum"><span class="etiket">${etiket}</span>
@@ -115,15 +134,17 @@ function aciklamaKarti(a) {
     ${bolum("Türkçeyle", a.turkceKarsilastirma)}
     ${bolum("Senin şıkkın", a.secilenNesiYanlis)}
     ${bolum("Tuzak", a.tuzak)}
-    ${a.benzerCumleler?.length ? `<div class="bolum">
-      <span class="etiket">Benzer 5 cümle — cevabı görmek için dokun</span>
-      <ul class="benzer">
-        ${a.benzerCumleler.map(c => `<li>${kacis(c.cumle)}
-          <span class="cevap gizli">${kacis(c.cevap)}</span></li>`).join("")}
-      </ul></div>` : ""}
+    <div class="bolum">
+      <span class="etiket">Benzer cümleler — cevabı görmek için dokun</span>
+      <ul class="benzer" id="benzer-liste">
+        ${(a.benzerCumleler || []).map(benzerSatir).join("")}
+      </ul>
+      <div id="benzer-bildirim"></div>
+      <button class="dugme ikincil" id="benzer-uret"
+        style="margin-top:10px;min-height:44px;padding:10px 16px">Başka 5 cümle üret</button>
+    </div>
   </div>`;
 }
-
 // Model bazen markdown yaziyor. Once HTML kacisi yapariz (guvenlik), sonra
 // yalnizca iki isareti ceviririz: **kalin** ve satir basindaki * madde imi.
 function sohbetMetni(metin) {
@@ -136,10 +157,51 @@ const mesajHtml = (m) =>
   `<div class="mesaj ${m.rol === "kullanici" ? "kullanici" : "ai"}">${
     m.rol === "kullanici" ? kacis(m.metin) : sohbetMetni(m.metin)}</div>`;
 
+// Benzer cumle listesinde cevaba dokununca acilir/kapanir.
+function cevaplariBagla(kap) {
+  kap.querySelectorAll(".benzer .cevap").forEach(e => {
+    if (e.dataset.bagli) return;
+    e.dataset.bagli = "1";
+    e.addEventListener("click", () => e.classList.toggle("gizli"));
+  });
+}
+
+// "Baska 5 cumle uret": duz sohbet metni yerine dokunulabilir alistirma.
+// Uretilen cumleler aciklama kaydina eklenir; bir daha kota harcanmaz ve
+// ucus modunda da acilir.
+function benzerUretBagla(kap, a, soru, secilen, konu) {
+  const dugme = kap.querySelector("#benzer-uret");
+  const liste = kap.querySelector("#benzer-liste");
+  const bildirim = kap.querySelector("#benzer-bildirim");
+  if (!dugme || !liste) return;
+
+  dugme.addEventListener("click", async () => {
+    dugme.disabled = true;
+    bildirim.innerHTML = `<p class="yukleniyor" style="margin:8px 0 0">Yeni cümleler yazılıyor</p>`;
+    try {
+      const mevcut = (a.benzerCumleler || []).map(c => c.cumle);
+      const veri = await aiCagir(x => benzerCumleler(x, konu, soru.soru, mevcut, 5));
+      const yeniler = (veri.cumleler || []).filter(c => c.cumle && c.cevap);
+      a.benzerCumleler = [...(a.benzerCumleler || []), ...yeniler];
+      await db.aciklamaYaz(soru.id, secilen, a);
+      liste.insertAdjacentHTML("beforeend", yeniler.map(benzerSatir).join(""));
+      cevaplariBagla(kap);
+      bildirim.innerHTML = "";
+      liste.lastElementChild?.scrollIntoView({ block: "nearest" });
+    } catch (hata) {
+      bildirim.innerHTML = `<div class="bildirim hata" style="margin:8px 0 0">${kacis(hata.message)}</div>`;
+    } finally {
+      dugme.disabled = false;
+    }
+  });
+}
+
 // Hazir soru onerileri. Yerelde uretilir, kota harcamaz. Tiklayinca kutuya
 // yazilir ama GONDERILMEZ: kullanici cumleyi degistirmek isteyebilir.
 function oneriListesi(soru, secilen) {
-  const oneriler = ["Bu kuralı başka bir örnekle anlatır mısın?"];
+  // "Baska bir ornek" burada yok: o artik sohbet metni degil, aciklama
+  // kartindaki "Baska 5 cumle uret" dugmesiyle dokunulabilir alistirma uretiyor.
+  const oneriler = [];
   oneriler.push(secilen === null
     ? "Bu soruda en çok hangi şık kandırıyor?"
     : `Neden "${soru.secenekler[secilen]}" olmuyor?`);
@@ -172,8 +234,8 @@ async function nedenAc(kap, soru, secilen, konu) {
   const cizAciklama = (a, mesajlar) => {
     kap.innerHTML = aciklamaKarti(a) +
       sohbetKarti(mesajlar, oneriAcik ? oneriListesi(soru, secilen) : null);
-    kap.querySelectorAll(".benzer .cevap").forEach(e =>
-      e.addEventListener("click", () => e.classList.toggle("gizli")));
+    cevaplariBagla(kap);
+    benzerUretBagla(kap, a, soru, secilen, konu);
     // Oneriye basinca kutuya yazilir, gonderilmez.
     const girdi = kap.querySelector(".sohbet-girdi");
     kap.querySelectorAll(".oneri").forEach(o => o.addEventListener("click", () => {
@@ -327,6 +389,7 @@ async function anaSayfa() {
     <div class="satir" style="margin-top:18px">
       <a class="dugme ikincil" href="#/oku" style="text-decoration:none">Okuma</a>
       <a class="dugme ikincil" href="#/kelimeler" style="text-decoration:none">Kelimelerim</a>
+      <a class="dugme ikincil" href="#/quiz" style="text-decoration:none">Kelime quizi</a>
       <a class="dugme ikincil" href="#/hatalar" style="text-decoration:none">Hata bankası</a>
       <a class="dugme ikincil" href="#/ayarlar" style="text-decoration:none">Ayarlar</a>
     </div>
@@ -1123,13 +1186,122 @@ async function okumaEkrani(metinId) {
   window.scrollTo(0, 0);
 }
 
+// Cok sik gecen islev kelimeleri. Bunlar icin API'ye gitmenin anlami yok:
+// anlamlari baglama gore degismiyor ve toplu istekte 15 kelimelik listeyi
+// gereksiz sisiriyorlar. Sozluge de yazilmazlar — quiz havuzunu doldurmasinlar.
+const DURAK_KELIMELER = new Map(Object.entries({
+  the: ["belirli bir şeyi işaret eder", "artikel", "Türkçedeki belirtme hâli '-i' gibi: kapıyı aç → open the door."],
+  a: ["bir", "artikel", "Herhangi bir tane demek: a book → bir kitap."],
+  an: ["bir", "artikel", "Sesli harfle başlayan kelimeden önce 'a' yerine kullanılır: an apple."],
+  is: ["-dir, -dır", "yardımcı fiil", "Tekil özneyle 'olmak': She is happy → O mutlu(dur)."],
+  am: ["-im, -ım", "yardımcı fiil", "Yalnızca 'I' ile: I am tired → Yorgunum."],
+  are: ["-dir (çoğul)", "yardımcı fiil", "Çoğul özneyle ve 'you' ile: They are ready → Onlar hazır."],
+  was: ["-di (tekil)", "yardımcı fiil", "'is/am' fiilinin geçmiş hâli: He was here → O buradaydı."],
+  were: ["-di (çoğul)", "yardımcı fiil", "'are' fiilinin geçmiş hâli: They were late → Geç kalmışlardı."],
+  be: ["olmak", "fiil", "'am/is/are' fiilinin yalın hâli: I want to be a teacher."],
+  been: ["olmuş", "fiil", "'be' fiilinin 3. hâli: I have been there → Oraya gitmişliğim var."],
+  do: ["yapmak / soru yardımcısı", "fiil", "Soru ve olumsuzda taşıyıcıdır: Do you know? / I do not know."],
+  does: ["yapar / soru yardımcısı (3. tekil)", "fiil", "he, she, it ile: Does she know?"],
+  did: ["yaptı / geçmiş soru yardımcısı", "fiil", "Geçmiş zamanda soru ve olumsuz: Did you go?"],
+  have: ["sahip olmak / -miş yardımcısı", "fiil", "I have a car → Arabam var."],
+  has: ["sahip (3. tekil)", "fiil", "he, she, it ile: She has a car."],
+  had: ["sahipti", "fiil", "'have' fiilinin geçmiş hâli."],
+  not: ["değil", "olumsuzluk", "Türkçedeki '-ma/-me' ekinin karşılığı: I am not → değilim."],
+  and: ["ve", "bağlaç", ""],
+  or: ["veya", "bağlaç", ""],
+  but: ["ama", "bağlaç", ""],
+  in: ["içinde, -de", "edat", "Kapalı alan ve büyük yerler: in the box, in Turkey."],
+  on: ["üstünde, -de", "edat", "Yüzey ve günler: on the table, on Monday."],
+  at: ["-de (nokta)", "edat", "Belirli nokta ve saat: at home, at 5 o'clock."],
+  to: ["-e, -a", "edat", "Yönelme: to school → okula."],
+  of: ["-in, -nin", "edat", "Aitlik: the door of the house → evin kapısı."],
+  for: ["için", "edat", ""],
+  with: ["ile, -le", "edat", ""],
+  from: ["-den, -dan", "edat", ""],
+  by: ["tarafından, ile", "edat", ""],
+  this: ["bu", "işaret", ""],
+  that: ["şu, o / ki", "işaret", "Bağlaç olarak da gelir: I know that he is here."],
+  these: ["bunlar", "işaret", ""],
+  those: ["şunlar, onlar", "işaret", ""],
+  it: ["o (cansız)", "zamir", "Türkçede karşılığı çoğu zaman söylenmez."],
+  he: ["o (erkek)", "zamir", ""],
+  she: ["o (kadın)", "zamir", ""],
+  they: ["onlar", "zamir", ""],
+  we: ["biz", "zamir", ""],
+  you: ["sen, siz", "zamir", ""],
+  i: ["ben", "zamir", "Her zaman büyük harfle yazılır."],
+  my: ["benim", "iyelik", ""],
+  your: ["senin, sizin", "iyelik", ""],
+  his: ["onun (erkek)", "iyelik", ""],
+  her: ["onun (kadın) / ona", "iyelik", ""],
+  their: ["onların", "iyelik", ""],
+  our: ["bizim", "iyelik", ""],
+  there: ["orada / var", "zarf", "'There is a book' → Bir kitap var."],
+  here: ["burada", "zarf", ""],
+  very: ["çok", "zarf", ""],
+  too: ["de, da / fazla", "zarf", "Cümle sonunda 'de/da', sıfat önünde 'fazla': too hot → fazla sıcak."],
+  also: ["ayrıca, de", "zarf", ""],
+  can: ["-ebilmek", "kip", "I can swim → Yüzebilirim."],
+  will: ["-ecek", "kip", "Gelecek zaman: I will go → Gideceğim."],
+  would: ["-erdi", "kip", "'will' fiilinin geçmiş/kibar hâli."],
+  some: ["biraz, birkaç", "belirteç", "Olumlu cümlede kullanılır."],
+  any: ["hiç, herhangi", "belirteç", "Soru ve olumsuzda 'some' yerine gelir."],
+  all: ["hepsi, bütün", "belirteç", ""],
+  more: ["daha çok", "karşılaştırma", ""],
+  most: ["en çok", "karşılaştırma", ""],
+  than: ["-den (karşılaştırmada)", "edat", "bigger than me → benden büyük."],
+  as: ["kadar / olarak", "edat", ""],
+  if: ["eğer", "bağlaç", ""],
+  when: ["ne zaman, -diğinde", "bağlaç", ""],
+  because: ["çünkü", "bağlaç", ""],
+  what: ["ne", "soru", ""],
+  who: ["kim", "soru", ""],
+  which: ["hangi", "soru", ""],
+  how: ["nasıl", "soru", ""],
+  why: ["neden", "soru", ""],
+  where: ["nerede", "soru", ""]
+}));
+
+const durakKelime = (kelime) => {
+  const k = DURAK_KELIMELER.get(String(kelime).toLowerCase().trim());
+  return k ? { anlam: k[0], tur: k[1], cumledekiRol: k[2], kokHali: "", ornek: "", yerel: true } : null;
+};
+
+// Bir cumlenin AI'ya sorulacak kelimeleri: durak kelimeler ve zaten sozlukte
+// olanlar elenir. Tek kelime icin 15 istek yerine tek istek atmanin yolu bu.
+const CUMLE_KELIME_SINIRI = 20;
+
+async function cozulecekKelimeler(cumle, oncelikli) {
+  const gorulen = new Set();
+  const liste = [];
+  for (const e of String(cumle).matchAll(KELIME_DESENI)) {
+    const k = e[1].toLowerCase();
+    if (gorulen.has(k) || durakKelime(k)) continue;
+    gorulen.add(k);
+    if (await db.kelimeOku(k)) continue;
+    liste.push(e[1]);
+  }
+  // Dokunulan kelime her zaman listede ve basta olsun.
+  const sirali = liste.filter(k => k.toLowerCase() !== oncelikli.toLowerCase());
+  return [oncelikli, ...sirali].slice(0, CUMLE_KELIME_SINIRI);
+}
+
+// Panele en son hangi dokunusun yazacagini belirler. Bunsuz: A kelimesine
+// dokunup beklerken B'ye dokununca A'nin gec gelen cevabi B'nin uzerine
+// yaziliyordu — "aciklama bir sure sonra degisiyor" sikayetinin sebebi buydu.
+let sonKelimeIstegi = 0;
+
 async function kelimeAc(panel, kelime, cumle) {
-  const ciz = (k, onbellekten) => {
+  const istek = ++sonKelimeIstegi;
+  const gecerli = () => istek === sonKelimeIstegi;
+
+  const ciz = (k, not) => {
+    if (!gecerli() || !k) return;
     panel.innerHTML = `
       <div class="kart okuma-panel-kart">
         <div class="satir" style="justify-content:space-between;align-items:baseline">
           <span class="panel-baslik">${kacis(kelime)}</span>
-          <span class="kucuk soluk">${kacis(k.tur || "")}${onbellekten ? " · kayıtlı" : ""}</span>
+          <span class="kucuk soluk">${kacis(k.tur || "")}${not ? " · " + kacis(not) : ""}</span>
         </div>
         <p style="margin:8px 0 10px;font-size:16px"><span class="vurgu">${kacis(k.anlam)}</span></p>
         ${k.kokHali ? `<p class="kucuk" style="margin:0 0 8px"><strong>Kök hâli:</strong>
@@ -1137,10 +1309,11 @@ async function kelimeAc(panel, kelime, cumle) {
         ${k.cumledekiRol ? `<p class="kucuk" style="margin:0 0 8px"><strong>Bu cümlede:</strong> ${kacis(k.cumledekiRol)}</p>` : ""}
         ${k.ornek ? `<p class="kucuk" style="margin:0 0 12px;font-family:var(--mono)">${kacis(k.ornek)}</p>` : ""}
         <div class="satir">
-          <button class="dugme ikincil ${k.isaretli ? "secili" : ""}" id="isaretle"
+          ${k.yerel ? "" : `<button class="dugme ikincil ${k.isaretli ? "secili" : ""}" id="isaretle"
             style="min-height:44px;padding:10px 16px">
-            ${k.isaretli ? "İşaretli — kelime kartında" : "Bunu bilmiyorum"}
+            ${k.isaretli ? "İşaretli — quizde öne çıkar" : "Bunu bilmiyorum"}
           </button>
+          <a class="dugme ikincil" href="#/quiz" style="min-height:44px;padding:10px 16px;text-decoration:none">Quiz</a>`}
           <button class="dugme ikincil" id="panel-kapat" style="min-height:44px;padding:10px 16px">Kapat</button>
         </div>
       </div>`;
@@ -1149,22 +1322,40 @@ async function kelimeAc(panel, kelime, cumle) {
       panel.innerHTML = "";
       ekran.querySelectorAll(".kelime.acik,.cumle.acik").forEach(x => x.classList.remove("acik"));
     });
-    panel.querySelector("#isaretle").addEventListener("click", async () => {
+    panel.querySelector("#isaretle")?.addEventListener("click", async () => {
       await db.kelimeIsaretle(kelime, !k.isaretli);
       k.isaretli = !k.isaretli;
-      ciz(k, true);
+      ciz(k, "kayıtlı");
     });
   };
 
-  const kayitli = await db.kelimeOku(kelime);
-  if (kayitli) return ciz(kayitli, true);
+  const yerel = durakKelime(kelime);
+  if (yerel) return ciz(yerel, "sık kullanılan kelime");
 
+  const kayitli = await db.kelimeOku(kelime);
+  if (kayitli) return ciz(kayitli, "kayıtlı");
+
+  if (!gecerli()) return;
   panel.innerHTML = `<div class="kart"><p class="yukleniyor" style="margin:0">${kacis(kelime)} aranıyor</p></div>`;
+
+  // Tek kelime yerine cumlenin tamami cozulur: 15 kelimeye 15 istek atmak
+  // yerine tek istek. Kalan kelimeler artik anlik ve cevrimdisi acilir.
+  const hedefler = cumle ? await cozulecekKelimeler(cumle, kelime) : [kelime];
   try {
-    const veri = await aiCagir(a => kelimeAnlami(a, kelime, cumle));
-    await db.kelimeYaz(kelime, veri);
-    ciz(await db.kelimeOku(kelime), false);
+    if (hedefler.length > 1) {
+      const veri = await aiCagir(a => cumleKelimeleri(a, cumle, hedefler));
+      await db.kelimeleriYaz(veri.kelimeler || []);
+    }
+    let sonuc = await db.kelimeOku(kelime);
+    if (!sonuc) {                    // model dokunulan kelimeyi atladiysa tek tek sor
+      const tek = await aiCagir(a => kelimeAnlami(a, kelime, cumle));
+      await db.kelimeYaz(kelime, tek);
+      sonuc = await db.kelimeOku(kelime);
+    }
+    const digerleri = hedefler.length - 1;
+    ciz(sonuc, digerleri > 0 ? `bu cümleden ${digerleri} kelime daha kaydedildi` : null);
   } catch (hata) {
+    if (!gecerli()) return;
     panel.innerHTML = `<div class="bildirim hata">${kacis(hata.message)}</div>`;
   }
 }
@@ -1228,10 +1419,11 @@ async function kelimelerEkrani() {
   const isaretli = hepsi.filter(k => k.isaretli);
   const digerleri = hepsi.filter(k => !k.isaretli);
 
+  // Kutu: quizde ne kadar oturdugu. Hic sorulmamis kelimede tire.
   const satir = (k) => `<div class="konu-satir">
     <span class="ad"><strong>${kacis(k.kelime)}</strong>
       <small>${kacis(k.tur || "")} · ${kacis(k.anlam)}</small></span>
-    <span class="oran soluk">${k.gorulme || 1}×</span>
+    <span class="oran soluk">${(k.kutu ?? null) === null ? "–" : k.kutu + "/" + tekrar.EN_UST_KUTU}</span>
   </div>`;
 
   ekran.innerHTML = `
@@ -1246,10 +1438,227 @@ async function kelimelerEkrani() {
         <h2>Baktıklarım (${digerleri.length})</h2>
         ${digerleri.length ? `<div class="kart" style="padding:0">${digerleri.map(satir).join("")}</div>` : ""}`}
     <div class="satir" style="margin-top:18px">
+      ${hepsi.length >= 4 ? `<a class="dugme" href="#/quiz" style="text-decoration:none">Quiz çöz</a>` : ""}
       <a class="dugme ikincil" href="#/oku" style="text-decoration:none">Okumaya dön</a>
       <a class="dugme ikincil" href="#/" style="text-decoration:none">Ana sayfa</a>
     </div>`;
   window.scrollTo(0, 0);
+}
+
+// ---------- Kelime quizi ----------
+// Sozlukte biriken kelimeleri aralikli tekrarla sorar. Tek AI istegi
+// harcamaz: sorular da celdiriciler de kayitli verilerden kurulur.
+
+const QUIZ_TIP_ETIKET = {
+  entr: "İngilizce → Türkçe",
+  tren: "Türkçe → İngilizce",
+  bosluk: "Boşluklu cümle",
+  kok: "Kök hâli"
+};
+
+async function quizEkrani() {
+  const ayar = await quiz.ayarOku();
+  const hepsi = await quiz.havuz();
+  const isaretli = hepsi.filter(k => k.isaretli).length;
+  const vadesi = hepsi.filter(k => (k.kutu ?? null) === null
+    || !k.sonrakiTarih || k.sonrakiTarih <= tekrar.bugun()).length;
+  const ogrenilen = hepsi.filter(quiz.ogrenildi).length;
+
+  if (hepsi.length < 4) {
+    ekran.innerHTML = `
+      <h1>Kelime quizi</h1>
+      <div class="kart bos">Quiz için en az 4 kelime lazım, şu an ${hepsi.length} tane var.
+        Okuma modunda ya da soru ekranlarında bilmediğin kelimelere dokun — havuz kendiliğinden dolar.</div>
+      <div class="satir" style="margin-top:18px">
+        <a class="dugme" href="#/oku" style="text-decoration:none">Okumaya git</a>
+        <a class="dugme ikincil" href="#/" style="text-decoration:none">Ana sayfa</a>
+      </div>`;
+    window.scrollTo(0, 0);
+    return;
+  }
+
+  ekran.innerHTML = `
+    <h1>Kelime quizi</h1>
+    <p class="soluk">Bildiğin kelime seyrekleşir, takıldığın kelime sık çıkar.
+      Hiç internet gerekmez, AI kotandan da tek istek harcanmaz.</p>
+
+    <div class="kart">
+      <div class="quiz-sayilar">
+        <div><strong>${hepsi.length}</strong><small>havuzda</small></div>
+        <div><strong>${isaretli}</strong><small>bilmediğim</small></div>
+        <div><strong>${vadesi}</strong><small>tekrar zamanı</small></div>
+        <div><strong>${ogrenilen}</strong><small>öğrenildi</small></div>
+      </div>
+    </div>
+
+    <div class="kart">
+      <label for="quiz-adet">Kaç soru</label>
+      <select id="quiz-adet">
+        ${[5, 10, 15, 20, 30].map(n =>
+          `<option value="${n}" ${ayar.adet === n ? "selected" : ""}>${n} soru</option>`).join("")}
+      </select>
+
+      <label for="quiz-kaynak" style="margin-top:12px">Hangi kelimeler</label>
+      <select id="quiz-kaynak">
+        <option value="agirlikli" ${ayar.kaynak === "agirlikli" ? "selected" : ""}>Hepsi — bilmediklerim ağırlıklı</option>
+        <option value="isaretli" ${ayar.kaynak === "isaretli" ? "selected" : ""}>Sadece "bunu bilmiyorum" dediklerim</option>
+        <option value="vadesi" ${ayar.kaynak === "vadesi" ? "selected" : ""}>Tekrar zamanı gelenler</option>
+      </select>
+
+      <details class="quiz-gelismis" ${ayar.tipler.length !== quiz.VARSAYILAN_AYAR.tipler.length ? "open" : ""}>
+        <summary>Gelişmiş</summary>
+
+        <p class="kucuk soluk" style="margin:10px 0 8px">Soru tipleri — birden çok seçersen sırayla dağıtılır.</p>
+        ${Object.entries(quiz.TIPLER).map(([id, t]) => `
+          <label class="secenek-satir" for="tip-${id}">
+            <input type="checkbox" id="tip-${id}" data-tip="${id}" ${ayar.tipler.includes(id) ? "checked" : ""}>
+            <span><strong>${kacis(t.baslik)}</strong><br>
+              <small class="soluk">${kacis(t.aciklama)}</small></span>
+          </label>`).join("")}
+
+        <label class="secenek-satir" for="quiz-ogrenilenler" style="margin-top:10px">
+          <input type="checkbox" id="quiz-ogrenilenler" ${ayar.ogrenilenler ? "checked" : ""}>
+          <span><strong>Öğrenilenler de çıksın</strong><br>
+            <small class="soluk">Kutusu dolmuş kelimeler normalde vadesi gelene kadar sorulmaz.</small></span>
+        </label>
+      </details>
+
+      <div id="quiz-bildirim" style="margin-top:12px"></div>
+      <button class="dugme tam" id="quiz-basla" style="margin-top:12px">Quize başla</button>
+    </div>
+
+    <div class="satir" style="margin-top:18px">
+      <a class="dugme ikincil" href="#/kelimeler" style="text-decoration:none">Kelimelerim</a>
+      <a class="dugme ikincil" href="#/" style="text-decoration:none">Ana sayfa</a>
+    </div>`;
+
+  const ayarToparla = () => ({
+    ...ayar,
+    adet: Number(ekran.querySelector("#quiz-adet").value),
+    kaynak: ekran.querySelector("#quiz-kaynak").value,
+    ogrenilenler: ekran.querySelector("#quiz-ogrenilenler").checked,
+    tipler: [...ekran.querySelectorAll("[data-tip]")].filter(x => x.checked).map(x => x.dataset.tip)
+  });
+
+  ekran.querySelector("#quiz-basla").addEventListener("click", async () => {
+    const yeni = ayarToparla();
+    const bildirim = ekran.querySelector("#quiz-bildirim");
+    if (!yeni.tipler.length) {
+      bildirim.innerHTML = `<div class="bildirim hata">En az bir soru tipi seç.</div>`;
+      return;
+    }
+    await quiz.ayarYaz(yeni);
+    const { sorular } = await quiz.oturumKur(yeni);
+    if (!sorular.length) {
+      bildirim.innerHTML = `<div class="bildirim hata">Bu ayarlarla soru kurulamadı.
+        "Hangi kelimeler" seçimini genişletmeyi dene.</div>`;
+      return;
+    }
+    quizOturumu(sorular);
+  });
+
+  window.scrollTo(0, 0);
+}
+
+// Bir quiz oturumu bastan sona burada donuyor: soru -> cevap -> sonraki.
+function quizOturumu(sorular) {
+  let i = 0;
+  const gecmis = [];
+
+  const ciz = () => {
+    const s = sorular[i];
+    const monoSoru = s.tip !== "tren";     // Turkce sorulan tipte mono yazi yanlis durur
+    ekran.innerHTML = `
+      <div class="ilerleme-cubuk"><i style="width:${(i / sorular.length) * 100}%"></i></div>
+      <div class="sayac">${i + 1} / ${sorular.length} · ${kacis(QUIZ_TIP_ETIKET[s.tip] || "")}
+        · <a href="#/quiz" style="color:inherit">çık</a></div>
+
+      ${s.ipucu ? `<p class="kucuk soluk" style="margin:0 0 6px">${kacis(s.ipucu)}</p>` : ""}
+      <div class="soru-metni ${monoSoru ? "" : "duz"}" id="quiz-soru">${soruGoster(s.soru)}</div>
+
+      <div class="sik-liste quiz" id="quiz-sikler">
+        ${s.secenekler.map((sec, n) => `
+          <button class="sik" data-n="${n}">
+            <span class="harf">${HARFLER[n]}</span>
+            <span class="${s.tip === "tren" || s.tip === "kok" || s.tip === "bosluk" ? "sik-en" : ""}">${kacis(sec)}</span>
+          </button>`).join("")}
+      </div>
+
+      <div id="quiz-sonrasi"></div>`;
+
+    ekran.querySelectorAll("#quiz-sikler .sik").forEach(dugme =>
+      dugme.addEventListener("click", () => cevapla(Number(dugme.dataset.n))));
+    window.scrollTo(0, 0);
+  };
+
+  const cevapla = async (secilen) => {
+    const s = sorular[i];
+    const dogruMu = secilen === s.cevap;
+    gecmis.push({ soru: s, secilen, dogruMu });
+
+    ekran.querySelectorAll("#quiz-sikler .sik").forEach(d => {
+      const n = Number(d.dataset.n);
+      d.disabled = true;
+      if (n === s.cevap) d.classList.add("dogru");
+      else if (n === secilen) d.classList.add("yanlis");
+    });
+
+    const kutu = await quiz.cevapla(s, dogruMu);
+    const k = s.kayit;
+    ekran.querySelector("#quiz-sonrasi").innerHTML = `
+      <div class="kart quiz-kart">
+        <div class="satir" style="justify-content:space-between;align-items:baseline">
+          <span class="panel-baslik">${kacis(k.kelime)}</span>
+          <span class="kucuk soluk">${kacis(k.tur || "")} · kutu ${kutu}/${tekrar.EN_UST_KUTU}</span>
+        </div>
+        <p style="margin:8px 0 10px;font-size:16px"><span class="vurgu">${kacis(k.anlam)}</span></p>
+        ${k.kokHali ? `<p class="kucuk" style="margin:0 0 8px"><strong>Kök hâli:</strong>
+          <span style="font-family:var(--mono)">${kacis(k.kokHali)}</span></p>` : ""}
+        ${k.ornek ? `<p class="kucuk" style="margin:0 0 10px;font-family:var(--mono)">${kacis(k.ornek)}</p>` : ""}
+        <button class="dugme tam" id="quiz-sonraki">
+          ${i + 1 < sorular.length ? "Sonraki" : "Bitir"}</button>
+      </div>`;
+
+    const sonraki = ekran.querySelector("#quiz-sonraki");
+    sonraki.addEventListener("click", () => {
+      i++;
+      if (i < sorular.length) ciz(); else bitir();
+    });
+    sonraki.focus();
+    sonraki.scrollIntoView({ block: "nearest" });
+  };
+
+  const bitir = () => {
+    const dogru = gecmis.filter(g => g.dogruMu).length;
+    const yanlislar = gecmis.filter(g => !g.dogruMu);
+
+    ekran.innerHTML = `
+      <h1>${dogru} / ${gecmis.length} doğru</h1>
+      <p class="soluk">${yanlislar.length === 0
+        ? "Hepsi doğru. Bu kelimeler bir süre karşına çıkmayacak."
+        : `${yanlislar.length} kelime kutu 0'a döndü, yarın yine sorulacak.`}</p>
+
+      ${yanlislar.length ? `
+        <h2>Takıldıkların</h2>
+        <div class="kart" style="padding:0">
+          ${yanlislar.map(g => `<div class="konu-satir">
+            <span class="ad"><strong>${kacis(g.soru.kayit.kelime)}</strong>
+              <small>${kacis(g.soru.kayit.anlam)}</small></span>
+            <span class="oran soluk">${kacis(g.soru.secenekler[g.secilen] || "")}</span>
+          </div>`).join("")}
+        </div>` : ""}
+
+      <div class="satir" style="margin-top:18px">
+        <button class="dugme" id="quiz-tekrar">Yeni tur</button>
+        <a class="dugme ikincil" href="#/kelimeler" style="text-decoration:none">Kelimelerim</a>
+        <a class="dugme ikincil" href="#/" style="text-decoration:none">Ana sayfa</a>
+      </div>`;
+
+    ekran.querySelector("#quiz-tekrar").addEventListener("click", () => quizEkrani());
+    window.scrollTo(0, 0);
+  };
+
+  ciz();
 }
 
 // ---------- Tema ----------
@@ -1861,6 +2270,7 @@ async function yonlendir() {
     if (yol[0] === "hatalar") return await hatalarEkrani();
     if (yol[0] === "oku") return await okumaEkrani(yol[1] || null);
     if (yol[0] === "kelimeler") return await kelimelerEkrani();
+    if (yol[0] === "quiz") return await quizEkrani();
     if (yol[0] === "prova") return await provaEkrani();
     if (yol[0] === "calis") return await calisEkrani();
     if (yol[0] === "blok" && yol[1]) return await blokEkrani(Number(yol[1]));

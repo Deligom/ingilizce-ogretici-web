@@ -245,6 +245,101 @@ yalınsa kokHali alanını boş bırak.`,
   });
 }
 
+// ---------- 2b. Cumlenin butun kelimeleri (toplu) ----------
+// Bir kelimeye dokununca 15 kelimelik cumle icin 15 istek atmak sacma; ayni
+// cumlenin tum icerik kelimeleri tek istekte cozulur ve sozluge yazilir.
+// Modelin listeyi kendisi uydurma riski yok: liste zaten verilmis, model
+// yalnizca dolduruyor. (Soru uretiminde tersi olur, orada eksen listesi gerekir.)
+const SEMA_KELIME_LISTE = {
+  type: "object",
+  properties: {
+    kelimeler: {
+      type: "array",
+      items: {
+        type: "object",
+        properties: {
+          kelime: { type: "string", description: "Verilen kelimenin birebir aynısı, küçük harfle" },
+          anlam: { type: "string", description: "Bu cümledeki anlamı, kısa Türkçe" },
+          tur: { type: "string", description: "isim, fiil, sıfat gibi" },
+          kokHali: {
+            type: "string",
+            description: "Kelime çekimliyse kök hâli ve çekim türü ('buy — 2. hâli (düzensiz fiil)'). " +
+              "Yalınsa boş bırak."
+          },
+          cumledekiRol: { type: "string", description: "Bu cümlede ne iş görüyor, tek kısa cümle" },
+          ornek: { type: "string", description: "Kısa İngilizce örnek cümle" }
+        },
+        required: ["kelime", "anlam", "tur", "kokHali", "cumledekiRol", "ornek"]
+      }
+    }
+  },
+  required: ["kelimeler"]
+};
+
+export function cumleKelimeleri(anahtar, cumle, kelimeler) {
+  return json(anahtar, {
+    sistem: SISTEM,
+    istek: `Şu cümledeki kelimeleri tek tek açıkla:
+
+${cumle}
+
+Açıklanacak kelimeler (hepsini, verildiği sırayla ve "kelime" alanına birebir
+aynı yazımla döndür — eksik bırakma, yenisini ekleme):
+${kelimeler.map((k, i) => `${i + 1}. ${k}`).join("\n")}
+
+Kurallar:
+- Anlamı bu cümledeki kullanımına göre ver; kelimenin sözlükteki bütün anlamlarını sıralama.
+- Çekimli hâllerde kokHali alanına kök hâli ve hangi çekim olduğunu yaz. Düzensiz
+  fiillerde bunu mutlaka belirt — öğrenci "bought" görüp "buy" olduğunu anlamayabiliyor.
+  Kelime yalınsa kokHali alanını boş bırak.
+- Örnek cümle kısa ve A2 seviyesinde olsun.`,
+    sema: SEMA_KELIME_LISTE,
+    sicaklik: 0.2
+  });
+}
+
+// ---------- 2c. Yeni alistirma cumleleri ----------
+// "Baska bir ornek" istendiginde duz sohbet metni yerine dokunulabilir
+// alistirma uretilir: aciklama kartindaki benzer cumle listesinin aynisi.
+const SEMA_BENZER = {
+  type: "object",
+  properties: {
+    cumleler: {
+      type: "array",
+      items: {
+        type: "object",
+        properties: {
+          cumle: { type: "string", description: "Boşluk ___ ile gösterilmiş kısa İngilizce cümle" },
+          cevap: { type: "string", description: "Boşluğa gelecek kelime" },
+          turkce: { type: "string", description: "Cümlenin Türkçesi, kısa" }
+        },
+        required: ["cumle", "cevap", "turkce"]
+      }
+    }
+  },
+  required: ["cumleler"]
+};
+
+export function benzerCumleler(anahtar, konu, ornekCumle, kacinilacak = [], adet = 5) {
+  return json(anahtar, {
+    sistem: SISTEM,
+    istek: `Şu kuralı ölçen ${adet} yeni alıştırma cümlesi yaz.
+
+Konu: ${konu.ad}
+Kural: ${konu.kural}
+Yapı: ${konu.yapi}
+Örnek soru: ${ornekCumle}
+
+Kurallar:
+- Her cümlede tek boşluk olsun, ___ ile göster; cevabı ayrı alanda ver.
+- Cümleler kısa ve günlük olsun; birbirinden farklı özne, zaman ve bağlam kullan.
+- Aşağıdaki cümleleri tekrar etme:
+${kacinilacak.length ? kacinilacak.map(c => "  - " + c).join("\n") : "  (yok)"}`,
+    sema: SEMA_BENZER,
+    sicaklik: 0.9
+  });
+}
+
 // ---------- 3. Cumle parcalama (cumle seridi) ----------
 // Cumle kelime bloklarina ayrilir, her blogun altinda rolu yazar.
 // Roller Turkce soru kaliplariyla verilir: "kim", "ne yapiyor", "neyi", "nerede".

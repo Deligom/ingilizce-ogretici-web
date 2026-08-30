@@ -98,9 +98,12 @@ const kucult = (s) => String(s).toLowerCase().trim();
 
 export const kelimeOku = (kelime) => oku("sozluk", kucult(kelime));
 
+// Mevcut kayit once yayilir: quiz ilerlemesi (kutu, sonrakiTarih) ve isaretli
+// bayragi ayni kelimeye ikinci kez bakildiginda silinmesin.
 export async function kelimeYaz(kelime, veri) {
   const mevcut = await kelimeOku(kelime);
   return yaz("sozluk", kucult(kelime), {
+    ...mevcut,
     ...veri,
     kelime: kucult(kelime),
     tarih: new Date().toISOString(),
@@ -109,10 +112,40 @@ export async function kelimeYaz(kelime, veri) {
   });
 }
 
+// Toplu yazim: bir cumlenin butun kelimeleri tek istekte cozulunce kullanilir.
+// Zaten kayitli kelimenin uzerine yazmaz — eski kayit quiz gecmisini tasiyor
+// olabilir ve ayni kelimeyi iki kere "yeni gorulme" saymanin anlami yok.
+export async function kelimeleriYaz(liste) {
+  let yeni = 0;
+  for (const k of liste) {
+    if (!k?.kelime) continue;
+    if (await kelimeOku(k.kelime)) continue;
+    await kelimeYaz(k.kelime, k);
+    yeni++;
+  }
+  return yeni;
+}
+
 export async function kelimeIsaretle(kelime, isaretli) {
   const mevcut = await kelimeOku(kelime);
   if (!mevcut) return;
   return yaz("sozluk", kucult(kelime), { ...mevcut, isaretli });
+}
+
+// --- kelime quizi ---
+// Kutu ve sonraki tarih konu ilerlemesindekiyle ayni mantikta (tekrar.js
+// ARALIKLAR). Bilinen kelime kutu yukseldikce seyrekler, bilinmeyen sifira duser.
+export async function kelimeQuizKaydet(kelime, dogruMu, kutu, sonrakiTarih) {
+  const mevcut = await kelimeOku(kelime);
+  if (!mevcut) return;
+  return yaz("sozluk", kucult(kelime), {
+    ...mevcut,
+    kutu,
+    sonrakiTarih,
+    quizDogru: (mevcut.quizDogru || 0) + (dogruMu ? 1 : 0),
+    quizYanlis: (mevcut.quizYanlis || 0) + (dogruMu ? 0 : 1),
+    sonQuiz: new Date().toISOString()
+  });
 }
 
 export const cumleOku = (cumle) => oku("cumleler", kucult(cumle));
