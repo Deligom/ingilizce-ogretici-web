@@ -144,8 +144,13 @@ modunda metni kullanılmaz bırakıyordu.
 Metnin altında **metin sohbeti** var: metnin tamamını görür, "şu cümlede bu yapı
 neden var?" gibi sorular sorulur.
 
-- **Kelimeye dokun** → anlam, türü, cümledeki rolü, örnek cümle. Önce `sozluk`
-  cache'ine bakılır.
+- **Kelimeye dokun** → anlam, türü, kök hâli, cümledeki rolü, örnek cümle.
+  Önce `sozluk` cache'ine bakılır.
+
+Kelime arama yalnızca okumada değil, **cevabın göründüğü her yerde** var:
+yanlış incelemesinde (`#/inceleme`) ve alıştırmada cevap verildikten sonra.
+Teşhis bloklarında kapalı — orada ölçüyoruz, öğretmiyoruz; alıştırmada da
+cevaptan önce açık olsaydı kelime sorularının cevabını doğrudan vermiş olurduk.
 - **Cümleye uzun bas** (masaüstünde çift tık) → cümle mono yazıyla kelime bloklarına
   ayrılır, her bloğun altında rolü yazar (kim / ne yapıyor / neyi / nerede-ne zaman).
   Bloğa dokununca fosforlu kalem soldan sağa geçer.
@@ -157,7 +162,9 @@ Dördü de `responseSchema` ile JSON döner:
 
 1. `aciklaSoru(soru, secilenSik, konuKarti)` → `{ dogruSik, neden, kural,
    turkceKarsilastirma, secilenNesiYanlis, tuzak, benzerCumleler: [{cumle, cevap}] }`
-2. `kelimeAnlami(kelime, cumle)` → `{ anlam, tur, cumledekiRol, ornek }`
+2. `kelimeAnlami(kelime, cumle)` → `{ anlam, tur, kokHali, cumledekiRol, ornek }`
+   `kokHali`: çekimli hâllerde kök ve çekim türü — *"buy — 2. hâli (düzensiz fiil)"*.
+   Öğrencinin en çok takıldığı yer: `bought` görüp `buy`ı tanıyamamak.
 3. `cumleParcala(cumle)` → `{ parcalar: [{ metin, rol, aciklama }] }`
 4. `uretSorular(konuKarti, eksenler, ornekSorular, mevcutCumleler, adet, zorluk)` →
    `{ sorular: [{ eksen, soru, secenekler, cevap, neden, celdiriciler }] }`
